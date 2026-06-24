@@ -29,6 +29,7 @@
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <ul>
           <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Packages</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#work">Projects</a></li>
@@ -312,6 +313,122 @@
       </div>
     </section>
 
+    <section class="packages" id="packages">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Pricing</p>
+          <h2>Website Packages &amp; Monthly Care Plans</h2>
+          <p>Straightforward pricing built for small businesses — a one-time build to get you online, plus optional monthly care so your site stays secure, current, and fast. No agency markups, no surprises.</p>
+        </header>
+
+        <h3 class="packages-subhead">Website Build Packages</h3>
+        <div class="package-grid">
+          <article class="package-card">
+            <div class="package-head">
+              <h4>Starter</h4>
+              <p class="package-tagline">Get online, fast.</p>
+            </div>
+            <p class="package-price"><span class="price-amount">$750</span><span class="price-unit">one-time</span></p>
+            <p class="package-desc">A clean, mobile-first 1–3 page site — perfect for a new business or a simple online presence.</p>
+            <ul class="package-features">
+              <li>Up to 3 pages</li>
+              <li>Mobile-first responsive design</li>
+              <li>Contact form &amp; click-to-call</li>
+              <li>Basic on-page SEO setup</li>
+              <li>Deployed &amp; live on your domain</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary btn-full">Get Started</a>
+          </article>
+
+          <article class="package-card popular">
+            <div class="package-badge">Most Popular</div>
+            <div class="package-head">
+              <h4>Business</h4>
+              <p class="package-tagline">Built to convert.</p>
+            </div>
+            <p class="package-price"><span class="price-amount">$1,800</span><span class="price-unit">one-time</span></p>
+            <p class="package-desc">A polished, conversion-focused site for established businesses that need to generate leads and build trust.</p>
+            <ul class="package-features">
+              <li>Up to 7 custom pages</li>
+              <li>Lead-generating layout &amp; calls-to-action</li>
+              <li>Google Business &amp; analytics integration</li>
+              <li>Performance &amp; accessibility tuning</li>
+              <li>Security hardening &amp; SSL</li>
+              <li>1 month of post-launch support</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-full">Get Started</a>
+          </article>
+
+          <article class="package-card">
+            <div class="package-head">
+              <h4>Modernization</h4>
+              <p class="package-tagline">Rebuild &amp; secure.</p>
+            </div>
+            <p class="package-price"><span class="price-amount">$3,500+</span><span class="price-unit">custom quote</span></p>
+            <p class="package-desc">A full redesign or migration of an outdated site — rebuilt for speed, security, and modern standards.</p>
+            <ul class="package-features">
+              <li>Full redesign or platform migration</li>
+              <li>Content restructure &amp; copy guidance</li>
+              <li>Custom features &amp; integrations</li>
+              <li>Advanced SEO &amp; performance work</li>
+              <li>Security audit &amp; remediation</li>
+              <li>Training &amp; handoff documentation</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary btn-full">Request a Quote</a>
+          </article>
+        </div>
+
+        <h3 class="packages-subhead care-subhead">Monthly Care Plans</h3>
+        <p class="care-intro">Keep your site secure and worry-free. Cancel anytime — month-to-month, no long contracts.</p>
+        <div class="package-grid care-grid">
+          <article class="care-card">
+            <div class="care-head">
+              <h4>Essential Care</h4>
+              <p class="package-price care-price"><span class="price-amount">$49</span><span class="price-unit">/ month</span></p>
+            </div>
+            <ul class="package-features">
+              <li>Software &amp; security updates</li>
+              <li>Weekly automated backups</li>
+              <li>Uptime &amp; SSL monitoring</li>
+              <li>Up to 30 min of content edits</li>
+              <li>Email support</li>
+            </ul>
+          </article>
+
+          <article class="care-card popular">
+            <div class="package-badge">Best Value</div>
+            <div class="care-head">
+              <h4>Growth Care</h4>
+              <p class="package-price care-price"><span class="price-amount">$99</span><span class="price-unit">/ month</span></p>
+            </div>
+            <ul class="package-features">
+              <li>Everything in Essential</li>
+              <li>Up to 2 hrs of edits &amp; small features</li>
+              <li>Monthly performance &amp; security report</li>
+              <li>Priority response (1 business day)</li>
+              <li>Basic SEO monitoring</li>
+            </ul>
+          </article>
+
+          <article class="care-card">
+            <div class="care-head">
+              <h4>Managed IT + Web</h4>
+              <p class="package-price care-price"><span class="price-amount">$199</span><span class="price-unit">/ month</span></p>
+            </div>
+            <ul class="package-features">
+              <li>Everything in Growth</li>
+              <li>Up to 3 hrs IT helpdesk support</li>
+              <li>Device &amp; endpoint assistance</li>
+              <li>Advanced security monitoring</li>
+              <li>Quarterly strategy check-in</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="packages-note">Not sure which fits? <a href="#contact">Tell me about your business</a> and I'll recommend the right setup — custom bundles welcome.</p>
+      </div>
+    </section>
+
     <section class="work" id="work">
       <div class="container">
         <header class="section-header">
@@ -433,6 +550,10 @@
             <label for="service">I'm interested in</label>
             <select id="service" name="service">
               <option value="">Select a service</option>
+              <option value="package-starter">Website Package — Starter</option>
+              <option value="package-business">Website Package — Business</option>
+              <option value="package-modernization">Website Package — Modernization</option>
+              <option value="care-plan">Monthly Care Plan</option>
               <option value="website">Secure, Conversion-Focused Website</option>
               <option value="qa-automation">QA Engineering &amp; Test Automation</option>
               <option value="web-development">Web Development</option>
