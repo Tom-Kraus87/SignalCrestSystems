@@ -337,6 +337,9 @@
               <li>Basic on-page SEO setup</li>
               <li>Deployed &amp; live on your domain</li>
             </ul>
+            <button type="button" class="btn btn-demo btn-full" data-demo="starter">
+              <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
+            </button>
             <a href="#contact" class="btn btn-secondary btn-full">Get Started</a>
           </article>
 
@@ -356,6 +359,9 @@
               <li>Security hardening &amp; SSL</li>
               <li>1 month of post-launch support</li>
             </ul>
+            <button type="button" class="btn btn-demo btn-full" data-demo="business">
+              <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
+            </button>
             <a href="#contact" class="btn btn-primary btn-full">Get Started</a>
           </article>
 
@@ -374,6 +380,9 @@
               <li>Security audit &amp; remediation</li>
               <li>Training &amp; handoff documentation</li>
             </ul>
+            <button type="button" class="btn btn-demo btn-full" data-demo="modernization">
+              <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
+            </button>
             <a href="#contact" class="btn btn-secondary btn-full">Request a Quote</a>
           </article>
         </div>
@@ -584,6 +593,276 @@
       <p class="footer-copy">&copy; <span id="year"></span> SignalCrest Systems. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Package demo modal -->
+  <div class="demo-modal" id="demoModal" hidden>
+    <div class="demo-overlay" data-demo-close></div>
+    <div class="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+      <div class="demo-topbar">
+        <div class="demo-topbar-info">
+          <p class="demo-eyebrow" id="demoEyebrow">Live Demo</p>
+          <h3 id="demoTitle">Package Demo</h3>
+        </div>
+        <button class="demo-close" type="button" data-demo-close aria-label="Close demo">&times;</button>
+      </div>
+      <p class="demo-explainer" id="demoExplainer"></p>
+      <div class="demo-window">
+        <div class="demo-window-bar">
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <div class="demo-addressbar" id="demoUrl">evergreenlandscaping.com</div>
+        </div>
+        <div class="demo-screen" id="demoScreen"></div>
+      </div>
+      <p class="demo-disclaimer">Sample concept site for demonstration only. &ldquo;Evergreen Landscaping&rdquo; is a fictional business.</p>
+    </div>
+  </div>
+
+  <!-- STARTER: single scrolling page -->
+  <template id="tpl-starter">
+    <div class="d-site">
+      <header class="d-nav">
+        <span class="d-logo">&#127807; Evergreen Landscaping</span>
+        <nav class="d-nav-links">
+          <a href="#dhome" data-scroll>Home</a>
+          <a href="#dservices" data-scroll>Services</a>
+          <a href="#dgallery" data-scroll>Gallery</a>
+          <a href="#dreviews" data-scroll>Reviews</a>
+          <a href="#dcontact" data-scroll>Contact</a>
+        </nav>
+      </header>
+
+      <section id="dhome" class="d-section d-hero">
+        <h1>Lawn &amp; Landscape Care You Can Trust</h1>
+        <p>Family-owned landscaping serving Greater Detroit for over 15 years.</p>
+        <span class="d-btn">Get a Free Quote</span>
+      </section>
+
+      <section id="dabout" class="d-section">
+        <span class="d-kicker">About Us</span>
+        <h2>Rooted in our community</h2>
+        <p>From weekly mowing to full landscape redesigns, our crew treats every yard like our own. Licensed, insured, and locally loved.</p>
+      </section>
+
+      <section id="dservices" class="d-section d-alt">
+        <span class="d-kicker">Services</span>
+        <h2>What we do</h2>
+        <div class="d-cards">
+          <div class="d-card"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span>Mowing, edging &amp; fertilization</span></div>
+          <div class="d-card"><span class="d-ico">&#127794;</span><strong>Landscape Design</strong><span>Custom planting &amp; hardscapes</span></div>
+          <div class="d-card"><span class="d-ico">&#10052;</span><strong>Snow Removal</strong><span>Seasonal driveway &amp; walk clearing</span></div>
+        </div>
+      </section>
+
+      <section id="dgallery" class="d-section">
+        <span class="d-kicker">Gallery</span>
+        <h2>Recent projects</h2>
+        <div class="d-gallery">
+          <div class="d-photo" style="--c:#3f7d4e"></div>
+          <div class="d-photo" style="--c:#6ba368"></div>
+          <div class="d-photo" style="--c:#2f5d3a"></div>
+          <div class="d-photo" style="--c:#88b56b"></div>
+        </div>
+      </section>
+
+      <section id="dreviews" class="d-section d-alt">
+        <span class="d-kicker">Reviews</span>
+        <h2>What clients say</h2>
+        <blockquote class="d-quote">&ldquo;Best lawn on the block. Reliable and professional every visit.&rdquo;<cite>— Sarah M.</cite></blockquote>
+      </section>
+
+      <section id="dpricing" class="d-section">
+        <span class="d-kicker">Pricing</span>
+        <h2>Simple seasonal plans</h2>
+        <div class="d-cards">
+          <div class="d-card"><strong>Basic</strong><span class="d-price">$45/visit</span></div>
+          <div class="d-card"><strong>Full Care</strong><span class="d-price">$120/mo</span></div>
+        </div>
+      </section>
+
+      <section id="dcontact" class="d-section d-alt">
+        <span class="d-kicker">Contact</span>
+        <h2>Get your free estimate</h2>
+        <p>&#128222; (586) 555-0142 &nbsp;&bull;&nbsp; hello@evergreenlandscaping.com</p>
+        <span class="d-btn">Request a Quote</span>
+      </section>
+
+      <footer class="d-footer">&copy; Evergreen Landscaping &bull; Built by SignalCrest Systems</footer>
+    </div>
+  </template>
+
+  <!-- BUSINESS: 5 navigable pages -->
+  <template id="tpl-business">
+    <div class="d-site">
+      <header class="d-nav">
+        <span class="d-logo">&#127807; Evergreen Landscaping</span>
+        <nav class="d-nav-links">
+          <button class="d-tab is-active" data-page="home">Home</button>
+          <button class="d-tab" data-page="about">About</button>
+          <button class="d-tab" data-page="services">Services</button>
+          <button class="d-tab" data-page="gallery">Gallery</button>
+          <button class="d-tab" data-page="contact">Contact</button>
+        </nav>
+      </header>
+
+      <div class="d-pages">
+        <section class="d-page is-active" data-page="home">
+          <div class="d-section d-hero">
+            <h1>Lawn &amp; Landscape Care You Can Trust</h1>
+            <p>Family-owned landscaping serving Greater Detroit for over 15 years.</p>
+            <span class="d-btn">Get a Free Quote</span>
+          </div>
+          <div class="d-section d-alt">
+            <blockquote class="d-quote">&ldquo;Best lawn on the block. Reliable every visit.&rdquo;<cite>— Sarah M.</cite></blockquote>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="about">
+          <div class="d-section">
+            <span class="d-kicker">About Us</span>
+            <h2>Rooted in our community</h2>
+            <p>From weekly mowing to full landscape redesigns, our crew treats every yard like our own. Licensed, insured, and locally loved.</p>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="services">
+          <div class="d-section">
+            <span class="d-kicker">Services &amp; Pricing</span>
+            <h2>What we do</h2>
+            <div class="d-cards">
+              <div class="d-card"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span class="d-price">$45/visit</span></div>
+              <div class="d-card"><span class="d-ico">&#127794;</span><strong>Landscape Design</strong><span class="d-price">Custom quote</span></div>
+              <div class="d-card"><span class="d-ico">&#10052;</span><strong>Snow Removal</strong><span class="d-price">$120/mo</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="gallery">
+          <div class="d-section">
+            <span class="d-kicker">Gallery</span>
+            <h2>Recent projects</h2>
+            <div class="d-gallery">
+              <div class="d-photo" style="--c:#3f7d4e"></div>
+              <div class="d-photo" style="--c:#6ba368"></div>
+              <div class="d-photo" style="--c:#2f5d3a"></div>
+              <div class="d-photo" style="--c:#88b56b"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="contact">
+          <div class="d-section">
+            <span class="d-kicker">Contact</span>
+            <h2>Get your free estimate</h2>
+            <p>&#128222; (586) 555-0142 &nbsp;&bull;&nbsp; hello@evergreenlandscaping.com</p>
+            <span class="d-btn">Request a Quote</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="d-footer">&copy; Evergreen Landscaping &bull; Built by SignalCrest Systems</footer>
+    </div>
+  </template>
+
+  <!-- MODERNIZATION: redesigned 5 pages -->
+  <template id="tpl-modernization">
+    <div class="d-site d-modern">
+      <header class="d-nav d-nav-modern">
+        <span class="d-logo">&#127807; Evergreen</span>
+        <nav class="d-nav-links">
+          <button class="d-tab is-active" data-page="home">Home</button>
+          <button class="d-tab" data-page="about">About</button>
+          <button class="d-tab" data-page="services">Services</button>
+          <button class="d-tab" data-page="gallery">Gallery</button>
+          <button class="d-tab" data-page="contact">Contact</button>
+        </nav>
+        <span class="d-btn d-btn-sm">Free Quote</span>
+      </header>
+
+      <div class="d-pages">
+        <section class="d-page is-active" data-page="home">
+          <div class="d-section d-hero d-hero-modern">
+            <span class="d-badge">&#11088; Rated 4.9 / 5 by 200+ local clients</span>
+            <h1>Beautiful lawns,<br>without the hassle.</h1>
+            <p>Premium lawn care &amp; landscape design across Greater Detroit.</p>
+            <div class="d-hero-actions">
+              <span class="d-btn">Get a Free Quote</span>
+              <span class="d-btn d-btn-ghost">View Our Work</span>
+            </div>
+            <div class="d-trust">
+              <span>&#9989; Licensed &amp; Insured</span>
+              <span>&#9989; 15+ Years</span>
+              <span>&#9989; Satisfaction Guaranteed</span>
+            </div>
+          </div>
+          <div class="d-section">
+            <div class="d-cards">
+              <div class="d-card d-card-modern"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span>Weekly mowing &amp; treatment</span></div>
+              <div class="d-card d-card-modern"><span class="d-ico">&#127794;</span><strong>Design</strong><span>Custom landscape builds</span></div>
+              <div class="d-card d-card-modern"><span class="d-ico">&#10052;</span><strong>Snow</strong><span>Reliable winter service</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="about">
+          <div class="d-section">
+            <span class="d-kicker">Our Story</span>
+            <h2>Local roots, modern craft</h2>
+            <p>Three generations of landscapers using the latest equipment and sustainable practices to make your property the best on the street.</p>
+            <div class="d-stats">
+              <div><strong>15+</strong><span>Years</span></div>
+              <div><strong>1,200+</strong><span>Yards served</span></div>
+              <div><strong>4.9&#9733;</strong><span>Avg rating</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="services">
+          <div class="d-section">
+            <span class="d-kicker">Services &amp; Plans</span>
+            <h2>Pick the plan that fits</h2>
+            <div class="d-cards">
+              <div class="d-card d-card-modern"><strong>Basic</strong><span class="d-price">$45<small>/visit</small></span><span>Mow, edge &amp; blow</span></div>
+              <div class="d-card d-card-modern d-featured"><span class="d-badge-sm">Popular</span><strong>Full Care</strong><span class="d-price">$120<small>/mo</small></span><span>Complete lawn program</span></div>
+              <div class="d-card d-card-modern"><strong>Design</strong><span class="d-price">Custom</span><span>Full landscape build</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="gallery">
+          <div class="d-section">
+            <span class="d-kicker">Portfolio</span>
+            <h2>Recent transformations</h2>
+            <div class="d-gallery d-gallery-modern">
+              <div class="d-photo" style="--c:#2f5d3a"></div>
+              <div class="d-photo" style="--c:#6ba368"></div>
+              <div class="d-photo" style="--c:#3f7d4e"></div>
+              <div class="d-photo" style="--c:#88b56b"></div>
+              <div class="d-photo" style="--c:#4f8f5e"></div>
+              <div class="d-photo" style="--c:#264f30"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="d-page" data-page="contact">
+          <div class="d-section d-contact-modern">
+            <span class="d-kicker">Get Started</span>
+            <h2>Let&rsquo;s make your yard the best on the block</h2>
+            <p>Free, no-pressure estimates &mdash; usually within 24 hours.</p>
+            <div class="d-form-mock">
+              <span class="d-input">Your name</span>
+              <span class="d-input">Email or phone</span>
+              <span class="d-input d-input-lg">How can we help?</span>
+              <span class="d-btn">Request Free Quote</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="d-footer d-footer-modern">&copy; Evergreen Landscaping &bull; Redesigned by SignalCrest Systems</footer>
+    </div>
+  </template>
 
   <script src="script.js"></script>
 </body>

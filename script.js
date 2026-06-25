@@ -88,4 +88,98 @@
     formStatus.className = "form-note success";
     formStatus.textContent = "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
   });
+
+  // Package demo modal
+  const demoModal = document.getElementById("demoModal");
+  if (demoModal) {
+    const demoScreen = document.getElementById("demoScreen");
+    const demoTitle = document.getElementById("demoTitle");
+    const demoExplainer = document.getElementById("demoExplainer");
+    const demoUrl = document.getElementById("demoUrl");
+    const demoCloseBtn = demoModal.querySelector(".demo-close");
+    let lastFocused = null;
+
+    const demoData = {
+      starter: {
+        title: "SignalCrest Starter Site",
+        url: "evergreenlandscaping.com",
+        explainer:
+          "All 7 content areas — Home, About, Services, Gallery, Reviews, Pricing & Contact — flow together on one smooth-scrolling page. Use the menu to jump between sections."
+      },
+      business: {
+        title: "SignalCrest Business Website",
+        url: "evergreenlandscaping.com/home",
+        explainer:
+          "The same 7 content areas, organized into 5 dedicated pages for clearer navigation and stronger SEO. Click the menu tabs to switch pages."
+      },
+      modernization: {
+        title: "SignalCrest Website Modernization",
+        url: "evergreenlandscaping.com",
+        explainer:
+          "The same content — fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+      }
+    };
+
+    function openDemo(key) {
+      const data = demoData[key];
+      const tpl = document.getElementById("tpl-" + key);
+      if (!data || !tpl) return;
+      lastFocused = document.activeElement;
+      demoTitle.textContent = data.title;
+      demoExplainer.textContent = data.explainer;
+      demoUrl.textContent = data.url;
+      demoScreen.innerHTML = "";
+      demoScreen.appendChild(tpl.content.cloneNode(true));
+      demoScreen.scrollTop = 0;
+      demoModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      demoCloseBtn.focus();
+    }
+
+    function closeDemo() {
+      if (demoModal.hidden) return;
+      demoModal.hidden = true;
+      demoScreen.innerHTML = "";
+      document.body.style.overflow = "";
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+    }
+
+    document.querySelectorAll("[data-demo]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        openDemo(btn.getAttribute("data-demo"));
+      });
+    });
+
+    demoModal.querySelectorAll("[data-demo-close]").forEach(function (el) {
+      el.addEventListener("click", closeDemo);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeDemo();
+    });
+
+    demoScreen.addEventListener("click", function (e) {
+      const scrollLink = e.target.closest("a[data-scroll]");
+      if (scrollLink) {
+        e.preventDefault();
+        const id = scrollLink.getAttribute("href").slice(1);
+        const target = demoScreen.querySelector("#" + id);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      const tab = e.target.closest(".d-tab");
+      if (tab) {
+        const page = tab.getAttribute("data-page");
+        const site = tab.closest(".d-site");
+        if (!site) return;
+        site.querySelectorAll(".d-tab").forEach(function (t) {
+          t.classList.toggle("is-active", t === tab);
+        });
+        site.querySelectorAll(".d-page").forEach(function (p) {
+          p.classList.toggle("is-active", p.getAttribute("data-page") === page);
+        });
+        demoScreen.scrollTop = 0;
+      }
+    });
+  }
 })();
