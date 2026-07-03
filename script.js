@@ -29,6 +29,7 @@
     navToggle.setAttribute("aria-expanded", "false");
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
+    if (header) header.classList.remove("nav-open");
   }
 
   function openNav() {
@@ -36,6 +37,7 @@
     navToggle.setAttribute("aria-expanded", "true");
     siteNav.classList.add("is-open");
     document.body.style.overflow = "hidden";
+    if (header) header.classList.add("nav-open");
   }
 
   if (navToggle) {
