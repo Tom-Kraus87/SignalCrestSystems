@@ -79,7 +79,7 @@
       }
 
       var subject = encodeURIComponent(
-        "SignalCrest Systems Inquiry" + (service ? " ΓÇö " + service : "")
+        "SignalCrest Systems Inquiry" + (service ? " — " + service : "")
       );
       var body = encodeURIComponent(
         "Name: " + name + "\nEmail: " + email +
@@ -92,7 +92,7 @@
 
       formStatus.className = "form-note success";
       formStatus.textContent =
-        "Opening your email clientΓÇª If it doesn't open, email signalcrestsystems@gmail.com directly.";
+        "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
     });
 
     var params = new URLSearchParams(window.location.search);
@@ -116,7 +116,7 @@
         title: "SignalCrest Starter Site",
         url: "evergreenlandscaping.com",
         explainer:
-          "All 7 content areas ΓÇö Home, About, Services, Gallery, Reviews, Pricing & Contact ΓÇö flow together on one smooth-scrolling page. Use the menu to jump between sections."
+          "All 7 content areas — Home, About, Services, Gallery, Reviews, Pricing & Contact — flow together on one smooth-scrolling page. Use the menu to jump between sections."
       },
       business: {
         title: "SignalCrest Business Website",
@@ -128,7 +128,7 @@
         title: "SignalCrest Website Modernization",
         url: "evergreenlandscaping.com",
         explainer:
-          "The same content ΓÇö fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+          "The same content — fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
       }
     };
 

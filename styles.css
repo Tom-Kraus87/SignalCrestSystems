@@ -1,4 +1,4 @@
-﻿/* SignalCrest Systems ΓÇö mobile-first styles */
+﻿/* SignalCrest Systems — mobile-first styles */
 
 :root {
   --color-bg: #0c0f14;
@@ -2410,7 +2410,7 @@ ul {
 }
 
 .resource-topics li::before {
-  content: "Â·";
+  content: "·";
   position: absolute;
   left: 0;
   color: var(--color-accent);
