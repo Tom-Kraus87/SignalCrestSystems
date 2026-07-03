@@ -166,7 +166,7 @@ def build_leads_checklist() -> None:
   pdf.section("Next Step")
   pdf.body_text(
     "SignalCrest Systems helps small businesses rebuild sites for speed, trust, and conversions. "
-    "Visit signalcrestsystems.com/packages or email signalcrestsystems@gmail.com for a free consultation."
+    "Visit signalcrestsystems.com/packages or email tom@signalcrestsystems.com for a free consultation."
   )
   pdf.output(str(OUTPUT / "website-leads-checklist.pdf"))
 
