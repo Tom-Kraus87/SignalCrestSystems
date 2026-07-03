@@ -1,0 +1,7 @@
+# Local Netlify folder
+.netlify
+
+# Temp / local artifacts
+netlify-init-output.txt
+netlify-api-data.json
+github-webhook.json

@@ -1583,6 +1583,218 @@ ul {
   opacity: 0.7;
 }
 
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-nav a {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.footer-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Inner page hero */
+
+.page-hero {
+  padding: calc(var(--header-h) + 3rem) 0 2.5rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 162, 39, 0.1), transparent),
+    var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero-lead {
+  color: var(--color-text-muted);
+  max-width: 58ch;
+  font-size: 1.0625rem;
+}
+
+/* Service keyword marquee (inspired by LS Website Designs) */
+
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  padding: 0.875rem 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track span {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.marquee-track span:nth-child(odd) {
+  color: var(--color-accent);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Stats band */
+
+.stats-band {
+  padding: 3.5rem 0;
+  background: var(--color-bg-card);
+  border-block: 1px solid var(--color-border);
+}
+
+.stats-band-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stats-band-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.stat-item dt {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 400;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 0.375rem;
+}
+
+.stat-item dd {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* CTA band */
+
+.cta-band {
+  padding: 3.5rem 0;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.12), rgba(201, 162, 39, 0.04));
+  border-block: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.cta-band-inner {
+  text-align: center;
+}
+
+.cta-band h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.cta-band p {
+  color: var(--color-text-muted);
+  max-width: 46ch;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+}
+
+.cta-band-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Section link */
+
+.section-link-wrap {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* Preview cards on home */
+
+.services-preview .service-card p + ul {
+  display: none;
+}
+
+.services-preview .service-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-preview .service-card .card-link {
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.testimonial-excerpt .testimonial-card p:not(:first-child) {
+  display: none;
+}
+
+.testimonial-excerpt .testimonial-card footer span {
+  display: block;
+}
+
+.site-nav a.is-active {
+  color: var(--color-accent);
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cta-band-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
 /* Tablet+ */
 
 @media (min-width: 640px) {
@@ -1702,6 +1914,13 @@ ul {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
   }
 
   *,

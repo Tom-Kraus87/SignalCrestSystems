@@ -1,105 +1,115 @@
 (function () {
   const navToggle = document.querySelector(".nav-toggle");
   const siteNav = document.querySelector(".site-nav");
-  const navLinks = siteNav.querySelectorAll("a");
   const header = document.querySelector(".site-header");
   const form = document.getElementById("contact-form");
   const formStatus = document.getElementById("form-status");
   const yearEl = document.getElementById("year");
 
-  yearEl.textContent = new Date().getFullYear();
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  var currentPage = window.location.pathname.split("/").pop() || "index.html";
+  if (currentPage === "") currentPage = "index.html";
+
+  if (siteNav) {
+    var navLinks = siteNav.querySelectorAll("a");
+    navLinks.forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (href === currentPage || (currentPage === "index.html" && href === "./")) {
+        link.classList.add("is-active");
+      }
+      link.addEventListener("click", closeNav);
+    });
+  }
 
   function closeNav() {
+    if (!navToggle || !siteNav) return;
     navToggle.setAttribute("aria-expanded", "false");
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
   }
 
   function openNav() {
+    if (!navToggle || !siteNav) return;
     navToggle.setAttribute("aria-expanded", "true");
     siteNav.classList.add("is-open");
     document.body.style.overflow = "hidden";
   }
 
-  navToggle.addEventListener("click", function () {
-    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    isOpen ? closeNav() : openNav();
-  });
-
-  navLinks.forEach(function (link) {
-    link.addEventListener("click", closeNav);
-  });
+  if (navToggle) {
+    navToggle.addEventListener("click", function () {
+      var isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      isOpen ? closeNav() : openNav();
+    });
+  }
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeNav();
   });
 
-  window.addEventListener("scroll", function () {
-    header.classList.toggle("is-scrolled", window.scrollY > 20);
-  }, { passive: true });
+  if (header) {
+    window.addEventListener(
+      "scroll",
+      function () {
+        header.classList.toggle("is-scrolled", window.scrollY > 20);
+      },
+      { passive: true }
+    );
+  }
 
-  const sections = document.querySelectorAll("section[id]");
-  const observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          navLinks.forEach(function (link) {
-            const href = link.getAttribute("href");
-            link.classList.toggle("is-active", href === "#" + id);
-          });
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -50% 0px" }
-  );
+  if (form && formStatus) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      formStatus.className = "form-note";
+      formStatus.textContent = "";
 
-  sections.forEach(function (section) {
-    observer.observe(section);
-  });
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var service = form.service.value;
+      var message = form.message.value.trim();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    formStatus.className = "form-note";
-    formStatus.textContent = "";
+      if (!name || !email || !message) {
+        formStatus.className = "form-note error";
+        formStatus.textContent = "Please fill in all required fields.";
+        return;
+      }
 
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const service = form.service.value;
-    const message = form.message.value.trim();
+      var subject = encodeURIComponent(
+        "SignalCrest Systems Inquiry" + (service ? " — " + service : "")
+      );
+      var body = encodeURIComponent(
+        "Name: " + name + "\nEmail: " + email +
+        (service ? "\nService: " + service : "") +
+        "\n\n" + message
+      );
 
-    if (!name || !email || !message) {
-      formStatus.className = "form-note error";
-      formStatus.textContent = "Please fill in all required fields.";
-      return;
+      window.location.href =
+        "mailto:signalcrestsystems@gmail.com?subject=" + subject + "&body=" + body;
+
+      formStatus.className = "form-note success";
+      formStatus.textContent =
+        "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
+    });
+
+    var params = new URLSearchParams(window.location.search);
+    var preselect = params.get("service");
+    if (preselect && form.service) {
+      form.service.value = preselect;
     }
+  }
 
-    const subject = encodeURIComponent(
-      "SignalCrest Systems Inquiry" + (service ? " — " + service : "")
-    );
-    const body = encodeURIComponent(
-      "Name: " + name + "\nEmail: " + email +
-      (service ? "\nService: " + service : "") +
-      "\n\n" + message
-    );
-
-    window.location.href = "mailto:signalcrestsystems@gmail.com?subject=" + subject + "&body=" + body;
-
-    formStatus.className = "form-note success";
-    formStatus.textContent = "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
-  });
-
-  // Package demo modal
-  const demoModal = document.getElementById("demoModal");
+  var demoModal = document.getElementById("demoModal");
   if (demoModal) {
-    const demoScreen = document.getElementById("demoScreen");
-    const demoTitle = document.getElementById("demoTitle");
-    const demoExplainer = document.getElementById("demoExplainer");
-    const demoUrl = document.getElementById("demoUrl");
-    const demoCloseBtn = demoModal.querySelector(".demo-close");
-    let lastFocused = null;
+    var demoScreen = document.getElementById("demoScreen");
+    var demoTitle = document.getElementById("demoTitle");
+    var demoExplainer = document.getElementById("demoExplainer");
+    var demoUrl = document.getElementById("demoUrl");
+    var demoCloseBtn = demoModal.querySelector(".demo-close");
+    var lastFocused = null;
 
-    const demoData = {
+    var demoData = {
       starter: {
         title: "SignalCrest Starter Site",
         url: "evergreenlandscaping.com",
@@ -121,8 +131,8 @@
     };
 
     function openDemo(key) {
-      const data = demoData[key];
-      const tpl = document.getElementById("tpl-" + key);
+      var data = demoData[key];
+      var tpl = document.getElementById("tpl-" + key);
       if (!data || !tpl) return;
       lastFocused = document.activeElement;
       demoTitle.textContent = data.title;
@@ -159,18 +169,18 @@
     });
 
     demoScreen.addEventListener("click", function (e) {
-      const scrollLink = e.target.closest("a[data-scroll]");
+      var scrollLink = e.target.closest("a[data-scroll]");
       if (scrollLink) {
         e.preventDefault();
-        const id = scrollLink.getAttribute("href").slice(1);
-        const target = demoScreen.querySelector("#" + id);
+        var id = scrollLink.getAttribute("href").slice(1);
+        var target = demoScreen.querySelector("#" + id);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
-      const tab = e.target.closest(".d-tab");
+      var tab = e.target.closest(".d-tab");
       if (tab) {
-        const page = tab.getAttribute("data-page");
-        const site = tab.closest(".d-site");
+        var page = tab.getAttribute("data-page");
+        var site = tab.closest(".d-site");
         if (!site) return;
         site.querySelectorAll(".d-tab").forEach(function (t) {
           t.classList.toggle("is-active", t === tab);
