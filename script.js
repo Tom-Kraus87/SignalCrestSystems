@@ -111,12 +111,17 @@
     var demoCloseBtn = demoModal.querySelector(".demo-close");
     var lastFocused = null;
 
-    var demoData = {
+      // Keep explainer text ASCII-only to avoid mojibake on some deployments.
+      var demoData = {
       starter: {
         title: "SignalCrest Starter Site",
         url: "evergreenlandscaping.com",
         explainer:
+<<<<<<< HEAD
           "All 7 content areas ΓÇö Home, About, Services, Gallery, Reviews, Pricing & Contact ΓÇö flow together on one smooth-scrolling page. Use the menu to jump between sections."
+=======
+          "All 7 content areas - Home, About, Services, Gallery, Reviews, Pricing & Contact - flow together on one smooth-scrolling page. Use the menu to jump between sections."
+>>>>>>> 50ca79d (Fix package demo modal explainer text encoding)
       },
       business: {
         title: "SignalCrest Business Website",
@@ -128,7 +133,11 @@
         title: "SignalCrest Website Modernization",
         url: "evergreenlandscaping.com",
         explainer:
+<<<<<<< HEAD
           "The same content ΓÇö fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+=======
+          "The same content - fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+>>>>>>> 50ca79d (Fix package demo modal explainer text encoding)
       }
     };
 
