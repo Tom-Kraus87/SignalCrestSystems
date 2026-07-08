@@ -29,7 +29,6 @@
     navToggle.setAttribute("aria-expanded", "false");
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
-    if (header) header.classList.remove("nav-open");
   }
 
   function openNav() {
@@ -37,7 +36,6 @@
     navToggle.setAttribute("aria-expanded", "true");
     siteNav.classList.add("is-open");
     document.body.style.overflow = "hidden";
-    if (header) header.classList.add("nav-open");
   }
 
   if (navToggle) {
@@ -79,7 +77,7 @@
       }
 
       var subject = encodeURIComponent(
-        "SignalCrest Systems Inquiry" + (service ? " ΓÇö " + service : "")
+        "SignalCrest Systems Inquiry" + (service ? " - " + service : "")
       );
       var body = encodeURIComponent(
         "Name: " + name + "\nEmail: " + email +
@@ -88,11 +86,11 @@
       );
 
       window.location.href =
-        "mailto:tom@signalcrestsystems.com?subject=" + subject + "&body=" + body;
+        "mailto:signalcrestsystems@gmail.com?subject=" + subject + "&body=" + body;
 
       formStatus.className = "form-note success";
       formStatus.textContent =
-        "Opening your email client… If it doesn't open, email tom@signalcrestsystems.com directly.";
+        "Opening your email client... If it doesn't open, email signalcrestsystems@gmail.com directly.";
     });
 
     var params = new URLSearchParams(window.location.search);
@@ -111,17 +109,12 @@
     var demoCloseBtn = demoModal.querySelector(".demo-close");
     var lastFocused = null;
 
-      // Keep explainer text ASCII-only to avoid mojibake on some deployments.
-      var demoData = {
+    var demoData = {
       starter: {
         title: "SignalCrest Starter Site",
         url: "evergreenlandscaping.com",
         explainer:
-<<<<<<< HEAD
-          "All 7 content areas ΓÇö Home, About, Services, Gallery, Reviews, Pricing & Contact ΓÇö flow together on one smooth-scrolling page. Use the menu to jump between sections."
-=======
           "All 7 content areas - Home, About, Services, Gallery, Reviews, Pricing & Contact - flow together on one smooth-scrolling page. Use the menu to jump between sections."
->>>>>>> 50ca79d (Fix package demo modal explainer text encoding)
       },
       business: {
         title: "SignalCrest Business Website",
@@ -133,11 +126,7 @@
         title: "SignalCrest Website Modernization",
         url: "evergreenlandscaping.com",
         explainer:
-<<<<<<< HEAD
-          "The same content ΓÇö fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
-=======
           "The same content - fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
->>>>>>> 50ca79d (Fix package demo modal explainer text encoding)
       }
     };
 
