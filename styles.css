@@ -1,4 +1,4 @@
-ï»¿/* SignalCrest Systems â€” mobile-first styles */
+/* SignalCrest Systems — mobile-first styles */
 
 :root {
   --color-bg: #0c0f14;
@@ -182,14 +182,10 @@ ul {
   position: fixed;
   inset: var(--header-h) 0 0 0;
   z-index: 99;
-  background: #0c0f14;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 2rem 1.5rem;
-  overflow-y: auto;
+  background: var(--color-bg);
+  padding: 1.25rem 1.5rem;
   transform: translateX(100%);
   transition: transform var(--transition);
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.45);
 }
 
 .site-nav.is-open {
@@ -197,10 +193,11 @@ ul {
 }
 
 .site-header.nav-open {
-  background: #0c0f14;
+  background: var(--color-bg);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
+
 
 .site-nav ul {
   display: flex;
@@ -210,7 +207,7 @@ ul {
 
 .site-nav a {
   display: block;
-  padding: 0.875rem 1rem;
+  padding: 0.65rem 1rem;
   color: var(--color-text);
   font-weight: 500;
   border-radius: var(--radius-sm);
@@ -223,7 +220,7 @@ ul {
 }
 
 .site-nav .nav-cta {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   background: var(--color-accent);
   color: var(--color-bg);
   text-align: center;
@@ -845,6 +842,78 @@ ul {
   text-align: center;
   font-size: 0.9375rem;
   color: var(--color-text-muted);
+}
+
+.packages-note a {
+  font-weight: 600;
+}
+
+/* Price accordion */
+
+.price-accordion {
+  max-width: 40rem;
+  margin: 2.5rem auto 3rem;
+}
+
+.price-accordion-title {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.price-accordion-intro {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.price-accordion-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.price-accordion-item summary {
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: color var(--transition);
+}
+
+.price-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.price-accordion-item summary::after {
+  content: "+";
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.price-accordion-item[open] summary::after {
+  content: "-";
+}
+
+.price-accordion-item summary:hover {
+  color: var(--color-accent);
+}
+
+.price-accordion-item p {
+  padding: 0 1rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
 }
 
 .btn-demo {
@@ -2410,7 +2479,7 @@ ul {
 }
 
 .resource-topics li::before {
-  content: "Â·";
+  content: "·";
   position: absolute;
   left: 0;
   color: var(--color-accent);

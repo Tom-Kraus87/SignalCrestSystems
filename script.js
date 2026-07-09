@@ -29,6 +29,7 @@
     navToggle.setAttribute("aria-expanded", "false");
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
+    if (header) header.classList.remove("nav-open");
   }
 
   function openNav() {
@@ -36,6 +37,7 @@
     navToggle.setAttribute("aria-expanded", "true");
     siteNav.classList.add("is-open");
     document.body.style.overflow = "hidden";
+    if (header) header.classList.add("nav-open");
   }
 
   if (navToggle) {
@@ -77,7 +79,7 @@
       }
 
       var subject = encodeURIComponent(
-        "SignalCrest Systems Inquiry" + (service ? " - " + service : "")
+        "SignalCrest Systems Inquiry" + (service ? " — " + service : "")
       );
       var body = encodeURIComponent(
         "Name: " + name + "\nEmail: " + email +
@@ -90,7 +92,7 @@
 
       formStatus.className = "form-note success";
       formStatus.textContent =
-        "Opening your email client... If it doesn't open, email signalcrestsystems@gmail.com directly.";
+        "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
     });
 
     var params = new URLSearchParams(window.location.search);
@@ -109,7 +111,8 @@
     var demoCloseBtn = demoModal.querySelector(".demo-close");
     var lastFocused = null;
 
-    var demoData = {
+      // Keep explainer text ASCII-only to avoid mojibake on some deployments.
+      var demoData = {
       starter: {
         title: "SignalCrest Starter Site",
         url: "evergreenlandscaping.com",
