@@ -1,0 +1,686 @@
+/* SignalCrest Systems — multi-theme layer (Phase 1) */
+
+:root {
+  /* Semantic tokens — Midnight Tech defaults (current charcoal/gold) */
+  --color-bg: #0c0f14;
+  --color-bg-elevated: #141a22;
+  --color-bg-card: #1a222d;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text: #e8ecf1;
+  --color-text-muted: #8b97a8;
+  --color-accent: #c9a227;
+  --color-accent-hover: #dbb42e;
+  --color-accent-soft: rgba(201, 162, 39, 0.12);
+  --color-on-accent: #0c0f14;
+  --color-white: #ffffff;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-display: var(--font-serif);
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --focus-ring: 0 0 0 3px var(--color-accent-soft);
+  --header-h: 72px;
+  --transition: 0.25s ease;
+  --header-bg: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  --logo-mark-end: #8a6f1a;
+  --hero-glow: rgba(201, 162, 39, 0.15);
+  --accent-border: rgba(201, 162, 39, 0.25);
+  --accent-border-strong: rgba(201, 162, 39, 0.45);
+  --effect-grid: transparent;
+  --effect-scanline: transparent;
+  --effect-noise: none;
+  --surface-pattern: none;
+}
+
+/* ——— Midnight Tech (canonical charcoal/gold) ——— */
+[data-theme="midnight-tech"] {
+  --color-bg: #0c0f14;
+  --color-bg-elevated: #141a22;
+  --color-bg-card: #1a222d;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text: #e8ecf1;
+  --color-text-muted: #8b97a8;
+  --color-accent: #c9a227;
+  --color-accent-hover: #dbb42e;
+  --color-accent-soft: rgba(201, 162, 39, 0.12);
+  --color-on-accent: #0c0f14;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #8a6f1a;
+  --hero-glow: rgba(201, 162, 39, 0.15);
+  --accent-border: rgba(201, 162, 39, 0.25);
+  --accent-border-strong: rgba(201, 162, 39, 0.45);
+}
+
+/* ——— Clean Corporate (light) ——— */
+[data-theme="clean-corporate"] {
+  --color-bg: #f4f6f8;
+  --color-bg-elevated: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-accent: #0f4c81;
+  --color-accent-hover: #0a3a63;
+  --color-accent-soft: rgba(15, 76, 129, 0.12);
+  --color-on-accent: #ffffff;
+  --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #0a3a63;
+  --hero-glow: rgba(15, 76, 129, 0.1);
+  --accent-border: rgba(15, 76, 129, 0.25);
+  --accent-border-strong: rgba(15, 76, 129, 0.4);
+}
+
+/* ——— Obsidian Black ——— */
+[data-theme="obsidian-black"] {
+  --color-bg: #050505;
+  --color-bg-elevated: #0e0e0e;
+  --color-bg-card: #161616;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-text: #f5f5f5;
+  --color-text-muted: #a3a3a3;
+  --color-accent: #e8e8e8;
+  --color-accent-hover: #ffffff;
+  --color-accent-soft: rgba(255, 255, 255, 0.1);
+  --color-on-accent: #050505;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #737373;
+  --hero-glow: rgba(255, 255, 255, 0.06);
+  --accent-border: rgba(255, 255, 255, 0.22);
+  --accent-border-strong: rgba(255, 255, 255, 0.4);
+}
+
+/* ——— Stealth Carbon ——— */
+[data-theme="stealth-carbon"] {
+  --color-bg: #12151a;
+  --color-bg-elevated: #1a1f27;
+  --color-bg-card: #222933;
+  --color-border: rgba(148, 163, 184, 0.14);
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-accent: #38bdf8;
+  --color-accent-hover: #7dd3fc;
+  --color-accent-soft: rgba(56, 189, 248, 0.14);
+  --color-on-accent: #0b1220;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #0284c7;
+  --hero-glow: rgba(56, 189, 248, 0.12);
+  --accent-border: rgba(56, 189, 248, 0.28);
+  --accent-border-strong: rgba(56, 189, 248, 0.45);
+  --effect-grid: linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+}
+
+/* ——— Emerald Night ——— */
+[data-theme="emerald-night"] {
+  --color-bg: #07140f;
+  --color-bg-elevated: #0c1f18;
+  --color-bg-card: #123026;
+  --color-border: rgba(52, 211, 153, 0.14);
+  --color-text: #ecfdf5;
+  --color-text-muted: #86a89a;
+  --color-accent: #34d399;
+  --color-accent-hover: #6ee7b7;
+  --color-accent-soft: rgba(52, 211, 153, 0.14);
+  --color-on-accent: #052e1c;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #059669;
+  --hero-glow: rgba(52, 211, 153, 0.14);
+  --accent-border: rgba(52, 211, 153, 0.28);
+  --accent-border-strong: rgba(52, 211, 153, 0.45);
+}
+
+/* ——— Royal Indigo ——— */
+[data-theme="royal-indigo"] {
+  --color-bg: #0b0a1a;
+  --color-bg-elevated: #15132b;
+  --color-bg-card: #1e1b36;
+  --color-border: rgba(167, 139, 250, 0.16);
+  --color-text: #f3f0ff;
+  --color-text-muted: #a5a0c0;
+  --color-accent: #a78bfa;
+  --color-accent-hover: #c4b5fd;
+  --color-accent-soft: rgba(167, 139, 250, 0.16);
+  --color-on-accent: #1e1035;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #7c3aed;
+  --hero-glow: rgba(167, 139, 250, 0.16);
+  --accent-border: rgba(167, 139, 250, 0.3);
+  --accent-border-strong: rgba(167, 139, 250, 0.48);
+}
+
+/* ——— Neural Future ——— */
+[data-theme="neural-future"] {
+  --color-bg: #070b14;
+  --color-bg-elevated: #0d1524;
+  --color-bg-card: #132038;
+  --color-border: rgba(34, 211, 238, 0.16);
+  --color-text: #e8f7ff;
+  --color-text-muted: #7f9bb5;
+  --color-accent: #22d3ee;
+  --color-accent-hover: #67e8f9;
+  --color-accent-soft: rgba(34, 211, 238, 0.14);
+  --color-on-accent: #042f3a;
+  --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Orbitron", "DM Sans", system-ui, sans-serif;
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --logo-mark-end: #0891b2;
+  --hero-glow: rgba(34, 211, 238, 0.16);
+  --accent-border: rgba(34, 211, 238, 0.3);
+  --accent-border-strong: rgba(34, 211, 238, 0.5);
+  --effect-grid: linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+}
+
+/* ——— Holographic ——— */
+[data-theme="holographic"] {
+  --color-bg: #0a0c18;
+  --color-bg-elevated: #12152a;
+  --color-bg-card: #1a1e38;
+  --color-border: rgba(244, 114, 182, 0.18);
+  --color-text: #f8f7ff;
+  --color-text-muted: #a8a6c9;
+  --color-accent: #f472b6;
+  --color-accent-hover: #67e8f9;
+  --color-accent-soft: rgba(244, 114, 182, 0.14);
+  --color-on-accent: #2a0a22;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #22d3ee;
+  --hero-glow: rgba(167, 139, 250, 0.2);
+  --accent-border: rgba(244, 114, 182, 0.32);
+  --accent-border-strong: rgba(103, 232, 249, 0.4);
+}
+
+/* ——— Cyberpunk 2099 ——— */
+[data-theme="cyberpunk-2099"] {
+  --color-bg: #0a0410;
+  --color-bg-elevated: #160820;
+  --color-bg-card: #220c30;
+  --color-border: rgba(255, 45, 149, 0.22);
+  --color-text: #ffe9f6;
+  --color-text-muted: #c08aaa;
+  --color-accent: #ff2d95;
+  --color-accent-hover: #00f0ff;
+  --color-accent-soft: rgba(255, 45, 149, 0.16);
+  --color-on-accent: #1a0010;
+  --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Orbitron", system-ui, sans-serif;
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --logo-mark-end: #00f0ff;
+  --hero-glow: rgba(255, 45, 149, 0.2);
+  --accent-border: rgba(255, 45, 149, 0.35);
+  --accent-border-strong: rgba(0, 240, 255, 0.4);
+  --shadow: 0 0 24px rgba(255, 45, 149, 0.18);
+}
+
+/* ——— Cyber Terminal ——— */
+[data-theme="cyber-terminal"] {
+  --color-bg: #020804;
+  --color-bg-elevated: #061208;
+  --color-bg-card: #0a1a0e;
+  --color-border: rgba(57, 255, 20, 0.22);
+  --color-text: #b8ffb0;
+  --color-text-muted: #5f9e58;
+  --color-accent: #39ff14;
+  --color-accent-hover: #9aff7a;
+  --color-accent-soft: rgba(57, 255, 20, 0.12);
+  --color-on-accent: #021003;
+  --font-sans: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --logo-mark-end: #1a9e0a;
+  --hero-glow: rgba(57, 255, 20, 0.1);
+  --accent-border: rgba(57, 255, 20, 0.35);
+  --accent-border-strong: rgba(57, 255, 20, 0.55);
+  --effect-scanline: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+}
+
+/* ——— Retro Computing ——— */
+[data-theme="retro-computing"] {
+  --color-bg: #1a1030;
+  --color-bg-elevated: #241848;
+  --color-bg-card: #2e1f5c;
+  --color-border: rgba(255, 204, 0, 0.22);
+  --color-text: #f2e8ff;
+  --color-text-muted: #b7a5d9;
+  --color-accent: #ffcc00;
+  --color-accent-hover: #ffe066;
+  --color-accent-soft: rgba(255, 204, 0, 0.14);
+  --color-on-accent: #2a1800;
+  --font-sans: "Share Tech Mono", "IBM Plex Mono", monospace;
+  --font-serif: "Share Tech Mono", monospace;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --logo-mark-end: #cc9900;
+  --hero-glow: rgba(255, 204, 0, 0.12);
+  --accent-border: rgba(255, 204, 0, 0.35);
+  --accent-border-strong: rgba(255, 204, 0, 0.55);
+}
+
+/* ——— Synthwave Sunset ——— */
+[data-theme="synthwave-sunset"] {
+  --color-bg: #16061f;
+  --color-bg-elevated: #240a33;
+  --color-bg-card: #321245;
+  --color-border: rgba(255, 110, 199, 0.22);
+  --color-text: #ffe9fb;
+  --color-text-muted: #c79bc0;
+  --color-accent: #ff6ec7;
+  --color-accent-hover: #ffd166;
+  --color-accent-soft: rgba(255, 110, 199, 0.16);
+  --color-on-accent: #2a0520;
+  --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Orbitron", system-ui, sans-serif;
+  --logo-mark-end: #ff9f1c;
+  --hero-glow: rgba(255, 110, 199, 0.2);
+  --accent-border: rgba(255, 110, 199, 0.35);
+  --accent-border-strong: rgba(255, 209, 102, 0.45);
+}
+
+/* ——— Arcade 1995 ——— */
+[data-theme="arcade-1995"] {
+  --color-bg: #0b1020;
+  --color-bg-elevated: #141c36;
+  --color-bg-card: #1c2748;
+  --color-border: rgba(0, 229, 255, 0.22);
+  --color-text: #f0f7ff;
+  --color-text-muted: #8ea0c8;
+  --color-accent: #00e5ff;
+  --color-accent-hover: #ff3d81;
+  --color-accent-soft: rgba(0, 229, 255, 0.14);
+  --color-on-accent: #041018;
+  --font-sans: "Share Tech Mono", "IBM Plex Mono", monospace;
+  --font-serif: "Share Tech Mono", monospace;
+  --font-display: "Press Start 2P", monospace;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --logo-mark-end: #ff3d81;
+  --hero-glow: rgba(0, 229, 255, 0.14);
+  --accent-border: rgba(0, 229, 255, 0.4);
+  --accent-border-strong: rgba(255, 61, 129, 0.5);
+}
+
+[data-theme="arcade-1995"] h1,
+[data-theme="arcade-1995"] .hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* ——— Blueprint Studio (light) ——— */
+[data-theme="blueprint-studio"] {
+  --color-bg: #e8f1fa;
+  --color-bg-elevated: #f4f8fc;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(30, 64, 120, 0.18);
+  --color-text: #14325c;
+  --color-text-muted: #4a6a90;
+  --color-accent: #1e64b4;
+  --color-accent-hover: #154a88;
+  --color-accent-soft: rgba(30, 100, 180, 0.12);
+  --color-on-accent: #ffffff;
+  --font-sans: "IBM Plex Sans", "DM Sans", system-ui, sans-serif;
+  --font-serif: "IBM Plex Sans", system-ui, sans-serif;
+  --shadow: 0 4px 20px rgba(20, 50, 92, 0.1);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #0f3d73;
+  --hero-glow: rgba(30, 100, 180, 0.1);
+  --accent-border: rgba(30, 100, 180, 0.28);
+  --accent-border-strong: rgba(30, 100, 180, 0.45);
+  --effect-grid: linear-gradient(rgba(30, 100, 180, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 100, 180, 0.08) 1px, transparent 1px);
+  --surface-pattern: 24px 24px;
+}
+
+/* ——— Industrial Slate ——— */
+[data-theme="industrial-slate"] {
+  --color-bg: #1c1f24;
+  --color-bg-elevated: #262a31;
+  --color-bg-card: #30353e;
+  --color-border: rgba(212, 168, 83, 0.18);
+  --color-text: #eceff3;
+  --color-text-muted: #9aa3b0;
+  --color-accent: #d4a853;
+  --color-accent-hover: #e6c06a;
+  --color-accent-soft: rgba(212, 168, 83, 0.14);
+  --color-on-accent: #1c1408;
+  --font-sans: "IBM Plex Sans", "DM Sans", system-ui, sans-serif;
+  --font-serif: "IBM Plex Sans", system-ui, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --logo-mark-end: #a67c2d;
+  --hero-glow: rgba(212, 168, 83, 0.12);
+  --accent-border: rgba(212, 168, 83, 0.3);
+  --accent-border-strong: rgba(212, 168, 83, 0.48);
+}
+
+/* ——— Vintage Paper (light) ——— */
+[data-theme="vintage-paper"] {
+  --color-bg: #f3ead7;
+  --color-bg-elevated: #faf4e8;
+  --color-bg-card: #fffaf0;
+  --color-border: rgba(90, 62, 36, 0.16);
+  --color-text: #3b2a1a;
+  --color-text-muted: #7a624a;
+  --color-accent: #8b4513;
+  --color-accent-hover: #6b3410;
+  --color-accent-soft: rgba(139, 69, 19, 0.12);
+  --color-on-accent: #fff8ef;
+  --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --shadow: 0 4px 20px rgba(59, 42, 26, 0.1);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #5c2e0b;
+  --hero-glow: rgba(139, 69, 19, 0.1);
+  --accent-border: rgba(139, 69, 19, 0.28);
+  --accent-border-strong: rgba(139, 69, 19, 0.42);
+}
+
+/* Decorative treatments (sparing) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--effect-grid);
+  background-size: var(--surface-pattern, 32px 32px);
+  opacity: 1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--effect-scanline);
+  opacity: 0.55;
+}
+
+.site-header,
+.site-nav,
+main,
+.site-footer,
+.theme-picker {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  z-index: 100;
+}
+
+.theme-picker {
+  z-index: 120;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+/* ——— Theme picker ——— */
+.theme-picker {
+  position: relative;
+  margin-left: auto;
+  margin-right: 0.5rem;
+}
+
+.theme-picker-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.theme-picker-toggle:hover {
+  border-color: var(--accent-border-strong);
+  color: var(--color-accent);
+}
+
+.theme-picker-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--color-accent);
+}
+
+.theme-picker-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-accent), var(--logo-mark-end));
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.theme-picker-label {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .theme-picker-label {
+    display: inline;
+  }
+}
+
+.theme-picker-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: min(22rem, calc(100vw - 1.5rem));
+  max-height: min(70vh, 32rem);
+  overflow: auto;
+  padding: 0.875rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.theme-picker-panel[hidden] {
+  display: none !important;
+}
+
+.theme-picker-heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.theme-picker-auto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.875rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-picker-auto[aria-pressed="true"],
+.theme-option[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+  color: var(--color-accent);
+}
+
+.theme-picker-auto:focus-visible,
+.theme-option:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.theme-group {
+  margin-bottom: 0.875rem;
+}
+
+.theme-group:last-child {
+  margin-bottom: 0;
+}
+
+.theme-group-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.theme-option-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-option-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-option[data-theme-id="midnight-tech"] .theme-option-dot { background: #c9a227; }
+.theme-option[data-theme-id="clean-corporate"] .theme-option-dot { background: #0f4c81; }
+.theme-option[data-theme-id="obsidian-black"] .theme-option-dot { background: #e8e8e8; }
+.theme-option[data-theme-id="stealth-carbon"] .theme-option-dot { background: #38bdf8; }
+.theme-option[data-theme-id="emerald-night"] .theme-option-dot { background: #34d399; }
+.theme-option[data-theme-id="royal-indigo"] .theme-option-dot { background: #a78bfa; }
+.theme-option[data-theme-id="neural-future"] .theme-option-dot { background: #22d3ee; }
+.theme-option[data-theme-id="holographic"] .theme-option-dot { background: linear-gradient(135deg, #f472b6, #67e8f9); }
+.theme-option[data-theme-id="cyberpunk-2099"] .theme-option-dot { background: #ff2d95; }
+.theme-option[data-theme-id="cyber-terminal"] .theme-option-dot { background: #39ff14; }
+.theme-option[data-theme-id="retro-computing"] .theme-option-dot { background: #ffcc00; }
+.theme-option[data-theme-id="synthwave-sunset"] .theme-option-dot { background: #ff6ec7; }
+.theme-option[data-theme-id="arcade-1995"] .theme-option-dot { background: #00e5ff; }
+.theme-option[data-theme-id="blueprint-studio"] .theme-option-dot { background: #1e64b4; }
+.theme-option[data-theme-id="industrial-slate"] .theme-option-dot { background: #d4a853; }
+.theme-option[data-theme-id="vintage-paper"] .theme-option-dot { background: #8b4513; }
+
+/* Mobile: keep picker usable with hamburger */
+@media (max-width: 899px) {
+  .header-inner {
+    gap: 0.5rem;
+  }
+
+  .theme-picker {
+    margin-right: 0.35rem;
+  }
+
+  .theme-picker-panel {
+    position: fixed;
+    top: calc(var(--header-h) + 0.5rem);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: calc(100vh - var(--header-h) - 1.5rem);
+  }
+}
+
+/* Header integration with theme picker */
+.header-inner {
+  gap: 0.5rem;
+}
+
+.theme-picker {
+  margin-left: 0;
+  margin-right: 0;
+  order: 3;
+}
+
+.nav-toggle {
+  order: 4;
+}
+
+.site-nav {
+  order: 2;
+}
+
+.logo {
+  order: 1;
+  margin-right: auto;
+}
+
+@media (min-width: 900px) {
+  .logo {
+    margin-right: 0;
+  }
+
+  .site-nav {
+    margin-left: auto;
+  }
+
+  .theme-picker {
+    margin-left: 0.75rem;
+    order: 3;
+  }
+}
