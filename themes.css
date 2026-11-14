@@ -423,12 +423,16 @@ body::after {
 }
 
 .site-header,
-.site-nav,
 main,
 .site-footer,
 .theme-picker {
   position: relative;
   z-index: 1;
+}
+
+/* Keep mobile off-canvas nav fixed; do not force relative positioning */
+.site-nav {
+  z-index: 99;
 }
 
 .site-header {
@@ -628,6 +632,10 @@ main,
 
 /* Mobile: keep picker usable with hamburger */
 @media (max-width: 899px) {
+  .site-nav {
+    position: fixed !important;
+  }
+
   .header-inner {
     gap: 0.5rem;
   }

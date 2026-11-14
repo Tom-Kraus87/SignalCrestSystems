@@ -2651,3 +2651,42 @@ ul {
   white-space: nowrap !important;
   border: 0 !important;
 }
+/* Case study attribution labels */
+.case-study-badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-sm);
+}
+
+.case-metrics-note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin: 0.75rem 0 0.35rem;
+  font-style: italic;
+}
+
+/* Denser desktop nav for 10 items */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .site-nav a {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.8125rem;
+  }
+  .site-nav .nav-cta {
+    padding: 0.45rem 0.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-nav a {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.875rem;
+  }
+}

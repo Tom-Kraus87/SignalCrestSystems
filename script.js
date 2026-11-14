@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   const navToggle = document.querySelector(".nav-toggle");
   const siteNav = document.querySelector(".site-nav");
   const header = document.querySelector(".site-header");
@@ -12,6 +12,7 @@
 
   var currentPage = window.location.pathname.split("/").pop() || "index.html";
   if (currentPage === "") currentPage = "index.html";
+  if (currentPage.indexOf(".") === -1) currentPage = currentPage + ".html";
 
   if (siteNav) {
     var navLinks = siteNav.querySelectorAll("a");
