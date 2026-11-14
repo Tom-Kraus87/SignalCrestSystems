@@ -1,4 +1,4 @@
-"""Generate branded SignalCrest Systems resource PDFs."""
+"""Generate branded Signal Crest Systems resource PDFs."""
 
 from __future__ import annotations
 
@@ -18,10 +18,13 @@ GOLD_DARK = (138, 111, 26)
 TEXT = (232, 236, 241)
 MUTED = (139, 151, 168)
 WHITE = (255, 255, 255)
+# Logo wordmark colors for white PDF pages (light-on-transparent fails on white)
+LOGO_NAME = (12, 15, 20)
+LOGO_MUTED = (80, 90, 105)
 
 
 def create_logo(path: Path) -> None:
-    """Create a horizontal logo PNG matching the site identity."""
+    """Create a horizontal logo PNG readable on white PDF pages."""
     w, h = 520, 96
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -50,12 +53,13 @@ def create_logo(path: Path) -> None:
     draw.text((x0 + 24, y0 + 14), "S", fill=BG, font=mark_font)
 
     tx = x0 + mark_size + 18
-    draw.text((tx, 18), "Signal", fill=TEXT, font=name_font)
+    draw.text((tx, 18), "Signal", fill=LOGO_NAME, font=name_font)
     signal_w = draw.textlength("Signal", font=name_font)
-    draw.text((tx + signal_w, 18), "Crest", fill=GOLD, font=name_font)
+    gap = 7  # visible space so wordmark reads "Signal Crest Systems"
+    draw.text((tx + signal_w + gap, 18), "Crest", fill=GOLD_DARK, font=name_font)
     crest_w = draw.textlength("Crest", font=name_font)
-    draw.text((tx + signal_w + crest_w + 8, 24), "Systems", fill=MUTED, font=suffix_font)
-    draw.text((tx, 62), "signalcrestsystems.com", fill=MUTED, font=url_font)
+    draw.text((tx + signal_w + gap + crest_w + 8, 24), "Systems", fill=LOGO_MUTED, font=suffix_font)
+    draw.text((tx, 62), "signalcrestsystems.com", fill=LOGO_MUTED, font=url_font)
 
     path.parent.mkdir(parents=True, exist_ok=True)
     img.save(path, "PNG")
@@ -83,7 +87,7 @@ class BrandedPDF(FPDF):
     self.set_y(-16)
     self.set_font("Helvetica", "I", 8)
     self.set_text_color(*MUTED)
-    self.cell(0, 8, f"SignalCrest Systems  |  signalcrestsystems.com  |  Page {self.page_no()}", align="C")
+    self.cell(0, 8, f"Signal Crest Systems  |  signalcrestsystems.com  |  Page {self.page_no()}", align="C")
 
   def add_cover_block(self):
     self.set_font("Helvetica", "B", 20)
@@ -165,8 +169,8 @@ def build_leads_checklist() -> None:
 
   pdf.section("Next Step")
   pdf.body_text(
-    "SignalCrest Systems helps small businesses rebuild sites for speed, trust, and conversions. "
-    "Visit signalcrestsystems.com/packages or email tom@signalcrestsystems.com for a free consultation."
+    "Signal Crest Systems helps small and growing businesses rebuild sites for speed, trust, and conversions. "
+    "Visit signalcrestsystems.com/packages or email tom@signalcrestsystems.com to discuss next steps."
   )
   pdf.output(str(OUTPUT / "website-leads-checklist.pdf"))
 
@@ -256,7 +260,7 @@ def build_five_things() -> None:
 def build_qa_checklist() -> None:
   pdf = BrandedPDF(
     "Pre-Launch QA Checklist",
-    "The same 25-point checklist SignalCrest Systems runs before every client go-live.",
+    "A 25-point website launch checklist you can use.",
   )
   pdf.add_page()
   pdf.add_cover_block()
@@ -272,7 +276,7 @@ def build_qa_checklist() -> None:
       "Cross-browser testing (Chrome, Firefox, Safari, Edge)",
     ],
     "Performance (6 checks)": [
-      "Page load under 3 seconds on mobile",
+      "Page load time checked on mobile",
       "Images optimized and properly sized",
       "CSS and JS minified",
       "No render-blocking resources",

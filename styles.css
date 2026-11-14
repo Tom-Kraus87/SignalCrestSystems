@@ -2863,6 +2863,16 @@ ul {
   max-width: 34ch;
 }
 
+.hero-home .hero-tagline {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+  max-width: 36rem;
+}
+
 .hero-home .hero-lead {
   margin-bottom: 1.75rem;
 }
@@ -3123,4 +3133,76 @@ ul {
   color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 0.15em;
+}
+
+/* ==========================================================================
+   Homepage visual corrections (Claude review, 2026-11-14)
+   Scoped overrides appended last so they win without editing earlier rules.
+   Uses existing theme tokens only.
+   ========================================================================== */
+
+/* 1. Process steps: drop the browser's ordered-list markers; keep 01/02/03 labels */
+.process-steps {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 4. Hero height follows its content instead of filling the viewport */
+.hero.hero-home {
+  min-height: 0;
+  padding: calc(var(--header-h) + clamp(2.5rem, 7vw, 5.5rem)) 0 clamp(3rem, 7vw, 6rem);
+}
+
+/* 2. Company name becomes an eyebrow; the H1 is the largest text on the page */
+.hero-home .hero-brand {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  max-width: none;
+  margin-bottom: 1rem;
+}
+
+.hero.hero-home h1 {
+  font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
+  line-height: 1.08;
+  max-width: min(20ch, 38rem);
+  margin-bottom: 1.25rem;
+}
+
+/* 3. Monospace and pixel themes: keep the same hierarchy with a scale suited to wide glyphs */
+[data-theme="cyber-terminal"] .hero.hero-home h1,
+[data-theme="retro-computing"] .hero.hero-home h1 {
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3rem);
+  line-height: 1.2;
+  max-width: min(22ch, 38rem);
+}
+
+[data-theme="arcade-1995"] .hero.hero-home h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1rem + 2.6vw, 2.75rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  max-width: min(18ch, 38rem);
+}
+
+[data-theme="arcade-1995"] .hero-home .hero-brand,
+[data-theme="retro-computing"] .hero-home .hero-brand,
+[data-theme="cyber-terminal"] .hero-home .hero-brand {
+  font-size: 0.875rem;
+  max-width: none;
+}
+
+/* Decorative before/after panels only where they can't overlap the larger headline */
+.hero-home .hero-visual {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .hero-home .hero-visual {
+    display: grid;
+  }
 }
