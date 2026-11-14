@@ -14,14 +14,32 @@
   if (currentPage === "") currentPage = "index.html";
   if (currentPage.indexOf(".") === -1) currentPage = currentPage + ".html";
 
+  var moreDetails = document.querySelector(".nav-more-details");
+
+  function closeMore() {
+    if (moreDetails) moreDetails.open = false;
+  }
+
   if (siteNav) {
     var navLinks = siteNav.querySelectorAll("a");
     navLinks.forEach(function (link) {
       var href = link.getAttribute("href");
       if (href === currentPage || (currentPage === "index.html" && href === "./")) {
         link.classList.add("is-active");
+        if (link.closest(".nav-more-panel") && moreDetails) {
+          moreDetails.classList.add("is-active");
+          var summary = moreDetails.querySelector(".nav-more-toggle");
+          if (summary) summary.classList.add("is-active");
+        }
+        if (href === "case-studies.html") {
+          var workLink = siteNav.querySelector('a[href="work.html"]');
+          if (workLink) workLink.classList.add("is-active");
+        }
       }
-      link.addEventListener("click", closeNav);
+      link.addEventListener("click", function () {
+        closeMore();
+        closeNav();
+      });
     });
   }
 
@@ -31,6 +49,7 @@
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
     if (header) header.classList.remove("nav-open");
+    closeMore();
   }
 
   function openNav() {
@@ -48,11 +67,20 @@
     });
   }
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeNav();
-  });
+  if (moreDetails) {
+    document.addEventListener("click", function (e) {
+      if (!moreDetails.open) return;
+      if (e.target.closest(".nav-more")) return;
+      closeMore();
+    });
+  }
 
-  if (header) {
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeMore();
+      closeNav();
+    }
+  });  if (header) {
     window.addEventListener(
       "scroll",
       function () {
