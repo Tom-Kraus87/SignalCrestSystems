@@ -1,0 +1,514 @@
+/*
+  packages-pricing.css: page-specific styles for packages.html catalog sections.
+  Every selector uses a .pp-* class (or is nested under one), so no global
+  selectors change. Colors come only from the shared --color-* variables, so
+  the page follows the active theme once the theme engine is merged.
+*/
+
+/* Screen-reader-only text (scoped copy; the site has no global helper yet) */
+.pp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Internal preview banner: remove with its markup before launch */
+.pp-preview-banner {
+  margin-top: var(--header-h);
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pp-preview-banner strong {
+  color: var(--color-accent);
+}
+
+.pp-hero {
+  padding-top: 3rem;
+}
+
+/* Price-type tags */
+.pp-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.pp-tag-fixed {
+  color: var(--color-on-accent, var(--color-bg));
+  background: var(--color-accent);
+}
+
+.pp-tag-from {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.pp-tag-monthly {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.pp-tag-hourly {
+  color: var(--color-text);
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border);
+}
+
+.pp-tag-quote {
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-text-muted);
+}
+
+/* Legend */
+.pp-legend {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 2rem;
+  max-width: 52rem;
+}
+
+.pp-legend li {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.pp-legend .pp-tag {
+  justify-self: start;
+  margin-top: 0.1rem;
+}
+
+/* Section jump links */
+.pp-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pp-jump a {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg-card);
+}
+
+.pp-jump a:hover,
+.pp-jump a:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Sections */
+.pp-section {
+  padding: 4.5rem 0;
+  scroll-margin-top: var(--header-h);
+}
+
+.pp-section-alt {
+  background: var(--color-bg-elevated);
+}
+
+.pp-center {
+  text-align: center;
+}
+
+/* Website packages */
+.pp-web-grid {
+  display: grid;
+  gap: 1.75rem 1.25rem;
+}
+
+.pp-card .package-price {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.pp-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.pp-footnote {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  max-width: 72ch;
+}
+
+/* Care plan comparison table */
+.pp-table-wrap {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+  overflow-x: auto;
+}
+
+.pp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.pp-table th,
+.pp-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pp-table tbody tr:last-child th,
+.pp-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pp-table thead th {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  background: var(--color-bg-elevated);
+}
+
+.pp-table tbody th {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.pp-th-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.pp-table .pp-col-featured {
+  background: var(--color-accent-soft);
+}
+
+.pp-limits {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.pp-limits strong {
+  color: var(--color-text);
+}
+
+.pp-cta-inline {
+  margin-top: 1.75rem;
+}
+
+/* Automation and professional services */
+.pp-service-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.pp-service {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.pp-service-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pp-service h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.pp-service-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pp-service-price .price-amount {
+  font-size: 1.875rem;
+}
+
+.pp-service > p {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.pp-service .package-features {
+  margin-bottom: 0;
+}
+
+.pp-service-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+}
+
+/* Package at-a-glance table */
+.pp-glance {
+  margin-top: 2.5rem;
+}
+
+.pp-table caption {
+  padding: 1rem 1rem 0.75rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--color-text);
+}
+
+.pp-glance tbody th {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Eligible vs. excluded lists */
+.pp-two-col {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.pp-box {
+  padding: 1.5rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.pp-box h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pp-box .package-features {
+  margin-bottom: 0;
+}
+
+.pp-x-list {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.pp-x-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.pp-x-list li::before {
+  content: "\00d7";
+  position: absolute;
+  left: 0.15rem;
+  top: -0.05em;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+/* Single-rate sections (IT, QA, SEO, security) */
+.pp-rate-card {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  padding: 1.75rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.pp-section-alt .pp-rate-card {
+  background: var(--color-bg);
+}
+
+.pp-rate-card .package-features {
+  margin-bottom: 0;
+}
+
+.pp-terms {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.1rem;
+  list-style: disc;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+/* Visible keyboard focus inside this page's main content */
+.pp-main a:focus-visible,
+.pp-main summary:focus-visible,
+.pp-main button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Policies accordion: widen the shared .price-accordion pattern on this page */
+.pp-accordion {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+/* Price summary shown above the stacked table on small screens only */
+.pp-care-summary {
+  display: none;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Mobile: stack the comparison table into labeled cards */
+@media (max-width: 719px) {
+  .pp-legend li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .pp-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .pp-table,
+  .pp-table tbody,
+  .pp-table tr,
+  .pp-table th,
+  .pp-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .pp-table tbody tr {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pp-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .pp-table tbody th {
+    padding: 0.25rem 1rem 0.5rem;
+    border: 0;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .pp-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 1rem;
+    border: 0;
+  }
+
+  .pp-table td::before {
+    content: attr(data-label);
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .pp-table td {
+    text-align: right;
+  }
+
+  .pp-table .pp-col-featured {
+    background: transparent;
+  }
+
+  .pp-care-summary {
+    display: grid;
+  }
+}
+
+@media (min-width: 720px) {
+  .pp-service-grid,
+  .pp-web-grid,
+  .pp-two-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .pp-split {
+    display: grid;
+    grid-template-columns: 1fr minmax(20rem, 26rem);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .pp-split .section-header {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pp-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .pp-web-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Accessibility: links inside running text are underlined, not identified by color alone */
+.pp-main p a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Keep the Monthly tag readable on the highlighted table column */
+.pp-table .pp-col-featured .pp-tag-monthly {
+  background: var(--color-bg);
+}

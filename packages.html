@@ -30,13 +30,14 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Website packages and monthly care plans from Signal Crest Systems LLC  - straightforward pricing for small businesses.">
+  <meta name="description" content="Website packages, care plans, AI automation, IT, QA, SEO, and cybersecurity pricing from Signal Crest Systems LLC.">
   <title>Packages &amp; Pricing | Signal Crest Systems LLC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@500;600;700&family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="packages-pricing.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -123,157 +124,507 @@
     </div>
   </header>
 
-  <main id="main">
-    <section class="page-hero">
+  <main id="main" class="pp-main">
+
+    <!-- Hero -->
+    <section class="page-hero pp-hero" aria-labelledby="pricing-heading">
       <div class="container">
         <p class="eyebrow">Pricing</p>
-        <h1>Website Packages &amp; Monthly Care Plans</h1>
-        <p class="page-hero-lead">Straightforward pricing built for small businesses - a one-time build to get you online, plus optional monthly care so your site stays secure, current, and fast. No agency markups, no surprises.</p>
+        <h1 id="pricing-heading">Clear pricing for websites, automation, and IT</h1>
+        <p class="page-hero-lead">
+          Every Signal Crest Systems LLC service is listed with its price type, so you know up front whether you're
+          looking at a fixed price, a starting price, a monthly plan, an hourly rate, or a custom quote. Scope is
+          confirmed in writing before any work begins.
+        </p>
+
+        <ul class="pp-legend" aria-label="Price types used on this page">
+          <li><span class="pp-tag pp-tag-fixed">Fixed price</span><span>The price for the listed scope. It changes only if you approve added work.</span></li>
+          <li><span class="pp-tag pp-tag-from">Starting at</span><span>The minimum price for the smallest scope. Your written quote sets the final price.</span></li>
+          <li><span class="pp-tag pp-tag-monthly">Monthly</span><span>A recurring plan with defined allowances.</span></li>
+          <li><span class="pp-tag pp-tag-hourly">Hourly</span><span>Billed for time worked: 1-hour minimum, then 15-minute increments.</span></li>
+          <li><span class="pp-tag pp-tag-quote">Custom quote</span><span>Priced after a discovery conversation, because scope varies too much to list.</span></li>
+        </ul>
+
+        <nav class="pp-jump" aria-label="Jump to a pricing section">
+          <a href="#websites">Websites</a>
+          <a href="#care">Care plans</a>
+          <a href="#automation">AI automation</a>
+          <a href="#software">Custom software</a>
+          <a href="#it">IT consulting</a>
+          <a href="#qa">QA testing</a>
+          <a href="#seo">Local SEO</a>
+          <a href="#security">Cybersecurity</a>
+          <a href="#policies">Terms</a>
+        </nav>
       </div>
     </section>
 
-    <section class="packages">
+    <!-- 1. Websites -->
+    <section class="pp-section" id="websites" aria-labelledby="websites-heading">
       <div class="container">
-        <h3 class="packages-subhead">Website Build Packages</h3>
-        <div class="package-grid">
-          <article class="package-card">
+        <header class="section-header">
+          <p class="eyebrow">Website Development</p>
+          <h2 id="websites-heading">Website packages</h2>
+          <p>Every package includes mobile-responsive design, basic on-page SEO setup, and launch on your own domain. Before launch, we check links, forms, mobile layouts, and the major browsers.</p>
+        </header>
+
+        <div class="pp-web-grid">
+          <article class="package-card pp-card" aria-labelledby="pkg-landing">
             <div class="package-head">
-              <h4>SignalCrest Starter Site</h4>
-              <p class="package-tagline">Get online, fast.</p>
+              <h3 class="pp-card-title" id="pkg-landing">Landing Page</h3>
+              <p class="package-tagline">One focused page for one offer or campaign.</p>
             </div>
-            <p class="package-price"><span class="price-amount">$900</span><span class="price-unit">one-time</span></p>
-            <p class="package-desc">A clean one-page website for small businesses that need a professional online presence quickly.</p>
+            <p class="package-price"><span class="pp-tag pp-tag-fixed">Fixed price</span><span class="price-amount">$950</span></p>
             <ul class="package-features">
-              <li>Single-page website</li>
-              <li>Mobile-first responsive design</li>
-              <li>Contact form &amp; click-to-call</li>
-              <li>Basic on-page SEO setup</li>
-              <li>Deployed &amp; live on your domain</li>
+              <li>1 page, up to 5 content sections</li>
+              <li>Contact form and click-to-call</li>
+              <li>Basic on-page SEO and analytics setup</li>
+              <li>2 revision rounds</li>
+              <li>14 days of post-launch defect correction</li>
+            </ul>
+            <a href="contact.html?service=package-landing" class="btn btn-secondary btn-full">Ask About the Landing Page</a>
+          </article>
+
+          <article class="package-card pp-card" aria-labelledby="pkg-starter">
+            <div class="package-head">
+              <h3 class="pp-card-title" id="pkg-starter">Starter Business Website</h3>
+              <p class="package-tagline">A professional presence for a new or small business.</p>
+            </div>
+            <p class="package-price"><span class="pp-tag pp-tag-fixed">Fixed price</span><span class="price-amount">$1,500</span></p>
+            <ul class="package-features">
+              <li>Up to 5 pages</li>
+              <li>Contact form, click-to-call, and map</li>
+              <li>Basic on-page SEO for each page</li>
+              <li>Analytics setup and a link to your Google Business Profile</li>
+              <li>2 revision rounds</li>
+              <li>14 days of post-launch defect correction</li>
             </ul>
             <button type="button" class="btn btn-demo btn-full" data-demo="starter">
               <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
             </button>
-            <a href="contact.html?service=package-starter" class="btn btn-secondary btn-full">Get Started</a>
+            <a href="contact.html?service=package-starter" class="btn btn-secondary btn-full">Ask About the Starter Website</a>
           </article>
 
-          <article class="package-card popular">
-            <div class="package-badge">Most Popular</div>
+          <article class="package-card popular pp-card" aria-labelledby="pkg-pro">
+            <div class="package-badge">Recommended</div>
             <div class="package-head">
-              <h4>SignalCrest Business Website</h4>
-              <p class="package-tagline">Built to convert.</p>
+              <h3 class="pp-card-title" id="pkg-pro">Professional Website</h3>
+              <p class="package-tagline">Built to earn trust and generate leads.</p>
             </div>
-            <p class="package-price"><span class="price-amount">$2,000</span><span class="price-unit">one-time</span></p>
-            <p class="package-desc">A complete 5-page website built for credibility, mobile usability, and lead generation.</p>
+            <p class="package-price"><span class="pp-tag pp-tag-fixed">Fixed price</span><span class="price-amount">$2,750</span></p>
             <ul class="package-features">
-              <li>Up to 5 custom pages</li>
-              <li>Lead-generating layout &amp; calls-to-action</li>
-              <li>Google Business &amp; analytics integration</li>
-              <li>Performance &amp; accessibility tuning</li>
-              <li>Security hardening &amp; SSL</li>
-              <li>1 month of post-launch support</li>
+              <li>Up to 10 pages with a custom layout</li>
+              <li>Individual service pages and lead-focused calls to action</li>
+              <li>On-page SEO setup and conversion tracking</li>
+              <li>Accessibility and performance tuning</li>
+              <li>2 revision rounds</li>
+              <li>30 days of post-launch defect correction and a handoff walkthrough</li>
             </ul>
             <button type="button" class="btn btn-demo btn-full" data-demo="business">
               <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
             </button>
-            <a href="contact.html?service=package-business" class="btn btn-primary btn-full">Get Started</a>
+            <a href="contact.html?service=package-professional" class="btn btn-primary btn-full">Ask About the Professional Website</a>
           </article>
 
-          <article class="package-card">
+          <article class="package-card pp-card" aria-labelledby="pkg-advanced">
             <div class="package-head">
-              <h4>SignalCrest Website Modernization</h4>
-              <p class="package-tagline">Rebuild &amp; secure.</p>
+              <h3 class="pp-card-title" id="pkg-advanced">Advanced Website</h3>
+              <p class="package-tagline">Larger sites, redesigns, and custom features.</p>
             </div>
-            <p class="package-price"><span class="price-amount">$3,200+</span><span class="price-unit">custom quote</span></p>
-            <p class="package-desc">A redesign for outdated websites that need stronger structure, better mobile experience, clearer calls-to-action, and improved trust.</p>
+            <p class="package-price"><span class="pp-tag pp-tag-from">Starting at</span><span class="price-amount">$5,000</span></p>
             <ul class="package-features">
-              <li>Full redesign or platform migration</li>
-              <li>Content restructure &amp; copy guidance</li>
-              <li>Custom features &amp; integrations</li>
-              <li>Advanced SEO &amp; performance work</li>
-              <li>Security audit &amp; remediation</li>
-              <li>Training &amp; handoff documentation</li>
+              <li>Discovery session and a written, individually quoted scope</li>
+              <li>More than 10 pages, a redesign, or a platform migration</li>
+              <li>Features such as booking, content editing, or integrations</li>
+              <li>3 revision rounds</li>
+              <li>30 days of post-launch defect correction and training documentation</li>
             </ul>
             <button type="button" class="btn btn-demo btn-full" data-demo="modernization">
               <span class="demo-play" aria-hidden="true">&#9654;</span> Press to See Active Demo
             </button>
-            <a href="contact.html?service=package-modernization" class="btn btn-secondary btn-full">Request a Quote</a>
+            <a href="contact.html?service=package-advanced" class="btn btn-secondary btn-full">Request an Advanced Website Quote</a>
           </article>
         </div>
 
-        <div class="price-accordion">
-          <h3 class="price-accordion-title">What affects price?</h3>
-          <p class="price-accordion-intro">Listed prices cover standard scope. These factors can adjust your final quote up or down.</p>
-          <details class="price-accordion-item">
-            <summary>Page count</summary>
-            <p>More pages mean more layout, navigation, and content structure. Starter covers a single page; Business includes up to 5; modernization projects often span more and are quoted individually.</p>
-          </details>
-          <details class="price-accordion-item">
-            <summary>Custom copy</summary>
-            <p>If you need professional copy written from scratch, heavy rewrites of existing content, or help gathering and organizing materials, that adds scope beyond placing text you already provide.</p>
-          </details>
-          <details class="price-accordion-item">
-            <summary>Special integrations</summary>
-            <p>Booking systems, payment gateways, CRM connections, custom forms, or third-party APIs require extra setup, testing, and sometimes ongoing maintenance - each quoted based on complexity.</p>
-          </details>
+        <div class="pp-table-wrap pp-glance">
+          <table class="pp-table">
+            <caption>Website packages at a glance</caption>
+            <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">Price</th>
+                <th scope="col">Pages</th>
+                <th scope="col">Revision rounds</th>
+                <th scope="col">Defect correction after launch</th>
+                <th scope="col">Payments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Landing Page</th>
+                <td data-label="Price">$950 fixed</td>
+                <td data-label="Pages">1</td>
+                <td data-label="Revision rounds">2</td>
+                <td data-label="Defect correction">14 days</td>
+                <td data-label="Payments">50% deposit, 50% before launch</td>
+              </tr>
+              <tr>
+                <th scope="row">Starter Business Website</th>
+                <td data-label="Price">$1,500 fixed</td>
+                <td data-label="Pages">Up to 5</td>
+                <td data-label="Revision rounds">2</td>
+                <td data-label="Defect correction">14 days</td>
+                <td data-label="Payments">50% deposit, 50% before launch</td>
+              </tr>
+              <tr>
+                <th scope="row">Professional Website</th>
+                <td data-label="Price">$2,750 fixed</td>
+                <td data-label="Pages">Up to 10</td>
+                <td data-label="Revision rounds">2</td>
+                <td data-label="Defect correction">30 days</td>
+                <td data-label="Payments">50% deposit, 50% before launch</td>
+              </tr>
+              <tr>
+                <th scope="row">Advanced Website</th>
+                <td data-label="Price">From $5,000</td>
+                <td data-label="Pages">Quoted</td>
+                <td data-label="Revision rounds">3</td>
+                <td data-label="Defect correction">30 days</td>
+                <td data-label="Payments">Milestones agreed in writing</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <h3 class="packages-subhead care-subhead">SignalCrest Care Plan</h3>
-        <p class="care-intro">Keep your site secure and worry-free. Cancel anytime - month-to-month, no long contracts.</p>
-        <div class="package-grid care-grid">
-          <article class="care-card">
-            <div class="care-head">
-              <h4>Essential Care</h4>
-              <p class="package-price care-price"><span class="price-amount">$49</span><span class="price-unit">/ month</span></p>
-            </div>
-            <ul class="package-features">
-              <li>Software &amp; security updates</li>
-              <li>Weekly automated backups</li>
-              <li>Uptime &amp; SSL monitoring</li>
-              <li>Up to 30 min of content edits</li>
-              <li>Email support</li>
-            </ul>
-          </article>
-
-          <article class="care-card popular">
-            <div class="package-badge">Best Value</div>
-            <div class="care-head">
-              <h4>Growth Care</h4>
-              <p class="package-price care-price"><span class="price-amount">$99</span><span class="price-unit">/ month</span></p>
-            </div>
-            <ul class="package-features">
-              <li>Everything in Essential</li>
-              <li>Up to 2 hrs of edits &amp; small features</li>
-              <li>Monthly performance &amp; security report</li>
-              <li>Priority response (1 business day)</li>
-              <li>Basic SEO monitoring</li>
-            </ul>
-          </article>
-
-          <article class="care-card">
-            <div class="care-head">
-              <h4>Managed IT + Web</h4>
-              <p class="package-price care-price"><span class="price-amount">$199</span><span class="price-unit">/ month</span></p>
-            </div>
-            <ul class="package-features">
-              <li>Everything in Growth</li>
-              <li>Up to 3 hrs IT helpdesk support</li>
-              <li>Device &amp; endpoint assistance</li>
-              <li>Advanced security monitoring</li>
-              <li>Quarterly strategy check-in</li>
-            </ul>
-          </article>
-        </div>
-
-        <p class="packages-note">Not sure which fits? <a href="contact.html">Tell me about your business</a> and I'll recommend the right setup � custom bundles welcome.</p>
+        <p class="pp-footnote">Need an online store? E-commerce sites are quoted individually. See <a href="#software">custom projects</a>. Hosting, domain, platform subscriptions, premium themes or plugins, and stock images are billed to your own accounts. You provide the text and images unless copywriting is added to your quote.</p>
       </div>
     </section>
 
-    <section class="cta-band">
+    <!-- 2. Care plans -->
+    <section class="pp-section pp-section-alt" id="care" aria-labelledby="care-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Website Care</p>
+          <h2 id="care-heading">Monthly website care plans</h2>
+          <p>Each plan covers one website with a fixed monthly allowance. There's no unlimited support, and IT support isn't part of any care plan.</p>
+        </header>
+
+        <div class="pp-table-wrap">
+          <div class="pp-care-summary" aria-hidden="true">
+            <span>Basic Care: $79/mo</span>
+            <span>Care + Updates: $149/mo</span>
+            <span>Advanced Management: $349/mo</span>
+          </div>
+          <table class="pp-table pp-care-table">
+            <caption class="pp-sr-only">Comparison of monthly website care plans</caption>
+            <thead>
+              <tr>
+                <th scope="col">What's included</th>
+                <th scope="col">Basic Care<span class="pp-th-price"><span class="pp-tag pp-tag-monthly">Monthly</span> $79/mo</span></th>
+                <th scope="col" class="pp-col-featured">Care + Updates<span class="pp-th-price"><span class="pp-tag pp-tag-monthly">Monthly</span> $149/mo</span></th>
+                <th scope="col">Advanced Management<span class="pp-th-price"><span class="pp-tag pp-tag-monthly">Monthly</span> $349/mo</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Monthly allowance</th>
+                <td data-label="Basic Care">Up to 30 min of eligible edits</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Up to 2 hrs of eligible edits</td>
+                <td data-label="Advanced Management">Up to 5 hrs of eligible website work</td>
+              </tr>
+              <tr>
+                <th scope="row">Uptime and SSL monitoring</th>
+                <td data-label="Basic Care">Included</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Included</td>
+                <td data-label="Advanced Management">Included</td>
+              </tr>
+              <tr>
+                <th scope="row">Software and security updates, backups</th>
+                <td data-label="Basic Care">Included</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Included</td>
+                <td data-label="Advanced Management">Included</td>
+              </tr>
+              <tr>
+                <th scope="row">Acknowledgment target</th>
+                <td data-label="Basic Care">Within 2 business days</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Within 1 business day</td>
+                <td data-label="Advanced Management">Priority scheduling</td>
+              </tr>
+              <tr>
+                <th scope="row">Reporting</th>
+                <td data-label="Basic Care">On request</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Monthly health report</td>
+                <td data-label="Advanced Management">Monthly report and quarterly review call</td>
+              </tr>
+              <tr>
+                <th scope="row">Performance, accessibility, and SEO health checks</th>
+                <td data-label="Basic Care">Not included</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Quarterly</td>
+                <td data-label="Advanced Management">Monthly</td>
+              </tr>
+              <tr>
+                <th scope="row">Support channel</th>
+                <td data-label="Basic Care">Email</td>
+                <td data-label="Care + Updates" class="pp-col-featured">Email</td>
+                <td data-label="Advanced Management">Email and scheduled calls</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pp-two-col">
+          <div class="pp-box">
+            <h3>Eligible work</h3>
+            <ul class="package-features">
+              <li>Text, image, and contact-detail updates on existing pages</li>
+              <li>Fixing broken links and small layout issues</li>
+              <li>Adding content blocks to existing pages</li>
+              <li>Advanced Management also: small features and minor new sections</li>
+            </ul>
+          </div>
+          <div class="pp-box">
+            <h3>Not included in any care plan</h3>
+            <ul class="pp-x-list">
+              <li>IT support for computers, networks, devices, or email accounts</li>
+              <li>New pages, redesigns, or new features beyond the plan</li>
+              <li>SEO campaigns (see Local SEO Management)</li>
+              <li>Copywriting, after-hours, or emergency work</li>
+              <li>Third-party fees, such as hosting, domains, or paid plugins</li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="pp-limits" aria-label="Care plan terms">
+          <li><strong>Acknowledgment targets</strong> apply during published business hours, Monday through Friday, excluding holidays. They're targets for confirming your request, not guaranteed resolution times.</li>
+          <li><strong>Unused time</strong> doesn't roll over to the next month.</li>
+          <li><strong>Work beyond your allowance</strong> is billed at the Additional Web Development rate of $100/hour, only with your approval.</li>
+          <li><strong>One website per plan.</strong> Plans are billed monthly in advance.</li>
+        </ul>
+        <p class="pp-cta-inline"><a href="contact.html?service=care-plan" class="btn btn-secondary">Ask About Care Plans</a></p>
+      </div>
+    </section>
+
+    <!-- 3. AI automation -->
+    <section class="pp-section" id="automation" aria-labelledby="automation-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">AI Automation</p>
+          <h2 id="automation-heading">AI automation and workflow integration</h2>
+          <p>Every automation project starts with a discovery conversation and a written scope. <a href="ai-automation.html">See how our automation process works</a>.</p>
+        </header>
+
+        <div class="pp-service-grid pp-grid-3">
+          <article class="pp-service" aria-labelledby="svc-basic-auto">
+            <div class="pp-service-top">
+              <h3 id="svc-basic-auto">Basic Business Automation</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-from">Starting at</span><span class="price-amount">$1,500</span></p>
+            </div>
+            <p>One repetitive workflow automated between your existing apps, such as form-to-spreadsheet, lead routing, or reminders.</p>
+            <ul class="package-features">
+              <li>Workflow mapping and testing</li>
+              <li>Error alerts and documentation</li>
+            </ul>
+          </article>
+
+          <article class="pp-service" aria-labelledby="svc-ai-flow">
+            <div class="pp-service-top">
+              <h3 id="svc-ai-flow">AI Workflow Integration</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-from">Starting at</span><span class="price-amount">$5,000</span></p>
+            </div>
+            <p>A workflow with AI steps, such as drafting replies, sorting requests, or pulling data from documents.</p>
+            <ul class="package-features">
+              <li>Human approval checkpoints</li>
+              <li>Testing against real examples, plus logging</li>
+            </ul>
+          </article>
+
+          <article class="pp-service" aria-labelledby="svc-agents">
+            <div class="pp-service-top">
+              <h3 id="svc-agents">Custom AI Agents</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-quote">Custom quote</span></p>
+            </div>
+            <p>Multi-step AI agents that work through tasks across several tools, with the guardrails and oversight your team needs.</p>
+            <ul class="package-features">
+              <li>Discovery and written scope required</li>
+              <li>Phased build with review points</li>
+            </ul>
+          </article>
+        </div>
+        <p class="pp-footnote">AI model, API, and software subscription fees are billed to your own accounts at cost. Automated output used for legal, medical, financial, or hiring decisions should always be reviewed by a qualified person.</p>
+        <p class="pp-cta-inline"><a href="contact.html?service=ai-automation" class="btn btn-secondary">Ask About AI Automation</a></p>
+      </div>
+    </section>
+
+    <!-- 4. Custom software -->
+    <section class="pp-section pp-section-alt" id="software" aria-labelledby="software-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Custom Software</p>
+          <h2 id="software-heading">Custom software and web projects</h2>
+        </header>
+
+        <div class="pp-service-grid pp-grid-3">
+          <article class="pp-service" aria-labelledby="svc-webapp">
+            <div class="pp-service-top">
+              <h3 id="svc-webapp">Custom Web Applications</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-quote">Custom quote</span></p>
+            </div>
+            <p>Focused internal tools, such as intake or quoting apps, dashboards, and admin portals, deployed to hosting you own. Built in milestones with testing before launch.</p>
+          </article>
+
+          <article class="pp-service" aria-labelledby="svc-ecom">
+            <div class="pp-service-top">
+              <h3 id="svc-ecom">E-commerce Websites</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-quote">Custom quote</span></p>
+            </div>
+            <p>Online stores on a hosted platform, quoted individually based on product count, payment and shipping setup, and integrations.</p>
+          </article>
+
+          <article class="pp-service" aria-labelledby="svc-webdev">
+            <div class="pp-service-top">
+              <h3 id="svc-webdev">Additional Web Development</h3>
+              <p class="pp-service-price"><span class="pp-tag pp-tag-hourly">Hourly</span><span class="price-amount">$100</span><span class="price-unit">/ hour</span></p>
+            </div>
+            <p>Add-on pages, extra revision rounds, new features, and care-plan work beyond your monthly allowance. Larger requests get a written estimate first.</p>
+          </article>
+        </div>
+        <p class="pp-cta-inline"><a href="contact.html?service=custom-software" class="btn btn-secondary">Request a Custom Project Quote</a></p>
+      </div>
+    </section>
+
+    <!-- 5. IT consulting -->
+    <section class="pp-section" id="it" aria-labelledby="it-heading">
+      <div class="container pp-split">
+        <header class="section-header">
+          <p class="eyebrow">IT Consulting</p>
+          <h2 id="it-heading">IT consulting and support</h2>
+          <p>Remote or on-site help with setup, troubleshooting, devices, Microsoft 365, and technology planning for small offices.</p>
+        </header>
+        <div class="pp-rate-card">
+          <p class="pp-service-price"><span class="pp-tag pp-tag-hourly">Hourly</span><span class="price-amount">$110</span><span class="price-unit">/ hour</span></p>
+          <ul class="pp-terms">
+            <li>Remote work: 1-hour minimum, then 15-minute increments.</li>
+            <li>On-site work in Metro Detroit: 2-hour minimum. Travel fees are disclosed before booking.</li>
+            <li>No plan includes unlimited IT support. IT work is always billed hourly or quoted.</li>
+          </ul>
+          <a href="contact.html?service=it-consulting" class="btn btn-secondary">Ask About IT Consulting</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. QA -->
+    <section class="pp-section pp-section-alt" id="qa" aria-labelledby="qa-heading">
+      <div class="container pp-split">
+        <header class="section-header">
+          <p class="eyebrow">QA Testing</p>
+          <h2 id="qa-heading">QA testing and automation</h2>
+          <p>Exploratory, regression, and cross-browser testing, Postman API testing, and Cypress.js test automation for websites and web apps.</p>
+        </header>
+        <div class="pp-rate-card">
+          <p class="pp-service-price"><span class="pp-tag pp-tag-hourly">Hourly</span><span class="price-amount">$90</span><span class="price-unit">/ hour</span></p>
+          <ul class="pp-terms">
+            <li>1-hour minimum, then 15-minute increments.</li>
+            <li>A written test scope and estimate before larger engagements.</li>
+            <li>Findings are delivered as reproducible bug reports.</li>
+          </ul>
+          <a href="contact.html?service=qa-automation" class="btn btn-secondary">Ask About QA Testing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Local SEO -->
+    <section class="pp-section" id="seo" aria-labelledby="seo-heading">
+      <div class="container pp-split">
+        <header class="section-header">
+          <p class="eyebrow">Local SEO</p>
+          <h2 id="seo-heading">Local SEO management</h2>
+          <p>A starter service for one business location, with a 3-month initial engagement.</p>
+        </header>
+        <div class="pp-rate-card">
+          <p class="pp-service-price"><span class="pp-tag pp-tag-monthly">Monthly</span><span class="price-amount">$475</span><span class="price-unit">/ month</span></p>
+          <ul class="package-features">
+            <li>Google Business Profile updates and posts</li>
+            <li>Checking that your business listings are consistent</li>
+            <li>On-page local updates to your existing website</li>
+            <li>A monthly activity report</li>
+          </ul>
+          <p class="pp-service-note">We don't guarantee rankings, traffic, or leads. Search results depend on factors outside anyone's control.</p>
+          <a href="contact.html?service=local-seo" class="btn btn-secondary">Ask About Local SEO</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Cybersecurity -->
+    <section class="pp-section pp-section-alt" id="security" aria-labelledby="security-heading">
+      <div class="container pp-split">
+        <header class="section-header">
+          <p class="eyebrow">Cybersecurity</p>
+          <h2 id="security-heading">Cybersecurity assessments</h2>
+          <p>A practical review of accounts and multi-factor sign-in, backups, devices, email security settings, and website security basics, with written, prioritized recommendations.</p>
+        </header>
+        <div class="pp-rate-card">
+          <p class="pp-service-price"><span class="pp-tag pp-tag-quote">Custom quote</span></p>
+          <ul class="pp-terms">
+            <li>Scope and price depend on the number of users, devices, and systems.</li>
+            <li>This is guidance only. It doesn't include penetration testing, compliance certification, or 24/7 monitoring.</li>
+          </ul>
+          <a href="contact.html?service=cybersecurity" class="btn btn-secondary">Request an Assessment Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Terms -->
+    <section class="pp-section" id="policies" aria-labelledby="policies-heading">
+      <div class="container">
+        <header class="section-header pp-center">
+          <p class="eyebrow">Terms</p>
+          <h2 id="policies-heading">Scope, revisions, payments, and exclusions</h2>
+        </header>
+
+        <div class="price-accordion pp-accordion">
+          <details class="price-accordion-item">
+            <summary>What does a fixed price cover?</summary>
+            <p>The deliverables listed for that package, with nothing hidden. The price changes only if you approve added work in writing.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>How do starting prices and custom quotes work?</summary>
+            <p>A starting price is the minimum for the smallest version of a service. Advanced websites, e-commerce, and custom quotes are scoped individually, and you get a written scope and price before work begins.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>What counts as a revision round?</summary>
+            <p>One consolidated set of feedback on a design or build stage, which we then apply. The Landing Page, Starter Business, and Professional packages include 2 rounds. The Advanced Website includes 3. Extra rounds are billed at $100/hour.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>What is post-launch defect correction?</summary>
+            <p>We fix anything that doesn't work as agreed in your scope: 14 days for the Landing Page and Starter Business packages, 30 days for the Professional and Advanced packages. It doesn't cover new features, content changes, or additional revisions.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>How does payment work?</summary>
+            <p>Standard website packages: a 50% deposit to start and the remaining 50% before launch. Larger projects use milestone payments agreed in writing. Monthly plans are billed in advance. Hourly work has a 1-hour minimum, then 15-minute increments.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>What isn't included?</summary>
+            <p>Unless listed in your package or quote: copywriting, photography, logo or brand design, hosting, domain and platform fees, paid plugins or apps, legal or compliance review, and after-hours work.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>How are add-ons and change requests handled?</summary>
+            <p>Extra pages, features, and integrations are quoted, or billed at $100/hour, before work begins. Nothing is added to your invoice without your written approval.</p>
+          </details>
+          <details class="price-accordion-item">
+            <summary>What do you need from me?</summary>
+            <p>Your text, images, logo, and account access by the agreed dates. If content arrives late, the launch date moves by the same amount.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-heading">
       <div class="container cta-band-inner">
-        <h2>Schedule your consultation</h2>
-        <p>Not sure which package fits? Tell me about your business and I'll recommend the right setup.</p>
+        <h2 id="cta-heading">Not sure which option fits?</h2>
+        <p>Tell us what you need. We'll recommend the right package or service, with a written scope and price before any work begins.</p>
         <div class="cta-band-actions">
           <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a href="services.html" class="btn btn-secondary">View Services</a>
         </div>
       </div>
     </section>

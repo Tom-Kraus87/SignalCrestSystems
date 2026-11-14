@@ -91,37 +91,127 @@
   }
 
   if (form && formStatus) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    var submitBtn = document.getElementById("contact-submit");
+    var FALLBACK_EMAIL = "tom@signalcrestsystems.com";
+
+    function setFieldError(fieldName, message) {
+      var field = form.elements[fieldName];
+      var errorEl = document.getElementById(fieldName + "-error");
+      if (!field) return;
+      if (message) {
+        field.setAttribute("aria-invalid", "true");
+        if (errorEl) {
+          errorEl.hidden = false;
+          errorEl.textContent = message;
+          field.setAttribute("aria-describedby", errorEl.id);
+        }
+      } else {
+        field.removeAttribute("aria-invalid");
+        if (errorEl) {
+          errorEl.hidden = true;
+          errorEl.textContent = "";
+          field.removeAttribute("aria-describedby");
+        }
+      }
+    }
+
+    function clearErrors() {
+      ["name", "email", "message"].forEach(function (name) {
+        setFieldError(name, "");
+      });
       formStatus.className = "form-note";
       formStatus.textContent = "";
+    }
 
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForm() {
+      clearErrors();
       var name = form.name.value.trim();
       var email = form.email.value.trim();
-      var service = form.service.value;
       var message = form.message.value.trim();
+      var firstInvalid = null;
 
-      if (!name || !email || !message) {
+      if (!name) {
+        setFieldError("name", "Please enter your name.");
+        firstInvalid = firstInvalid || form.name;
+      }
+      if (!email) {
+        setFieldError("email", "Please enter your email address.");
+        firstInvalid = firstInvalid || form.email;
+      } else if (!isValidEmail(email)) {
+        setFieldError("email", "Please enter a valid email address.");
+        firstInvalid = firstInvalid || form.email;
+      }
+      if (!message) {
+        setFieldError("message", "Please enter a message.");
+        firstInvalid = firstInvalid || form.message;
+      }
+
+      if (firstInvalid) {
         formStatus.className = "form-note error";
-        formStatus.textContent = "Please fill in all required fields.";
+        formStatus.textContent = "Please fix the highlighted fields and try again.";
+        firstInvalid.focus();
+        return false;
+      }
+      return true;
+    }
+
+    function encodeFormBody(formEl) {
+      var data = new FormData(formEl);
+      var pairs = [];
+      data.forEach(function (value, key) {
+        pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(String(value)));
+      });
+      return pairs.join("&");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      if (form.elements["bot-field"] && form.elements["bot-field"].value) {
+        formStatus.className = "form-note success";
+        formStatus.textContent = "Thanks — your message has been received.";
+        form.reset();
         return;
       }
 
-      var subject = encodeURIComponent(
-        "SignalCrest Systems Inquiry" + (service ? " — " + service : "")
-      );
-      var body = encodeURIComponent(
-        "Name: " + name + "\nEmail: " + email +
-        (service ? "\nService: " + service : "") +
-        "\n\n" + message
-      );
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute("aria-busy", "true");
+      }
+      formStatus.className = "form-note";
+      formStatus.textContent = "Sending your message…";
 
-      window.location.href =
-        "mailto:signalcrestsystems@gmail.com?subject=" + subject + "&body=" + body;
-
-      formStatus.className = "form-note success";
-      formStatus.textContent =
-        "Opening your email client… If it doesn't open, email signalcrestsystems@gmail.com directly.";
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeFormBody(form),
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Form submission failed");
+          form.reset();
+          clearErrors();
+          formStatus.className = "form-note success";
+          formStatus.textContent =
+            "Thanks — your message was sent. I will get back to you soon.";
+        })
+        .catch(function () {
+          formStatus.className = "form-note error";
+          formStatus.textContent =
+            "Something went wrong sending the form. Please email " +
+            FALLBACK_EMAIL +
+            " directly.";
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute("aria-busy");
+          }
+        });
     });
 
     var params = new URLSearchParams(window.location.search);

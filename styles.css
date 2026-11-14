@@ -1667,6 +1667,40 @@ ul {
   color: #f87171;
 }
 
+.required-mark {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.field-error {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  color: #f87171;
+}
+
+.form-fallback {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.form-fallback a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.package-card .btn-demo,
+.pp-card .btn-demo {
+  margin-bottom: 0.75rem;
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: #f87171;
+}
+
 /* Footer */
 
 .site-footer {
