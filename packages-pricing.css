@@ -64,7 +64,8 @@
 
 .pp-tag-monthly {
   color: var(--color-accent);
-  background: var(--color-accent-soft);
+  background: var(--color-bg-elevated);
+  border-color: var(--accent-border);
 }
 
 .pp-tag-hourly {

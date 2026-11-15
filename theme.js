@@ -171,13 +171,22 @@
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && panel && !panel.hidden) {
       e.stopPropagation();
-      closePanel();
+      closePanel(true);
     }
   });
 
   document.addEventListener("click", function (e) {
     if (!panel || panel.hidden) return;
     if (!picker.contains(e.target)) closePanel(false);
+  });
+
+  // Close when keyboard focus leaves the whole picker (not when moving between controls)
+  picker.addEventListener("focusout", function () {
+    if (!panel || panel.hidden) return;
+    window.setTimeout(function () {
+      if (!panel || panel.hidden) return;
+      if (!picker.contains(document.activeElement)) closePanel(false);
+    }, 0);
   });
 
   if (window.matchMedia) {

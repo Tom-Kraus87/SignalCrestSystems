@@ -15,9 +15,69 @@
   if (currentPage.indexOf(".") === -1) currentPage = currentPage + ".html";
 
   var moreDetails = document.querySelector(".nav-more-details");
+  var mainEl = document.getElementById("main");
+  var footerEl = document.querySelector(".site-footer");
+  var navFocusHandler = null;
 
-  function closeMore() {
-    if (moreDetails) moreDetails.open = false;
+  function isMobileNav() {
+    return navToggle && window.getComputedStyle(navToggle).display !== "none";
+  }
+
+  function setBackgroundInert(on) {
+    if (mainEl) {
+      if (on) mainEl.setAttribute("inert", "");
+      else mainEl.removeAttribute("inert");
+    }
+    if (footerEl) {
+      if (on) footerEl.setAttribute("inert", "");
+      else footerEl.removeAttribute("inert");
+    }
+  }
+
+  function getMobileNavFocusables() {
+    var items = [];
+    if (navToggle) items.push(navToggle);
+    if (!siteNav) return items;
+    siteNav.querySelectorAll("a[href], button, summary, [tabindex]:not([tabindex='-1'])").forEach(function (el) {
+      if (!el.hasAttribute("disabled") && el.offsetParent !== null) items.push(el);
+    });
+    return items;
+  }
+
+  function bindNavFocusTrap() {
+    unbindNavFocusTrap();
+    navFocusHandler = function (e) {
+      if (!siteNav || !siteNav.classList.contains("is-open") || !isMobileNav()) return;
+      if (e.key !== "Tab") return;
+      var focusables = getMobileNavFocusables();
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", navFocusHandler, true);
+  }
+
+  function unbindNavFocusTrap() {
+    if (navFocusHandler) {
+      document.removeEventListener("keydown", navFocusHandler, true);
+      navFocusHandler = null;
+    }
+  }
+
+  function closeMore(returnFocus) {
+    if (!moreDetails || !moreDetails.open) return;
+    moreDetails.open = false;
+    if (returnFocus !== false) {
+      var summary = moreDetails.querySelector(".nav-more-toggle, summary");
+      if (summary && typeof summary.focus === "function") summary.focus();
+    }
   }
 
   if (siteNav) {
@@ -37,50 +97,114 @@
         }
       }
       link.addEventListener("click", function () {
-        closeMore();
-        closeNav();
+        closeMore(false);
+        closeNav(true);
       });
     });
   }
 
-  function closeNav() {
+  function setMobileNavInert(on) {
+    if (!siteNav) return;
+    // Desktop nav must stay keyboard-reachable; only inert the drawer while closed on mobile.
+    if (!isMobileNav()) {
+      siteNav.removeAttribute("inert");
+      return;
+    }
+    if (on) siteNav.setAttribute("inert", "");
+    else siteNav.removeAttribute("inert");
+  }
+
+  function closeNav(returnFocus) {
     if (!navToggle || !siteNav) return;
+    var wasOpen = siteNav.classList.contains("is-open");
     navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open menu");
+    // Immediately block keyboard access to drawer links (including during close animation)
+    setMobileNavInert(true);
     siteNav.classList.remove("is-open");
     document.body.style.overflow = "";
     if (header) header.classList.remove("nav-open");
-    closeMore();
+    setBackgroundInert(false);
+    unbindNavFocusTrap();
+    closeMore(false);
+    if (wasOpen && returnFocus !== false && isMobileNav() && typeof navToggle.focus === "function") {
+      navToggle.focus();
+    }
   }
 
   function openNav() {
     if (!navToggle || !siteNav) return;
+    if (!isMobileNav()) return;
     navToggle.setAttribute("aria-expanded", "true");
+    navToggle.setAttribute("aria-label", "Close menu");
     siteNav.classList.add("is-open");
+    setMobileNavInert(false);
+    setBackgroundInert(true);
+    bindNavFocusTrap();
     document.body.style.overflow = "hidden";
     if (header) header.classList.add("nav-open");
+    var firstLink = siteNav.querySelector("a[href]");
+    if (firstLink && typeof firstLink.focus === "function") {
+      window.setTimeout(function () {
+        firstLink.focus();
+      }, 0);
+    }
+  }
+
+  function syncNavForViewport() {
+    if (!siteNav || !navToggle) return;
+    if (!isMobileNav()) {
+      // Crossed into desktop: tear down drawer state without stealing focus
+      if (
+        siteNav.classList.contains("is-open") ||
+        (mainEl && mainEl.hasAttribute("inert")) ||
+        (footerEl && footerEl.hasAttribute("inert")) ||
+        siteNav.hasAttribute("inert")
+      ) {
+        closeNav(false);
+      }
+      siteNav.removeAttribute("inert");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+    } else if (!siteNav.classList.contains("is-open")) {
+      setMobileNavInert(true);
+    }
   }
 
   if (navToggle) {
     navToggle.addEventListener("click", function () {
       var isOpen = navToggle.getAttribute("aria-expanded") === "true";
-      isOpen ? closeNav() : openNav();
+      if (isOpen) closeNav(true);
+      else openNav();
     });
   }
+
+  window.addEventListener("resize", syncNavForViewport);
+  // Initial: closed mobile drawer must not expose links to Tab
+  syncNavForViewport();
 
   if (moreDetails) {
     document.addEventListener("click", function (e) {
       if (!moreDetails.open) return;
       if (e.target.closest(".nav-more")) return;
-      closeMore();
+      closeMore(false);
     });
   }
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      closeMore();
-      closeNav();
+    if (e.key !== "Escape") return;
+    if (moreDetails && moreDetails.open) {
+      closeMore(true);
+      e.preventDefault();
+      return;
     }
-  });  if (header) {
+    if (siteNav && siteNav.classList.contains("is-open") && isMobileNav()) {
+      closeNav(true);
+      e.preventDefault();
+    }
+  });
+
+  if (header) {
     window.addEventListener(
       "scroll",
       function () {

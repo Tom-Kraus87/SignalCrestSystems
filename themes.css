@@ -13,6 +13,9 @@
   --color-accent-soft: rgba(201, 162, 39, 0.12);
   --color-on-accent: #0c0f14;
   --color-white: #ffffff;
+  /* Semantic status colors (case labels, alerts) — tuned for dark surfaces by default */
+  --color-danger: #fca5a5;
+  --color-success: #86efac;
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-display: var(--font-serif);
@@ -62,11 +65,14 @@
   --color-bg-card: #ffffff;
   --color-border: rgba(15, 23, 42, 0.1);
   --color-text: #0f172a;
-  --color-text-muted: #64748b;
+  --color-text-muted: #475569;
   --color-accent: #0f4c81;
   --color-accent-hover: #0a3a63;
   --color-accent-soft: rgba(15, 76, 129, 0.12);
   --color-on-accent: #ffffff;
+  --color-danger: #b91c1c;
+  /* Darker green for After labels on tinted case panels */
+  --color-success: #052e16;
   --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
   --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
@@ -210,9 +216,10 @@
   --color-border: rgba(255, 45, 149, 0.22);
   --color-text: #ffe9f6;
   --color-text-muted: #c08aaa;
-  --color-accent: #ff2d95;
+  /* Lighter pink for small accent text on soft/magenta surfaces (≥4.5:1) */
+  --color-accent: #ff7aad;
   --color-accent-hover: #00f0ff;
-  --color-accent-soft: rgba(255, 45, 149, 0.16);
+  --color-accent-soft: rgba(255, 122, 173, 0.16);
   --color-on-accent: #1a0010;
   --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
   --font-serif: "Orbitron", system-ui, sans-serif;
@@ -337,11 +344,13 @@
   --color-bg-card: #ffffff;
   --color-border: rgba(30, 64, 120, 0.18);
   --color-text: #14325c;
-  --color-text-muted: #4a6a90;
+  --color-text-muted: #3a5578;
   --color-accent: #1e64b4;
   --color-accent-hover: #154a88;
   --color-accent-soft: rgba(30, 100, 180, 0.12);
   --color-on-accent: #ffffff;
+  --color-danger: #b91c1c;
+  --color-success: #052e16;
   --font-sans: "IBM Plex Sans", "DM Sans", system-ui, sans-serif;
   --font-serif: "IBM Plex Sans", system-ui, sans-serif;
   --shadow: 0 4px 20px rgba(20, 50, 92, 0.1);
@@ -362,11 +371,14 @@
   --color-bg-card: #30353e;
   --color-border: rgba(212, 168, 83, 0.18);
   --color-text: #eceff3;
-  --color-text-muted: #9aa3b0;
-  --color-accent: #d4a853;
+  --color-text-muted: #b0b8c4;
+  /* Brighter gold for small accent text on slate surfaces (≥4.5:1) */
+  --color-accent: #e0b85c;
   --color-accent-hover: #e6c06a;
-  --color-accent-soft: rgba(212, 168, 83, 0.14);
+  --color-accent-soft: rgba(224, 184, 92, 0.14);
   --color-on-accent: #1c1408;
+  --color-danger: #fca5a5;
+  --color-success: #86efac;
   --font-sans: "IBM Plex Sans", "DM Sans", system-ui, sans-serif;
   --font-serif: "IBM Plex Sans", system-ui, sans-serif;
   --radius-sm: 4px;
@@ -385,11 +397,13 @@
   --color-bg-card: #fffaf0;
   --color-border: rgba(90, 62, 36, 0.16);
   --color-text: #3b2a1a;
-  --color-text-muted: #7a624a;
+  --color-text-muted: #5c4a38;
   --color-accent: #8b4513;
   --color-accent-hover: #6b3410;
   --color-accent-soft: rgba(139, 69, 19, 0.12);
   --color-on-accent: #fff8ef;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
   --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
   --font-serif: "Libre Baskerville", Georgia, serif;
   --shadow: 0 4px 20px rgba(59, 42, 26, 0.1);
