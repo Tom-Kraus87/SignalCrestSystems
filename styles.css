@@ -2868,7 +2868,7 @@ ul {
   font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.125rem);
   font-weight: 500;
   line-height: 1.45;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   margin: 0 0 1rem;
   max-width: 36rem;
 }
@@ -3204,5 +3204,29 @@ ul {
 @media (min-width: 1200px) {
   .hero-home .hero-visual {
     display: grid;
+  }
+}
+
+/* Arcade 1995: Press Start 2P + wide line-height makes hero CTAs spill past the first screen */
+[data-theme="arcade-1995"] .hero.hero-home {
+  padding-bottom: clamp(1.25rem, 3vw, 2.5rem);
+}
+[data-theme="arcade-1995"] .hero-home .hero-lead {
+  margin-bottom: 1.15rem;
+}
+@media (max-width: 899px) {
+  [data-theme="arcade-1995"] .hero.hero-home {
+    padding-top: calc(var(--header-h) + clamp(1.75rem, 5vw, 3rem));
+    padding-bottom: 1rem;
+  }
+  [data-theme="arcade-1995"] .hero-home .hero-brand {
+    margin-bottom: 0.65rem;
+  }
+  [data-theme="arcade-1995"] .hero-home .hero-tagline,
+  [data-theme="arcade-1995"] .hero.hero-home h1 {
+    margin-bottom: 0.75rem;
+  }
+  [data-theme="arcade-1995"] .hero-home .hero-lead {
+    margin-bottom: 1rem;
   }
 }
