@@ -1943,6 +1943,18 @@ ul {
   color: var(--color-accent);
 }
 
+/* Contact (and any current-page CTA): keep on-accent text — accent-on-accent fails AA */
+.site-nav .nav-cta.is-active,
+.site-nav .nav-cta.is-active:hover,
+.site-nav .nav-cta.is-active:focus-visible {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+}
+
+.site-nav .nav-cta.is-active:hover {
+  background: var(--color-accent-hover);
+}
+
 @media (min-width: 640px) {
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
