@@ -130,6 +130,11 @@
   line-height: 1.65;
 }
 
+.aia-faq-section details a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 @media (min-width: 768px) {
   .aia-lab-grid,
   .aia-trust-grid {
