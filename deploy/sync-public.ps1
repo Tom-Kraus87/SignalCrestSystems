@@ -1,7 +1,28 @@
-# Allowlist-copy website assets into site/ for an isolated Netlify publish directory.
-# Does not move or delete business folders. Safe to re-run.
+﻿# =============================================================================
+# SUPERSEDED — DO NOT RUN
+# =============================================================================
+# This PowerShell workflow (copy → site/) is obsolete and must not be used for
+# Netlify publishing. Accidental execution is blocked below.
+#
+# Active secure publishing pipeline:
+#   - scripts/build-public.mjs   (explicit allowlist builder)
+#   - root netlify.toml          (command = node scripts/build-public.mjs)
+#   - dist/                      (generated public output; gitignored)
+#
+# Kept only as historical reference. Do not publish site/ from this script.
+# =============================================================================
 
 $ErrorActionPreference = "Stop"
+throw @"
+SUPERSEDED: deploy/sync-public.ps1 is obsolete and refuses to run.
+
+Use the secure allowlist builder instead:
+  node scripts/build-public.mjs
+
+Netlify publish directory is dist/ (see root netlify.toml).
+"@
+
+# --- Legacy body retained for history only (unreachable) ---
 $root = Split-Path -Parent $PSScriptRoot
 $dest = Join-Path $root "site"
 

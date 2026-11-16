@@ -1,5 +1,16 @@
 # Publish isolation (prepared, not activated)
 
+> **SUPERSEDED — do not follow this document for production publishing.**
+>
+> This historical note describes an earlier `site/` + PowerShell isolation plan.
+> The active secure pipeline is:
+>
+> - `scripts/build-public.mjs` — explicit allowlist builder
+> - root `netlify.toml` — `command = "node scripts/build-public.mjs"`, `publish = "dist"`
+> - `dist/` — generated public output only (gitignored)
+>
+> Keep this file for history only. Do not run `deploy/sync-public.ps1` or publish `site/`.
+
 ## Risk
 `netlify.toml` currently uses `publish = "."`, so the Netlify deploy directory is the repository root. Untracked business folders in the repo root can become publicly reachable if they are present at deploy time:
 

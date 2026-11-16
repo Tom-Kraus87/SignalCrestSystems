@@ -1,19 +1,29 @@
-# PROPOSED interim deny-list if publish remains "." briefly.
-# Prefer the site/ publish directory instead of long-term ignore-based isolation.
+# SUPERSEDED — DO NOT RELY ON THIS FILE FOR DEPLOYMENT SAFETY
+#
+# This example deny-list was an interim idea for publish = ".".
+# Ignore/deny lists are incomplete protection: anything not listed can still
+# ship, and private folders must never depend on an ignore file alone.
+#
+# Do not copy this to .netlifyignore as a security control.
+#
+# Active secure publishing pipeline:
+#   - scripts/build-public.mjs  (explicit allowlist of public files only)
+#   - root netlify.toml         (build → publish = "dist")
+#   - dist/                     (generated public output; gitignored)
+#
+# Historical example contents below (not authoritative):
 
-Fiverr Account info/
-SignalCrest Systems Growth Engine/
-SignalCrest Systems pdf downloads/
-
-# Local / tooling
-.netlify/
-.git/
-deploy/
-*.md
-netlify-init-output.txt
-netlify-api-data.json
-github-webhook.json
-
-# Preview-only pricing artifacts (never publish)
-pricing-preview.html
-pricing-preview.css
+# Fiverr Account info/
+# SignalCrest Systems Growth Engine/
+# SignalCrest Systems pdf downloads/
+#
+# .netlify/
+# .git/
+# deploy/
+# *.md
+# netlify-init-output.txt
+# netlify-api-data.json
+# github-webhook.json
+#
+# pricing-preview.html
+# pricing-preview.css

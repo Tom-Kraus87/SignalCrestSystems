@@ -1,6 +1,17 @@
 # Deployment transition checklist (`publish = "."` → `site/`)
 
-Status: **prepared only — not activated, not deployed.**
+> **SUPERSEDED — do not follow this checklist for production publishing.**
+>
+> This historical checklist targeted a PowerShell → `site/` workflow.
+> The active secure pipeline is:
+>
+> - `scripts/build-public.mjs`
+> - root `netlify.toml` (`publish = "dist"`)
+> - generated `dist/` output
+>
+> Do not activate `deploy/sync-public.ps1` or treat `site/` as the publish directory.
+
+Status: **prepared only — not activated, not deployed.** *(legacy plan; superseded)*
 
 ## Target configuration
 Use `deploy/netlify.toml.example` as the source for the live `netlify.toml` when approved:

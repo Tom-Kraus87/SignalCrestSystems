@@ -1,10 +1,6 @@
-# PROPOSED — do not replace root netlify.toml until deployment changes are approved.
-# Dedicated public publish directory. Business folders stay outside site/.
+# Reference copy of the active root netlify.toml pattern for isolated publishing.
+# Live settings live in the repository-root netlify.toml.
 
 [build]
-  command = "powershell -NoProfile -ExecutionPolicy Bypass -File deploy/sync-public.ps1"
-  publish = "site"
-
-# Optional: keep form detection explicit after the publish-dir switch
-[build.processing]
-  skip_processing = false
+  command = "node scripts/build-public.mjs"
+  publish = "dist"
