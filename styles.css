@@ -1,4 +1,4 @@
-/* SignalCrest Systems � mobile-first styles */
+/* Signal Crest Systems LLC — mobile-first styles */
 
 :root {
   --color-bg: #0c0f14;
@@ -141,13 +141,15 @@ ul {
 }
 
 .logo-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 2.25rem;
   height: 2.25rem;
-  background: linear-gradient(135deg, var(--color-accent), var(--logo-mark-end));
-  color: var(--color-on-accent);
-  border-radius: var(--radius-sm);
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: transparent;
+  /* legacy text-mark fields kept inert when using the shield image */
+  color: transparent;
   font-weight: 700;
   font-size: 1rem;
 }
@@ -1298,6 +1300,7 @@ ul {
 .d-photo {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   object-fit: cover;
@@ -1728,6 +1731,50 @@ ul {
 .logo-footer {
   justify-content: center;
   margin-bottom: 0.75rem;
+}
+
+/* Approved horizontal banner — self-contained navy plate (shield + wordmark + tagline) */
+.brand-banner {
+  display: block;
+  width: min(100%, 22rem);
+  height: auto;
+  max-height: 5rem;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.brand-banner-panel {
+  padding: 0 0 1.5rem;
+}
+
+.brand-banner-panel .brand-banner-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.brand-banner-panel .brand-banner {
+  width: min(100%, 28rem);
+  max-height: 7.25rem;
+}
+
+.logo-footer .brand-banner {
+  /* Banner already includes navy field + wordmark; no light chip needed */
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0;
+  width: min(100%, 20rem);
+  max-width: min(100%, 20rem);
+  max-height: 4.75rem;
+  height: auto;
+  box-sizing: border-box;
 }
 
 .footer-tagline {

@@ -9,7 +9,7 @@
  *
  * Production-release mode (origin required — fail closed):
  *   set SCS_PRODUCTION_RELEASE=1
- *   set SITE_ORIGIN=https://www.signalcrestsystems.com
+ *   set SITE_ORIGIN=https://signalcrestsystems.com
  *   node scripts/build-public.mjs
  *   — or —
  *   node scripts/build-public.mjs --production-release
@@ -66,15 +66,27 @@ const ALLOWED_FILES = [
   // Netlify publish conventions (copied into dist/)
   "_headers",
   // Images
-  "assets/gallery-1.jpg",
-  "assets/gallery-2.jpg",
-  "assets/gallery-3.jpg",
-  "assets/gallery-4.jpg",
-  "assets/gallery-5.jpg",
-  "assets/gallery-6.jpg",
+  "assets/gallery-1.webp",
+  "assets/gallery-1-640.webp",
+  "assets/gallery-2.webp",
+  "assets/gallery-2-640.webp",
+  "assets/gallery-3.webp",
+  "assets/gallery-3-640.webp",
+  "assets/gallery-4.webp",
+  "assets/gallery-4-640.webp",
+  "assets/gallery-5.webp",
+  "assets/gallery-5-640.webp",
+  "assets/gallery-6.webp",
+  "assets/gallery-6-640.webp",
   "assets/hero-machine-1280.webp",
   "assets/hero-machine-800.webp",
-  "assets/logo-signalcrest.png",
+  "assets/logo-shield.png",
+  "assets/logo-banner.png",
+  "assets/logo-mark.png",
+  "assets/favicon.ico",
+  "assets/favicon.png",
+  "assets/apple-touch-icon.png",
+  "assets/og-social.png",
   // Public PDFs
   "resources/pdfs/5-things-small-business-site.pdf",
   "resources/pdfs/pre-launch-qa-checklist.pdf",
@@ -102,8 +114,8 @@ const SEO_HTML_PAGES = {
 
 const SITEMAP_PATHS = Object.values(SEO_HTML_PAGES);
 
-/** Approved public logo path used for og:image / twitter:image when origin is set. */
-const SEO_IMAGE_PATH = "/assets/logo-signalcrest.png";
+/** Approved public social image path used for og:image / twitter:image when origin is set. */
+const SEO_IMAGE_PATH = "/assets/og-social.png";
 
 const ALLOWED_EXTENSIONS = new Set([
   ".html",

@@ -1,68 +1,59 @@
-"""Generate branded Signal Crest Systems resource PDFs."""
+"""Generate branded Signal Crest Systems LLC resource PDFs."""
 
 from __future__ import annotations
 
+import os
+import tempfile
+import time
 from pathlib import Path
 
 from fpdf import FPDF
-from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 OUTPUT = ROOT / "resources" / "pdfs"
 
+
+def write_pdf(pdf: FPDF, dest: Path) -> None:
+  """Write PDF via temp file + replace to survive OneDrive locks."""
+  dest.parent.mkdir(parents=True, exist_ok=True)
+  data = pdf.output()
+  fd, tmp_name = tempfile.mkstemp(prefix=dest.stem + "-", suffix=".pdf", dir=str(dest.parent))
+  os.close(fd)
+  tmp_path = Path(tmp_name)
+  last_err: OSError | None = None
+  try:
+    tmp_path.write_bytes(data)
+    for attempt in range(8):
+      try:
+        os.replace(tmp_path, dest)
+        return
+      except OSError as err:
+        last_err = err
+        time.sleep(0.35 * (attempt + 1))
+    raise OSError(f"Could not replace {dest}: {last_err}") from last_err
+  finally:
+    if tmp_path.exists():
+      try:
+        tmp_path.unlink()
+      except OSError:
+        pass
+
 # Brand palette
 BG = (12, 15, 20)
 GOLD = (201, 162, 39)
 GOLD_DARK = (138, 111, 26)
-TEXT = (232, 236, 241)
 MUTED = (139, 151, 168)
-WHITE = (255, 255, 255)
-# Logo wordmark colors for white PDF pages (light-on-transparent fails on white)
-LOGO_NAME = (12, 15, 20)
-LOGO_MUTED = (80, 90, 105)
 
 
-def create_logo(path: Path) -> None:
-    """Create a horizontal logo PNG readable on white PDF pages."""
-    w, h = 520, 96
-    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-
-    # Mark: rounded square with gradient effect (two-tone gold)
-    mark_size = 72
-    x0, y0 = 0, (h - mark_size) // 2
-    draw.rounded_rectangle((x0, y0, x0 + mark_size, y0 + mark_size), radius=14, fill=GOLD_DARK)
-    draw.polygon(
-        [(x0 + mark_size, y0), (x0 + mark_size, y0 + mark_size), (x0 + mark_size - 18, y0 + mark_size)],
-        fill=GOLD,
+def require_banner(path: Path) -> None:
+    """Require the approved horizontal banner — never synthesize a gold-S fallback."""
+    if path.exists():
+        return
+    raise FileNotFoundError(
+        f"Missing approved banner at {path}. "
+        "Place assets/logo-banner.png (from the approved horizontal brand banner) before generating PDFs."
     )
-    draw.rounded_rectangle((x0 + 2, y0 + 2, x0 + mark_size - 2, y0 + mark_size - 2), radius=12, fill=GOLD)
-
-    try:
-        mark_font = ImageFont.truetype("arialbd.ttf", 40)
-        name_font = ImageFont.truetype("arialbd.ttf", 34)
-        suffix_font = ImageFont.truetype("arial.ttf", 18)
-        url_font = ImageFont.truetype("arial.ttf", 14)
-    except OSError:
-        mark_font = ImageFont.load_default()
-        name_font = mark_font
-        suffix_font = mark_font
-        url_font = mark_font
-
-    draw.text((x0 + 24, y0 + 14), "S", fill=BG, font=mark_font)
-
-    tx = x0 + mark_size + 18
-    draw.text((tx, 18), "Signal", fill=LOGO_NAME, font=name_font)
-    signal_w = draw.textlength("Signal", font=name_font)
-    gap = 7  # visible space so wordmark reads "Signal Crest Systems"
-    draw.text((tx + signal_w + gap, 18), "Crest", fill=GOLD_DARK, font=name_font)
-    crest_w = draw.textlength("Crest", font=name_font)
-    draw.text((tx + signal_w + gap + crest_w + 8, 24), "Systems", fill=LOGO_MUTED, font=suffix_font)
-    draw.text((tx, 62), "signalcrestsystems.com", fill=LOGO_MUTED, font=url_font)
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    img.save(path, "PNG")
 
 
 class BrandedPDF(FPDF):
@@ -70,24 +61,29 @@ class BrandedPDF(FPDF):
     super().__init__()
     self.doc_title = title
     self.doc_subtitle = subtitle
-    self.logo_path = ASSETS / "logo-signalcrest.png"
+    self.logo_path = ASSETS / "logo-banner.png"
     self.set_auto_page_break(auto=True, margin=22)
     self.set_margins(18, 18, 18)
 
   def header(self):
     if self.logo_path.exists():
-      self.image(str(self.logo_path), x=18, y=10, w=62)
-    self.set_y(30)
+      # Approved banner is ~3:1; keep modest width so the header stays compact.
+      self.image(str(self.logo_path), x=18, y=8, w=78)
+      self.set_y(36)
+      rule_y = 34
+    else:
+      self.set_y(18)
+      rule_y = 16
     self.set_draw_color(*GOLD)
     self.set_line_width(0.6)
-    self.line(18, 28, self.w - 18, 28)
-    self.ln(6)
+    self.line(18, rule_y, self.w - 18, rule_y)
+    self.ln(4)
 
   def footer(self):
     self.set_y(-16)
     self.set_font("Helvetica", "I", 8)
     self.set_text_color(*MUTED)
-    self.cell(0, 8, f"Signal Crest Systems  |  signalcrestsystems.com  |  Page {self.page_no()}", align="C")
+    self.cell(0, 8, f"Signal Crest Systems LLC  |  signalcrestsystems.com  |  Page {self.page_no()}", align="C")
 
   def add_cover_block(self):
     self.set_font("Helvetica", "B", 20)
@@ -169,10 +165,10 @@ def build_leads_checklist() -> None:
 
   pdf.section("Next Step")
   pdf.body_text(
-    "Signal Crest Systems helps small and growing businesses rebuild sites for speed, trust, and conversions. "
+    "Signal Crest Systems LLC helps small and growing businesses rebuild sites for speed, trust, and conversions. "
     "Visit signalcrestsystems.com/packages or email tom@signalcrestsystems.com to discuss next steps."
   )
-  pdf.output(str(OUTPUT / "website-leads-checklist.pdf"))
+  write_pdf(pdf, OUTPUT / "website-leads-checklist.pdf")
 
 
 def build_modernization_roadmap() -> None:
@@ -226,7 +222,7 @@ def build_modernization_roadmap() -> None:
   pdf.bullet("Do not copy old broken structure into a new design.")
   pdf.bullet("Do not skip SSL, backups, and access documentation.")
 
-  pdf.output(str(OUTPUT / "website-modernization-roadmap.pdf"))
+  write_pdf(pdf, OUTPUT / "website-modernization-roadmap.pdf")
 
 
 def build_five_things() -> None:
@@ -254,7 +250,7 @@ def build_five_things() -> None:
   pdf.bullet("Keep content current: hours, team, services, and copyright year.")
   pdf.bullet("Add reviews or testimonials with permission.")
 
-  pdf.output(str(OUTPUT / "5-things-small-business-site.pdf"))
+  write_pdf(pdf, OUTPUT / "5-things-small-business-site.pdf")
 
 
 def build_qa_checklist() -> None:
@@ -312,18 +308,19 @@ def build_qa_checklist() -> None:
   pdf.body_text("Reviewed by: ______________________   Date: __________")
   pdf.body_text("Ready for launch:  [ ] Yes   [ ] No - fixes required")
 
-  pdf.output(str(OUTPUT / "pre-launch-qa-checklist.pdf"))
+  write_pdf(pdf, OUTPUT / "pre-launch-qa-checklist.pdf")
 
 
 def main() -> None:
   OUTPUT.mkdir(parents=True, exist_ok=True)
   ASSETS.mkdir(parents=True, exist_ok=True)
-  create_logo(ASSETS / "logo-signalcrest.png")
+  logo_path = ASSETS / "logo-banner.png"
+  require_banner(logo_path)
   build_leads_checklist()
   build_modernization_roadmap()
   build_five_things()
   build_qa_checklist()
-  print(f"Generated logo and 4 PDFs in {OUTPUT}")
+  print(f"Generated 4 PDFs in {OUTPUT} (branded with approved banner: {logo_path.name})")
 
 
 if __name__ == "__main__":

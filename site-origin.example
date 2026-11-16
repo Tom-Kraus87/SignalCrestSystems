@@ -4,7 +4,7 @@
 # environment variable in the Netlify build settings.
 #
 # Planned production canonical host (when DNS / ownership / SSL are ready):
-#   https://www.signalcrestsystems.com
+#   https://signalcrestsystems.com
 #
 # Validation rules (enforced by scripts/build-public.mjs):
 # - https only (non-HTTPS schemes rejected)
@@ -15,7 +15,7 @@
 # - No localhost or *.localhost
 # - No bare IPv4 or IPv6 addresses
 # - No placeholder example.com / example.org / example.net (or www variants)
-# - Prefer the www host as the canonical origin
+# - Prefer the apex host (signalcrestsystems.com) as the canonical origin
 # - Do not commit a fabricated or unverified production domain into the repo
 # - Do not hardcode a production hostname into public HTML templates
 #
@@ -40,25 +40,26 @@
 #   node scripts/build-public.mjs
 #
 # Local test with approved origin:
-#   set SITE_ORIGIN=https://www.signalcrestsystems.com
+#   set SITE_ORIGIN=https://signalcrestsystems.com
 #   node scripts/build-public.mjs
 #
 # Production-release invocation (PowerShell example):
 #   $env:SCS_PRODUCTION_RELEASE = "1"
-#   $env:SITE_ORIGIN = "https://www.signalcrestsystems.com"
+#   $env:SITE_ORIGIN = "https://signalcrestsystems.com"
 #   node scripts/build-public.mjs
 #
 # Production-release via CLI flag (origin still required via env or site-origin.txt):
-#   $env:SITE_ORIGIN = "https://www.signalcrestsystems.com"
+#   $env:SITE_ORIGIN = "https://signalcrestsystems.com"
 #   node scripts/build-public.mjs --production-release
 #
 # Netlify (when activating production publish): set both environment variables
 # in the site build settings:
 #   SCS_PRODUCTION_RELEASE = 1
-#   SITE_ORIGIN = https://www.signalcrestsystems.com
+#   SITE_ORIGIN = https://signalcrestsystems.com
 # Keep the build command as: node scripts/build-public.mjs
 #
 # Intended redirect (NOT activated yet):
-#   Permanently redirect https://signalcrestsystems.com → https://www.signalcrestsystems.com
+#   Permanently redirect https://www.signalcrestsystems.com → https://signalcrestsystems.com
 #   Do not add Netlify _redirects / domain aliases for this until DNS ownership
 #   and both hostnames are verified. This file documents intent only.
+#   DNS / SSL verification is not claimed here.

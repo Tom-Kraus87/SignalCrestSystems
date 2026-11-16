@@ -4,7 +4,7 @@
 # For production releases that must fail closed without an origin, set in the
 # Netlify UI (or host env) — do not rely on NODE_ENV alone:
 #   SCS_PRODUCTION_RELEASE = 1
-#   SITE_ORIGIN = https://www.signalcrestsystems.com
+#   SITE_ORIGIN = https://signalcrestsystems.com
 # See site-origin.example for validation rules and local invocation examples.
 # Alternatively pass: node scripts/build-public.mjs --production-release
 

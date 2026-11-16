@@ -357,22 +357,22 @@
       // Keep explainer text ASCII-only to avoid mojibake on some deployments.
       var demoData = {
       starter: {
-        title: "SignalCrest Starter Site",
+        title: "Starter Business Website — Demo",
         url: "evergreenlandscaping.com",
         explainer:
-          "All 7 content areas - Home, About, Services, Gallery, Reviews, Pricing & Contact - flow together on one smooth-scrolling page. Use the menu to jump between sections."
+          "Fictional demo only (Evergreen Landscaping). All 7 content areas - Home, About, Services, Gallery, Reviews, Pricing & Contact - flow together on one smooth-scrolling page. Use the menu to jump between sections."
       },
       business: {
-        title: "SignalCrest Business Website",
+        title: "Professional Website — Demo",
         url: "evergreenlandscaping.com/home",
         explainer:
-          "The same 7 content areas, organized into 5 dedicated pages for clearer navigation and stronger SEO. Click the menu tabs to switch pages."
+          "Fictional demo only (Evergreen Landscaping). The same 7 content areas, organized into 5 dedicated pages for clearer navigation and stronger SEO. Click the menu tabs to switch pages."
       },
       modernization: {
-        title: "SignalCrest Website Modernization",
+        title: "Advanced Website — Demo",
         url: "evergreenlandscaping.com",
         explainer:
-          "The same content - fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+          "Fictional demo only (Evergreen Landscaping). The same content - fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
       }
     };
 
