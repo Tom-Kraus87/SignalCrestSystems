@@ -124,146 +124,214 @@
   </header>
 
   <main id="main">
-    <section class="page-hero">
+    <section class="page-hero svc-hero">
       <div class="container">
         <p class="eyebrow">Services</p>
         <h1>Business technology and software solutions</h1>
         <p class="page-hero-lead">Seven practical service categories for small and growing businesses — from featured website packages to custom applications, automation, IT, cybersecurity guidance, QA, and ongoing care.</p>
+        <div class="hero-actions svc-hero-actions">
+          <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+          <a href="packages.html" class="btn btn-secondary">View Pricing</a>
+        </div>
       </div>
     </section>
 
-    <section class="services">
+    <section class="credibility-strip" aria-label="Company highlights">
       <div class="container">
-        <div class="services-grid">
-          <article class="service-card featured">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M2 15l10 6 10-6"/><path d="M2 12l10 6 10-6"/></svg>
-            </div>
+        <ul class="credibility-strip-list">
+          <li>Based in Metro Detroit</li>
+          <li>Fixed-price website packages from $950</li>
+          <li>Work directly with the founder</li>
+          <li><a href="qa-process.html">25-point website launch QA checklist</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="svc-catalog" aria-labelledby="svc-catalog-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">What We Offer</p>
+          <h2 id="svc-catalog-heading">Seven service categories</h2>
+        </header>
+
+        <div class="svc-grid">
+          <article class="svc-card svc-card-featured">
             <h3>Website Design &amp; Development</h3>
             <p>Professional sites designed to build trust and generate leads — mobile-first, with basic on-page SEO setup, and tested before launch. Fixed-price packages start at $950.</p>
-            <ul>
-              <li>Landing pages, multi-page business sites, and modernization rebuilds</li>
-              <li>Clear calls to action and reliable contact forms</li>
+            <ul class="svc-bullets">
+              <li>Landing pages and multi-page business sites</li>
+              <li>Modernization rebuilds</li>
+              <li>Clear CTAs and reliable contact forms</li>
               <li>Performance, accessibility, and on-page SEO foundations</li>
             </ul>
-            <a href="packages.html#websites" class="card-link">View website pricing &rarr;</a>
+            <ul class="svc-links">
+              <li><a href="packages.html#websites">View website package pricing</a></li>
+              <li><a href="contact.html">Ask about a website project</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>Custom Software &amp; Web Applications</h3>
             <p>Focused internal tools, portals, dashboards, and web applications scoped to your workflow — built in milestones and verified before launch.</p>
-            <ul>
-              <li>Custom web apps and admin portals</li>
-              <li>E-commerce and integration-heavy projects by quote</li>
+            <ul class="svc-bullets">
+              <li class="svc-bullet-dup">Custom web apps and admin portals</li>
+              <li>E-commerce and integration-heavy work by quote</li>
               <li>Additional development billed hourly or estimated in writing</li>
             </ul>
-            <a href="packages.html#software" class="card-link">Ask about custom software &rarr;</a>
+            <ul class="svc-links">
+              <li><a href="packages.html#software">View custom software pricing</a></li>
+              <li><a href="contact.html?service=custom-software">Request a custom software quote</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4v1h1a3 3 0 010 6h-1v1a4 4 0 11-8 0v-1H7a3 3 0 010-6h1V6a4 4 0 014-4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 14h6"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>AI Automation &amp; Integrations</h3>
             <p>Reduce repetitive work with practical AI assistants, workflow automation, and API integrations — tested before launch, with human review where decisions matter.</p>
-            <ul>
+            <ul class="svc-bullets">
               <li>Lead intake, document processing, and reporting</li>
-              <li>API integrations and system-to-system sync</li>
-              <li>Human-reviewed assistants with approval checkpoints</li>
+              <li class="svc-bullet-dup">API integrations and system-to-system sync</li>
+              <li class="svc-bullet-dup">Human-reviewed assistants with approval checkpoints</li>
             </ul>
-            <a href="ai-automation.html" class="card-link">Explore AI Automation &rarr;</a>
+            <ul class="svc-links">
+              <li><a href="ai-automation.html">Explore AI Automation</a></li>
+              <li><a href="packages.html#automation">View AI automation pricing</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.364 5.636a9 9 0 010 12.728M15.536 8.464a5 5 0 010 7.072M12 12h.01"/><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>IT Consulting &amp; Support</h3>
             <p>Hands-on help with setup, troubleshooting, devices, Microsoft 365, and technology planning for small offices. IT work is quoted or billed hourly — not unlimited support.</p>
+            <ul class="svc-bullets svc-bullets-dup">
+              <li class="svc-bullet-dup">Device and Microsoft 365 setup</li>
+              <li class="svc-bullet-dup">Troubleshooting and small-office planning</li>
+              <li class="svc-bullet-dup">Quoted or hourly engagements</li>
+            </ul>
+            <ul class="svc-links">
+              <li><a href="packages.html#it">View IT consulting rates</a></li>
+              <li><a href="contact.html?service=it-consulting">Ask about IT consulting</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>Cybersecurity Guidance</h3>
             <p>Practical security guidance for small businesses: hardening recommendations, backup readiness, and risk-aware setup. This guidance does not include penetration testing, compliance certification, or 24/7 monitoring.</p>
+            <ul class="svc-bullets svc-bullets-dup">
+              <li class="svc-bullet-dup">Hardening and backup readiness recommendations</li>
+              <li class="svc-bullet-dup">Risk-aware setup guidance</li>
+              <li class="svc-bullet-dup">No penetration testing, certification, or 24/7 monitoring</li>
+            </ul>
+            <ul class="svc-links">
+              <li><a href="packages.html#security">View cybersecurity assessment pricing</a></li>
+              <li><a href="contact.html?service=cybersecurity">Request a cybersecurity quote</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>Quality Assurance &amp; Software Testing</h3>
             <p>Manual and automated testing for websites and web apps — exploratory, regression, cross-browser, API, and Cypress.js automation — so releases are verified before customers see them.</p>
-            <a href="qa-process.html" class="card-link">See our QA process &rarr;</a>
+            <ul class="svc-bullets svc-bullets-dup">
+              <li class="svc-bullet-dup">Exploratory and regression testing</li>
+              <li class="svc-bullet-dup">Cross-browser and API checks</li>
+              <li class="svc-bullet-dup">Cypress.js automation</li>
+            </ul>
+            <ul class="svc-links">
+              <li><a href="qa-process.html">See our QA process</a></li>
+              <li><a href="packages.html#qa">View QA testing rates</a></li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
-            </div>
+          <article class="svc-card">
             <h3>Website Care &amp; Local SEO</h3>
             <p>Monthly care plans for updates and fixes within a defined allowance, plus Local SEO as monthly management for one business location with a three-month initial engagement. We do not guarantee rankings, traffic, or leads.</p>
-            <a href="packages.html#care" class="card-link">View care &amp; SEO pricing &rarr;</a>
+            <ul class="svc-bullets svc-bullets-dup">
+              <li class="svc-bullet-dup">Monthly updates and fixes within a defined allowance</li>
+              <li class="svc-bullet-dup">Local SEO for one business location</li>
+              <li class="svc-bullet-dup">Three-month initial SEO engagement; no ranking guarantees</li>
+            </ul>
+            <ul class="svc-links">
+              <li><a href="packages.html#care">View website care plan pricing</a></li>
+              <li><a href="packages.html#seo">View Local SEO pricing</a></li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="skills" id="skills">
+    <section class="svc-process" aria-labelledby="svc-process-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Engagements</p>
+          <h2 id="svc-process-heading">How engagements work</h2>
+          <p>Every engagement starts with clarity on scope and pricing. Build and verification apply when the work includes delivery of a site, application, automation, or testing package.</p>
+        </header>
+        <ol class="svc-process-steps">
+          <li>
+            <h3>Discovery</h3>
+            <p>We review your goals, systems, and constraints so recommendations fit how your business actually operates.</p>
+          </li>
+          <li>
+            <h3>Written scope and pricing</h3>
+            <p>You receive a clear written scope and price before work begins — fixed package, hourly estimate, or custom quote as appropriate.</p>
+          </li>
+          <li>
+            <h3>Build and verification</h3>
+            <p>When the engagement includes delivery work, we build in reviewable steps and verify results before handoff. Consulting and guidance engagements may stop at recommendations.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="svc-capabilities" id="skills" aria-labelledby="svc-capabilities-heading">
       <div class="container">
         <header class="section-header">
           <p class="eyebrow">Core Capabilities</p>
-          <h2>Capabilities shaped by real-world IT, QA, and development work</h2>
+          <h2 id="svc-capabilities-heading">Capabilities shaped by real-world IT, QA, and development work</h2>
         </header>
-
-        <div class="skills-grid">
-          <div class="skill-group">
+        <div class="svc-cap-grid">
+          <div class="svc-cap-group">
             <h3>Web &amp; Development</h3>
-            <ul class="skill-tags">
-              <li>React</li><li>Vue.js</li><li>jQuery</li><li>HTML &amp; CSS</li>
-              <li>Shopify</li><li>Website Design</li><li>API Development</li><li>Git &amp; GitHub</li>
+            <ul class="svc-cap-list">
+              <li>React</li>
+              <li>Vue.js</li>
+              <li>HTML &amp; CSS</li>
+              <li>Shopify</li>
+              <li>API Development</li>
+              <li>Git &amp; GitHub</li>
             </ul>
           </div>
-          <div class="skill-group">
+          <div class="svc-cap-group">
             <h3>QA &amp; Testing</h3>
-            <ul class="skill-tags">
-              <li>QA Engineering</li><li>Cypress.js Automation</li><li>Manual &amp; Regression Testing</li>
-              <li>Postman API Testing</li><li>Agile / Scrum</li><li>Jira</li><li>Smoke &amp; Exploratory Testing</li>
+            <ul class="svc-cap-list">
+              <li>QA Engineering</li>
+              <li>Cypress.js Automation</li>
+              <li>Manual &amp; Regression Testing</li>
+              <li>Postman API Testing</li>
+              <li>Agile / Scrum</li>
+              <li>Jira</li>
             </ul>
           </div>
-          <div class="skill-group">
+          <div class="svc-cap-group">
             <h3>IT Support &amp; Systems</h3>
-            <ul class="skill-tags">
-              <li>Desktop Support</li><li>Help Desk</li><li>SCCM &amp; Intune</li><li>Windows Server</li>
-              <li>Active Directory</li><li>PowerShell</li><li>Office 365</li><li>Device Provisioning</li>
+            <ul class="svc-cap-list">
+              <li>Desktop Support</li>
+              <li>Help Desk</li>
+              <li>SCCM &amp; Intune</li>
+              <li>Windows Server</li>
+              <li>Active Directory</li>
+              <li>PowerShell</li>
             </ul>
           </div>
-          <div class="skill-group">
+          <div class="svc-cap-group">
             <h3>Infrastructure &amp; Security</h3>
-            <ul class="skill-tags">
-              <li>VMware ESXi</li><li>Cloud Computing</li><li>Network Administration</li><li>Cisco Meraki</li>
-              <li>Cybersecurity</li><li>Monitoring &amp; Backup</li><li>Scripting &amp; Automation</li>
+            <ul class="svc-cap-list">
+              <li>VMware ESXi</li>
+              <li>Cloud Computing</li>
+              <li>Network Administration</li>
+              <li>Cisco Meraki</li>
+              <li>Cybersecurity</li>
+              <li>Monitoring &amp; Backup</li>
             </ul>
           </div>
-        </div>
-
-        <div class="certs" id="certifications">
-          <h3 class="certs-title">Training &amp; Education</h3>
-          <ul class="certs-list">
-            <li><strong>Learn React</strong> — Codecademy</li>
-            <li><strong>Learn Vue.js</strong> — Codecademy</li>
-            <li><strong>Learn jQuery</strong> — Codecademy</li>
-            <li><strong>Learn Git (Linux/Bash)</strong> — Codecademy</li>
-            <li><strong>Learn How to Code — HTML</strong> — Codecademy</li>
-            <li><strong>Code Foundations Career Path</strong> — Codecademy</li>
-            <li><strong>Programming Foundations: Fundamentals</strong> — LinkedIn Learning</li>
-            <li><strong>Associates in Applied Sciences, Programming</strong> — Macomb Community College</li>
-          </ul>
         </div>
       </div>
     </section>
