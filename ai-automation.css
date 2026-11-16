@@ -1,9 +1,13 @@
 /*
-  ai-automation.css: page-specific styles for ai-automation.html only.
-  Every selector is scoped to an .aia-* class, so no global selectors are changed.
-  Colors come only from the shared CSS custom properties (--color-*), so the
-  page follows whichever theme is active once the theme engine is merged.
+  ai-automation.css — page-specific styles for ai-automation.html only.
+  All selectors scoped to .aia-* (plus .page-hero / .cta-band children under .aia-hero).
+  Theme colors via shared CSS custom properties only.
 */
+
+.aia-hero {
+  padding-top: calc(var(--header-h) + 2rem);
+  padding-bottom: 1.75rem;
+}
 
 .aia-hero h1 em {
   font-style: italic;
@@ -11,58 +15,325 @@
 }
 
 .aia-hero .page-hero-lead {
-  margin-bottom: 2rem;
+  margin-bottom: 1.1rem;
 }
 
 .aia-hero-actions {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
 }
 
-/* Internal lab projects callout */
-.aia-lab {
-  margin-top: 3rem;
-  padding: 1.75rem;
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-card);
-}
-
-.aia-lab h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.aia-lab > p:not(.eyebrow) {
+.aia-hero-context {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
-  max-width: 68ch;
-  margin-bottom: 1.25rem;
 }
 
-.aia-lab-grid {
+.aia-hero-context a {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.aia-hero-context a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Shared section rhythm */
+.aia-section {
+  padding: 2rem 0;
+}
+
+.aia-section .section-header {
+  margin-bottom: 1.15rem;
+}
+
+.aia-section .section-header h2 {
+  margin-bottom: 0.4rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.aia-section .section-header p:last-child {
+  margin-top: 0.25rem;
+  font-size: 0.9375rem;
+}
+
+/* Use cases */
+.aia-use-grid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
 }
 
-.aia-lab-item {
-  padding: 1.25rem;
+.aia-use-card {
+  min-width: 0;
+  padding: 0.85rem 0;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.aia-use-card:last-child {
+  border-block-end: none;
+}
+
+.aia-use-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  margin: 0 0 0.35rem;
+  color: var(--color-text);
+}
+
+.aia-use-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* How it works */
+.aia-process {
+  background: var(--color-bg-elevated);
+  border-block: 1px solid var(--color-border);
+}
+
+.aia-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  counter-reset: aia-step;
+}
+
+.aia-steps > li {
+  counter-increment: aia-step;
+  position: relative;
+  min-width: 0;
+  padding-inline-start: 2.5rem;
+}
+
+.aia-steps > li::before {
+  content: counter(aia-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+.aia-steps h3 {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  margin: 0 0 0.3rem;
+  color: var(--color-text);
+}
+
+.aia-steps p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* Pricing snapshot */
+.aia-price-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+.aia-price-card {
+  min-width: 0;
+  padding: 1rem 1.05rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg-elevated);
 }
 
-.aia-lab-item h4 {
+.aia-price-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: var(--color-text);
+}
+
+.aia-price-amount {
+  margin: 0 0 0.45rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.aia-price-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.15rem;
+}
+
+.aia-price-card > p:last-child {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.aia-pricing.aia-section {
+  padding-top: 2.35rem;
+  padding-bottom: 2.35rem;
+}
+
+.aia-pricing .section-header {
+  margin-bottom: 0.7rem;
+}
+
+.aia-price-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.aia-price-note {
+  margin: 0.35rem 0 0;
+  max-width: 52rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* Trust */
+.aia-trust-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.aia-trust-item {
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--color-border);
+  border-inline-start: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.aia-trust-item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.aia-trust-item p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.aia-note {
+  margin-top: 1.15rem;
+  max-width: 72ch;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* Capabilities */
+.aia-cap-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+.aia-cap-group h3 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 0 0 0.45rem;
+  color: var(--color-text);
+}
+
+.aia-cap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.35rem;
+}
+
+.aia-cap-list li {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--color-text-muted);
+  padding: 0.22rem 0.45rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+}
+
+/* Lab / internal projects */
+.aia-lab-section {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.aia-lab {
+  padding: 1.25rem 1.15rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+}
+
+.aia-lab h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+}
+
+.aia-lab > p:not(.eyebrow) {
+  color: var(--color-text-muted);
+  max-width: 68ch;
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.aia-lab-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.aia-lab-item {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+}
+
+.aia-lab-item h3 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.375rem;
+  margin: 0 0 0.35rem;
 }
 
 .aia-lab-item p {
-  font-size: 0.9375rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
 }
 
@@ -75,44 +346,13 @@
   text-transform: uppercase;
   color: var(--color-accent);
   background: var(--color-accent-soft);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
 }
 
-/* Security & oversight */
-.aia-trust-grid {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.aia-trust-item {
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-card);
-}
-
-.aia-trust-item h3 {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin-bottom: 0.375rem;
-}
-
-.aia-trust-item p {
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-}
-
-.aia-note {
-  margin-top: 2rem;
-  max-width: 72ch;
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-}
-
-/* FAQ (reuses the .price-accordion pattern from packages.html) */
+/* FAQ — preserve M3C-1 accessible underline for in-answer links */
 .aia-faq-section {
-  padding: 5rem 0;
+  padding-top: 1.75rem;
+  padding-bottom: 2.25rem;
 }
 
 .aia-faq-section .section-header {
@@ -135,16 +375,94 @@
   text-underline-offset: 0.15em;
 }
 
-@media (min-width: 768px) {
-  .aia-lab-grid,
+@media (min-width: 640px) {
+  .aia-hero {
+    padding-top: calc(var(--header-h) + 2.5rem);
+    padding-bottom: 2rem;
+  }
+
+  .aia-section {
+    padding: 2.5rem 0;
+  }
+
+  .aia-use-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+  }
+
+  .aia-use-card {
+    padding: 1rem;
+    border-block-end: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+  }
+
+  .aia-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+  }
+
+  .aia-price-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .aia-price-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.75rem;
+  }
+
+  .aia-price-note {
+    margin-top: 0.35rem;
+  }
+
   .aia-trust-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .aia-cap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+  }
+
+  .aia-lab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aia-lab-section {
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
-/* The shared .process-steps <ol> keeps its default decimal markers next to the
-   01-04 step numbers; hide them on this page only. */
-.aia-process .process-steps {
-  list-style: none;
-}
+@media (min-width: 1024px) {
+  .aia-use-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 
+  .aia-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .aia-cap-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .aia-section {
+    padding: 2.75rem 0;
+  }
+
+  .aia-faq-section {
+    padding-top: 2.25rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .aia-lab-section {
+    padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
+  }
+}
