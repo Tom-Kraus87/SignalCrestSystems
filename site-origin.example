@@ -1,0 +1,64 @@
+# Site origin configuration (SEO)
+#
+# Copy this file to site-origin.txt (gitignored) OR set the SITE_ORIGIN
+# environment variable in the Netlify build settings.
+#
+# Planned production canonical host (when DNS / ownership / SSL are ready):
+#   https://www.signalcrestsystems.com
+#
+# Validation rules (enforced by scripts/build-public.mjs):
+# - https only (non-HTTPS schemes rejected)
+# - No trailing slash
+# - Scheme + host only — no path, query, or fragment
+# - No username or password (userinfo rejected)
+# - No explicit port (including :443)
+# - No localhost or *.localhost
+# - No bare IPv4 or IPv6 addresses
+# - No placeholder example.com / example.org / example.net (or www variants)
+# - Prefer the www host as the canonical origin
+# - Do not commit a fabricated or unverified production domain into the repo
+# - Do not hardcode a production hostname into public HTML templates
+#
+# Local / origin-optional builds (default):
+# - When unset, the build still succeeds:
+#     * robots.txt is emitted without a Sitemap line
+#     * sitemap.xml is omitted from dist/
+#     * absolute canonical / og:url / og:image / twitter:image tags are omitted
+#       from generated HTML (no relative or placeholder SEO URLs)
+# - When set to a validated origin, the build injects absolute SEO URLs for the
+#   10 public pages and writes sitemap.xml + a robots Sitemap directive
+#
+# Production-release mode (origin REQUIRED — fail closed):
+# - Independent of NODE_ENV. Do not rely on NODE_ENV=production for this gate.
+# - Enable with either:
+#     SCS_PRODUCTION_RELEASE=1   (or true)
+#     — or —
+#     node scripts/build-public.mjs --production-release
+# - When enabled without SITE_ORIGIN / site-origin.txt, the build FAILS.
+#
+# Local rebuild (origin optional):
+#   node scripts/build-public.mjs
+#
+# Local test with approved origin:
+#   set SITE_ORIGIN=https://www.signalcrestsystems.com
+#   node scripts/build-public.mjs
+#
+# Production-release invocation (PowerShell example):
+#   $env:SCS_PRODUCTION_RELEASE = "1"
+#   $env:SITE_ORIGIN = "https://www.signalcrestsystems.com"
+#   node scripts/build-public.mjs
+#
+# Production-release via CLI flag (origin still required via env or site-origin.txt):
+#   $env:SITE_ORIGIN = "https://www.signalcrestsystems.com"
+#   node scripts/build-public.mjs --production-release
+#
+# Netlify (when activating production publish): set both environment variables
+# in the site build settings:
+#   SCS_PRODUCTION_RELEASE = 1
+#   SITE_ORIGIN = https://www.signalcrestsystems.com
+# Keep the build command as: node scripts/build-public.mjs
+#
+# Intended redirect (NOT activated yet):
+#   Permanently redirect https://signalcrestsystems.com → https://www.signalcrestsystems.com
+#   Do not add Netlify _redirects / domain aliases for this until DNS ownership
+#   and both hostnames are verified. This file documents intent only.

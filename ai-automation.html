@@ -1,37 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-    (function () {
-      try {
-        var KEY = "scs-theme-preference";
-        var pref = localStorage.getItem(KEY);
-        var dark = "midnight-tech";
-        var light = "clean-corporate";
-        var themes = {
-          "midnight-tech":1,"clean-corporate":1,"obsidian-black":1,"stealth-carbon":1,
-          "emerald-night":1,"royal-indigo":1,"neural-future":1,"holographic":1,
-          "cyberpunk-2099":1,"cyber-terminal":1,"retro-computing":1,"synthwave-sunset":1,
-          "arcade-1995":1,"blueprint-studio":1,"industrial-slate":1,"vintage-paper":1
-        };
-        var resolved;
-        if (!pref || pref === "auto" || !themes[pref]) {
-          resolved = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? light : dark;
-          if (!pref || !themes[pref]) pref = "auto";
-        } else {
-          resolved = pref;
-        }
-        document.documentElement.setAttribute("data-theme", resolved);
-        document.documentElement.setAttribute("data-theme-preference", pref === "auto" ? "auto" : "manual");
-      } catch (e) {
-        document.documentElement.setAttribute("data-theme", "midnight-tech");
-      }
-    })();
-  </script>
+  <script src="theme-boot.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="AI automation and integrations for small businesses: workflows, APIs, and human-reviewed assistants from Signal Crest Systems LLC.">
   <title>AI Automation &amp; Integrations | Signal Crest Systems LLC</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Signal Crest Systems LLC">
+  <meta property="og:title" content="AI Automation &amp; Integrations | Signal Crest Systems LLC">
+  <meta property="og:description" content="AI automation and integrations for small businesses: workflows, APIs, and human-reviewed assistants from Signal Crest Systems LLC.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Automation &amp; Integrations | Signal Crest Systems LLC">
+  <meta name="twitter:description" content="AI automation and integrations for small businesses: workflows, APIs, and human-reviewed assistants from Signal Crest Systems LLC.">
+  <link rel="icon" href="assets/logo-signalcrest.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@500;600;700&family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">

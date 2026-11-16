@@ -4,10 +4,23 @@
  * Copies only approved website files into dist/ for Netlify publish.
  * Uses Node.js built-ins only. Cross-platform (Windows / Linux / macOS).
  *
- * Usage: node scripts/build-public.mjs
+ * Usage (local / origin-optional):
+ *   node scripts/build-public.mjs
+ *
+ * Production-release mode (origin required — fail closed):
+ *   set SCS_PRODUCTION_RELEASE=1
+ *   set SITE_ORIGIN=https://www.signalcrestsystems.com
+ *   node scripts/build-public.mjs
+ *   — or —
+ *   node scripts/build-public.mjs --production-release
+ *   (with SITE_ORIGIN or site-origin.txt already configured)
+ *
+ * Do NOT rely on NODE_ENV=production for this safeguard; only
+ * SCS_PRODUCTION_RELEASE=1|true or --production-release enable it.
  */
 
 import fs from "node:fs";
+import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,7 +43,7 @@ const DIST_NAME = "dist";
 
 /** Explicit file allowlist (relative to repo root, POSIX-style in source). */
 const ALLOWED_FILES = [
-  // HTML pages (10)
+  // HTML pages (10 public + branded 404)
   "index.html",
   "about.html",
   "ai-automation.html",
@@ -41,13 +54,17 @@ const ALLOWED_FILES = [
   "resources.html",
   "services.html",
   "work.html",
+  "404.html",
   // CSS / JS
   "styles.css",
   "themes.css",
   "theme.js",
+  "theme-boot.js",
   "script.js",
   "ai-automation.css",
   "packages-pricing.css",
+  // Netlify publish conventions (copied into dist/)
+  "_headers",
   // Images
   "assets/gallery-1.jpg",
   "assets/gallery-2.jpg",
@@ -65,6 +82,29 @@ const ALLOWED_FILES = [
   "resources/pdfs/website-modernization-roadmap.pdf",
 ];
 
+/**
+ * Public HTML pages eligible for absolute SEO URL injection + sitemap.
+ * Paths are site-root absolute; origin is applied only when configured.
+ * Do not hardcode a production host into HTML source templates.
+ */
+const SEO_HTML_PAGES = {
+  "index.html": "/",
+  "services.html": "/services.html",
+  "packages.html": "/packages.html",
+  "contact.html": "/contact.html",
+  "ai-automation.html": "/ai-automation.html",
+  "about.html": "/about.html",
+  "work.html": "/work.html",
+  "case-studies.html": "/case-studies.html",
+  "qa-process.html": "/qa-process.html",
+  "resources.html": "/resources.html",
+};
+
+const SITEMAP_PATHS = Object.values(SEO_HTML_PAGES);
+
+/** Approved public logo path used for og:image / twitter:image when origin is set. */
+const SEO_IMAGE_PATH = "/assets/logo-signalcrest.png";
+
 const ALLOWED_EXTENSIONS = new Set([
   ".html",
   ".css",
@@ -81,6 +121,19 @@ const ALLOWED_EXTENSIONS = new Set([
   ".xml",
   ".woff",
   ".woff2",
+]);
+
+/** Filenames with no extension that are explicitly approved for publish. */
+const ALLOWED_EXTENSIONLESS = new Set(["_headers"]);
+
+/** Hosts that must never be treated as a real production origin. */
+const PLACEHOLDER_ORIGIN_HOSTS = new Set([
+  "example.com",
+  "www.example.com",
+  "example.org",
+  "www.example.org",
+  "example.net",
+  "www.example.net",
 ]);
 
 /** Path prefixes that must never appear in dist (defense in depth). */
@@ -234,12 +287,307 @@ function resolveSafeSource(relPosix) {
     fail(`Source real path escapes repository root: ${relPosix} -> ${real}`);
   }
 
-  const ext = path.extname(absLogical).toLowerCase();
-  if (!ALLOWED_EXTENSIONS.has(ext)) {
+  if (!isAllowedPublishExtension(relPosix, absLogical)) {
+    const ext = path.extname(absLogical).toLowerCase();
     fail(`Unapproved file extension for publish: ${relPosix} (${ext || "none"})`);
   }
 
   return absLogical;
+}
+
+function isAllowedPublishExtension(relPosix, absPath = relPosix) {
+  const posix = toPosix(relPosix);
+  if (ALLOWED_EXTENSIONLESS.has(posix) || ALLOWED_EXTENSIONLESS.has(path.basename(posix))) {
+    return true;
+  }
+  const ext = path.extname(absPath).toLowerCase();
+  return ALLOWED_EXTENSIONS.has(ext);
+}
+
+/**
+ * Explicit production-release gate. Independent of NODE_ENV.
+ * Enabled by SCS_PRODUCTION_RELEASE=1|true OR --production-release CLI arg.
+ * When enabled, SITE_ORIGIN or a non-empty site-origin.txt is required.
+ */
+function isProductionReleaseMode() {
+  const envFlag = (process.env.SCS_PRODUCTION_RELEASE || "").trim().toLowerCase();
+  if (envFlag === "1" || envFlag === "true") return true;
+  return process.argv.slice(2).includes("--production-release");
+}
+
+/**
+ * Resolve optional absolute site origin for sitemap / robots Sitemap line.
+ * Prefer SITE_ORIGIN env; fall back to gitignored site-origin.txt.
+ * Returns null when unset (normal local builds still succeed; sitemap omitted).
+ * Production-release mode fails closed when origin is missing — see main().
+ */
+function resolveSiteOrigin() {
+  const fromEnv = (process.env.SITE_ORIGIN || "").trim();
+  if (fromEnv) return validateSiteOrigin(fromEnv, "SITE_ORIGIN");
+
+  const originFile = path.join(ROOT_LOGICAL, "site-origin.txt");
+  if (!fs.existsSync(originFile)) return null;
+
+  let st;
+  try {
+    st = fs.lstatSync(originFile);
+  } catch (err) {
+    fail(`Cannot stat site-origin.txt: ${err.message}`);
+  }
+  if (st.isSymbolicLink()) {
+    fail("Refusing symlinked site-origin.txt");
+  }
+  if (!st.isFile()) {
+    fail("site-origin.txt must be a regular file");
+  }
+
+  const raw = fs.readFileSync(originFile, "utf8");
+  const line = raw
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .find((l) => l && !l.startsWith("#"));
+  if (!line) return null;
+  return validateSiteOrigin(line, "site-origin.txt");
+}
+
+/**
+ * True when the input authority includes an explicit :port.
+ * Needed because URL.port is "" for scheme-default ports (e.g. https :443).
+ */
+function authorityHasExplicitPort(value) {
+  const withoutScheme = value.replace(/^[A-Za-z][A-Za-z0-9+.-]*:\/\//, "");
+  const authority = withoutScheme.split(/[/?#]/, 1)[0];
+  const hostPart = authority.includes("@")
+    ? authority.slice(authority.lastIndexOf("@") + 1)
+    : authority;
+  if (hostPart.startsWith("[")) {
+    return /\]:\d+$/.test(hostPart);
+  }
+  return /:\d+$/.test(hostPart);
+}
+
+/**
+ * Strip optional IPv6 brackets from a URL hostname for net.isIP checks.
+ * Some Node/platform combinations keep brackets on url.hostname for [::1].
+ */
+function hostnameForIpCheck(hostname) {
+  if (hostname.startsWith("[") && hostname.endsWith("]")) {
+    return hostname.slice(1, -1);
+  }
+  return hostname;
+}
+
+/**
+ * Strict origin validator for SEO absolute URLs / sitemap / robots.
+ * Accepts only https://<hostname> with no userinfo, port, path, query, or hash.
+ * Rejects localhost, bare IPs, placeholder example.* hosts, and FQDN trailing-dot hostnames.
+ */
+function validateSiteOrigin(value, sourceLabel) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    fail(`${sourceLabel}: invalid URL "${value}"`);
+  }
+  if (url.protocol !== "https:") {
+    fail(`${sourceLabel}: origin must use https (got ${url.protocol})`);
+  }
+  if (url.username || url.password) {
+    fail(`${sourceLabel}: origin must not include username or password`);
+  }
+  if (url.port || authorityHasExplicitPort(value)) {
+    const shown = url.port || "default-scheme-port";
+    fail(`${sourceLabel}: origin must not include an explicit port (got :${shown})`);
+  }
+  if (url.pathname !== "/" || url.search || url.hash) {
+    fail(`${sourceLabel}: origin must be scheme + host only, no path/query/hash`);
+  }
+  if (value.endsWith("/")) {
+    fail(`${sourceLabel}: origin must not end with a trailing slash`);
+  }
+  const host = url.hostname.toLowerCase();
+  if (!host) {
+    fail(`${sourceLabel}: origin hostname is empty`);
+  }
+  const hostUnbracketed = hostnameForIpCheck(host);
+  // Reject FQDN-style trailing dots (e.g. https://www.example.com.).
+  // URL.hostname preserves the final label terminator; do not normalize it away.
+  if (host.endsWith(".") || hostUnbracketed.endsWith(".")) {
+    fail(`${sourceLabel}: origin hostname must not end with a trailing dot (got "${hostUnbracketed}")`);
+  }
+  if (hostUnbracketed === "localhost" || hostUnbracketed.endsWith(".localhost")) {
+    fail(`${sourceLabel}: refusing localhost origin "${hostUnbracketed}"`);
+  }
+  if (net.isIP(hostUnbracketed)) {
+    fail(`${sourceLabel}: refusing bare IP address origin "${hostUnbracketed}"`);
+  }
+  if (PLACEHOLDER_ORIGIN_HOSTS.has(host) || PLACEHOLDER_ORIGIN_HOSTS.has(hostUnbracketed)) {
+    fail(
+      `${sourceLabel}: refusing placeholder host "${hostUnbracketed}". Set a real production origin or leave unset.`
+    );
+  }
+  // Rebuild from protocol + hostname only (never echo userinfo/port/path).
+  return `${url.protocol}//${hostUnbracketed}`;
+}
+
+function writeGeneratedFile(relPosix, contents) {
+  const destAbs = path.resolve(DIST_LOGICAL, relPosix);
+  if (!isInsideRoot(destAbs, DIST_LOGICAL) && destAbs !== DIST_LOGICAL) {
+    fail(`Generated destination escapes dist/: ${relPosix}`);
+  }
+  if (!isAllowedPublishExtension(relPosix)) {
+    fail(`Unapproved extension for generated file: ${relPosix}`);
+  }
+  const destDir = path.dirname(destAbs);
+  fs.mkdirSync(destDir, { recursive: true });
+  assertNoSymlinkComponentsUnderRoot(destDir, `destination dir for ${relPosix}`, {
+    rejectLeafSymlink: true,
+  });
+  fs.writeFileSync(destAbs, contents, "utf8");
+  const destStat = fs.lstatSync(destAbs);
+  if (destStat.isSymbolicLink()) {
+    fail(`Generated destination became a symlink: ${relPosix}`);
+  }
+}
+
+function escAttr(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function absolutePageUrl(siteOrigin, pagePath) {
+  return pagePath === "/" ? `${siteOrigin}/` : `${siteOrigin}${pagePath}`;
+}
+
+/**
+ * Remove only the four URL-dependent SEO tags (restricted patterns).
+ * Does not touch titles, descriptions, or other metadata.
+ */
+function stripUrlDependentSeoTags(html) {
+  return html
+    .replace(/^[ \t]*<link\s+rel="canonical"\s+href="[^"]*"\s*>\s*\r?\n/gim, "")
+    .replace(/^[ \t]*<meta\s+property="og:url"\s+content="[^"]*"\s*>\s*\r?\n/gim, "")
+    .replace(/^[ \t]*<meta\s+property="og:image"\s+content="[^"]*"\s*>\s*\r?\n/gim, "")
+    .replace(/^[ \t]*<meta\s+name="twitter:image"\s+content="[^"]*"\s*>\s*\r?\n/gim, "");
+}
+
+function hasUrlDependentSeoTags(html) {
+  return (
+    /rel="canonical"/i.test(html) ||
+    /property="og:url"/i.test(html) ||
+    /property="og:image"/i.test(html) ||
+    /name="twitter:image"/i.test(html)
+  );
+}
+
+/**
+ * Inject absolute canonical / og:url / og:image / twitter:image after og:description.
+ * Requires a single og:description meta and no pre-existing URL-dependent tags.
+ */
+function injectAbsoluteSeoUrls(html, pagePath, siteOrigin) {
+  if (hasUrlDependentSeoTags(html)) {
+    fail(`Refusing SEO URL injection: URL-dependent tags still present for path ${pagePath}`);
+  }
+  const pageUrl = absolutePageUrl(siteOrigin, pagePath);
+  const imageUrl = `${siteOrigin}${SEO_IMAGE_PATH}`;
+  const block = [
+    `  <link rel="canonical" href="${escAttr(pageUrl)}">`,
+    `  <meta property="og:url" content="${escAttr(pageUrl)}">`,
+    `  <meta property="og:image" content="${escAttr(imageUrl)}">`,
+    `  <meta name="twitter:image" content="${escAttr(imageUrl)}">`,
+  ].join("\n");
+
+  const descRe = /^([ \t]*<meta\s+property="og:description"\s+content="[^"]*"\s*>)\s*$/m;
+  const match = html.match(descRe);
+  if (!match) {
+    fail(`Cannot inject SEO URLs: og:description meta not found for path ${pagePath}`);
+  }
+  const matches = html.match(new RegExp(descRe.source, "gm"));
+  if (!matches || matches.length !== 1) {
+    fail(`Cannot inject SEO URLs: expected exactly one og:description for path ${pagePath}`);
+  }
+  return html.replace(descRe, `${match[1]}\n${block}`);
+}
+
+/**
+ * After copy: strip any accidental URL-dependent tags from HTML in dist/,
+ * then inject absolute URLs for the 10 public pages when origin is configured.
+ * 404.html is stripped only (no canonical; never inject absolute SEO URLs).
+ */
+function applyHtmlSeoUrls(siteOrigin) {
+  for (const [relFile, pagePath] of Object.entries(SEO_HTML_PAGES)) {
+    const destAbs = path.resolve(DIST_LOGICAL, relFile);
+    if (!isInsideRoot(destAbs, DIST_LOGICAL)) {
+      fail(`SEO HTML path escapes dist/: ${relFile}`);
+    }
+    let html = fs.readFileSync(destAbs, "utf8");
+    html = stripUrlDependentSeoTags(html);
+    if (siteOrigin) {
+      html = injectAbsoluteSeoUrls(html, pagePath, siteOrigin);
+      if (!html.includes(`rel="canonical" href="${escAttr(absolutePageUrl(siteOrigin, pagePath))}"`)) {
+        fail(`SEO injection verification failed for ${relFile}`);
+      }
+    } else if (hasUrlDependentSeoTags(html)) {
+      fail(`URL-dependent SEO tags remain in ${relFile} with origin unset`);
+    }
+    fs.writeFileSync(destAbs, html, "utf8");
+  }
+
+  const notFoundAbs = path.resolve(DIST_LOGICAL, "404.html");
+  let notFoundHtml = fs.readFileSync(notFoundAbs, "utf8");
+  notFoundHtml = stripUrlDependentSeoTags(notFoundHtml);
+  if (hasUrlDependentSeoTags(notFoundHtml)) {
+    fail("404.html still contains URL-dependent SEO tags after strip");
+  }
+  if (!/name="robots"\s+content="noindex"/i.test(notFoundHtml)) {
+    fail('404.html must retain meta robots noindex');
+  }
+  fs.writeFileSync(notFoundAbs, notFoundHtml, "utf8");
+
+  if (siteOrigin) {
+    console.log(`build-public: absolute SEO URLs injected for ${Object.keys(SEO_HTML_PAGES).length} pages`);
+  } else {
+    console.log("build-public: URL-dependent SEO tags omitted (origin unset)");
+  }
+}
+
+function generateSeoArtifacts(siteOrigin) {
+  const robotsLines = ["User-agent: *", "Allow: /", ""];
+  if (siteOrigin) {
+    robotsLines.push(`Sitemap: ${siteOrigin}/sitemap.xml`, "");
+  } else {
+    robotsLines.push(
+      "# Sitemap omitted until SITE_ORIGIN or site-origin.txt is configured.",
+      ""
+    );
+  }
+  writeGeneratedFile("robots.txt", robotsLines.join("\n"));
+
+  const generated = ["robots.txt"];
+  if (!siteOrigin) {
+    console.log("build-public: SITE_ORIGIN unset — robots.txt written; sitemap.xml omitted");
+    return generated;
+  }
+
+  // Omit lastmod so identical inputs produce byte-identical sitemap.xml.
+  const urlEntries = SITEMAP_PATHS.map((p) => {
+    const loc = p === "/" ? `${siteOrigin}/` : `${siteOrigin}${p}`;
+    return `  <url>\n    <loc>${loc}</loc>\n  </url>`;
+  }).join("\n");
+  const sitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    urlEntries,
+    "</urlset>",
+    "",
+  ].join("\n");
+  writeGeneratedFile("sitemap.xml", sitemap);
+  generated.push("sitemap.xml");
+  console.log(`build-public: sitemap.xml written for origin ${siteOrigin}`);
+  return generated;
 }
 
 /**
@@ -372,8 +720,7 @@ function assertDistSafe() {
       }
       const rel = toPosix(path.relative(DIST_LOGICAL, abs));
       found.push(rel);
-      const ext = path.extname(abs).toLowerCase();
-      if (!ALLOWED_EXTENSIONS.has(ext)) {
+      if (!isAllowedPublishExtension(rel, abs)) {
         fail(`Unapproved extension in dist/: ${rel}`);
       }
       for (const prefix of FORBIDDEN_PREFIXES) {
@@ -387,7 +734,11 @@ function assertDistSafe() {
     }
   }
 
-  const expected = new Set(ALLOWED_FILES.map(toPosix));
+  return found.sort();
+}
+
+function assertExpectedInventory(found, generatedFiles) {
+  const expected = new Set([...ALLOWED_FILES.map(toPosix), ...generatedFiles.map(toPosix)]);
   const actual = new Set(found);
   for (const f of expected) {
     if (!actual.has(f)) fail(`Missing from dist/ after build: ${f}`);
@@ -395,7 +746,6 @@ function assertDistSafe() {
   for (const f of actual) {
     if (!expected.has(f)) fail(`Unexpected file in dist/ (not on allowlist): ${f}`);
   }
-  return found.sort();
 }
 
 function main() {
@@ -404,13 +754,33 @@ function main() {
   console.log(`build-public: dist=${DIST_LOGICAL}`);
   console.log(`build-public: allowlist entries=${ALLOWED_FILES.length}`);
 
+  const productionRelease = isProductionReleaseMode();
+  console.log(
+    `build-public: productionRelease=${productionRelease ? "on" : "off"} (SCS_PRODUCTION_RELEASE / --production-release; not NODE_ENV)`
+  );
+
+  const siteOrigin = resolveSiteOrigin();
+  if (productionRelease && !siteOrigin) {
+    fail(
+      "production-release mode requires SITE_ORIGIN or a non-empty site-origin.txt (fail closed)"
+    );
+  }
+  if (siteOrigin) {
+    console.log(`build-public: siteOrigin=${siteOrigin}`);
+  } else {
+    console.log("build-public: siteOrigin=(unset)");
+  }
+
   ensureCleanDist();
 
   for (const rel of ALLOWED_FILES) {
     copyAllowlistedFile(toPosix(rel));
   }
 
+  applyHtmlSeoUrls(siteOrigin);
+  const generatedFiles = generateSeoArtifacts(siteOrigin);
   const inventory = assertDistSafe();
+  assertExpectedInventory(inventory, generatedFiles);
   console.log(`build-public: wrote ${inventory.length} files to dist/`);
   for (const f of inventory) {
     console.log(`  ${f}`);

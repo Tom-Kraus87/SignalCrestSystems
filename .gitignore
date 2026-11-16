@@ -20,3 +20,6 @@ pricing-preview.css
 netlify-init-output.txt
 netlify-api-data.json
 github-webhook.json
+
+# Local SEO origin (set SITE_ORIGIN or copy site-origin.example → site-origin.txt)
+site-origin.txt
