@@ -28,11 +28,14 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <img class="logo-mark" src="assets/logo-mark.png" alt="" width="36" height="36" decoding="async" aria-hidden="true">
-        <span class="logo-text">Signal <span class="logo-accent">Crest</span> <span class="logo-suffix">Systems LLC</span></span>
+        <img class="logo-mark" src="assets/logo-shield.png" alt="" width="50" height="50" decoding="async" aria-hidden="true">
+        <span class="logo-text">
+          <span class="logo-line">Signal <span class="logo-accent">Crest</span></span>
+          <span class="logo-suffix">Systems LLC</span>
+        </span>
       </a>
       <div class="theme-picker">
-        <button type="button" class="theme-picker-toggle" aria-expanded="false" aria-controls="theme-picker-panel" aria-haspopup="dialog">
+        <button type="button" class="theme-picker-toggle" aria-label="Theme" aria-expanded="false" aria-controls="theme-picker-panel" aria-haspopup="dialog">
           <span class="theme-picker-swatch" aria-hidden="true"></span>
           <span class="theme-picker-label">Theme</span>
         </button>
@@ -108,212 +111,277 @@
   </header>
 
   <main id="main">
-    <section class="hero hero-home">
-      <div class="hero-bg" aria-hidden="true"></div>
+    <section class="hero hero-home" aria-labelledby="home-hero-heading">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="hero-trail hero-trail-blue"></span>
+        <span class="hero-trail hero-trail-gold"></span>
+        <span class="hero-particles"></span>
+      </div>
       <div class="container hero-home-layout">
         <div class="hero-content">
-          <p class="hero-brand">Signal Crest Systems LLC</p>
-          <h1>Websites, automation, and IT your business can rely on.</h1>
-          <p class="hero-tagline">Engineering Smarter Digital Solutions.</p>
-          <p class="hero-lead">
-            Signal Crest Systems LLC helps small and growing businesses build and maintain the digital systems they depend on, from professional websites and custom applications to AI workflow automation, IT consulting, cybersecurity guidance, and software testing.
+          <p class="hero-shield-wrap">
+            <img class="hero-shield" src="assets/logo-shield.png" alt="" width="72" height="72" decoding="async">
           </p>
+          <h1 id="home-hero-heading">Signal Crest Systems&nbsp;LLC</h1>
+          <p class="hero-tagline">Engineering Smarter Digital Solutions.</p>
+          <p class="hero-lead">Websites, automation, and IT your business can rely on.</p>
           <div class="hero-actions">
-            <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+            <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
             <a href="packages.html" class="btn btn-secondary">View Pricing</a>
           </div>
-        </div>
-        <figure class="hero-shot">
-          <div class="hero-browser">
-            <div class="hero-browser-chrome" aria-hidden="true">
-              <span class="hero-browser-traffic">
-                <span></span>
-                <span></span>
-                <span></span>
+          <ul class="hero-trust-badges" aria-label="Company highlights">
+            <li>
+              <span class="hero-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3c2.8 3 4.2 6 4.2 9s-1.4 6-4.2 9c-2.8-3-4.2-6-4.2-9s1.4-6 4.2-9z"/></svg>
               </span>
-              <span class="hero-browser-label">SignalCrest Machine</span>
-            </div>
-            <div class="hero-browser-stage">
-              <img
-                class="hero-shot-image"
-                src="assets/hero-machine-1280.webp"
-                srcset="assets/hero-machine-800.webp 800w, assets/hero-machine-1280.webp 1280w"
-                sizes="(max-width: 899px) min(36rem, calc(100vw - 2rem)), (max-width: 1199px) 28rem, 32rem"
-                width="1280"
-                height="800"
-                alt="SignalCrest Machine Command Center dashboard showing demonstration workflow counts, an approval waiting for owner review, and system health status."
-                fetchpriority="high"
-                decoding="async"
-              >
-            </div>
-          </div>
-          <figcaption class="hero-shot-caption">
-            SignalCrest Machine — internal lab project in development, not a commercial product. Shown with demonstration data.
-          </figcaption>
-        </figure>
+              Metro Detroit
+            </li>
+            <li>
+              <span class="hero-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v18M7 8h7.5a3 3 0 010 6H9a3 3 0 000 6h8"/></svg>
+              </span>
+              from $950
+            </li>
+            <li>
+              <span class="hero-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg>
+              </span>
+              founder-led
+            </li>
+            <li>
+              <span class="hero-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+              </span>
+              25-point QA
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="credibility-strip" aria-label="Company highlights">
+    <section class="credibility-strip credibility-strip-home" aria-label="Company highlights">
       <div class="container">
         <ul class="credibility-strip-list">
-          <li>Based in Metro Detroit</li>
-          <li>Fixed-price website packages from $950</li>
+          <li>Metro Detroit</li>
+          <li>Fixed-price websites from $950</li>
           <li>Work directly with the founder</li>
-          <li><a href="qa-process.html">25-point website launch QA checklist</a></li>
+          <li><a href="qa-process.html">25-point launch QA</a></li>
         </ul>
       </div>
     </section>
 
-    <section class="home-services" aria-labelledby="home-services-heading">
+    <section class="home-services" id="services" aria-labelledby="home-services-heading">
       <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">What We Offer</p>
-          <h2 id="home-services-heading">Practical technology solutions for small and growing businesses.</h2>
+        <header class="section-header section-header-center">
+          <h2 id="home-services-heading">Technology that keeps small businesses moving</h2>
+          <p>Tailored digital solutions designed to scale with your growing business.</p>
         </header>
 
         <div class="home-services-grid">
-          <article class="home-service-card home-service-card-featured">
-            <h3>Websites &amp; Web Applications</h3>
-            <p>Featured fixed-price website packages — landing pages from $950, starter sites from $1,500, and professional builds at $2,750 — plus custom software and web applications scoped to your workflow.</p>
-            <ul class="home-service-links">
-              <li><a href="packages.html">View website pricing</a></li>
-              <li><a href="services.html">Explore website services</a></li>
-              <li><a href="packages.html#care">Care plans</a></li>
-              <li><a href="packages.html#seo">Local SEO</a></li>
-            </ul>
+          <article class="home-service-card">
+            <div class="home-service-copy">
+              <h3>Websites &amp; Web Apps</h3>
+              <p>Custom, responsive sites and web apps that turn visitors into customers.</p>
+              <a href="services.html" class="home-service-link">Explore website services</a>
+            </div>
+            <div class="home-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="24" cy="24" r="16"/>
+                <path d="M8 24h32M24 8c4.5 4.8 6.8 10 6.8 16s-2.3 11.2-6.8 16c-4.5-4.8-6.8-10-6.8-16S19.5 12.8 24 8z"/>
+                <rect x="18" y="20" width="12" height="9" rx="1.5"/>
+                <path d="M21 24.5h2.2l1.3-3 1.3 6 1.3-3H29"/>
+              </svg>
+            </div>
           </article>
 
           <article class="home-service-card">
-            <h3>AI Automation &amp; Integrations</h3>
-            <p>Practical AI assistants, API integrations, and workflow automation that reduce repetitive work — tested before launch, with human review where decisions matter.</p>
-            <ul class="home-service-links">
-              <li><a href="ai-automation.html">Explore AI Automation</a></li>
-              <li><a href="packages.html#automation">View AI automation pricing</a></li>
-            </ul>
+            <div class="home-service-copy">
+              <h3>AI Automation &amp; Integrations</h3>
+              <p>Intelligent workflows that connect your tools and cut busywork.</p>
+              <a href="ai-automation.html" class="home-service-link">Explore AI automation</a>
+            </div>
+            <div class="home-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="16" cy="16" r="5"/>
+                <circle cx="32" cy="16" r="5"/>
+                <circle cx="24" cy="32" r="5"/>
+                <path d="M20 18.5l4 9M28 18.5l-4 9M21 16h6"/>
+                <path d="M16 11v-3M16 24v3M11 16h-3M24 16h3M32 11v-3M32 24v3M27 16h3M40 16h-3M24 27v-3M24 40v-3M19 32h-3M32 32h-3"/>
+              </svg>
+            </div>
           </article>
 
           <article class="home-service-card">
-            <h3>IT, Cybersecurity &amp; QA</h3>
-            <p>Hands-on IT consulting, practical cybersecurity guidance, and software testing — with published hourly rates and written estimates for larger work.</p>
-            <ul class="home-service-links">
-              <li><a href="services.html">Explore IT, security &amp; QA services</a></li>
-              <li><a href="qa-process.html">See our QA process</a></li>
-            </ul>
+            <div class="home-service-copy">
+              <h3>IT, Cybersecurity &amp; QA</h3>
+              <p>Secure infrastructure, hardening, and launch-ready quality checks.</p>
+              <a href="qa-process.html" class="home-service-link">See our QA process</a>
+            </div>
+            <div class="home-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M24 6l14 6v10c0 9-6.2 15.2-14 18-7.8-2.8-14-9-14-18V12l14-6z"/>
+                <path d="M17 24l5 5 9-10"/>
+              </svg>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="selected-work">
+    <section class="concept-examples" id="work" aria-labelledby="concept-examples-heading">
+      <div class="concept-examples-bg" aria-hidden="true">
+        <span class="hero-trail hero-trail-blue"></span>
+        <span class="hero-trail hero-trail-gold"></span>
+      </div>
       <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">Selected Work</p>
-          <h2>Website modernization patterns</h2>
-          <p>Concept examples of the modernization work we deliver. These are not attributed client case studies.</p>
+        <header class="section-header section-header-center">
+          <h2 id="concept-examples-heading">Concept examples</h2>
+          <p>Demonstration layouts that show the look and structure we can build &mdash; not completed client projects.</p>
         </header>
 
-        <div class="selected-work-grid">
-          <article class="selected-work-card">
-            <p class="case-study-badge" role="note">Concept example</p>
-            <div class="selected-work-compare" aria-hidden="true">
-              <div class="case-panel case-before"><span class="case-label">Before</span><p>Slow WordPress theme, broken mobile, no clear CTA.</p></div>
-              <div class="case-panel case-after"><span class="case-label">After</span><p>Fast static build, mobile-first pages, consultation flow.</p></div>
+        <div class="concept-examples-grid">
+          <article class="concept-card">
+            <div class="concept-card-preview">
+              <img
+                class="concept-card-thumb"
+                src="assets/concept-preview-starter.png"
+                alt="Screenshot of the fictional Evergreen Landscaping starter demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
             </div>
-            <h3>Professional services website rebuild</h3>
-            <p>A modernization pattern focused on trust, clear services, and lead capture.</p>
+            <div class="concept-card-body">
+              <h3>Starter landscaping concept</h3>
+              <p class="concept-card-note" role="note">Fictional Evergreen Landscaping demo &mdash; single-page layout</p>
+              <button type="button" class="btn btn-primary concept-demo-btn" data-demo="starter">Concept demo</button>
+            </div>
           </article>
 
-          <article class="selected-work-card">
-            <p class="case-study-badge" role="note">Concept example</p>
-            <div class="selected-work-compare" aria-hidden="true">
-              <div class="case-panel case-before"><span class="case-label">Before</span><p>Outdated design, missing SSL, buried contact info.</p></div>
-              <div class="case-panel case-after"><span class="case-label">After</span><p>Responsive site, HTTPS, clear services, local SEO foundations.</p></div>
+          <article class="concept-card">
+            <div class="concept-card-preview">
+              <img
+                class="concept-card-thumb"
+                src="assets/concept-preview-professional.png"
+                alt="Screenshot of the fictional Evergreen Landscaping professional demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
             </div>
-            <h3>Local service business site upgrade</h3>
-            <p>A credibility-focused rebuild so the website matches the quality of the service delivery.</p>
+            <div class="concept-card-body">
+              <h3>Professional landscaping concept</h3>
+              <p class="concept-card-note" role="note">Fictional Evergreen Landscaping demo &mdash; multi-page layout</p>
+              <button type="button" class="btn btn-primary concept-demo-btn" data-demo="business">Concept demo</button>
+            </div>
           </article>
 
-          <article class="selected-work-card">
-            <p class="case-study-badge" role="note">Concept example</p>
-            <div class="selected-work-compare" aria-hidden="true">
-              <div class="case-panel case-before"><span class="case-label">Before</span><p>DIY builder site, inconsistent branding, broken forms.</p></div>
-              <div class="case-panel case-after"><span class="case-label">After</span><p>Custom build, brand-consistent design, working lead capture.</p></div>
+          <article class="concept-card">
+            <div class="concept-card-preview">
+              <img
+                class="concept-card-thumb"
+                src="assets/concept-preview-advanced.png"
+                alt="Screenshot of the fictional Evergreen Landscaping advanced demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
             </div>
-            <h3>Consultant website modernization</h3>
-            <p>A structured site that presents expertise clearly and captures inquiries reliably.</p>
+            <div class="concept-card-body">
+              <h3>Advanced landscaping concept</h3>
+              <p class="concept-card-note" role="note">Fictional Evergreen Landscaping demo &mdash; modernized layout</p>
+              <button type="button" class="btn btn-primary concept-demo-btn" data-demo="modernization">Concept demo</button>
+            </div>
           </article>
         </div>
 
-        <p class="section-link-wrap">
-          <a href="case-studies.html" class="section-link">View case studies &rarr;</a>
-          <a href="work.html" class="section-link">Browse all work &rarr;</a>
+        <p class="concept-examples-cta-wrap">
+          <a href="ai-automation.html" class="btn btn-secondary concept-ai-cta">Explore AI workflow options</a>
         </p>
       </div>
     </section>
 
-    <section class="process process-home">
+    <section class="process process-home" aria-labelledby="process-heading">
       <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">How We Work</p>
-          <h2>A clear path from problem to launch</h2>
+        <header class="section-header section-header-center">
+          <h2 id="process-heading">A clear path from idea to launch</h2>
         </header>
-        <ol class="process-steps process-steps-three">
+        <ol class="process-steps process-steps-three process-steps-flow">
           <li>
             <span class="step-num">01</span>
-            <h3>Understand</h3>
-            <p>We define your goals, audience, and technical requirements — so every decision serves a purpose.</p>
+            <h3>Discovery</h3>
+            <p>Clarify goals, scope, and the systems your business needs.</p>
           </li>
           <li>
             <span class="step-num">02</span>
-            <h3>Build &amp; verify</h3>
-            <p>Modern, maintainable delivery with QA and security checks before anything reaches production.</p>
+            <h3>Development</h3>
+            <p>Build the site or automation with founder-led engineering.</p>
           </li>
           <li>
             <span class="step-num">03</span>
-            <h3>Launch &amp; support</h3>
-            <p>Ship with confidence, then stay available for fixes, care plans, and improvements.</p>
+            <h3>Deployment</h3>
+            <p>Launch with a <a href="qa-process.html">25-point QA checklist</a> and handoff support.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="testimonials testimonial-excerpt testimonial-featured">
+    <section class="home-pricing" id="pricing" aria-labelledby="home-pricing-heading">
       <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">Founder recommendation</p>
-          <h2>What colleagues say about working with our founder</h2>
+        <header class="section-header section-header-center">
+          <h2 id="home-pricing-heading">Fixed-price website packages</h2>
+          <p>Transparent pricing. Start small, upgrade when you are ready.</p>
         </header>
 
-        <blockquote class="testimonial-card testimonial-card-featured">
-          <p>From the very first day we met, I've always had a close relationship working with Tom in a mentoring capacity. It was quickly evident that Tom possessed a curiosity that helped drive his success — because of his passion for technology and learning, he positioned himself as a qualified candidate for numerous technical positions at SpotOn.</p>
-          <footer>
-            <strong><a href="https://www.linkedin.com/in/michael-zada" target="_blank" rel="noopener noreferrer">Michael Zada</a></strong>
-            <span>Former colleague &amp; mentor, SpotOn</span>
-          </footer>
-        </blockquote>
-
-        <p class="section-link-wrap"><a href="about.html" class="section-link">About Signal Crest Systems LLC &rarr;</a></p>
+        <div class="home-pricing-grid">
+          <article class="home-price-card">
+            <h3>Landing</h3>
+            <p class="home-price-amount">$950</p>
+            <p>Single-page site for a clear offer and contact path.</p>
+            <a href="contact.html?service=package-landing" class="btn btn-secondary btn-full">Ask about Landing</a>
+          </article>
+          <article class="home-price-card">
+            <h3>Starter</h3>
+            <p class="home-price-amount">$1,500</p>
+            <p>Multi-section site with core pages and mobile-ready layout.</p>
+            <a href="contact.html?service=package-starter" class="btn btn-secondary btn-full">Ask about Starter</a>
+          </article>
+          <article class="home-price-card">
+            <h3>Professional</h3>
+            <p class="home-price-amount">$2,750</p>
+            <p>Expanded pages, stronger conversion flow, and polish.</p>
+            <a href="contact.html?service=package-professional" class="btn btn-primary btn-full">Ask about Professional</a>
+          </article>
+          <article class="home-price-card">
+            <h3>Advanced</h3>
+            <p class="home-price-amount"><span class="home-price-from">From</span> $5,000</p>
+            <p>Custom builds, integrations, and advanced features.</p>
+            <a href="contact.html?service=package-advanced" class="btn btn-secondary btn-full">Request Advanced quote</a>
+          </article>
+        </div>
+        <p class="home-pricing-note">Custom automation and IT projects quoted separately. <a href="packages.html">Full pricing details</a></p>
       </div>
     </section>
 
-    <section class="cta-band">
+    <section class="cta-band cta-band-home">
       <div class="container cta-band-inner">
         <h2>Ready to strengthen the systems your business depends on?</h2>
-        <p>Tell us about your goals and we&rsquo;ll recommend a practical next step — websites, automation, IT, or a combination that fits.</p>
-        <div class="cta-band-actions">
-          <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-          <a href="packages.html" class="btn btn-secondary">View Pricing</a>
-        </div>
+        <a href="contact.html" class="btn btn-primary cta-band-btn">Get a Quote</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <a href="index.html" class="logo logo-footer" aria-label="Signal Crest Systems LLC home">
-        <img class="brand-banner" src="assets/logo-banner.png" alt="Signal Crest Systems LLC" width="260" height="87" decoding="async">
-      </a>
+    <div class="container footer-inner footer-inner-home">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-footer" aria-label="Signal Crest Systems LLC home">
+          <img class="brand-banner" src="assets/logo-banner.png" alt="Signal Crest Systems LLC" width="260" height="87" decoding="async">
+        </a>
+      </div>
+      <p class="footer-domain"><a href="https://signalcrestsystems.com">https://signalcrestsystems.com</a></p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -326,10 +394,247 @@
         <a href="qa-process.html">QA Process</a>
         <a href="resources.html">Resources</a>
       </nav>
-      <p class="footer-tagline">Engineering Smarter Digital Solutions.</p>
       <p class="footer-copy">&copy; <span id="year"></span> Signal Crest Systems LLC. All rights reserved.</p>
     </div>
   </footer>
+
+<div class="demo-modal" id="demoModal" hidden>
+    <div class="demo-overlay" data-demo-close></div>
+    <div class="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+      <div class="demo-topbar">
+        <div class="demo-topbar-info">
+          <p class="demo-eyebrow" id="demoEyebrow">Live Demo</p>
+          <h3 id="demoTitle">Package Demo</h3>
+        </div>
+        <button class="demo-close" type="button" data-demo-close aria-label="Close demo">&times;</button>
+      </div>
+      <p class="demo-explainer" id="demoExplainer"></p>
+      <div class="demo-window">
+        <div class="demo-window-bar">
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <span class="demo-dot"></span>
+          <div class="demo-addressbar" id="demoUrl">concept-demo.example</div>
+        </div>
+        <div class="demo-screen" id="demoScreen"></div>
+      </div>
+      <p class="demo-disclaimer">Interactive concept demonstration only &mdash; not a completed client project. Sample layout content is fictional.</p>
+    </div>
+  </div>
+
+  <template id="tpl-starter">
+    <div class="d-site">
+      <header class="d-nav">
+        <span class="d-logo">&#127807; Evergreen Landscaping</span>
+        <nav class="d-nav-links">
+          <a href="#dhome" data-scroll>Home</a>
+          <a href="#dservices" data-scroll>Services</a>
+          <a href="#dgallery" data-scroll>Gallery</a>
+          <a href="#dcontact" data-scroll>Contact</a>
+        </nav>
+      </header>
+      <section id="dhome" class="d-section d-hero">
+        <h2>Lawn &amp; Landscape Care</h2>
+        <p>Fictional concept demo for a single-page landscaping site &mdash; not a completed client project.</p>
+        <span class="d-btn">Get a Free Quote</span>
+      </section>
+      <section id="dabout" class="d-section">
+        <span class="d-kicker">About Us</span>
+        <h2>Rooted in our community</h2>
+        <p>Sample copy for weekly mowing, seasonal cleanups, and landscape redesign layouts. All business details here are fictional.</p>
+      </section>
+      <section id="dservices" class="d-section d-alt">
+        <span class="d-kicker">Services</span>
+        <h2>What we do</h2>
+        <div class="d-cards">
+          <div class="d-card"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span>Mowing, edging &amp; fertilization</span></div>
+          <div class="d-card"><span class="d-ico">&#127794;</span><strong>Landscape Design</strong><span>Custom planting &amp; hardscapes</span></div>
+          <div class="d-card"><span class="d-ico">&#10052;</span><strong>Snow Removal</strong><span>Seasonal driveway &amp; walk clearing</span></div>
+        </div>
+      </section>
+      <section id="dgallery" class="d-section">
+        <span class="d-kicker">Gallery</span>
+        <h2>Sample project photos</h2>
+        <div class="d-gallery">
+          <img class="d-photo" src="assets/gallery-1.webp" srcset="assets/gallery-1-640.webp 640w, assets/gallery-1.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Manicured front yard with flower beds" loading="lazy">
+          <img class="d-photo" src="assets/gallery-2.webp" srcset="assets/gallery-2-640.webp 640w, assets/gallery-2.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Backyard paver patio with fire pit" loading="lazy">
+          <img class="d-photo" src="assets/gallery-3.webp" srcset="assets/gallery-3-640.webp 640w, assets/gallery-3.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Colorful garden flower bed" loading="lazy">
+          <img class="d-photo" src="assets/gallery-4.webp" srcset="assets/gallery-4-640.webp 640w, assets/gallery-4.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Freshly mowed striped lawn" loading="lazy">
+        </div>
+      </section>
+      <section id="dpricing" class="d-section d-alt">
+        <span class="d-kicker">Pricing</span>
+        <h2>Example plan cards</h2>
+        <div class="d-cards">
+          <div class="d-card"><strong>Basic</strong><span class="d-price">Sample</span></div>
+          <div class="d-card"><strong>Full Care</strong><span class="d-price">Sample</span></div>
+        </div>
+      </section>
+      <section id="dcontact" class="d-section">
+        <span class="d-kicker">Contact</span>
+        <h2>Request a sample estimate</h2>
+        <p>&#128222; (555) 010-0142 &nbsp;&bull;&nbsp; hello@evergreenlandscaping.example</p>
+        <span class="d-btn">Request a Quote</span>
+      </section>
+      <footer class="d-footer">&copy; Evergreen Landscaping (fictional) &bull; Concept demo by Signal Crest Systems LLC</footer>
+    </div>
+  </template>
+
+  <template id="tpl-business">
+    <div class="d-site">
+      <header class="d-nav">
+        <span class="d-logo">&#127807; Evergreen Landscaping</span>
+        <nav class="d-nav-links">
+          <button class="d-tab is-active" data-page="home">Home</button>
+          <button class="d-tab" data-page="about">About</button>
+          <button class="d-tab" data-page="services">Services</button>
+          <button class="d-tab" data-page="gallery">Gallery</button>
+          <button class="d-tab" data-page="contact">Contact</button>
+        </nav>
+      </header>
+      <div class="d-pages">
+        <section class="d-page is-active" data-page="home">
+          <div class="d-section d-hero">
+            <h2>Lawn &amp; Landscape Care</h2>
+            <p>Fictional multi-page concept demo &mdash; not a completed client project.</p>
+            <span class="d-btn">Get a Free Quote</span>
+          </div>
+          <div class="d-section d-alt">
+            <span class="d-kicker">Layout note</span>
+            <p>This Professional demo organizes the same landscaping content into dedicated pages for clearer navigation.</p>
+          </div>
+        </section>
+        <section class="d-page" data-page="about">
+          <div class="d-section">
+            <span class="d-kicker">About Us</span>
+            <h2>Rooted in our community</h2>
+            <p>Sample about-page copy for a fictional landscaping business. Content is for layout demonstration only.</p>
+          </div>
+        </section>
+        <section class="d-page" data-page="services">
+          <div class="d-section">
+            <span class="d-kicker">Services &amp; Pricing</span>
+            <h2>What we do</h2>
+            <div class="d-cards">
+              <div class="d-card"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span class="d-price">Sample</span></div>
+              <div class="d-card"><span class="d-ico">&#127794;</span><strong>Landscape Design</strong><span class="d-price">Custom quote</span></div>
+              <div class="d-card"><span class="d-ico">&#10052;</span><strong>Snow Removal</strong><span class="d-price">Sample</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="d-page" data-page="gallery">
+          <div class="d-section">
+            <span class="d-kicker">Gallery</span>
+            <h2>Sample project photos</h2>
+            <div class="d-gallery">
+              <img class="d-photo" src="assets/gallery-1.webp" srcset="assets/gallery-1-640.webp 640w, assets/gallery-1.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Manicured front yard with flower beds" loading="lazy">
+              <img class="d-photo" src="assets/gallery-2.webp" srcset="assets/gallery-2-640.webp 640w, assets/gallery-2.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Backyard paver patio with fire pit" loading="lazy">
+              <img class="d-photo" src="assets/gallery-3.webp" srcset="assets/gallery-3-640.webp 640w, assets/gallery-3.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Colorful garden flower bed" loading="lazy">
+              <img class="d-photo" src="assets/gallery-4.webp" srcset="assets/gallery-4-640.webp 640w, assets/gallery-4.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Freshly mowed striped lawn" loading="lazy">
+            </div>
+          </div>
+        </section>
+        <section class="d-page" data-page="contact">
+          <div class="d-section">
+            <span class="d-kicker">Contact</span>
+            <h2>Request a sample estimate</h2>
+            <p>&#128222; (555) 010-0142 &nbsp;&bull;&nbsp; hello@evergreenlandscaping.example</p>
+            <span class="d-btn">Request a Quote</span>
+          </div>
+        </section>
+      </div>
+      <footer class="d-footer">&copy; Evergreen Landscaping (fictional) &bull; Concept demo by Signal Crest Systems LLC</footer>
+    </div>
+  </template>
+
+  <template id="tpl-modernization">
+    <div class="d-site d-modern">
+      <header class="d-nav d-nav-modern">
+        <span class="d-logo">&#127807; Evergreen</span>
+        <nav class="d-nav-links">
+          <button class="d-tab is-active" data-page="home">Home</button>
+          <button class="d-tab" data-page="about">About</button>
+          <button class="d-tab" data-page="services">Services</button>
+          <button class="d-tab" data-page="gallery">Gallery</button>
+          <button class="d-tab" data-page="contact">Contact</button>
+        </nav>
+        <span class="d-btn d-btn-sm">Free Quote</span>
+      </header>
+      <div class="d-pages">
+        <section class="d-page is-active" data-page="home">
+          <div class="d-section d-hero d-hero-modern">
+            <span class="d-badge">Fictional concept demo</span>
+            <h2>Beautiful lawns,<br>clearer calls to action.</h2>
+            <p>Advanced layout demo for a fictional landscaping brand &mdash; not a completed client project.</p>
+            <div class="d-hero-actions">
+              <span class="d-btn">Get a Free Quote</span>
+              <span class="d-btn d-btn-ghost">View Our Work</span>
+            </div>
+            <div class="d-trust">
+              <span>Clear service path</span>
+              <span>Mobile-ready layout</span>
+              <span>Stronger conversion flow</span>
+            </div>
+          </div>
+          <div class="d-section">
+            <div class="d-cards">
+              <div class="d-card d-card-modern"><span class="d-ico">&#127795;</span><strong>Lawn Care</strong><span>Weekly mowing &amp; treatment</span></div>
+              <div class="d-card d-card-modern"><span class="d-ico">&#127794;</span><strong>Design</strong><span>Custom landscape builds</span></div>
+              <div class="d-card d-card-modern"><span class="d-ico">&#10052;</span><strong>Snow</strong><span>Seasonal winter service</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="d-page" data-page="about">
+          <div class="d-section">
+            <span class="d-kicker">Our Story</span>
+            <h2>Local roots, modern craft</h2>
+            <p>Sample about-page structure for a fictional landscaping business. No client outcomes or certifications are implied.</p>
+          </div>
+        </section>
+        <section class="d-page" data-page="services">
+          <div class="d-section">
+            <span class="d-kicker">Services &amp; Plans</span>
+            <h2>Example plan cards</h2>
+            <div class="d-cards">
+              <div class="d-card d-card-modern"><strong>Basic</strong><span class="d-price">Sample</span><span>Mow, edge &amp; blow</span></div>
+              <div class="d-card d-card-modern d-featured"><span class="d-badge-sm">Example</span><strong>Full Care</strong><span class="d-price">Sample</span><span>Complete lawn program</span></div>
+              <div class="d-card d-card-modern"><strong>Design</strong><span class="d-price">Custom</span><span>Full landscape build</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="d-page" data-page="gallery">
+          <div class="d-section">
+            <span class="d-kicker">Portfolio</span>
+            <h2>Sample project photos</h2>
+            <div class="d-gallery d-gallery-modern">
+              <img class="d-photo" src="assets/gallery-1.webp" srcset="assets/gallery-1-640.webp 640w, assets/gallery-1.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Manicured front yard with flower beds" loading="lazy">
+              <img class="d-photo" src="assets/gallery-2.webp" srcset="assets/gallery-2-640.webp 640w, assets/gallery-2.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Backyard paver patio with fire pit" loading="lazy">
+              <img class="d-photo" src="assets/gallery-3.webp" srcset="assets/gallery-3-640.webp 640w, assets/gallery-3.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Colorful garden flower bed" loading="lazy">
+              <img class="d-photo" src="assets/gallery-5.webp" srcset="assets/gallery-5-640.webp 640w, assets/gallery-5.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Natural flagstone walkway" loading="lazy">
+              <img class="d-photo" src="assets/gallery-4.webp" srcset="assets/gallery-4-640.webp 640w, assets/gallery-4.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Freshly mowed striped lawn" loading="lazy">
+              <img class="d-photo" src="assets/gallery-6.webp" srcset="assets/gallery-6-640.webp 640w, assets/gallery-6.webp 960w" sizes="(max-width: 700px) 45vw, 320px" width="960" height="640" alt="Backyard pond with rock waterfall" loading="lazy">
+            </div>
+          </div>
+        </section>
+        <section class="d-page" data-page="contact">
+          <div class="d-section d-contact-modern">
+            <span class="d-kicker">Get Started</span>
+            <h2>Let&rsquo;s plan your next yard project</h2>
+            <p>Sample contact form layout for demonstration only.</p>
+            <div class="d-form-mock">
+              <span class="d-input">Your name</span>
+              <span class="d-input">Email or phone</span>
+              <span class="d-input d-input-lg">How can we help?</span>
+              <span class="d-btn">Request Free Quote</span>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="d-footer d-footer-modern">&copy; Evergreen Landscaping (fictional) &bull; Concept demo by Signal Crest Systems LLC</footer>
+    </div>
+  </template>
+
+
 
   <script src="theme.js"></script>
   <script src="script.js"></script>

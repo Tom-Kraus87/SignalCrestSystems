@@ -1,11 +1,11 @@
 /* Signal Crest Systems LLC — multi-theme layer (Phase 1) */
 
 :root {
-  /* Semantic tokens — Midnight Tech defaults (current charcoal/gold) */
-  --color-bg: #0c0f14;
-  --color-bg-elevated: #141a22;
-  --color-bg-card: #1a222d;
-  --color-border: rgba(255, 255, 255, 0.08);
+  /* Semantic tokens — Midnight Tech defaults (navy / gold visual reference) */
+  --color-bg: #000b1e;
+  --color-bg-elevated: #071428;
+  --color-bg-card: #0c1a33;
+  --color-border: rgba(255, 255, 255, 0.1);
   --color-text: #e8ecf1;
   --color-text-muted: #8b97a8;
   --color-accent: #c9a227;
@@ -29,21 +29,24 @@
   --transition: 0.25s ease;
   --header-bg: color-mix(in srgb, var(--color-bg) 85%, transparent);
   --logo-mark-end: #8a6f1a;
-  --hero-glow: rgba(201, 162, 39, 0.15);
+  --hero-glow: rgba(56, 149, 255, 0.18);
   --accent-border: rgba(201, 162, 39, 0.25);
   --accent-border-strong: rgba(201, 162, 39, 0.45);
+  --trail-blue: rgba(56, 149, 255, 0.55);
+  --trail-gold: rgba(201, 162, 39, 0.45);
+  --service-icon: #3b9eff;
   --effect-grid: transparent;
   --effect-scanline: transparent;
   --effect-noise: none;
   --surface-pattern: none;
 }
 
-/* ——— Midnight Tech (canonical charcoal/gold) ——— */
+/* ——— Midnight Tech (canonical navy/gold) ——— */
 [data-theme="midnight-tech"] {
-  --color-bg: #0c0f14;
-  --color-bg-elevated: #141a22;
-  --color-bg-card: #1a222d;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-bg: #000b1e;
+  --color-bg-elevated: #071428;
+  --color-bg-card: #0c1a33;
+  --color-border: rgba(255, 255, 255, 0.1);
   --color-text: #e8ecf1;
   --color-text-muted: #8b97a8;
   --color-accent: #c9a227;
@@ -53,9 +56,12 @@
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
   --logo-mark-end: #8a6f1a;
-  --hero-glow: rgba(201, 162, 39, 0.15);
+  --hero-glow: rgba(56, 149, 255, 0.18);
   --accent-border: rgba(201, 162, 39, 0.25);
   --accent-border-strong: rgba(201, 162, 39, 0.45);
+  --trail-blue: rgba(56, 149, 255, 0.55);
+  --trail-gold: rgba(201, 162, 39, 0.45);
+  --service-icon: #3b9eff;
 }
 
 /* ——— Clean Corporate (light) ——— */
@@ -81,6 +87,9 @@
   --hero-glow: rgba(15, 76, 129, 0.1);
   --accent-border: rgba(15, 76, 129, 0.25);
   --accent-border-strong: rgba(15, 76, 129, 0.4);
+  --trail-blue: rgba(15, 76, 129, 0.22);
+  --trail-gold: rgba(15, 76, 129, 0.14);
+  --service-icon: #0f4c81;
 }
 
 /* ——— Obsidian Black ——— */
@@ -359,6 +368,9 @@
   --hero-glow: rgba(30, 100, 180, 0.1);
   --accent-border: rgba(30, 100, 180, 0.28);
   --accent-border-strong: rgba(30, 100, 180, 0.45);
+  --trail-blue: rgba(30, 100, 180, 0.22);
+  --trail-gold: rgba(30, 100, 180, 0.14);
+  --service-icon: #1e64b4;
   --effect-grid: linear-gradient(rgba(30, 100, 180, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(30, 100, 180, 0.08) 1px, transparent 1px);
   --surface-pattern: 24px 24px;
@@ -412,6 +424,9 @@
   --hero-glow: rgba(139, 69, 19, 0.1);
   --accent-border: rgba(139, 69, 19, 0.28);
   --accent-border-strong: rgba(139, 69, 19, 0.42);
+  --trail-blue: rgba(139, 69, 19, 0.18);
+  --trail-gold: rgba(180, 120, 40, 0.16);
+  --service-icon: #8b4513;
 }
 
 /* Decorative treatments (sparing) */
@@ -472,13 +487,16 @@ main,
 }
 
 .theme-picker-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   min-height: 2.75rem;
-  padding: 0.45rem 0.75rem;
+  min-width: 2.75rem;
+  padding: 0.45rem;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   background: var(--color-bg-elevated);
   color: var(--color-text);
   font-family: inherit;
@@ -500,8 +518,8 @@ main,
 }
 
 .theme-picker-swatch {
-  width: 0.85rem;
-  height: 0.85rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--color-accent), var(--logo-mark-end));
   border: 1px solid var(--color-border);
@@ -509,13 +527,16 @@ main,
 }
 
 .theme-picker-label {
-  display: none;
-}
-
-@media (min-width: 480px) {
-  .theme-picker-label {
-    display: inline;
-  }
+  /* Icon-only control; accessible name comes from visible/hidden label + aria-label */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .theme-picker-panel {

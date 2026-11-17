@@ -357,22 +357,22 @@
       // Keep explainer text ASCII-only to avoid mojibake on some deployments.
       var demoData = {
       starter: {
-        title: "Starter Business Website — Demo",
-        url: "evergreenlandscaping.com",
+        title: "Starter landscaping concept — Evergreen",
+        url: "evergreenlandscaping.example / starter",
         explainer:
-          "Fictional demo only (Evergreen Landscaping). All 7 content areas - Home, About, Services, Gallery, Reviews, Pricing & Contact - flow together on one smooth-scrolling page. Use the menu to jump between sections."
+          "Fictional Evergreen Landscaping demonstration only — not a completed client project. Home, About, Services, Gallery, Pricing, and Contact flow together on one smooth-scrolling page. Use the menu to jump between sections."
       },
       business: {
-        title: "Professional Website — Demo",
-        url: "evergreenlandscaping.com/home",
+        title: "Professional landscaping concept — Evergreen",
+        url: "evergreenlandscaping.example / professional",
         explainer:
-          "Fictional demo only (Evergreen Landscaping). The same 7 content areas, organized into 5 dedicated pages for clearer navigation and stronger SEO. Click the menu tabs to switch pages."
+          "Fictional Evergreen Landscaping demonstration only — not a completed client project. The same landscaping content, organized into dedicated pages for clearer navigation. Click the menu tabs to switch pages."
       },
       modernization: {
-        title: "Advanced Website — Demo",
-        url: "evergreenlandscaping.com",
+        title: "Advanced landscaping concept — Evergreen",
+        url: "evergreenlandscaping.example / advanced",
         explainer:
-          "Fictional demo only (Evergreen Landscaping). The same content - fully redesigned. Modern layout, trust signals, refined navigation, and clearer calls-to-action across every page."
+          "Fictional Evergreen Landscaping demonstration only — not a completed client project. The same content, fully redesigned with a modern layout, refined navigation, and clearer calls-to-action across every page."
       }
     };
 

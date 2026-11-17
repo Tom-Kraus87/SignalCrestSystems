@@ -27,3 +27,5 @@ __pycache__/
 
 # Local SEO origin (set SITE_ORIGIN or copy site-origin.example → site-origin.txt)
 site-origin.txt
+
+qa-m5b/
