@@ -1,0 +1,17 @@
+-- M7A — insert_lead_bundle lives in the ordered migration sequence.
+-- Canonical sources (apply in order):
+--   db/migrations/005_m7a_insert_lead_bundle.sql
+--   db/migrations/006_m7a_r2_security_hardening.sql  (received_at return, deletion markers, grants)
+--
+-- This file is documentation-only. It is NOT executable SQL for deployment.
+-- DO NOT maintain a divergent function body here.
+-- DO NOT execute this file — it contains no CREATE statements.
+
+-- Behavior summary (authoritative in migrations 005+006):
+--   * pg_advisory_xact_lock on idempotency key (concurrent same-key safe)
+--   * payload_hash required when idempotency key present; conflict → exception
+--   * Returns persisted received_at on original and duplicate submissions
+--   * Atomic insert: leads + consent_records + submission_requests + notification_outbox
+--   * Deletion markers block stale replay recreation
+--   * SECURITY DEFINER + SET search_path = pg_catalog, public
+--   * EXECUTE granted to scs_intake_runtime only (not postgres admin / anon / authenticated)

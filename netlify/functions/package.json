@@ -1,0 +1,8 @@
+{
+  "name": "scs-netlify-functions",
+  "private": true,
+  "description": "Server-only Netlify Functions dependencies. Never bundle credentials into the browser.",
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

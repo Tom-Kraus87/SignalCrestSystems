@@ -7,7 +7,7 @@
   "use strict";
 
   var HANDOFF_KEY = "scsAdvisorHandoff";
-  var PRIVACY_VERSION = "advisor-privacy-2026-11-16";
+  var PRIVACY_VERSION = "privacy-2026-11-23";
   var FREE_ISSUE_LIMIT = 3;
 
   var SERVICE_LABELS = {
@@ -110,8 +110,9 @@
     { id: "other", label: "Other" },
   ];
 
+  /* Sensitive-data detector shared by brief handoff + project-request path (script.js mirrors). */
   var SECRET_RE =
-    /(password|passwd|passphrase|mfa|otp|one[-\s]?time|auth(?:entication)?\s*code|recovery\s*key|backup\s*code|seed\s*phrase|private\s*key|api\s*key|ssn|social\s*security)/i;
+    /(password|passwd|passphrase|mfa|otp|one[-\s]?time|auth(?:entication)?\s*code|recovery\s*key|backup\s*code|seed\s*phrase|private\s*key|api[\s_-]?key|ssn|social\s*security|\bcvv\b|credit\s*card|card\s*number|\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b)/i;
 
   function createState() {
     return {
@@ -337,13 +338,11 @@
       }
     },
     writeHandoff: function (payload) {
+      /* Minimize PII in sessionStorage: brief + routing only (no name/email/company). */
       var data = {
         flag: true,
         service: payload.service,
         brief: payload.brief || "",
-        name: payload.name || "",
-        email: payload.email || "",
-        company: payload.company || "",
         source: "advisor",
         privacyVersion: PRIVACY_VERSION,
       };
@@ -569,7 +568,8 @@
     }
 
     function pickList(options, onPick) {
-      var wrap = el("div", { className: "adv-chip-list", role: "listbox", "aria-label": "Choices" });
+      /* Buttons in a group — not listbox/option (incorrect ARIA for action chips). */
+      var wrap = el("div", { className: "adv-chip-list", role: "group", "aria-label": "Choices" });
       options.forEach(function (opt) {
         wrap.appendChild(
           chipButton(opt.label, function () {
@@ -862,6 +862,11 @@
       }
 
       if (state.screen === "tech_softcap") {
+        /* Soft-cap never hard-cuts an in-progress walkthrough. */
+        if (state.tech.activeIssueId) {
+          state.screen = "tech_step";
+          return renderTech();
+        }
         var soft = el("div", { className: "adv-chip-list" });
         soft.appendChild(
           chipButton("Build optional summary", function () {
@@ -925,42 +930,6 @@
         state.brief = ta.value;
       });
 
-      var name = el("input", {
-        type: "text",
-        id: "adv-name",
-        className: "adv-input",
-        autocomplete: "name",
-        "aria-label": "Name",
-      });
-      name.value = state.contact.name;
-      name.addEventListener("input", function () {
-        state.contact.name = name.value;
-      });
-
-      var email = el("input", {
-        type: "email",
-        id: "adv-email",
-        className: "adv-input",
-        autocomplete: "email",
-        "aria-label": "Email",
-      });
-      email.value = state.contact.email;
-      email.addEventListener("input", function () {
-        state.contact.email = email.value;
-      });
-
-      var company = el("input", {
-        type: "text",
-        id: "adv-company",
-        className: "adv-input",
-        autocomplete: "organization",
-        "aria-label": "Company (optional)",
-      });
-      company.value = state.contact.company;
-      company.addEventListener("input", function () {
-        state.contact.company = company.value;
-      });
-
       var consent = el("input", {
         type: "checkbox",
         id: "adv-consent",
@@ -976,7 +945,7 @@
       consentLabel.appendChild(consent);
       consentLabel.appendChild(
         document.createTextNode(
-          " I agree to send this project brief and my contact details to Signal Crest Systems LLC so they can follow up. See the "
+          " I agree to carry this editable project brief to the project request form so Signal Crest Systems LLC can follow up after I submit there. Contact details are entered on the next form (not stored in this browser handoff). See the "
         )
       );
       consentLabel.appendChild(el("a", { href: "privacy.html", text: "Privacy Policy" }));
@@ -1008,8 +977,10 @@
           announce("Consent is required before transmitting.");
           return;
         }
-        if (classifySecret(state.brief) || classifySecret(name.value) || classifySecret(email.value)) {
-          announce("Remove passwords or authentication codes before continuing. Rotate any secret you may have pasted.");
+        if (classifySecret(state.brief)) {
+          announce(
+            "Remove passwords, MFA/recovery codes, API keys, SSNs, or payment card numbers before continuing. Rotate any secret you may have pasted."
+          );
           return;
         }
         var service = state.recommendation.service;
@@ -1017,10 +988,8 @@
         Engine.writeHandoff({
           service: service,
           brief: state.brief,
-          name: state.contact.name.trim(),
-          email: state.contact.email.trim(),
-          company: state.contact.company.trim(),
         });
+        /* Contact fields stay in-memory only; user confirms them on project-request. */
         var url =
           "project-request.html?service=" +
           encodeURIComponent(service) +
@@ -1035,19 +1004,15 @@
         }),
         el("p", { className: "adv-muted", text: "Recommended service: " + state.recommendation.display }),
         ta,
-        el("div", { className: "adv-fields" }, [
-          el("label", { className: "adv-field-label", for: "adv-name", text: "Name" }),
-          name,
-          el("label", { className: "adv-field-label", for: "adv-email", text: "Email" }),
-          email,
-          el("label", { className: "adv-field-label", for: "adv-company", text: "Company (optional)" }),
-          company,
-        ]),
+        el("p", {
+          className: "adv-muted",
+          text: "Name, email, and company are collected on the project request form — not kept in temporary browser handoff storage.",
+        }),
         consentLabel,
         send,
         el("p", {
           className: "adv-muted",
-          text: "Send stays disabled until consent is checked. Handoff uses the existing project-request form.",
+          text: "Continue stays disabled until consent is checked. Final submit uses the secure lead endpoint after validation.",
         }),
       ], [
         chromeActions([

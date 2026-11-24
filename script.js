@@ -273,11 +273,21 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     }
 
+    /* Mirror of advisor.js classifySecret — block credentials / payment data in free text. */
+    var SENSITIVE_RE =
+      /(password|passwd|passphrase|mfa|otp|one[-\s]?time|auth(?:entication)?\s*code|recovery\s*key|backup\s*code|seed\s*phrase|private\s*key|api[\s_-]?key|ssn|social\s*security|\bcvv\b|credit\s*card|card\s*number|\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b)/i;
+
+    function containsSensitiveInfo(text) {
+      return SENSITIVE_RE.test(String(text || ""));
+    }
+
     function validateForm() {
       clearErrors();
       var name = form.name.value.trim();
       var email = form.email.value.trim();
       var message = form.message.value.trim();
+      var briefFieldEl = form.elements["advisor-brief"] || document.getElementById("advisor-brief");
+      var advisorBrief = briefFieldEl ? String(briefFieldEl.value || "").trim() : "";
       var firstInvalid = null;
 
       if (!name) {
@@ -294,6 +304,12 @@
       if (!message) {
         setFieldError("message", "Please enter a message.");
         firstInvalid = firstInvalid || form.message;
+      } else if (containsSensitiveInfo(message) || containsSensitiveInfo(advisorBrief)) {
+        setFieldError(
+          "message",
+          "Please remove passwords, MFA/recovery codes, API keys, SSNs, or payment card numbers before submitting. Rotate any secret you may have pasted."
+        );
+        firstInvalid = firstInvalid || form.message;
       }
       if (form.consent && !form.consent.checked) {
         setFieldError("consent", "Please confirm we may use this information to respond.");
@@ -309,23 +325,53 @@
       return true;
     }
 
-    function encodeFormBody(formEl) {
-      var data = new FormData(formEl);
-      var pairs = [];
-      data.forEach(function (value, key) {
-        pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(String(value)));
-      });
-      return pairs.join("&");
+    function newIdempotencyKey() {
+      try {
+        if (window.crypto && typeof window.crypto.randomUUID === "function") {
+          return window.crypto.randomUUID();
+        }
+      } catch (err) {
+        /* ignore */
+      }
+      return "lead-" + String(Date.now()) + "-" + Math.random().toString(36).slice(2, 10);
+    }
+
+    function buildLeadPayload(formEl) {
+      var briefFieldEl = formEl.elements["advisor-brief"] || document.getElementById("advisor-brief");
+      var privacyEl = formEl.elements["privacy-version"] || document.getElementById("privacy-version");
+      var sourceEl = formEl.elements["source"] || document.getElementById("request-source");
+      var formNameEl = formEl.elements["form-name"];
+      var consentEl = formEl.consent;
+      return {
+        formName: formNameEl ? String(formNameEl.value || "") : formEl.id === "contact-form" ? "contact" : "project-request",
+        name: formEl.name ? String(formEl.name.value || "").trim() : "",
+        email: formEl.email ? String(formEl.email.value || "").trim() : "",
+        company: formEl.company ? String(formEl.company.value || "").trim() : "",
+        phone: formEl.phone ? String(formEl.phone.value || "").trim() : "",
+        service: formEl.service ? String(formEl.service.value || "") : "",
+        timeline: formEl.timeline ? String(formEl.timeline.value || "") : "",
+        budget: formEl.budget ? String(formEl.budget.value || "") : "",
+        message: formEl.message ? String(formEl.message.value || "").trim() : "",
+        consent: !!(consentEl && consentEl.checked),
+        privacyVersion: privacyEl ? String(privacyEl.value || "").trim() : "",
+        source: sourceEl ? String(sourceEl.value || "contact") : "contact",
+        advisorBrief: briefFieldEl ? String(briefFieldEl.value || "") : "",
+        pagePath: window.location.pathname || "",
+        botField: formEl.elements["bot-field"] ? String(formEl.elements["bot-field"].value || "") : "",
+        idempotencyKey: newIdempotencyKey(),
+      };
     }
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!validateForm()) return;
 
+      /* Client honeypot short-circuit (server also drops honeypot silently). */
       if (form.elements["bot-field"] && form.elements["bot-field"].value) {
         formStatus.className = "form-note success";
         formStatus.textContent = "Thanks — your message has been received.";
         form.reset();
+        clearAdvisorHandoff();
         return;
       }
 
@@ -336,35 +382,59 @@
       formStatus.className = "form-note";
       formStatus.textContent = "Sending your message…";
 
-      fetch("/", {
+      var payload = buildLeadPayload(form);
+
+      fetch("/api/leads", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encodeFormBody(form),
+        headers: {
+          "Content-Type": "application/json",
+          "Idempotency-Key": payload.idempotencyKey,
+        },
+        body: JSON.stringify(payload),
       })
         .then(function (response) {
-          if (!response.ok) throw new Error("Form submission failed");
-          try {
-            sessionStorage.removeItem("scsAdvisorHandoff");
-          } catch (err) {
-            /* ignore */
-          }
+          return response.json().catch(function () {
+            return {};
+          }).then(function (data) {
+            if (!response.ok || !data.ok) {
+              var err = new Error((data && data.message) || "Lead submission failed");
+              err.payload = data;
+              err.status = response.status;
+              throw err;
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          clearAdvisorHandoff();
           form.reset();
           clearErrors();
           formStatus.className = "form-note success";
           formStatus.textContent =
             "Thanks — your message was sent. I will get back to you soon.";
         })
-        .catch(function () {
+        .catch(function (err) {
           formStatus.className = "form-note error";
-          formStatus.textContent =
-            "Something went wrong sending the form. Please email " +
-            FALLBACK_EMAIL +
-            " directly.";
+          if (err && err.payload && err.payload.code === "sensitive_content") {
+            formStatus.textContent = err.payload.message;
+            setFieldError("message", "Sensitive information detected.");
+          } else if (err && err.payload && err.payload.code === "consent_required") {
+            formStatus.textContent = "Please confirm consent before submitting.";
+            setFieldError("consent", "Please confirm we may use this information to respond.");
+          } else if (err && err.payload && err.payload.code === "privacy_version_invalid") {
+            formStatus.textContent = "Please refresh the page and try again (privacy version outdated).";
+          } else {
+            formStatus.textContent =
+              "Something went wrong sending the form. Please email " +
+              FALLBACK_EMAIL +
+              " directly.";
+          }
         })
         .finally(function () {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.removeAttribute("aria-busy");
+            if (consentEl) syncConsentSubmit();
           }
         });
     });
@@ -408,9 +478,7 @@
       if (privacyField && handoff.privacyVersion) privacyField.value = handoff.privacyVersion;
       if (briefField) briefField.value = handoff.brief || "";
       if (form.service && handoff.service) form.service.value = handoff.service;
-      if (form.name && handoff.name) form.name.value = handoff.name;
-      if (form.email && handoff.email) form.email.value = handoff.email;
-      if (form.company && handoff.company) form.company.value = handoff.company;
+      /* Contact PII is not carried in sessionStorage — user enters name/email on this form. */
       if (form.message && handoff.brief) {
         form.message.value = handoff.brief;
       }
@@ -421,11 +489,18 @@
         banner.className = "form-note";
         banner.setAttribute("role", "status");
         banner.textContent =
-          "Prefilled from the Guided Solutions Advisor. Review the brief, confirm consent, then submit. Nothing was sent yet.";
+          "Prefilled from the Guided Solutions Advisor. Review the brief, add your contact details, confirm consent, then submit. Nothing was sent yet.";
         form.insertBefore(banner, form.firstChild);
       }
+      /* Clear temporary handoff once copied into editable form fields. */
+      clearAdvisorHandoff();
     } else if (sourceField) {
       sourceField.value = "contact";
+    }
+
+    /* Contact form requires consent parity with project-request (server enforces). */
+    if (form.consent && form.id === "contact-form" && !form.consent.checked && submitBtn) {
+      submitBtn.disabled = true;
     }
 
     /* Visibly disable submit until consent checked (project-request / contact with consent) */

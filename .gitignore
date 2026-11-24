@@ -16,6 +16,11 @@ SignalCrest Systems pdf downloads/
 pricing-preview.html
 pricing-preview.css
 
+# Local secrets (use .env.example placeholders only — never commit real keys)
+.env
+.env.local
+.env.*.local
+
 # Temp / local artifacts
 netlify-init-output.txt
 netlify-api-data.json

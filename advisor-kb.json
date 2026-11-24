@@ -16,7 +16,7 @@
     "Phase A is rules-based — not a language model",
     "Never request passwords, MFA codes, or recovery keys"
   ],
-  "privacyVersion": "advisor-privacy-2026-11-16",
+  "privacyVersion": "privacy-2026-11-23",
   "handoff": {
     "email": "tom@signalcrestsystems.com",
     "projectRequestPath": "project-request.html",

@@ -1,3 +1,18 @@
 [build]
   command = "node scripts/build-public.mjs"
   publish = "dist"
+  functions = "netlify/functions"
+
+# Same-origin API aliases for secure lead intake (and future /api/advisor).
+[[redirects]]
+  from = "/api/leads"
+  to = "/.netlify/functions/leads"
+  status = 200
+  force = true
+
+# Security headers applied at edge when hosted (local static preview may omit).
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Content-Type-Options = "nosniff"

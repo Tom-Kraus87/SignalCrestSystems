@@ -248,14 +248,13 @@
           id="contact-form"
           name="contact"
           method="POST"
-          action="/"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
+          action="/api/leads"
+          data-lead-endpoint="/api/leads"
           novalidate
         >
           <input type="hidden" name="form-name" value="contact">
           <input type="hidden" name="source" value="contact">
-          <input type="hidden" name="privacy-version" value="advisor-privacy-2026-11-16">
+          <input type="hidden" name="privacy-version" id="privacy-version" value="privacy-2026-11-23">
           <p class="visually-hidden" aria-hidden="true">
             <label for="bot-field">Do not fill this field</label>
             <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off">
@@ -290,8 +289,16 @@
           </div>
           <div class="form-group">
             <label for="message">Message <span class="required-mark" aria-hidden="true">*</span></label>
-            <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project..." aria-required="true"></textarea>
+            <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project..." aria-required="true" aria-describedby="message-sensitive-hint"></textarea>
+            <p class="form-hint" id="message-sensitive-hint">Do not include passwords, MFA codes, recovery keys, API secrets, SSNs, or payment card numbers.</p>
             <p class="field-error" id="message-error" hidden></p>
+          </div>
+          <div class="form-group form-consent">
+            <label class="consent-label" for="consent">
+              <input type="checkbox" id="consent" name="consent" value="yes" required aria-required="true">
+              I agree that Signal Crest Systems LLC may use this information to respond to my request. See the <a href="privacy.html">Privacy</a> page.
+            </label>
+            <p class="field-error" id="consent-error" hidden></p>
           </div>
           <button type="submit" class="btn btn-primary btn-full" id="contact-submit">Send Message</button>
           <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
