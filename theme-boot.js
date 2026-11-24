@@ -10,21 +10,35 @@
     var light = "clean-corporate";
     var themes = {
       "midnight-tech": 1,
-      "clean-corporate": 1,
       "obsidian-black": 1,
       "stealth-carbon": 1,
       "emerald-night": 1,
       "royal-indigo": 1,
+      "industrial-slate": 1,
+      "clean-corporate": 1,
+      "blueprint-studio": 1,
+      "vintage-paper": 1,
+      "swiss-precision": 1,
+      "nordic-frost": 1,
+      "ivory-atelier": 1,
       "neural-future": 1,
-      "holographic": 1,
+      holographic: 1,
       "cyberpunk-2099": 1,
       "cyber-terminal": 1,
+      "liquid-chrome": 1,
+      "aurora-glass": 1,
       "retro-computing": 1,
       "synthwave-sunset": 1,
       "arcade-1995": 1,
-      "blueprint-studio": 1,
-      "industrial-slate": 1,
-      "vintage-paper": 1
+      "y2k-webcore": 1,
+      "terminal-green": 1,
+      "pixel-neon": 1,
+      solarpunk: 1,
+      "biophilic-studio": 1,
+      "neo-brutalist": 1,
+      "art-deco-luxe": 1,
+      "tokyo-neon": 1,
+      "deep-ocean": 1
     };
     var resolved;
     if (!pref || pref === "auto" || !themes[pref]) {

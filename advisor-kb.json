@@ -1,0 +1,231 @@
+{
+  "version": "1.0.0",
+  "businessId": "signal-crest-systems",
+  "locale": "en-US",
+  "advisor": {
+    "publicName": "AI Solutions Advisor",
+    "officialName": "Guided Solutions Advisor",
+    "shortLabel": "Guided Advisor",
+    "usesLanguageModel": false,
+    "phase": "A",
+    "disclosure": "Deterministic guided help — not live conversational AI."
+  },
+  "disclaimers": [
+    "No invented pricing",
+    "No performance guarantees",
+    "Phase A is rules-based — not a language model",
+    "Never request passwords, MFA codes, or recovery keys"
+  ],
+  "privacyVersion": "advisor-privacy-2026-11-16",
+  "handoff": {
+    "email": "tom@signalcrestsystems.com",
+    "projectRequestPath": "project-request.html",
+    "contactPath": "contact.html",
+    "privacyPath": "privacy.html",
+    "contactFormSourceDefault": "contact",
+    "advisorSourceOverride": "advisor"
+  },
+  "formServiceValues": [
+    "package-landing",
+    "package-starter",
+    "package-professional",
+    "package-advanced",
+    "custom-software",
+    "ai-automation",
+    "it-consulting",
+    "cybersecurity",
+    "qa-automation",
+    "care-plan",
+    "local-seo",
+    "other"
+  ],
+  "services": [
+    {
+      "id": "package-landing",
+      "name": "Website: Landing Page",
+      "priceDisplay": "$950",
+      "href": "packages.html#websites"
+    },
+    {
+      "id": "package-starter",
+      "name": "Website: Starter Business",
+      "priceDisplay": "$1,500",
+      "href": "packages.html#websites"
+    },
+    {
+      "id": "package-professional",
+      "name": "Website: Professional",
+      "priceDisplay": "$2,750",
+      "href": "packages.html#websites"
+    },
+    {
+      "id": "package-advanced",
+      "name": "Website: Advanced",
+      "priceDisplay": "from $5,000",
+      "href": "packages.html#websites"
+    },
+    {
+      "id": "custom-software",
+      "name": "Custom Software & Web Applications",
+      "priceDisplay": "Custom quote after discovery",
+      "href": "packages.html#software"
+    },
+    {
+      "id": "ai-automation",
+      "name": "AI Automation & Integrations",
+      "priceDisplay": "Basic automation from $1,500; AI workflow from $5,000; custom agents quoted",
+      "href": "packages.html#automation"
+    },
+    {
+      "id": "it-consulting",
+      "name": "IT Consulting & Support",
+      "priceDisplay": "$110/hour",
+      "href": "packages.html#it"
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity Guidance",
+      "priceDisplay": "Custom quote",
+      "href": "packages.html#security"
+    },
+    {
+      "id": "qa-automation",
+      "name": "Quality Assurance & Software Testing",
+      "priceDisplay": "$90/hour",
+      "href": "packages.html#qa"
+    },
+    {
+      "id": "care-plan",
+      "name": "Website Care Plan",
+      "priceDisplay": "$79 / $149 / $349 per month",
+      "href": "packages.html#care"
+    },
+    {
+      "id": "local-seo",
+      "name": "Local SEO",
+      "priceDisplay": "$475/month",
+      "href": "packages.html#seo"
+    },
+    {
+      "id": "other",
+      "name": "Discovery consultation",
+      "priceDisplay": "Discuss live",
+      "href": "project-request.html"
+    }
+  ],
+  "troubleshooting": {
+    "freeIssueLimit": 3,
+    "topics": [
+      {
+        "id": "wifi",
+        "label": "Wi‑Fi keeps dropping",
+        "serviceHint": "it-consulting",
+        "context": ["os", "device"],
+        "steps": [
+          {
+            "title": "Confirm the basics",
+            "body": "1. Note whether other devices on the same network stay online.\n2. Move closer to the router and retry.\n3. Toggle Wi‑Fi off for 10 seconds, then on again.\n\nTell me what you observe."
+          },
+          {
+            "title": "Restart the path",
+            "body": "1. Restart the device.\n2. Unplug the router/modem for 30 seconds, plug it back in, wait 2 minutes.\n3. Reconnect and test a known site.\n\nDid connectivity stabilize?"
+          },
+          {
+            "title": "Forget and rejoin the network",
+            "body": "On Windows: Settings → Network & internet → Wi‑Fi → Manage known networks → Forget, then reconnect.\nOn macOS: System Settings → Wi‑Fi → Details → Forget This Network, then reconnect.\n\nAvoid sharing the Wi‑Fi password in this chat. Did reconnecting help?"
+          }
+        ],
+        "alternate": "If menus differ, use the Settings search box for “Wi‑Fi” or “Network reset”. Do not factory-reset the router unless you have confirmed a backup of ISP settings and understand you may lose custom configuration.",
+        "escalateWhen": "Office-wide outages, managed networks, or recurring daily drops usually need hands-on IT help."
+      },
+      {
+        "id": "email",
+        "label": "Email client will not open or sync",
+        "serviceHint": "it-consulting",
+        "context": ["os", "app"],
+        "steps": [
+          {
+            "title": "Identify the symptom",
+            "body": "1. Confirm whether the app fails to launch, or launches but will not send/receive.\n2. Note any exact error text (you can paraphrase — do not paste passwords).\n3. Check whether webmail in a browser still works.\n\nWhich of those matches what you see?"
+          },
+          {
+            "title": "Safe restart checks",
+            "body": "1. Fully quit the email app and reopen it.\n2. Restart the device.\n3. Confirm the device clock/date is correct (wrong time breaks secure mail).\n\nDid any of those restore sync?"
+          },
+          {
+            "title": "Account sign-in without sharing secrets",
+            "body": "If the app asks you to sign in again, do that only in the official app or provider site. Never type passwords, MFA codes, or recovery keys into this advisor.\n\nIf webmail works but the desktop app does not, a specialist can review account/profile settings safely."
+          }
+        ],
+        "alternate": "Try the provider’s webmail first. If only one workstation fails, compare with another device before changing server settings.",
+        "escalateWhen": "Business mail for a whole team, shared mailboxes, or MFA lockouts should go to IT Consulting."
+      },
+      {
+        "id": "printer",
+        "label": "Printer shows offline",
+        "serviceHint": "it-consulting",
+        "context": ["os", "device"],
+        "steps": [
+          {
+            "title": "Power and cable path",
+            "body": "1. Confirm the printer is powered on and not in an error/jam state.\n2. Check USB or network cable seating, or Wi‑Fi printer lights.\n3. Print a printer self-test / configuration page if the device supports it.\n\nIs the printer itself healthy?"
+          },
+          {
+            "title": "Queue and default printer",
+            "body": "1. Open the OS printers list and set the correct default printer.\n2. Open the print queue and clear stuck jobs.\n3. Toggle the printer off/on in the OS list, then retry a one-page test.\n\nDid a test page print?"
+          },
+          {
+            "title": "Re-add the printer",
+            "body": "Remove the printer from the OS list, reboot the computer, then add it again from the official OS “Add printer” flow.\n\nDo not disable security software permanently to force a print. If this is a shared office printer, professional setup is usually faster."
+          }
+        ],
+        "alternate": "For network printers, confirm the printer and computer are on the same network/VLAN. Avoid firmware flashes unless the vendor instructs you and you have a rollback plan.",
+        "escalateWhen": "Fleet printers, print servers, or domain-joined environments need IT support."
+      },
+      {
+        "id": "browser",
+        "label": "Browser is slow or pages will not load",
+        "serviceHint": "it-consulting",
+        "context": ["os", "app"],
+        "steps": [
+          {
+            "title": "Separate network from browser",
+            "body": "1. Try a second browser or a private/incognito window.\n2. Try a known simple site (example.com).\n3. Confirm another device on the same network can load sites.\n\nIs the problem only one browser, or every browser?"
+          },
+          {
+            "title": "Clear a safe amount of cache",
+            "body": "Clear cached images/files for the last day or week (not passwords). Then retry the site.\n\nIf extensions are installed, temporarily disable them and retest."
+          },
+          {
+            "title": "Update or reset the browser profile carefully",
+            "body": "Update the browser to the latest stable version. If problems continue, create a fresh browser profile rather than deleting unknown system files.\n\nStop before any “cleaner” tools that claim to wipe the PC."
+          }
+        ],
+        "alternate": "If only one website fails, the issue may be the site or a DNS/filter rule — try another network before changing advanced DNS settings.",
+        "escalateWhen": "Company proxy, content filter, or certificate errors on many PCs → IT / cyber guidance."
+      },
+      {
+        "id": "account-lock",
+        "label": "Account lockout or sign-in loop",
+        "serviceHint": "cybersecurity",
+        "context": ["os", "app"],
+        "steps": [
+          {
+            "title": "Stay out of credential chat",
+            "body": "Do not share passwords, MFA/SMS codes, recovery keys, or backup codes here.\n\n1. Confirm you are on the official sign-in page or app.\n2. Wait a few minutes if you see a lockout timer.\n3. Use the provider’s official account recovery only.\n\nAre you seeing a lockout message, wrong-password loop, or MFA prompt loop?"
+          },
+          {
+            "title": "Official recovery path",
+            "body": "Use the vendor’s “Forgot password” / account recovery on their official site. Prefer a known-good device and network.\n\nIf this is a work account (Microsoft 365, Google Workspace), contact your admin rather than repeatedly guessing."
+          },
+          {
+            "title": "Contain and escalate",
+            "body": "If you suspect phishing or that someone else tried your account: stop entering codes into unexpected prompts, change the password from a safe device after recovery, and request professional review.\n\nSignal Crest can help with cybersecurity guidance — we will never ask for your secrets in this advisor."
+          }
+        ],
+        "alternate": "If the account is business-managed, an admin reset is safer than local workarounds.",
+        "escalateWhen": "Suspected compromise, tenant-wide MFA issues, or privileged admin accounts."
+      }
+    ]
+  }
+}

@@ -3,23 +3,43 @@
   var DEFAULT_DARK = "midnight-tech";
   var DEFAULT_LIGHT = "clean-corporate";
 
+  /* Exactly 30 themes — 5 categories × 6. Preserve existing IDs. */
   var THEMES = {
     "midnight-tech": { name: "Midnight Tech", group: "professional-dark" },
-    "clean-corporate": { name: "Clean Corporate", group: "professional-light" },
     "obsidian-black": { name: "Obsidian Black", group: "professional-dark" },
     "stealth-carbon": { name: "Stealth Carbon", group: "professional-dark" },
     "emerald-night": { name: "Emerald Night", group: "professional-dark" },
     "royal-indigo": { name: "Royal Indigo", group: "professional-dark" },
-    "neural-future": { name: "Neural Future", group: "futuristic" },
-    holographic: { name: "Holographic", group: "futuristic" },
+    "industrial-slate": { name: "Industrial Slate", group: "professional-dark" },
+
+    "clean-corporate": { name: "Clean Corporate", group: "professional-light" },
+    "blueprint-studio": { name: "Blueprint Studio", group: "professional-light" },
+    "vintage-paper": { name: "Vintage Paper", group: "professional-light" },
+    "swiss-precision": { name: "Swiss Precision", group: "professional-light" },
+    "nordic-frost": { name: "Nordic Frost", group: "professional-light" },
+    "ivory-atelier": { name: "Ivory Atelier", group: "professional-light" },
+
+    /* Display label Neutral Future; ID neural-future preserved */
+    "neural-future": { name: "Neutral Future", group: "futuristic" },
+    "holographic": { name: "Holographic", group: "futuristic" },
     "cyberpunk-2099": { name: "Cyberpunk 2099", group: "futuristic" },
     "cyber-terminal": { name: "Cyber Terminal", group: "futuristic" },
+    "liquid-chrome": { name: "Liquid Chrome", group: "futuristic" },
+    "aurora-glass": { name: "Aurora Glass", group: "futuristic" },
+
     "retro-computing": { name: "Retro Computing", group: "retro" },
     "synthwave-sunset": { name: "Synthwave Sunset", group: "retro" },
     "arcade-1995": { name: "Arcade 1995", group: "retro" },
-    "blueprint-studio": { name: "Blueprint Studio", group: "professional-light" },
-    "industrial-slate": { name: "Industrial Slate", group: "professional-dark" },
-    "vintage-paper": { name: "Vintage Paper", group: "professional-light" }
+    "y2k-webcore": { name: "Y2K Webcore", group: "retro" },
+    "terminal-green": { name: "Terminal Green", group: "retro" },
+    "pixel-neon": { name: "Pixel Neon", group: "retro" },
+
+    "solarpunk": { name: "Solarpunk", group: "creative" },
+    "biophilic-studio": { name: "Biophilic Studio", group: "creative" },
+    "neo-brutalist": { name: "Neo Brutalist", group: "creative" },
+    "art-deco-luxe": { name: "Art Deco Luxe", group: "creative" },
+    "tokyo-neon": { name: "Tokyo Neon", group: "creative" },
+    "deep-ocean": { name: "Deep Ocean", group: "creative" }
   };
 
   function systemPrefersLight() {

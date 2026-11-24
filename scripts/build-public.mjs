@@ -54,15 +54,33 @@ const ALLOWED_FILES = [
   "resources.html",
   "services.html",
   "work.html",
+  "showroom.html",
+  "project-request.html",
+  "privacy.html",
+  "advisor.html",
   "404.html",
+  // Transformation Studio (Stone Harbor) stays in the working tree for private
+  // local pilot review only — intentionally omitted from the public allowlist.
   // CSS / JS
   "styles.css",
   "themes.css",
   "theme.js",
   "theme-boot.js",
   "script.js",
+  "hero-systems.css",
+  "hero-systems.js",
+  "workflow-demos.js",
+  "home.css",
+  "home.js",
   "ai-automation.css",
   "packages-pricing.css",
+  "showroom.css",
+  "showroom.js",
+  "showroom/home-services.js",
+  "showroom/ecommerce.js",
+  "advisor.css",
+  "advisor.js",
+  "advisor-kb.json",
   // Netlify publish conventions (copied into dist/)
   "_headers",
   // Images
@@ -110,9 +128,13 @@ const SEO_HTML_PAGES = {
   "ai-automation.html": "/ai-automation.html",
   "about.html": "/about.html",
   "work.html": "/work.html",
+  "showroom.html": "/showroom.html",
   "case-studies.html": "/case-studies.html",
   "qa-process.html": "/qa-process.html",
   "resources.html": "/resources.html",
+  "project-request.html": "/project-request.html",
+  "privacy.html": "/privacy.html",
+  "advisor.html": "/advisor.html",
 };
 
 const SITEMAP_PATHS = Object.values(SEO_HTML_PAGES);
@@ -124,6 +146,7 @@ const ALLOWED_EXTENSIONS = new Set([
   ".html",
   ".css",
   ".js",
+  ".json",
   ".jpg",
   ".jpeg",
   ".png",
@@ -160,6 +183,7 @@ const FORBIDDEN_PREFIXES = [
   "node_modules",
   "site",
   "dist",
+  "transformation-studio",
   "Fiverr Account info",
   "SignalCrest Systems Growth Engine",
   "SignalCrest Systems pdf downloads",
@@ -655,13 +679,31 @@ function assertSafeDistLocation() {
   }
 }
 
+function emptyDirContents(dirAbs) {
+  for (const name of fs.readdirSync(dirAbs)) {
+    fs.rmSync(path.join(dirAbs, name), { recursive: true, force: true });
+  }
+}
+
 function ensureCleanDist() {
   assertSafeDistLocation();
 
   if (fs.existsSync(DIST_LOGICAL)) {
-    fs.rmSync(DIST_LOGICAL, { recursive: true, force: false });
+    try {
+      fs.rmSync(DIST_LOGICAL, { recursive: true, force: false });
+    } catch (err) {
+      // Windows/OneDrive can lock the dist directory handle even when contents
+      // are deletable. Fall back to emptying in place, then recreate if needed.
+      if (err && (err.code === "EBUSY" || err.code === "EPERM")) {
+        emptyDirContents(DIST_LOGICAL);
+      } else {
+        throw err;
+      }
+    }
   }
-  fs.mkdirSync(DIST_LOGICAL, { recursive: false });
+  if (!fs.existsSync(DIST_LOGICAL)) {
+    fs.mkdirSync(DIST_LOGICAL, { recursive: false });
+  }
 
   // Re-validate after creation.
   assertNoSymlinkComponentsUnderRoot(DIST_LOGICAL, "dist/ (post-create)", { rejectLeafSymlink: true });

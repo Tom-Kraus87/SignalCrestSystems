@@ -2,7 +2,7 @@
   const navToggle = document.querySelector(".nav-toggle");
   const siteNav = document.querySelector(".site-nav");
   const header = document.querySelector(".site-header");
-  const form = document.getElementById("contact-form");
+  const form = document.getElementById("contact-form") || document.getElementById("project-request-form");
   const formStatus = document.getElementById("form-status");
   const yearEl = document.getElementById("year");
 
@@ -80,19 +80,27 @@
     }
   }
 
+  function pageMatchesHref(href) {
+    if (!href) return false;
+    var clean = href.split("#")[0].split("?")[0];
+    if (clean.charAt(0) === "/") clean = clean.slice(1);
+    if (!clean || clean === "./") clean = "index.html";
+    return clean === currentPage || (currentPage === "index.html" && (clean === "" || clean === "./" || clean === "index.html"));
+  }
+
   if (siteNav) {
     var navLinks = siteNav.querySelectorAll("a");
     navLinks.forEach(function (link) {
       var href = link.getAttribute("href");
-      if (href === currentPage || (currentPage === "index.html" && href === "./")) {
+      if (pageMatchesHref(href) || href === currentPage || (currentPage === "index.html" && href === "./")) {
         link.classList.add("is-active");
-        if (link.closest(".nav-more-panel") && moreDetails) {
+        if ((link.closest(".nav-more-panel") || link.closest(".nav-explorer-panel")) && moreDetails) {
           moreDetails.classList.add("is-active");
           var summary = moreDetails.querySelector(".nav-more-toggle");
           if (summary) summary.classList.add("is-active");
         }
-        if (href === "case-studies.html") {
-          var workLink = siteNav.querySelector('a[href="work.html"]');
+        if (href === "case-studies.html" || href === "/case-studies.html") {
+          var workLink = siteNav.querySelector('a[href="work.html"], a[href="/work.html"]');
           if (workLink) workLink.classList.add("is-active");
         }
       }
@@ -100,6 +108,13 @@
         closeMore(false);
         closeNav(true);
       });
+    });
+  }
+
+  var explorerClose = moreDetails && moreDetails.querySelector(".nav-explorer-close");
+  if (explorerClose) {
+    explorerClose.addEventListener("click", function () {
+      closeMore(true);
     });
   }
 
@@ -183,10 +198,17 @@
   // Initial: closed mobile drawer must not expose links to Tab
   syncNavForViewport();
 
+  function syncExplorerAria() {
+    if (!moreDetails) return;
+    var summary = moreDetails.querySelector(".nav-more-toggle, summary");
+    if (summary) summary.setAttribute("aria-expanded", moreDetails.open ? "true" : "false");
+  }
   if (moreDetails) {
+    syncExplorerAria();
+    moreDetails.addEventListener("toggle", syncExplorerAria);
     document.addEventListener("click", function (e) {
       if (!moreDetails.open) return;
-      if (e.target.closest(".nav-more")) return;
+      if (e.target.closest(".nav-more") || e.target.closest(".nav-explorer-panel")) return;
       closeMore(false);
     });
   }
@@ -215,7 +237,7 @@
   }
 
   if (form && formStatus) {
-    var submitBtn = document.getElementById("contact-submit");
+    var submitBtn = document.getElementById("contact-submit") || document.getElementById("project-request-submit");
     var FALLBACK_EMAIL = "tom@signalcrestsystems.com";
 
     function setFieldError(fieldName, message) {
@@ -240,7 +262,7 @@
     }
 
     function clearErrors() {
-      ["name", "email", "message"].forEach(function (name) {
+      ["name", "email", "message", "consent"].forEach(function (name) {
         setFieldError(name, "");
       });
       formStatus.className = "form-note";
@@ -272,6 +294,10 @@
       if (!message) {
         setFieldError("message", "Please enter a message.");
         firstInvalid = firstInvalid || form.message;
+      }
+      if (form.consent && !form.consent.checked) {
+        setFieldError("consent", "Please confirm we may use this information to respond.");
+        firstInvalid = firstInvalid || form.consent;
       }
 
       if (firstInvalid) {
@@ -317,6 +343,11 @@
       })
         .then(function (response) {
           if (!response.ok) throw new Error("Form submission failed");
+          try {
+            sessionStorage.removeItem("scsAdvisorHandoff");
+          } catch (err) {
+            /* ignore */
+          }
           form.reset();
           clearErrors();
           formStatus.className = "form-note success";
@@ -342,6 +373,85 @@
     var preselect = params.get("service");
     if (preselect && form.service) {
       form.service.value = preselect;
+    }
+
+    /* Advisor handoff → project-request (R3.2 safe source attribution) */
+    var sourceField = form.elements["source"] || document.getElementById("request-source");
+    var privacyField = form.elements["privacy-version"] || document.getElementById("privacy-version");
+    var briefField = form.elements["advisor-brief"] || document.getElementById("advisor-brief");
+    var HANDOFF_KEY = "scsAdvisorHandoff";
+
+    function readAdvisorHandoff() {
+      try {
+        var raw = sessionStorage.getItem(HANDOFF_KEY);
+        if (!raw) return null;
+        var data = JSON.parse(raw);
+        if (!data || !data.flag) return null;
+        return data;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function clearAdvisorHandoff() {
+      try {
+        sessionStorage.removeItem(HANDOFF_KEY);
+      } catch (err) {
+        /* ignore */
+      }
+    }
+
+    var handoff = readAdvisorHandoff();
+    var wantsAdvisorSource = params.get("source") === "advisor";
+    if (handoff && wantsAdvisorSource) {
+      if (sourceField) sourceField.value = "advisor";
+      if (privacyField && handoff.privacyVersion) privacyField.value = handoff.privacyVersion;
+      if (briefField) briefField.value = handoff.brief || "";
+      if (form.service && handoff.service) form.service.value = handoff.service;
+      if (form.name && handoff.name) form.name.value = handoff.name;
+      if (form.email && handoff.email) form.email.value = handoff.email;
+      if (form.company && handoff.company) form.company.value = handoff.company;
+      if (form.message && handoff.brief) {
+        form.message.value = handoff.brief;
+      }
+      var banner = document.getElementById("advisor-handoff-note");
+      if (!banner) {
+        banner = document.createElement("p");
+        banner.id = "advisor-handoff-note";
+        banner.className = "form-note";
+        banner.setAttribute("role", "status");
+        banner.textContent =
+          "Prefilled from the Guided Solutions Advisor. Review the brief, confirm consent, then submit. Nothing was sent yet.";
+        form.insertBefore(banner, form.firstChild);
+      }
+    } else if (sourceField) {
+      sourceField.value = "contact";
+    }
+
+    /* Visibly disable submit until consent checked (project-request / contact with consent) */
+    var consentEl = form.consent;
+    if (consentEl && submitBtn) {
+      function syncConsentSubmit() {
+        if (consentEl.checked) {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("is-disabled");
+          submitBtn.removeAttribute("aria-disabled");
+        } else {
+          submitBtn.disabled = true;
+          submitBtn.classList.add("is-disabled");
+          submitBtn.setAttribute("aria-disabled", "true");
+        }
+      }
+      consentEl.addEventListener("change", syncConsentSubmit);
+      syncConsentSubmit();
+      form.addEventListener("reset", function () {
+        setTimeout(function () {
+          if (sourceField) sourceField.value = "contact";
+          if (briefField) briefField.value = "";
+          clearAdvisorHandoff();
+          syncConsentSubmit();
+        }, 0);
+      });
     }
   }
 

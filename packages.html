@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@500;600;700&family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@500;600;700&family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@500;600;700;800&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="packages-pricing.css">
@@ -28,10 +28,10 @@
 
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" aria-label="Signal Crest Systems LLC home">
         <img class="logo-mark" src="assets/logo-shield.png" alt="" width="50" height="50" decoding="async" aria-hidden="true">
         <span class="logo-text">
-          <span class="logo-line">Signal <span class="logo-accent">Crest</span></span>
+          <span class="logo-line">Signal Crest</span>
           <span class="logo-suffix">Systems LLC</span>
         </span>
       </a>
@@ -44,7 +44,7 @@
           <p class="theme-picker-heading">Appearance</p>
           <p class="theme-picker-live visually-hidden" aria-live="polite">Theme: Auto</p>
           <button type="button" class="theme-picker-auto" data-theme-choice="auto" aria-pressed="true">Auto (system)</button>
-          <div class="theme-group">
+                    <div class="theme-group">
             <p class="theme-group-title">Professional Dark</p>
             <ul class="theme-option-list">
               <li><button type="button" class="theme-option" data-theme-id="midnight-tech" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Midnight Tech</button></li>
@@ -61,15 +61,20 @@
               <li><button type="button" class="theme-option" data-theme-id="clean-corporate" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Clean Corporate</button></li>
               <li><button type="button" class="theme-option" data-theme-id="blueprint-studio" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Blueprint Studio</button></li>
               <li><button type="button" class="theme-option" data-theme-id="vintage-paper" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Vintage Paper</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="swiss-precision" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Swiss Precision</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="nordic-frost" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Nordic Frost</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="ivory-atelier" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Ivory Atelier</button></li>
             </ul>
           </div>
           <div class="theme-group">
             <p class="theme-group-title">Futuristic</p>
             <ul class="theme-option-list">
-              <li><button type="button" class="theme-option" data-theme-id="neural-future" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Neural Future</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="neural-future" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Neutral Future</button></li>
               <li><button type="button" class="theme-option" data-theme-id="holographic" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Holographic</button></li>
               <li><button type="button" class="theme-option" data-theme-id="cyberpunk-2099" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Cyberpunk 2099</button></li>
               <li><button type="button" class="theme-option" data-theme-id="cyber-terminal" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Cyber Terminal</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="liquid-chrome" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Liquid Chrome</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="aurora-glass" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Aurora Glass</button></li>
             </ul>
           </div>
           <div class="theme-group">
@@ -78,6 +83,20 @@
               <li><button type="button" class="theme-option" data-theme-id="retro-computing" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Retro Computing</button></li>
               <li><button type="button" class="theme-option" data-theme-id="synthwave-sunset" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Synthwave Sunset</button></li>
               <li><button type="button" class="theme-option" data-theme-id="arcade-1995" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Arcade 1995</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="y2k-webcore" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Y2K Webcore</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="terminal-green" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Terminal Green</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="pixel-neon" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Pixel Neon</button></li>
+            </ul>
+          </div>
+          <div class="theme-group">
+            <p class="theme-group-title">Creative &amp; Experimental</p>
+            <ul class="theme-option-list">
+              <li><button type="button" class="theme-option" data-theme-id="solarpunk" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Solarpunk</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="biophilic-studio" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Biophilic Studio</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="neo-brutalist" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Neo Brutalist</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="art-deco-luxe" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Art Deco Luxe</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="tokyo-neon" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Tokyo Neon</button></li>
+              <li><button type="button" class="theme-option" data-theme-id="deep-ocean" aria-pressed="false"><span class="theme-option-dot" aria-hidden="true"></span>Deep Ocean</button></li>
             </ul>
           </div>
         </div>
@@ -87,25 +106,107 @@
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-            <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+                  <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="packages.html" class="is-active">Pricing</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="about.html">About</a></li>
-                    <li class="nav-more">
-            <details class="nav-more-details">
-              <summary class="nav-more-toggle">More</summary>
-              <ul class="nav-more-panel">
-                <li><a href="ai-automation.html">AI Automation</a></li>
-                <li><a href="case-studies.html">Case Studies</a></li>
-                <li><a href="qa-process.html">QA Process</a></li>
-                <li><a href="resources.html">Resources</a></li>
-              </ul>
+          <li class="nav-more nav-solutions">
+            <details class="nav-more-details nav-explorer">
+              <summary class="nav-more-toggle" aria-haspopup="true" aria-controls="nav-explorer-panel">Solutions</summary>
+              <div class="nav-explorer-panel" id="nav-explorer-panel" role="region" aria-label="Solutions Explorer">
+                <div class="nav-explorer-toolbar">
+                  <p class="nav-explorer-title">Solutions Explorer</p>
+                  <button type="button" class="nav-explorer-close" aria-label="Close Solutions menu">Close</button>
+                </div>
+                <div class="nav-explorer-grid">
+                  <section class="nav-explorer-cat" aria-labelledby="nav-cat-web">
+                    <div class="nav-explorer-cat-head">
+                      <span class="nav-explorer-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 20h8"/></svg>
+                      </span>
+                      <div>
+                        <h2 class="nav-explorer-cat-title" id="nav-cat-web">Websites &amp; Modernization</h2>
+                        <p class="nav-explorer-cat-desc">Modern sites, upgrades, and conversion-focused builds.</p>
+                      </div>
+                    </div>
+                    <ul class="nav-explorer-links">
+                      <li><a href="services.html">Website design &amp; development</a></li>
+                      <li><a href="packages.html#websites">Website packages</a></li>
+                      <li><a href="case-studies.html">Modernization case studies</a></li>
+                      <li><a href="work.html#concept-demos">Concept demos</a></li>
+                      <li><a href="showroom.html">Interactive showroom</a></li>
+                    </ul>
+                  </section>
+                  <section class="nav-explorer-cat" aria-labelledby="nav-cat-software">
+                    <div class="nav-explorer-cat-head">
+                      <span class="nav-explorer-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M12 9l-1.5 6"/></svg>
+                      </span>
+                      <div>
+                        <h2 class="nav-explorer-cat-title" id="nav-cat-software">Custom Software</h2>
+                        <p class="nav-explorer-cat-desc">Portals, internal tools, and SaaS-style applications.</p>
+                      </div>
+                    </div>
+                    <ul class="nav-explorer-links">
+                      <li><a href="services.html#software">Custom software &amp; SaaS</a></li>
+                      <li><a href="packages.html#software">Software project pricing</a></li>
+                      <li><a href="showroom.html">Workflow concept demos</a></li>
+                      <li><a href="project-request.html">Start a software project</a></li>
+                    </ul>
+                  </section>
+                  <section class="nav-explorer-cat" aria-labelledby="nav-cat-ai">
+                    <div class="nav-explorer-cat-head">
+                      <span class="nav-explorer-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="7" r="1.6"/><circle cx="19" cy="7" r="1.6"/><circle cx="5" cy="17" r="1.6"/><circle cx="19" cy="17" r="1.6"/><path d="M6.4 8.2l3.2 2.4M17.6 8.2l-3.2 2.4M6.4 15.8l3.2-2.4M17.6 15.8l-3.2-2.4"/></svg>
+                      </span>
+                      <div>
+                        <h2 class="nav-explorer-cat-title" id="nav-cat-ai">AI &amp; Automation</h2>
+                        <p class="nav-explorer-cat-desc">Agents, integrations, and reviewable workflow automation.</p>
+                      </div>
+                    </div>
+                    <ul class="nav-explorer-links">
+                      <li><a href="ai-automation.html">AI engineering &amp; agents</a></li>
+                      <li><a href="ai-automation.html#process">Business process automation</a></li>
+                      <li><a href="packages.html#automation">Automation pricing</a></li>
+                      <li><a href="project-request.html">Request an automation quote</a></li>
+                    </ul>
+                  </section>
+                  <section class="nav-explorer-cat" aria-labelledby="nav-cat-it">
+                    <div class="nav-explorer-cat-head">
+                      <span class="nav-explorer-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+                      </span>
+                      <div>
+                        <h2 class="nav-explorer-cat-title" id="nav-cat-it">IT &amp; Digital Care</h2>
+                        <p class="nav-explorer-cat-desc">Support, security guidance, care plans, and QA.</p>
+                      </div>
+                    </div>
+                    <ul class="nav-explorer-links">
+                      <li><a href="packages.html#it">IT consulting</a></li>
+                      <li><a href="packages.html#security">Cyber guidance</a></li>
+                      <li><a href="packages.html#care">Website care plans</a></li>
+                      <li><a href="qa-process.html">QA testing</a></li>
+                      <li><a href="packages.html#seo">Local SEO</a></li>
+                    </ul>
+                  </section>
+                </div>
+                <p class="nav-explorer-footer">
+                  <a href="project-request.html">Start a Project</a>
+                  <span aria-hidden="true">·</span>
+                  <a href="advisor.html">Guided Advisor</a>
+                  <span aria-hidden="true">·</span>
+                  <a href="contact.html">Contact</a>
+                  <span aria-hidden="true">·</span>
+                  <a href="packages.html">All pricing</a>
+                </p>
+              </div>
             </details>
           </li>
-          <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+          <li><a href="index.html#product-lab">Product Lab</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="packages.html" class="is-active">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="advisor.html">Guided Advisor</a></li>
+          <li><a href="project-request.html" class="nav-cta">Start a Project</a></li>
         </ul>
       </nav>
     </div>
@@ -152,7 +253,7 @@
         <header class="section-header">
           <p class="eyebrow">Website Development</p>
           <h2 id="websites-heading">Website packages</h2>
-          <p>Every package includes mobile-responsive design, basic on-page SEO setup, and launch on your own domain. Before launch, we check links, forms, mobile layouts, and the major browsers.</p>
+          <p>Every package includes mobile-responsive design, basic on-page SEO setup, and launch on your own domain. Before launch, we check links, forms, mobile layouts, and the major browsers. Interactive concept demos (fictional Evergreen Landscaping) are available on Starter, Professional, and Advanced — the same demos appear on <a href="work.html#concept-demos">Work</a>.</p>
         </header>
 
         <div class="pp-web-grid">
@@ -177,6 +278,16 @@
               <h3 class="pp-card-title" id="pkg-starter">Starter Business Website</h3>
               <p class="package-tagline">A professional presence for a new or small business.</p>
             </div>
+            <figure class="pp-demo-preview">
+              <img
+                src="assets/concept-preview-starter.png"
+                alt="Screenshot of the fictional Evergreen Landscaping starter demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
             <p class="package-price"><span class="pp-tag pp-tag-fixed">Fixed price</span><span class="price-amount">$1,500</span></p>
             <ul class="package-features">
               <li>Up to 5 pages</li>
@@ -198,6 +309,16 @@
               <h3 class="pp-card-title" id="pkg-pro">Professional Website</h3>
               <p class="package-tagline">Built to earn trust and generate leads.</p>
             </div>
+            <figure class="pp-demo-preview">
+              <img
+                src="assets/concept-preview-professional.png"
+                alt="Screenshot of the fictional Evergreen Landscaping professional demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
             <p class="package-price"><span class="pp-tag pp-tag-fixed">Fixed price</span><span class="price-amount">$2,750</span></p>
             <ul class="package-features">
               <li>Up to 10 pages with a custom layout</li>
@@ -218,6 +339,16 @@
               <h3 class="pp-card-title" id="pkg-advanced">Advanced Website</h3>
               <p class="package-tagline">Larger sites, redesigns, and custom features.</p>
             </div>
+            <figure class="pp-demo-preview">
+              <img
+                src="assets/concept-preview-advanced.png"
+                alt="Screenshot of the fictional Evergreen Landscaping advanced demo layout"
+                width="640"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
             <p class="package-price"><span class="pp-tag pp-tag-from">Starting at</span><span class="price-amount">$5,000</span></p>
             <ul class="package-features">
               <li>Discovery session and a written, individually quoted scope</li>
@@ -610,7 +741,7 @@
         <h2 id="cta-heading">Not sure which option fits?</h2>
         <p>Tell us what you need. We'll recommend the right package or service, with a written scope and price before any work begins.</p>
         <div class="cta-band-actions">
-          <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+          <a href="project-request.html" class="btn btn-primary">Start a Project</a>
           <a href="services.html" class="btn btn-secondary">View Services</a>
         </div>
       </div>
@@ -622,17 +753,20 @@
       <a href="index.html" class="logo logo-footer" aria-label="Signal Crest Systems LLC home">
         <img class="brand-banner" src="assets/logo-banner.png" alt="Signal Crest Systems LLC" width="260" height="87" decoding="async">
       </a>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="packages.html">Pricing</a>
+            <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="services.html">Solutions</a>
+        <a href="index.html#product-lab">Product Lab</a>
         <a href="work.html">Work</a>
+        <a href="packages.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="ai-automation.html">AI Automation</a>
         <a href="case-studies.html">Case Studies</a>
         <a href="qa-process.html">QA Process</a>
         <a href="resources.html">Resources</a>
+        <a href="advisor.html">Guided Advisor</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:tom@signalcrestsystems.com">Email</a>
       </nav>
       <p class="footer-copy">&copy; <span id="year"></span> Signal Crest Systems LLC. All rights reserved.</p>
     </div>

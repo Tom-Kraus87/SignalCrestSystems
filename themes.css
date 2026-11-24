@@ -174,7 +174,7 @@
   --accent-border-strong: rgba(167, 139, 250, 0.48);
 }
 
-/* ——— Neural Future ——— */
+/* ——— Neutral Future (id: neural-future preserved) ——— */
 [data-theme="neural-future"] {
   --color-bg: #070b14;
   --color-bg-elevated: #0d1524;
@@ -338,12 +338,49 @@
   --accent-border-strong: rgba(255, 61, 129, 0.5);
 }
 
+/*
+  Press Start 2P is extremely wide. Homepage hero uses .hs-hero h1 (Connected Systems);
+  keep overrides here — do not edit hero-systems.css.
+*/
 [data-theme="arcade-1995"] h1,
-[data-theme="arcade-1995"] .hero h1 {
+[data-theme="arcade-1995"] .hero h1,
+[data-theme="arcade-1995"] .hero.hero-home h1,
+[data-theme="arcade-1995"] .hs-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  font-size: clamp(0.7rem, 0.52rem + 1.2vw, 1.05rem) !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.01em;
+  max-width: min(100%, 36rem);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+[data-theme="arcade-1995"] .hs-hero .hs-lead,
+[data-theme="arcade-1995"] .hero-tagline,
+[data-theme="arcade-1995"] .hero-home .hero-tagline {
+  font-size: clamp(0.7rem, 0.6rem + 0.55vw, 0.95rem);
+  line-height: 1.45;
+  max-width: min(100%, 34rem);
+  overflow-wrap: anywhere;
+}
+
+[data-theme="arcade-1995"] .hero-brand,
+[data-theme="arcade-1995"] .hero-home .hero-brand,
+[data-theme="arcade-1995"] .hs-eyebrow {
+  font-size: clamp(0.65rem, 0.5rem + 0.8vw, 0.85rem);
   line-height: 1.5;
-  letter-spacing: 0.02em;
+  max-width: min(100%, 28ch);
+  overflow-wrap: anywhere;
+}
+
+[data-theme="arcade-1995"] .hs-line-accent,
+[data-theme="pixel-neon"] .hs-line-accent {
+  /* Avoid transparent clipped gradient text with pixel fonts (overflow + a11y) */
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: var(--color-accent) !important;
 }
 
 /* ——— Blueprint Studio (light) ——— */
@@ -427,6 +464,408 @@
   --trail-blue: rgba(139, 69, 19, 0.18);
   --trail-gold: rgba(180, 120, 40, 0.16);
   --service-icon: #8b4513;
+}
+
+/* ——— Swiss Precision (light) ——— */
+[data-theme="swiss-precision"] {
+  --color-bg: #f7f7f5;
+  --color-bg-elevated: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(20, 20, 20, 0.12);
+  --color-text: #141414;
+  --color-text-muted: #5a5a5a;
+  --color-accent: #b80500;
+  --color-accent-hover: #8f0400;
+  --color-accent-soft: rgba(184, 5, 0, 0.1);
+  --color-on-accent: #ffffff;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --font-serif: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --shadow: 0 2px 16px rgba(20, 20, 20, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 94%, transparent);
+  --logo-mark-end: #b80500;
+  --hero-glow: rgba(20, 20, 20, 0.06);
+  --accent-border: rgba(225, 6, 0, 0.28);
+  --accent-border-strong: rgba(225, 6, 0, 0.45);
+  --trail-blue: rgba(20, 20, 20, 0.14);
+  --trail-gold: rgba(184, 5, 0, 0.18);
+  --service-icon: #b80500;
+}
+
+/* ——— Nordic Frost (light) ——— */
+[data-theme="nordic-frost"] {
+  --color-bg: #eef3f6;
+  --color-bg-elevated: #f8fafb;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(70, 100, 120, 0.14);
+  --color-text: #1a2b36;
+  --color-text-muted: #3f5666;
+  --color-accent: #2f6485;
+  --color-accent-hover: #244e68;
+  --color-accent-soft: rgba(61, 126, 166, 0.12);
+  --color-on-accent: #ffffff;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --shadow: 0 4px 22px rgba(26, 43, 54, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #244e68;
+  --hero-glow: rgba(47, 100, 133, 0.1);
+  --accent-border: rgba(47, 100, 133, 0.28);
+  --accent-border-strong: rgba(47, 100, 133, 0.42);
+  --trail-blue: rgba(47, 100, 133, 0.2);
+  --trail-gold: rgba(140, 170, 190, 0.2);
+  --service-icon: #2f6485;
+}
+
+/* ——— Ivory Atelier (light) ——— */
+[data-theme="ivory-atelier"] {
+  --color-bg: #f6f1e8;
+  --color-bg-elevated: #fbf7f0;
+  --color-bg-card: #fffdf8;
+  --color-border: rgba(90, 70, 50, 0.14);
+  --color-text: #2c241c;
+  --color-text-muted: #4a3d32;
+  --color-accent: #7a4f28;
+  --color-accent-hover: #5f3c1e;
+  --color-accent-soft: rgba(122, 79, 40, 0.12);
+  --color-on-accent: #fffaf2;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Cormorant Garamond", "Libre Baskerville", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --shadow: 0 4px 20px rgba(44, 36, 28, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #5f3c1e;
+  --hero-glow: rgba(122, 79, 40, 0.1);
+  --accent-border: rgba(122, 79, 40, 0.28);
+  --accent-border-strong: rgba(122, 79, 40, 0.42);
+  --trail-blue: rgba(120, 100, 80, 0.16);
+  --trail-gold: rgba(122, 79, 40, 0.2);
+  --service-icon: #7a4f28;
+}
+
+/* ——— Liquid Chrome ——— */
+[data-theme="liquid-chrome"] {
+  --color-bg: #0c0e12;
+  --color-bg-elevated: #161a22;
+  --color-bg-card: #1e2430;
+  --color-border: rgba(190, 200, 215, 0.2);
+  --color-text: #eef2f7;
+  --color-text-muted: #9aa6b8;
+  --color-accent: #c5d0de;
+  --color-accent-hover: #e8eef6;
+  --color-accent-soft: rgba(197, 208, 222, 0.14);
+  --color-on-accent: #0c0e12;
+  --font-sans: "Orbitron", "Rajdhani", system-ui, sans-serif;
+  --font-serif: "Orbitron", system-ui, sans-serif;
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --logo-mark-end: #8a96a8;
+  --hero-glow: rgba(197, 208, 222, 0.14);
+  --accent-border: rgba(197, 208, 222, 0.32);
+  --accent-border-strong: rgba(232, 238, 246, 0.45);
+  --shadow: 0 0 28px rgba(160, 175, 195, 0.12);
+  --effect-grid: linear-gradient(rgba(197, 208, 222, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 208, 222, 0.04) 1px, transparent 1px);
+}
+
+/* ——— Aurora Glass ——— */
+[data-theme="aurora-glass"] {
+  --color-bg: #071018;
+  --color-bg-elevated: #0d1c28;
+  --color-bg-card: #122636;
+  --color-border: rgba(94, 234, 212, 0.18);
+  --color-text: #e8fbff;
+  --color-text-muted: #7eabba;
+  --color-accent: #5eead4;
+  --color-accent-hover: #a78bfa;
+  --color-accent-soft: rgba(94, 234, 212, 0.14);
+  --color-on-accent: #042f2e;
+  --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #67e8f9;
+  --hero-glow: rgba(167, 139, 250, 0.18);
+  --accent-border: rgba(94, 234, 212, 0.32);
+  --accent-border-strong: rgba(167, 139, 250, 0.42);
+  --trail-blue: rgba(94, 234, 212, 0.28);
+  --trail-gold: rgba(167, 139, 250, 0.28);
+}
+
+/* ——— Y2K Webcore ——— */
+[data-theme="y2k-webcore"] {
+  --color-bg: #1a0533;
+  --color-bg-elevated: #2a0a4e;
+  --color-bg-card: #3a1068;
+  --color-border: rgba(0, 255, 204, 0.28);
+  --color-text: #f5e9ff;
+  --color-text-muted: #c4a4e8;
+  --color-accent: #00ffcc;
+  --color-accent-hover: #ff66cc;
+  --color-accent-soft: rgba(0, 255, 204, 0.14);
+  --color-on-accent: #140028;
+  --font-sans: "VT323", "Share Tech Mono", monospace;
+  --font-serif: "VT323", monospace;
+  --font-display: "VT323", monospace;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --logo-mark-end: #ff66cc;
+  --hero-glow: rgba(0, 255, 204, 0.16);
+  --accent-border: rgba(0, 255, 204, 0.4);
+  --accent-border-strong: rgba(255, 102, 204, 0.5);
+  --shadow: 0 0 24px rgba(255, 102, 204, 0.18);
+}
+
+/* ——— Terminal Green ——— */
+[data-theme="terminal-green"] {
+  --color-bg: #001400;
+  --color-bg-elevated: #032003;
+  --color-bg-card: #063006;
+  --color-border: rgba(51, 255, 51, 0.22);
+  --color-text: #b8ffb8;
+  --color-text-muted: #5aad5a;
+  --color-accent: #33ff33;
+  --color-accent-hover: #99ff99;
+  --color-accent-soft: rgba(51, 255, 51, 0.12);
+  --color-on-accent: #001400;
+  --font-sans: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "IBM Plex Mono", monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --logo-mark-end: #1aaa1a;
+  --hero-glow: rgba(51, 255, 51, 0.1);
+  --accent-border: rgba(51, 255, 51, 0.35);
+  --accent-border-strong: rgba(51, 255, 51, 0.55);
+  --effect-scanline: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.22) 2px,
+    rgba(0, 0, 0, 0.22) 4px
+  );
+}
+
+/* ——— Pixel Neon ——— */
+[data-theme="pixel-neon"] {
+  --color-bg: #0a0014;
+  --color-bg-elevated: #140028;
+  --color-bg-card: #1e003c;
+  --color-border: rgba(255, 0, 170, 0.28);
+  --color-text: #ffe8ff;
+  --color-text-muted: #c090c8;
+  --color-accent: #ff00aa;
+  --color-accent-hover: #39ff14;
+  --color-accent-soft: rgba(255, 0, 170, 0.16);
+  --color-on-accent: #1a0010;
+  /* Body uses mono; Press Start only on display/hero to avoid H-overflow */
+  --font-sans: "Share Tech Mono", "IBM Plex Mono", monospace;
+  --font-serif: "Share Tech Mono", monospace;
+  --font-display: "Press Start 2P", monospace;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --logo-mark-end: #39ff14;
+  --hero-glow: rgba(255, 0, 170, 0.18);
+  --accent-border: rgba(255, 0, 170, 0.4);
+  --accent-border-strong: rgba(57, 255, 20, 0.5);
+}
+
+[data-theme="pixel-neon"] h1,
+[data-theme="pixel-neon"] .hero h1,
+[data-theme="pixel-neon"] .hero.hero-home h1,
+[data-theme="pixel-neon"] .hs-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(0.68rem, 0.5rem + 1.15vw, 1rem) !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.01em;
+  max-width: min(100%, 36rem);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+[data-theme="pixel-neon"] .hero-brand,
+[data-theme="pixel-neon"] .hero-home .hero-brand,
+[data-theme="pixel-neon"] .hs-eyebrow {
+  font-size: clamp(0.62rem, 0.48rem + 0.8vw, 0.85rem);
+  line-height: 1.5;
+  max-width: min(100%, 28ch);
+  overflow-wrap: anywhere;
+}
+
+[data-theme="pixel-neon"] .hs-hero .hs-lead {
+  font-size: clamp(0.75rem, 0.65rem + 0.5vw, 0.95rem);
+  max-width: min(100%, 36ch);
+  overflow-wrap: anywhere;
+}
+
+[data-theme="pixel-neon"] .hs-hero,
+[data-theme="arcade-1995"] .hs-hero {
+  overflow-x: clip;
+}
+
+/* ——— Solarpunk ——— */
+[data-theme="solarpunk"] {
+  --color-bg: #f3f7e9;
+  --color-bg-elevated: #fafdf3;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(60, 120, 50, 0.16);
+  --color-text: #1f3520;
+  --color-text-muted: #3a5440;
+  --color-accent: #1f6b3a;
+  --color-accent-hover: #17522c;
+  --color-accent-soft: rgba(31, 107, 58, 0.12);
+  --color-on-accent: #ffffff;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Fraunces", "Source Serif 4", Georgia, serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --shadow: 0 4px 20px rgba(31, 53, 32, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #17522c;
+  --hero-glow: rgba(31, 107, 58, 0.12);
+  --accent-border: rgba(31, 107, 58, 0.28);
+  --accent-border-strong: rgba(31, 107, 58, 0.42);
+  --trail-blue: rgba(60, 140, 160, 0.18);
+  --trail-gold: rgba(160, 120, 30, 0.22);
+  --service-icon: #1f6b3a;
+}
+
+/* ——— Biophilic Studio ——— */
+[data-theme="biophilic-studio"] {
+  --color-bg: #eaf3ec;
+  --color-bg-elevated: #f5faf6;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(50, 100, 70, 0.14);
+  --color-text: #1a3324;
+  --color-text-muted: #3a5445;
+  --color-accent: #2a5a42;
+  --color-accent-hover: #1f4432;
+  --color-accent-soft: rgba(42, 90, 66, 0.12);
+  --color-on-accent: #ffffff;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Source Sans 3", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --shadow: 0 4px 20px rgba(26, 51, 36, 0.08);
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+  --logo-mark-end: #1f4432;
+  --hero-glow: rgba(42, 90, 66, 0.1);
+  --accent-border: rgba(42, 90, 66, 0.28);
+  --accent-border-strong: rgba(42, 90, 66, 0.42);
+  --trail-blue: rgba(80, 130, 110, 0.18);
+  --trail-gold: rgba(160, 140, 70, 0.16);
+  --service-icon: #2a5a42;
+  --surface-pattern: 28px 28px;
+  --effect-grid: linear-gradient(rgba(42, 90, 66, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 90, 66, 0.06) 1px, transparent 1px);
+}
+
+/* ——— Neo Brutalist ——— */
+[data-theme="neo-brutalist"] {
+  --color-bg: #f4f0e6;
+  --color-bg-elevated: #fffef8;
+  --color-bg-card: #ffffff;
+  --color-border: rgba(10, 10, 10, 0.85);
+  --color-text: #0a0a0a;
+  --color-text-muted: #2a2a2a;
+  --color-accent: #c2410c;
+  --color-accent-hover: #9a3412;
+  --color-accent-soft: rgba(194, 65, 12, 0.14);
+  --color-on-accent: #ffffff;
+  --color-danger: #9f1239;
+  --color-success: #052e16;
+  --font-sans: "Syne", "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Syne", system-ui, sans-serif;
+  --font-display: "Syne", system-ui, sans-serif;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --shadow: 4px 4px 0 #0a0a0a;
+  --header-bg: color-mix(in srgb, var(--color-bg-elevated) 94%, transparent);
+  --logo-mark-end: #c2410c;
+  --hero-glow: transparent;
+  --accent-border: rgba(10, 10, 10, 0.9);
+  --accent-border-strong: #0a0a0a;
+  --trail-blue: rgba(10, 10, 10, 0.2);
+  --trail-gold: rgba(194, 65, 12, 0.25);
+  --service-icon: #c2410c;
+}
+
+/* ——— Art Deco Luxe ——— */
+[data-theme="art-deco-luxe"] {
+  --color-bg: #120e08;
+  --color-bg-elevated: #1c160e;
+  --color-bg-card: #281e14;
+  --color-border: rgba(212, 175, 55, 0.28);
+  --color-text: #f6e7c1;
+  --color-text-muted: #b9a57a;
+  --color-accent: #d4af37;
+  --color-accent-hover: #f0d078;
+  --color-accent-soft: rgba(212, 175, 55, 0.14);
+  --color-on-accent: #1a1408;
+  --font-sans: "Cinzel", "Libre Baskerville", Georgia, serif;
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-display: "Cinzel", Georgia, serif;
+  --logo-mark-end: #a67c2d;
+  --hero-glow: rgba(212, 175, 55, 0.12);
+  --accent-border: rgba(212, 175, 55, 0.35);
+  --accent-border-strong: rgba(240, 208, 120, 0.5);
+  --shadow: 0 4px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* ——— Tokyo Neon ——— */
+[data-theme="tokyo-neon"] {
+  --color-bg: #0a0614;
+  --color-bg-elevated: #140c24;
+  --color-bg-card: #1e1434;
+  --color-border: rgba(255, 45, 120, 0.24);
+  --color-text: #ffeaf3;
+  --color-text-muted: #b890a8;
+  --color-accent: #ff2d78;
+  --color-accent-hover: #00e5ff;
+  --color-accent-soft: rgba(255, 45, 120, 0.16);
+  --color-on-accent: #1a0010;
+  --font-sans: "Rajdhani", "DM Sans", system-ui, sans-serif;
+  --font-serif: "Orbitron", system-ui, sans-serif;
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --logo-mark-end: #00e5ff;
+  --hero-glow: rgba(255, 45, 120, 0.2);
+  --accent-border: rgba(255, 45, 120, 0.38);
+  --accent-border-strong: rgba(0, 229, 255, 0.45);
+  --shadow: 0 0 28px rgba(255, 45, 120, 0.16);
+}
+
+/* ——— Deep Ocean ——— */
+[data-theme="deep-ocean"] {
+  --color-bg: #020d18;
+  --color-bg-elevated: #061828;
+  --color-bg-card: #0a2238;
+  --color-border: rgba(56, 189, 248, 0.18);
+  --color-text: #e0f2fe;
+  --color-text-muted: #7ba3bc;
+  --color-accent: #38bdf8;
+  --color-accent-hover: #7dd3fc;
+  --color-accent-soft: rgba(56, 189, 248, 0.14);
+  --color-on-accent: #042033;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --logo-mark-end: #0284c7;
+  --hero-glow: rgba(56, 189, 248, 0.16);
+  --accent-border: rgba(56, 189, 248, 0.3);
+  --accent-border-strong: rgba(56, 189, 248, 0.48);
+  --trail-blue: rgba(56, 189, 248, 0.35);
+  --trail-gold: rgba(14, 165, 233, 0.22);
+  --service-icon: #38bdf8;
 }
 
 /* Decorative treatments (sparing) */
@@ -544,8 +983,9 @@ main,
   top: calc(100% + 0.5rem);
   right: 0;
   width: min(22rem, calc(100vw - 1.5rem));
-  max-height: min(70vh, 32rem);
+  max-height: min(78vh, 40rem);
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 0.875rem;
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
@@ -649,21 +1089,35 @@ main,
 }
 
 .theme-option[data-theme-id="midnight-tech"] .theme-option-dot { background: #c9a227; }
-.theme-option[data-theme-id="clean-corporate"] .theme-option-dot { background: #0f4c81; }
 .theme-option[data-theme-id="obsidian-black"] .theme-option-dot { background: #e8e8e8; }
 .theme-option[data-theme-id="stealth-carbon"] .theme-option-dot { background: #38bdf8; }
 .theme-option[data-theme-id="emerald-night"] .theme-option-dot { background: #34d399; }
 .theme-option[data-theme-id="royal-indigo"] .theme-option-dot { background: #a78bfa; }
+.theme-option[data-theme-id="industrial-slate"] .theme-option-dot { background: #d4a853; }
+.theme-option[data-theme-id="clean-corporate"] .theme-option-dot { background: #0f4c81; }
+.theme-option[data-theme-id="blueprint-studio"] .theme-option-dot { background: #1e64b4; }
+.theme-option[data-theme-id="vintage-paper"] .theme-option-dot { background: #8b4513; }
+.theme-option[data-theme-id="swiss-precision"] .theme-option-dot { background: #b80500; }
+.theme-option[data-theme-id="nordic-frost"] .theme-option-dot { background: #2f6485; }
+.theme-option[data-theme-id="ivory-atelier"] .theme-option-dot { background: #7a4f28; }
 .theme-option[data-theme-id="neural-future"] .theme-option-dot { background: #22d3ee; }
 .theme-option[data-theme-id="holographic"] .theme-option-dot { background: linear-gradient(135deg, #f472b6, #67e8f9); }
 .theme-option[data-theme-id="cyberpunk-2099"] .theme-option-dot { background: #ff2d95; }
 .theme-option[data-theme-id="cyber-terminal"] .theme-option-dot { background: #39ff14; }
+.theme-option[data-theme-id="liquid-chrome"] .theme-option-dot { background: #c5d0de; }
+.theme-option[data-theme-id="aurora-glass"] .theme-option-dot { background: linear-gradient(135deg, #5eead4, #a78bfa); }
 .theme-option[data-theme-id="retro-computing"] .theme-option-dot { background: #ffcc00; }
 .theme-option[data-theme-id="synthwave-sunset"] .theme-option-dot { background: #ff6ec7; }
 .theme-option[data-theme-id="arcade-1995"] .theme-option-dot { background: #00e5ff; }
-.theme-option[data-theme-id="blueprint-studio"] .theme-option-dot { background: #1e64b4; }
-.theme-option[data-theme-id="industrial-slate"] .theme-option-dot { background: #d4a853; }
-.theme-option[data-theme-id="vintage-paper"] .theme-option-dot { background: #8b4513; }
+.theme-option[data-theme-id="y2k-webcore"] .theme-option-dot { background: #00ffcc; }
+.theme-option[data-theme-id="terminal-green"] .theme-option-dot { background: #33ff33; }
+.theme-option[data-theme-id="pixel-neon"] .theme-option-dot { background: #ff00aa; }
+.theme-option[data-theme-id="solarpunk"] .theme-option-dot { background: #1f6b3a; }
+.theme-option[data-theme-id="biophilic-studio"] .theme-option-dot { background: #2a5a42; }
+.theme-option[data-theme-id="neo-brutalist"] .theme-option-dot { background: #c2410c; }
+.theme-option[data-theme-id="art-deco-luxe"] .theme-option-dot { background: #d4af37; }
+.theme-option[data-theme-id="tokyo-neon"] .theme-option-dot { background: #ff2d78; }
+.theme-option[data-theme-id="deep-ocean"] .theme-option-dot { background: #38bdf8; }
 
 /* Mobile: keep picker usable with hamburger */
 @media (max-width: 899px) {

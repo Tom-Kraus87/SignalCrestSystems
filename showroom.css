@@ -1,0 +1,417 @@
+/* Interactive Showroom — Batch S1 (scoped .showroom-* / .sh-*) */
+
+.showroom-disclosure {
+  margin-top: 1rem;
+  max-width: 52rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-soft, color-mix(in srgb, var(--color-accent) 12%, transparent));
+  color: var(--color-text);
+  font-size: 0.9375rem;
+}
+
+.showroom-shell {
+  padding: 0 0 3.5rem;
+}
+
+.showroom-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.showroom-rail {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  background: var(--color-bg-card, var(--color-bg));
+}
+
+.showroom-rail-title {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.showroom-demo-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.showroom-demo-tab {
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.showroom-demo-tab:hover,
+.showroom-demo-tab:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid transparent;
+}
+
+.showroom-demo-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.showroom-demo-tab.is-active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft, color-mix(in srgb, var(--color-accent) 14%, transparent));
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+/* Selected tab: use full text color so muted copy stays AA on accent-soft */
+.showroom-demo-tab.is-active .showroom-demo-tab-kicker,
+.showroom-demo-tab.is-active .showroom-demo-tab-desc {
+  color: var(--color-text);
+}
+
+.showroom-demo-tab-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.showroom-demo-tab-label {
+  font-weight: 600;
+}
+
+.showroom-demo-tab-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.showroom-rail-meta {
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.showroom-rail-meta p {
+  margin: 0 0 0.5rem;
+}
+
+/* Running-text links (Work / Pricing): underline, not color alone */
+.showroom-rail-meta a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.showroom-stage {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  background: var(--color-bg-card, var(--color-bg));
+  overflow: hidden;
+}
+
+.showroom-stage-banner {
+  padding: 0.65rem 1.1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 80%, var(--color-accent) 8%);
+  color: var(--color-text-muted);
+}
+
+.showroom-panel {
+  padding: 1.25rem 1.25rem 1.75rem;
+}
+
+.showroom-panel[hidden] {
+  display: none !important;
+}
+
+.showroom-panel-header {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.showroom-panel-header h3 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.showroom-panel-header p {
+  margin: 0;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.showroom-bullets {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
+.showroom-bullets li + li {
+  margin-top: 0.35rem;
+}
+
+.showroom-demo-root {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+}
+
+/* Shared demo primitives */
+.sh-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.sh-card {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-bg);
+}
+
+.sh-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.sh-muted {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.sh-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.sh-label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sh-input,
+.sh-select,
+.sh-textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-bg-card, var(--color-bg));
+  color: var(--color-text);
+  font: inherit;
+}
+
+.sh-textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.sh-input:focus-visible,
+.sh-select:focus-visible,
+.sh-textarea:focus-visible,
+.sh-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sh-btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+}
+
+.sh-btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.sh-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sh-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sh-step {
+  padding: 0.55rem 0.45rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.sh-step.is-done,
+.sh-step.is-current {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.sh-step.is-current {
+  background: var(--color-accent-soft, color-mix(in srgb, var(--color-accent) 14%, transparent));
+  font-weight: 600;
+}
+
+.sh-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+}
+
+.sh-badge-accent {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.sh-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.sh-checkout-actions {
+  margin-top: 0.85rem;
+}
+
+.sh-product {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-bg);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.sh-product:hover,
+.sh-product:focus-visible,
+.sh-product.is-selected {
+  border-color: var(--color-accent);
+}
+
+.sh-product:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.sh-swatch {
+  height: 72px;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 55%, transparent), transparent),
+    linear-gradient(225deg, var(--color-border), transparent);
+}
+
+.sh-cart-line {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+.sh-status-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sh-status-list li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+.sh-toast {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent-soft, color-mix(in srgb, var(--color-accent) 12%, transparent));
+  font-size: 0.9rem;
+}
+
+.sh-toast:empty,
+.sh-live-status:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sh-live-status:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+  .showroom-layout {
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .showroom-panel-header {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .sh-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .sh-cart-line {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showroom-demo-tab,
+  .sh-btn,
+  .sh-product {
+    transition: none;
+  }
+}
