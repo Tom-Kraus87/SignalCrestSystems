@@ -1,0 +1,14 @@
+{
+  "name": "scs-netlify-cli-pin",
+  "private": true,
+  "description": "Project-local Netlify CLI pin for Signal Crest Systems LLC. PREPARE ONLY — do not npm install until Owner authorizes. Exact pin: netlify-cli@26.2.0.",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "netlify-cli": "26.2.0"
+  },
+  "comments": {
+    "pin": "Exact version 26.2.0 with no caret/tilde. Generate package-lock.json via authorized npm install --package-lock-only inside this directory. Do not invent lockfile integrity values. Do not install in the M7B pre-execution correction pass."
+  }
+}

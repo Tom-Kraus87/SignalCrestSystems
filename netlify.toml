@@ -1,5 +1,7 @@
 [build]
-  command = "node scripts/build-public.mjs"
+  # Install Functions deps from lockfile, then build public allowlist artifacts.
+  # Do not invent lockfile hashes. Preserve netlify/functions/package-lock.json.
+  command = "npm ci --prefix netlify/functions && node scripts/build-public.mjs"
   publish = "dist"
   functions = "netlify/functions"
 

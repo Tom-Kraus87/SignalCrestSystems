@@ -28,10 +28,55 @@ function jsonResponse(status, body, headers) {
   };
 }
 
-function hashIp(ip) {
+function isHostedRuntime(env) {
+  const e = env || process.env;
+  const scsEnv = String(e.SCS_ENV || "").toLowerCase();
+  const nodeEnv = String(e.NODE_ENV || "").toLowerCase();
+  const ctx = String(e.CONTEXT || e.Netlify_CONTEXT || "").toLowerCase();
+  return (
+    scsEnv === "production" ||
+    scsEnv === "prod" ||
+    scsEnv === "staging" ||
+    nodeEnv === "production" ||
+    ctx === "production" ||
+    ctx === "deploy-preview" ||
+    ctx === "branch-deploy" ||
+    Boolean(e.NETLIFY)
+  );
+}
+
+/**
+ * Missing, short, or placeholder salts are rejected.
+ * There is no public development-salt fallback.
+ * @param {string|undefined|null} salt
+ */
+function ipHashSaltRejected(salt) {
+  const value = salt == null ? "" : String(salt).trim();
+  if (value.length < 32) return true;
+  return /replace_|your_|change_me|placeholder|example|not-for-prod|dev-salt|development-salt/i.test(
+    value
+  );
+}
+
+/**
+ * Hash a visitor IP only with a non-placeholder server salt.
+ * Invalid salt → null (no IP persisted). Raw IPs are never returned.
+ * @param {string|null} ip
+ * @param {NodeJS.ProcessEnv} [env]
+ */
+function hashIp(ip, env) {
   if (!ip) return null;
-  const salt = process.env.LEAD_IP_HASH_SALT || "scs-local-dev-salt-not-for-prod";
-  return crypto.createHash("sha256").update(salt + "|" + ip).digest("hex").slice(0, 32);
+  const e = env || process.env;
+  const salt = e.LEAD_IP_HASH_SALT;
+  // Hosted and local: reject missing, short, and placeholder salts.
+  // The result is a non-IP fallback (null). Raw visitor IPs are never stored.
+  if (isHostedRuntime(e) && ipHashSaltRejected(salt)) return null;
+  if (!isHostedRuntime(e) && ipHashSaltRejected(salt)) return null;
+  return crypto
+    .createHash("sha256")
+    .update(String(salt).trim() + "|" + ip)
+    .digest("hex")
+    .slice(0, 32);
 }
 
 function parseBody(event) {
@@ -143,7 +188,7 @@ async function processLeadRequest(event, deps) {
   lead.isTest = resolveIsTestFlag(lead.isTest, env);
 
   const ip = clientIpFromEvent(event, env);
-  const ipHash = hashIp(ip);
+  const ipHash = hashIp(ip, env);
   const userAgent = normalizeUa(headers["user-agent"] || headers["User-Agent"]);
 
   if (deps.spamProtector) {
@@ -176,22 +221,35 @@ async function processLeadRequest(event, deps) {
   // rate budget or opening an unlimited DB abuse path. Cache miss → rate limit →
   // durable repository (which still returns original receipt after cache expiry).
   if (lead.idempotencyKey && deps.idempotency) {
-    const prior = await deps.idempotency.get(lead.idempotencyKey);
+    const prior = await deps.idempotency.get(lead.idempotencyKey, payloadHash);
+    const marked =
+      deps.repository && typeof deps.repository.isIdempotencyKeyDeleted === "function"
+        ? await deps.repository.isIdempotencyKeyDeleted(lead.idempotencyKey)
+        : false;
+    // A warm cache must not outrun a deletion marker.
+    if ((prior && prior.deleted) || marked) {
+      return jsonResponse(409, {
+        ok: false,
+        code: "idempotency_key_deleted",
+        message: "This submission key is no longer valid.",
+      });
+    }
+    if (
+      (prior && prior.fingerprintMismatch) ||
+      (prior && prior.payloadHash && prior.payloadHash !== payloadHash)
+    ) {
+      logWarn(
+        "leads_idempotency_conflict",
+        safeRequestMeta(event, { code: "idempotency_conflict", status: 409 })
+      );
+      return jsonResponse(409, {
+        ok: false,
+        code: "idempotency_conflict",
+        message: "This idempotency key was already used with a different request.",
+      });
+    }
     if (prior && prior.status && prior.body) {
-      if (prior.payloadHash && prior.payloadHash !== payloadHash) {
-        logWarn(
-          "leads_idempotency_conflict",
-          safeRequestMeta(event, { code: "idempotency_conflict", status: 409 })
-        );
-        return jsonResponse(409, {
-          ok: false,
-          code: "idempotency_conflict",
-          message: "This idempotency key was already used with a different request.",
-        });
-      }
-      if (!prior.payloadHash || prior.payloadHash === payloadHash) {
-        return jsonResponse(prior.status, prior.body);
-      }
+      return jsonResponse(prior.status, prior.body);
     }
   }
 
@@ -330,6 +388,8 @@ module.exports = {
   jsonResponse,
   parseBody,
   hashIp,
+  isHostedRuntime,
+  ipHashSaltRejected,
   clientIpFromEvent,
   MAX_BODY_BYTES,
 };

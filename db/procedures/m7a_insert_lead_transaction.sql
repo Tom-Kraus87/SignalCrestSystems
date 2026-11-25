@@ -1,7 +1,10 @@
 -- M7A — insert_lead_bundle lives in the ordered migration sequence.
 -- Canonical sources (apply in order):
---   db/migrations/005_m7a_insert_lead_bundle.sql
---   db/migrations/006_m7a_r2_security_hardening.sql  (received_at return, deletion markers, grants)
+--   db/bootstrap/001_m7a_r4_role_bootstrap.sql       (roles; fail hard; before migrations)
+--   db/migrations/001 through db/migrations/005_m7a_insert_lead_bundle.sql
+--                                                    (unexecuted historical drafts)
+--   db/migrations/006_m7a_r2_security_hardening.sql  (unexecuted draft; defective role block)
+--   db/migrations/007_m7a_r4_security_corrections.sql (additive correction; required)
 --
 -- This file is documentation-only. It is NOT executable SQL for deployment.
 -- DO NOT maintain a divergent function body here.

@@ -95,6 +95,14 @@ class MockLeadRepository {
   }
 
   /**
+   * True when a tombstone blocks replay, including a still-warm response cache.
+   * @param {string} key
+   */
+  isIdempotencyKeyDeleted(key) {
+    return this.deletionMarkers.has(key);
+  }
+
+  /**
    * Purge soft-deleted leads, deleting outbox first (A7 FK integrity).
    * @param {number} [days]
    */

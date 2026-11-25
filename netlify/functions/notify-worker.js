@@ -1,87 +1,82 @@
 /**
- * Scheduled / manual notification outbox worker (M7A-R2 B).
+ * Authenticated notification outbox worker (M7A-R4).
  *
- * Does NOT activate live email delivery. Modes: disabled | simulated | operational.
- * Encrypted recovery journal remains separately gated — not implemented here.
- *
- * Wire to a Netlify scheduled function only after Owner/Atlas authorization.
+ * Unauthenticated HTTP calls fail before any database access.
+ * Scheduler headers supplied by the visitor are not trusted.
+ * Live notification delivery stays disabled. Simulated mode is the only
+ * path that claims jobs, and only after a server-side bearer secret matches.
  */
 
-const { createPgQueryClient, resolveDatabaseConfig } = require("./_lib/pg-client");
-const { createLeadDependencies, DependencyConfigurationError } = require("./_lib/deps");
+const { authorizeNotifyWorkerInvocation } = require("./_lib/worker-auth");
+const { createPgQueryClient } = require("./_lib/pg-client");
 const {
   processNotificationOutbox,
-  getNotificationFailureStatus,
   resolveNotifyIntegrationMode,
 } = require("./_lib/notify-worker");
 const { logInfo, logWarn, logError } = require("./_lib/safe-log");
 
+function json(statusCode, body) {
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+    body: JSON.stringify(body),
+  };
+}
+
 exports.handler = async function notifyWorkerHandler(event) {
   const env = process.env;
-  const mode = resolveNotifyIntegrationMode(env);
-
-  if (mode === "disabled") {
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-      body: JSON.stringify({ ok: true, mode, skipped: true, reason: "notify_disabled" }),
-    };
+  const authz = authorizeNotifyWorkerInvocation(event, env);
+  if (!authz.ok) {
+    return json(authz.statusCode, { ok: false, code: authz.code });
   }
 
-  const cfg = resolveDatabaseConfig(env);
-  if (cfg.mode !== "postgres_required" && !env.DATABASE_URL && !env.DATABASE_INTAKE_URL && !env.DATABASE_NOTIFY_URL) {
-    return {
-      statusCode: 503,
-      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-      body: JSON.stringify({ ok: false, code: "notify_misconfigured", mode }),
-    };
+  const mode = resolveNotifyIntegrationMode(env);
+  if (mode !== "simulated") {
+    return json(200, {
+      ok: true,
+      mode,
+      skipped: true,
+      reason: mode === "disabled" ? "notify_disabled" : "live_delivery_disabled",
+    });
   }
 
   let client;
   try {
-    // Prefer dedicated notify URL when present.
     const notifyEnv = Object.assign({}, env);
     if (env.DATABASE_NOTIFY_URL) {
       notifyEnv.DATABASE_INTAKE_URL = env.DATABASE_NOTIFY_URL;
       notifyEnv.DATABASE_URL = env.DATABASE_NOTIFY_URL;
     }
-    client = createPgQueryClient(notifyEnv);
-    const deps = createLeadDependencies(notifyEnv, { sqlClient: client });
-    const result = await processNotificationOutbox(client, deps.notifier, {
+    client = createPgQueryClient(notifyEnv, { expectedRole: "scs_notify_worker" });
+    const result = await processNotificationOutbox(client, null, {
       mode,
       env: notifyEnv,
       workerId: `nf-${Date.now()}`,
     });
-    const status = await getNotificationFailureStatus(client);
     logInfo("notify_worker_run", {
       mode: result.mode,
       claimed: result.claimed,
       sent: result.sent,
       failed: result.failed,
     });
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-      body: JSON.stringify({
-        ok: true,
-        mode: result.mode,
-        claimed: result.claimed,
-        sent: result.sent,
-        failed: result.failed,
-        ownerStatus: status,
-      }),
-    };
+    return json(200, {
+      ok: true,
+      mode: result.mode,
+      claimed: result.claimed,
+      sent: result.sent,
+      failed: result.failed,
+      skipped: result.skipped,
+    });
   } catch (err) {
-    if (err instanceof DependencyConfigurationError || (err && err.code)) {
-      logWarn("notify_worker_config", { code: err.code || "config" });
+    if (err && err.code) {
+      logWarn("notify_worker_config", { code: err.code });
     } else {
       logError("notify_worker_failure", { code: "worker_error" });
     }
-    return {
-      statusCode: 503,
-      headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-      body: JSON.stringify({ ok: false, code: "notify_worker_unavailable", mode }),
-    };
+    return json(503, { ok: false, code: "notify_worker_unavailable", mode });
   } finally {
     if (client && typeof client.end === "function") {
       try {

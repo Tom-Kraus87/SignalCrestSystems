@@ -42,8 +42,16 @@ async function processNotificationOutbox(sqlClient, notifier, options) {
   const opts = options || {};
   const env = opts.env || process.env;
   const mode = opts.mode || resolveNotifyIntegrationMode(env);
-  if (mode === "disabled") {
-    return { mode, claimed: 0, sent: 0, failed: 0, skipped: true };
+  // Live provider delivery stays disabled. Only the simulated mode may claim jobs.
+  if (mode !== "simulated") {
+    return {
+      mode,
+      claimed: 0,
+      sent: 0,
+      failed: 0,
+      skipped: true,
+      reason: mode === "disabled" ? "notify_disabled" : "live_delivery_disabled",
+    };
   }
   if (!sqlClient || typeof sqlClient.query !== "function") {
     return { mode, claimed: 0, sent: 0, failed: 0, skipped: true, reason: "no_sql_client" };
@@ -62,58 +70,20 @@ async function processNotificationOutbox(sqlClient, notifier, options) {
   let failed = 0;
 
   for (const row of rows || []) {
-    const payload = row.payload_json || row.payload || {};
-    // Minimal content — receipt + form metadata only (no customer PII).
-    const envelope = {
-      receipt: payload.receipt || String(row.submission_id || "").slice(0, 8),
-      formName: payload.formName || null,
-      source: payload.source || null,
-      receivedAt: payload.receivedAt || null,
-      isTest: Boolean(payload.isTest),
-      outboxId: row.id,
-    };
-
+    // Simulated mode does not call a provider and does not forward customer fields.
+    let acknowledged = false;
     try {
-      if (mode === "simulated") {
-        // Mark complete without external provider call.
-        await sqlClient.query(
-          "SELECT public.complete_notification_outbox($1, $2, $3, $4)",
-          [row.id, workerId, true, null]
-        );
+      // Simulated completion only. Operational delivery is refused before claims.
+      acknowledged = await acknowledgeOutbox(sqlClient, row, workerId, true, null);
+      if (acknowledged) {
         sent += 1;
         logInfo("notify_worker_simulated", { outboxId: String(row.id).slice(0, 8) });
-        continue;
       }
-
-      // operational — invoke notifier; still fail-closed on provider errors
-      if (!notifier || typeof notifier.notifyLeadAccepted !== "function") {
-        await sqlClient.query(
-          "SELECT public.complete_notification_outbox($1, $2, $3, $4)",
-          [row.id, workerId, false, "notifier_unavailable"]
-        );
-        failed += 1;
-        continue;
-      }
-
-      const result = await notifier.notifyLeadAccepted(envelope);
-      const ok = result && result.sent === true && !result.skipped;
-      await sqlClient.query(
-        "SELECT public.complete_notification_outbox($1, $2, $3, $4)",
-        [row.id, workerId, ok, ok ? null : (result && result.reason) || "delivery_failed"]
-      );
-      if (ok) sent += 1;
-      else failed += 1;
-    } catch (err) {
-      failed += 1;
-      try {
-        await sqlClient.query(
-          "SELECT public.complete_notification_outbox($1, $2, $3, $4)",
-          [row.id, workerId, false, "worker_exception"]
-        );
-      } catch {
-        logWarn("notify_worker_complete_failed", { outboxId: String(row.id).slice(0, 8) });
-      }
+    } catch {
+      acknowledged = false;
+      logWarn("notify_worker_complete_failed", { outboxId: String(row.id).slice(0, 8) });
     }
+    if (!acknowledged) failed += 1;
   }
 
   return {
@@ -126,7 +96,27 @@ async function processNotificationOutbox(sqlClient, notifier, options) {
 }
 
 /**
- * Owner-visible failure summary (non-PII).
+ * Acknowledge a claim only when the RPC returns true.
+ * A false acknowledgement or a thrown error is a failure. The caller must
+ * not treat it as a successful delivery.
+ * @param {{ query: Function }} sqlClient
+ * @param {{ id: string, claim_token?: string }} row
+ * @param {string} workerId
+ * @param {boolean} ok
+ * @param {string|null} errorText
+ */
+async function acknowledgeOutbox(sqlClient, row, workerId, ok, errorText) {
+  if (!row || !row.id || !row.claim_token) return false;
+  const { rows } = await sqlClient.query(
+    "SELECT public.complete_notification_outbox($1, $2, $3, $4, $5) AS acknowledged",
+    [row.id, workerId, row.claim_token, ok, errorText]
+  );
+  return Boolean(rows && rows[0] && rows[0].acknowledged === true);
+}
+
+/**
+ * Owner monitoring aggregate. EXECUTE is granted to scs_owner_admin only.
+ * The notify worker must not call this with worker credentials.
  * @param {{ query: Function }} sqlClient
  */
 async function getNotificationFailureStatus(sqlClient) {
@@ -134,16 +124,15 @@ async function getNotificationFailureStatus(sqlClient) {
     return { available: false, pending: 0, failed: 0, dead: 0 };
   }
   const { rows } = await sqlClient.query(
-    `SELECT status, COUNT(*)::int AS n
-     FROM public.notification_outbox
-     WHERE status IN ('pending', 'failed', 'dead')
-     GROUP BY status`
+    "SELECT pending_count, failed_count, dead_count FROM public.notification_outbox_status_counts()"
   );
-  const map = { pending: 0, failed: 0, dead: 0 };
-  for (const r of rows || []) {
-    map[r.status] = Number(r.n) || 0;
-  }
-  return { available: true, ...map };
+  const row = (rows && rows[0]) || {};
+  return {
+    available: true,
+    pending: Number(row.pending_count) || 0,
+    failed: Number(row.failed_count) || 0,
+    dead: Number(row.dead_count) || 0,
+  };
 }
 
 module.exports = {

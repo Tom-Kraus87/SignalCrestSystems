@@ -41,7 +41,7 @@ COMMENT ON ROLE scs_intake_runtime IS
 COMMENT ON ROLE scs_notify_worker IS
   'Minimum-privilege worker for notification_outbox claim/complete. Separate from intake.';
 COMMENT ON ROLE scs_migration IS
-  'Migration/DDL executor only. Never used as Function runtime identity.';
+  'Reserved identity only. NOT a supported migration executor. Never Function runtime.';
 COMMENT ON ROLE scs_owner_admin IS
   'Owner administration RPCs (soft_delete / purge). Requires AAL2 app gate + RLS.';
 

@@ -55,13 +55,9 @@ class PostgresAtomicCounterStore {
   }
 
   async getString(key) {
-    const { rows } = await this.client.query(
-      `SELECT response_json FROM idempotency_keys
-       WHERE idem_key = $1
-         AND (expires_at IS NULL OR expires_at > now())`,
-      [key]
-    );
-    return rows[0] ? rows[0].response_json : null;
+    const row = await lookupIdempotencyResponse(this.client, key, null);
+    if (!row || row.deleted || row.expired || !row.response_json) return null;
+    return row.response_json;
   }
 }
 
@@ -149,6 +145,16 @@ class PostgresLeadRepository {
       throw err;
     }
   }
+
+  /**
+   * Deletion markers are enforced inside lookup_idempotency_response.
+   * Cached receipts must not be treated as proof the key is still live.
+   * @param {string} key
+   */
+  async isIdempotencyKeyDeleted(key) {
+    const row = await lookupIdempotencyResponse(this.client, key, null);
+    return Boolean(row && row.deleted);
+  }
 }
 
 /**
@@ -207,20 +213,41 @@ class PostgresIdempotencyStore {
     return { created: true, record };
   }
 
-  async get(key) {
-    const { rows } = await this.client.query(
-      `SELECT response_json FROM idempotency_keys
-       WHERE idem_key = $1
-         AND (expires_at IS NULL OR expires_at > now())`,
-      [key]
+  async get(key, payloadHash) {
+    const row = await lookupIdempotencyResponse(
+      this.client,
+      key,
+      payloadHash == null ? null : String(payloadHash)
     );
-    if (!rows[0]) return null;
+    if (!row) return null;
+    if (row.deleted) {
+      return { deleted: true, status: null, body: null, payloadHash: null };
+    }
+    if (payloadHash && row.found && row.fingerprint_match === false) {
+      return { fingerprintMismatch: true, status: null, body: null, payloadHash: null };
+    }
+    if (!row.response_json) return null;
     try {
-      return JSON.parse(rows[0].response_json);
+      return JSON.parse(row.response_json);
     } catch {
       return null;
     }
   }
+}
+
+/**
+ * Narrow SECURITY DEFINER lookup. Intake has EXECUTE only — not table SELECT.
+ * @param {{ query: Function }} client
+ * @param {string} key
+ * @param {string|null} payloadHash
+ */
+async function lookupIdempotencyResponse(client, key, payloadHash) {
+  const { rows } = await client.query(
+    `SELECT found, expired, deleted, fingerprint_match, response_json
+     FROM public.lookup_idempotency_response($1, $2)`,
+    [key, payloadHash]
+  );
+  return rows[0] || null;
 }
 
 module.exports = {

@@ -66,7 +66,7 @@ function createLeadDependencies(env, options) {
   let client = opts.sqlClient || null;
   if (!client) {
     try {
-      client = createPgQueryClient(e);
+      client = createPgQueryClient(e, { expectedRole: "scs_intake_runtime" });
     } catch (err) {
       throw new DependencyConfigurationError(
         "Lead intake database configuration is missing or invalid.",
