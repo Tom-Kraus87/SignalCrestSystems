@@ -1,0 +1,100 @@
+{
+  "algorithm": "SHA-256",
+  "scope": "tools/option-c-admin utility files only",
+  "excludes": "SHA256-INVENTORY.json",
+  "canonical": "path<TAB>sha256<TAB>bytes sorted by ordinal path, UTF-8, joined by newline, no trailing newline",
+  "entryCount": 18,
+  "digest": "850dac2809058fada1478c8846867631ad026ebe3b53dc8b1f725e644ce30c4e",
+  "files": [
+    {
+      "path": "tools/option-c-admin/OWNER-EXECUTION-PROCEDURE-NOT-AUTHORIZED.md",
+      "sha256": "7c4058e3f109e2d63f8c221635b2f94c3fe39a697ddea612f9311108045e8695",
+      "bytes": 7179
+    },
+    {
+      "path": "tools/option-c-admin/SECURITY-DESIGN-AND-THREAT-MODEL.md",
+      "sha256": "db943f66ab40fc1f10a0286fc0340ef25a12c40423a0a2040ef99d91bfa6a6c4",
+      "bytes": 9013
+    },
+    {
+      "path": "tools/option-c-admin/bin/option-c-admin.mjs",
+      "sha256": "64e66e55cfb7e9b54a67132e24bbcb67f64b75a0a380f94b4d21ddc4adf1fac9",
+      "bytes": 4507
+    },
+    {
+      "path": "tools/option-c-admin/lib/allowlist.mjs",
+      "sha256": "0bd508cba8156d4925de515577aa86f66baa6fd9ab0ecbd1fd45c9619acc567d",
+      "bytes": 1124
+    },
+    {
+      "path": "tools/option-c-admin/lib/authority.mjs",
+      "sha256": "963524ce89db901e697656082c59e785a1bf9532520930e80018f73d739f6034",
+      "bytes": 4662
+    },
+    {
+      "path": "tools/option-c-admin/lib/authorization.mjs",
+      "sha256": "e465d579945c0cd02984d440e5fde1cf9ba1f668ce31037ba072835d19f01abd",
+      "bytes": 1209
+    },
+    {
+      "path": "tools/option-c-admin/lib/errors.mjs",
+      "sha256": "a9ea26e71be6946a0692199f5d0ae5d891ab1154b61de13c3162de56fd355143",
+      "bytes": 1654
+    },
+    {
+      "path": "tools/option-c-admin/lib/logger.mjs",
+      "sha256": "c6fdcfabd1f7aa4647c2cecd9ecf58d5b73c7d56b19e91cf7b04c45efe1b71c3",
+      "bytes": 1314
+    },
+    {
+      "path": "tools/option-c-admin/lib/logging-guard.mjs",
+      "sha256": "731fa5539ef41b8f9aa0629d77f1c49c0b5a5c0fb7db594b330e1dd6fb5b80a2",
+      "bytes": 991
+    },
+    {
+      "path": "tools/option-c-admin/lib/orchestrator.mjs",
+      "sha256": "fbecc9b0c4cf72a50d111d5ce7235026d22fc3f1c502844f554947da6739aa72",
+      "bytes": 7525
+    },
+    {
+      "path": "tools/option-c-admin/lib/password-policy.mjs",
+      "sha256": "a710d9ff1b0ac9a7934daf0e4adc26600a6a923d352de973ce02e7894dfd50ec",
+      "bytes": 2010
+    },
+    {
+      "path": "tools/option-c-admin/lib/public-exclusion.mjs",
+      "sha256": "d1f7662440ec87495da53d6e42b292ed700b40db6a7844d6a78129043cf87c38",
+      "bytes": 3332
+    },
+    {
+      "path": "tools/option-c-admin/lib/scram.mjs",
+      "sha256": "949c5087b2c8fcffa71b9a133d357802628cad4e8d8f6ce2941dcbd2aeba0335",
+      "bytes": 6290
+    },
+    {
+      "path": "tools/option-c-admin/lib/self-test.mjs",
+      "sha256": "cbfa8fd04536a9c70eaebdcdf42587460c1db29d8a8f854b8d447771c7316e9e",
+      "bytes": 1100
+    },
+    {
+      "path": "tools/option-c-admin/lib/statements.mjs",
+      "sha256": "010e2d54705e0cc096fed090519d992d961826c0f401b953412f3931a72c3b9f",
+      "bytes": 6265
+    },
+    {
+      "path": "tools/option-c-admin/lib/terminal.mjs",
+      "sha256": "2983fbdfbaf401e726f62196980bdd03ab301e848700dc55c31938e380307a2f",
+      "bytes": 3659
+    },
+    {
+      "path": "tools/option-c-admin/lib/tls-gate.mjs",
+      "sha256": "7d959d340cf59531c49de9ceeeccaa9c6c1a046dd8b23ffbdf8e33888b6ec7cd",
+      "bytes": 6521
+    },
+    {
+      "path": "tools/option-c-admin/test/offline.test.mjs",
+      "sha256": "06036f8112930cf675b617484303208b666af8341c0e17e63d9ca67cbbe66ca1",
+      "bytes": 29529
+    }
+  ]
+}
