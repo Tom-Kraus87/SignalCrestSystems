@@ -1,0 +1,102 @@
+{
+  "pgVersion": "8.13.1",
+  "connectedToDatabase": false,
+  "codexBaselineWithConnectionString": {
+    "rejectUnauthorized": false,
+    "hasCheckServerIdentity": "undefined"
+  },
+  "cases": [
+    {
+      "name": "codex_uselibpqcompat_require",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=require&uselibpqcompat=true",
+      "ok": false,
+      "code": "DATABASE_SSL_INSECURE",
+      "message": "database_url_uselibpqcompat_forbidden"
+    },
+    {
+      "name": "positive_verify_full",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=verify-full",
+      "ok": true,
+      "effective": {
+        "rejectUnauthorized": true,
+        "hasCheckServerIdentity": true,
+        "sslIsObject": true
+      },
+      "hasConnectionString": false,
+      "approved": {
+        "user": "scs_intake_runtime",
+        "host": "db.r7-staging.supabase.co",
+        "port": 5432,
+        "database": "postgres",
+        "sslmode": "verify-full",
+        "normalizedSslmode": "verify-full"
+      }
+    },
+    {
+      "name": "positive_require_normalized",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=require",
+      "ok": true,
+      "effective": {
+        "rejectUnauthorized": true,
+        "hasCheckServerIdentity": true,
+        "sslIsObject": true
+      },
+      "hasConnectionString": false,
+      "approved": {
+        "user": "scs_intake_runtime",
+        "host": "db.r7-staging.supabase.co",
+        "port": 5432,
+        "database": "postgres",
+        "sslmode": "require",
+        "normalizedSslmode": "verify-full"
+      }
+    },
+    {
+      "name": "positive_pooler",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=verify-full&pgbouncer=true",
+      "ok": true,
+      "effective": {
+        "rejectUnauthorized": true,
+        "hasCheckServerIdentity": true,
+        "sslIsObject": true
+      },
+      "hasConnectionString": false,
+      "approved": {
+        "user": "scs_intake_runtime",
+        "host": "aws-0-us-east-1.pooler.supabase.com",
+        "port": 6543,
+        "database": "postgres",
+        "sslmode": "verify-full",
+        "normalizedSslmode": "verify-full"
+      }
+    },
+    {
+      "name": "reject_disable",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=disable",
+      "ok": false,
+      "code": "DATABASE_SSL_INSECURE",
+      "message": "sslmode_disable_forbidden"
+    },
+    {
+      "name": "reject_verify_ca",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=verify-ca",
+      "ok": false,
+      "code": "DATABASE_SSL_INSECURE",
+      "message": "sslmode_verify_ca_no_hostname"
+    },
+    {
+      "name": "reject_sslrootcert",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=verify-full&sslrootcert=/tmp/x.pem",
+      "ok": false,
+      "code": "DATABASE_SSL_INSECURE",
+      "message": "database_url_ssl_injection_forbidden"
+    },
+    {
+      "name": "reject_duplicate_sslmode",
+      "urlRedacted": "postgresql://scs_intake_runtime:***@db.r7-staging.supabase.co:5432/postgres?sslmode=verify-full&sslmode=require",
+      "ok": false,
+      "code": "DATABASE_SSL_INSECURE",
+      "message": "database_url_duplicate_security_param"
+    }
+  ]
+}

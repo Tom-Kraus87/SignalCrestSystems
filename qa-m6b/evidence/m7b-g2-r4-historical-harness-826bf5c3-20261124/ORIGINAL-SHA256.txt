@@ -1,0 +1,11 @@
+﻿# Historical harness freeze (pre-R4 mutation)
+
+- Source path: qa-m6b/verify-m7a-r2-postgres-integration-20261123.mjs
+- Freeze purpose: recoverability before M7B-G2-R4 A-HARNESS mutation
+- Expected SHA-256: 826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9
+- Verified SHA-256: 826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9
+- Bytes: 39395
+- Match: True
+- Frozen at (local): 2026-11-24T19:21:49.8964397-05:00
+- Historical 59-file candidate digest (preserved, not overwritten): 3c7cebb3f27ebf55d1d002e2d8c480a451932ff43d1b4f39f579956cb2ad4d0b
+- Note: Do not overwrite this freeze copy. Successor manifests are separate.

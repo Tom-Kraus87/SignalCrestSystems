@@ -1,0 +1,10 @@
+﻿M7B-G2-R3-EXECUTION-PACKET-MANIFEST-20261124 — index self-hashes (not payload entries)
+Markdown: qa-m6b/M7B-G2-R3-EXECUTION-PACKET-MANIFEST-20261124.md
+  Bytes: 4743
+  SHA-256: ba060d988a4f24ea4a2f7037eec668a641938824bda1fccca1b22efef380e496
+PDF: qa-m6b/pdf/M7B-G2-R3-EXECUTION-PACKET-MANIFEST-20261124.pdf
+  Bytes: 163234
+  SHA-256: d0ae212c4e613dcebe8a0b3636366c166ba4d0e45f7bfd6dcb8914740f7f5e02
+Payload entry count: 11
+Freeze digest: 3c7cebb3f27ebf55d1d002e2d8c480a451932ff43d1b4f39f579956cb2ad4d0b
+Harness digest: 826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9

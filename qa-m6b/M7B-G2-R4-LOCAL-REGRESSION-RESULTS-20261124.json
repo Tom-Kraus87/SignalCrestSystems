@@ -1,0 +1,120 @@
+{
+  "suite": "m7b-g2-r4-independent-pool-identity-20261124",
+  "evidenceClass": "mock-static-local",
+  "executed": true,
+  "ok": true,
+  "checks": [
+    {
+      "name": "R1 all five pools correct identities + admin CREATEROLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2 migration auth failure fails closed before cases",
+      "pass": true,
+      "detail": "code=DATABASE_INDEPENDENT_IDENTITY_PREFLIGHT_FAILED label=Project administrator"
+    },
+    {
+      "name": "R2 intake auth failure fails closed before cases",
+      "pass": true,
+      "detail": "code=DATABASE_INDEPENDENT_IDENTITY_PREFLIGHT_FAILED label=Intake"
+    },
+    {
+      "name": "R2 notify auth failure fails closed before cases",
+      "pass": true,
+      "detail": "code=DATABASE_INDEPENDENT_IDENTITY_PREFLIGHT_FAILED label=Notify"
+    },
+    {
+      "name": "R2 owner auth failure fails closed before cases",
+      "pass": true,
+      "detail": "code=DATABASE_INDEPENDENT_IDENTITY_PREFLIGHT_FAILED label=Owner"
+    },
+    {
+      "name": "R2 fixture auth failure fails closed before cases",
+      "pass": true,
+      "detail": "code=DATABASE_INDEPENDENT_IDENTITY_PREFLIGHT_FAILED label=Fixture"
+    },
+    {
+      "name": "R3 incorrect current_user fails closed",
+      "pass": true,
+      "detail": "DATABASE_POOL_IDENTITY_MISMATCH"
+    },
+    {
+      "name": "R4 incorrect session_user fails closed",
+      "pass": true,
+      "detail": "DATABASE_POOL_IDENTITY_MISMATCH"
+    },
+    {
+      "name": "R5 SET ROLE masquerade rejected (session_user must match)",
+      "pass": true,
+      "detail": "DATABASE_POOL_IDENTITY_MISMATCH"
+    },
+    {
+      "name": "R6 admin without CREATEROLE fails closed",
+      "pass": true,
+      "detail": "DATABASE_ADMIN_CREATEROLE_REQUIRED"
+    },
+    {
+      "name": "R7 invalid notify credentials fail at preflight",
+      "pass": true,
+      "detail": "label=Notify"
+    },
+    {
+      "name": "R8 preflight failure observes zero fixture DML",
+      "pass": true,
+      "detail": "fixtureQueries=0"
+    },
+    {
+      "name": "R9 all constructed pools closed after partial preflight failure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R10a TLS rejectUnauthorized required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R10b/c TLS hostname verification + case 7 preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R11 pooler host rejected before connect",
+      "pass": true,
+      "detail": "DATABASE_PATH_A_HOST_INVALID"
+    },
+    {
+      "name": "R12 transaction pooler port 6543 rejected",
+      "pass": true,
+      "detail": "DATABASE_PATH_A_PORT_INVALID"
+    },
+    {
+      "name": "R13 project-qualified username rejected under Path A",
+      "pass": true,
+      "detail": "DATABASE_PATH_A_USERNAME_INVALID"
+    },
+    {
+      "name": "R14 cases 1–13 preserved; case 14 hosted-auth NOT RUN class",
+      "pass": true,
+      "detail": "scored=13"
+    },
+    {
+      "name": "R15 failures redact credentials and full URLs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Identity matrix covers five expected roles",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "note": "Mock/static doubles only. Results are NOT real PostgreSQL evidence. Real-PG 1–13 NOT RUN. Hosted Auth/AAL2 case 14 NOT RUN.",
+  "summary": {
+    "passed": 21,
+    "failed": 0,
+    "total": 21
+  },
+  "result": "PASS"
+}

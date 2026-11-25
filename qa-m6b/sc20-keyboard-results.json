@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "total": 10,
+  "passed": 10,
+  "failedCount": 0,
+  "results": [
+    {
+      "check": "map-single-tab-stop",
+      "pass": true,
+      "tabbableCount": 1
+    },
+    {
+      "check": "arrow-moves-focus",
+      "pass": true,
+      "afterArrow": "ai"
+    },
+    {
+      "check": "enter-selects-node",
+      "pass": true,
+      "pressed": "ai"
+    },
+    {
+      "check": "live-region-announces",
+      "pass": true,
+      "live": "AI engineering. Language-model features built into your tools, with human review steps and guardrails. Connects to Email"
+    },
+    {
+      "check": "esc-clears-selection",
+      "pass": true
+    },
+    {
+      "check": "pause-motion-toggles",
+      "pass": true,
+      "paused": "true"
+    },
+    {
+      "check": "play-motion-toggles",
+      "pass": true,
+      "playing": "false"
+    },
+    {
+      "check": "scenario-starts",
+      "pass": true
+    },
+    {
+      "check": "reduced-motion-no-reveal",
+      "pass": true,
+      "revealOn": false,
+      "mapEnhanced": true,
+      "steps": 0
+    },
+    {
+      "check": "reduced-motion-scenario-instant",
+      "pass": true,
+      "count": 3,
+      "allVisible": true
+    }
+  ],
+  "failed": []
+}

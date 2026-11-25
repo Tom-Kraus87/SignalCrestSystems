@@ -1,0 +1,607 @@
+{
+  "ok": true,
+  "suite": "advisor-phase-a-harden-20261123",
+  "checks": [
+    {
+      "name": "kb.usesLanguageModel=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "honest Phase A disclosure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "banner Phase A guided",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request sensitive hint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script.js sensitive detector",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script.js blocks sensitive message",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor.js expanded SECRET_RE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "soft-cap redirects active issue",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb has exactly 12 form services",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: package-landing",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: package-starter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: package-professional",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: package-advanced",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: custom-software",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: ai-automation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: it-consulting",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: cybersecurity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: qa-automation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: care-plan",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: local-seo",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "service mapping present: other",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "website-transformation not an Advisor PRIMARY",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "packages.html has package-landing price $950",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for package-landing",
+      "pass": true,
+      "detail": "$950"
+    },
+    {
+      "name": "packages.html has package-starter price $1,500",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for package-starter",
+      "pass": true,
+      "detail": "$1,500"
+    },
+    {
+      "name": "packages.html has package-professional price $2,750",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for package-professional",
+      "pass": true,
+      "detail": "$2,750"
+    },
+    {
+      "name": "packages.html has package-advanced price $5,000",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for package-advanced",
+      "pass": true,
+      "detail": "from $5,000"
+    },
+    {
+      "name": "packages.html has ai-automation price $1,500",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for ai-automation",
+      "pass": true,
+      "detail": "Basic automation from $1,500; AI workflow from $5,000; custom agents quoted"
+    },
+    {
+      "name": "packages.html has it-consulting price $110",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for it-consulting",
+      "pass": true,
+      "detail": "$110/hour"
+    },
+    {
+      "name": "packages.html has qa-automation price $90",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for qa-automation",
+      "pass": true,
+      "detail": "$90/hour"
+    },
+    {
+      "name": "packages.html has care-plan price $79",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for care-plan",
+      "pass": true,
+      "detail": "$79 / $149 / $349 per month"
+    },
+    {
+      "name": "packages.html has local-seo price $475",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb price for local-seo",
+      "pass": true,
+      "detail": "$475/month"
+    },
+    {
+      "name": "care plan all three tiers in packages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no invented $999 advisor price",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "matrix 1 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 2 => package-landing",
+      "pass": true,
+      "detail": "got package-landing"
+    },
+    {
+      "name": "matrix 3 => package-starter",
+      "pass": true,
+      "detail": "got package-starter"
+    },
+    {
+      "name": "matrix 4 => package-professional",
+      "pass": true,
+      "detail": "got package-professional"
+    },
+    {
+      "name": "matrix 5 => package-advanced",
+      "pass": true,
+      "detail": "got package-advanced"
+    },
+    {
+      "name": "matrix 6 => care-plan",
+      "pass": true,
+      "detail": "got care-plan"
+    },
+    {
+      "name": "matrix 7 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 8 => custom-software",
+      "pass": true,
+      "detail": "got custom-software"
+    },
+    {
+      "name": "matrix 9 => ai-automation",
+      "pass": true,
+      "detail": "got ai-automation"
+    },
+    {
+      "name": "matrix 10 => it-consulting",
+      "pass": true,
+      "detail": "got it-consulting"
+    },
+    {
+      "name": "matrix 11 => cybersecurity",
+      "pass": true,
+      "detail": "got cybersecurity"
+    },
+    {
+      "name": "matrix 12 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 13 => care-plan",
+      "pass": true,
+      "detail": "got care-plan"
+    },
+    {
+      "name": "matrix 14 => local-seo",
+      "pass": true,
+      "detail": "got local-seo"
+    },
+    {
+      "name": "matrix 15 => qa-automation",
+      "pass": true,
+      "detail": "got qa-automation"
+    },
+    {
+      "name": "matrix 16 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 17 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "start #1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "follow-up complete does not consume",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "third issue active with 0 remaining",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "active issue continue after credits zero",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cannot start fourth while active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fourth new issue soft-capped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret password",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret MFA",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret clean",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "brief editable draft marker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "brief not live AI disclosure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff source=advisor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff privacyVersion preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff brief preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff chrome Talk to human present in advisor.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request source default contact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request privacy-version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request advisor-brief",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": [],
+  "matrix": [
+    {
+      "id": "T01",
+      "expected": "other",
+      "got": "other",
+      "pass": true
+    },
+    {
+      "id": "T02",
+      "expected": "package-landing",
+      "got": "package-landing",
+      "pass": true
+    },
+    {
+      "id": "T03",
+      "expected": "package-starter",
+      "got": "package-starter",
+      "pass": true
+    },
+    {
+      "id": "T04",
+      "expected": "package-professional",
+      "got": "package-professional",
+      "pass": true
+    },
+    {
+      "id": "T05",
+      "expected": "package-advanced",
+      "got": "package-advanced",
+      "pass": true
+    },
+    {
+      "id": "T06",
+      "expected": "care-plan",
+      "got": "care-plan",
+      "pass": true
+    },
+    {
+      "id": "T07",
+      "expected": "other",
+      "got": "other",
+      "pass": true
+    },
+    {
+      "id": "T08",
+      "expected": "custom-software",
+      "got": "custom-software",
+      "pass": true
+    },
+    {
+      "id": "T09",
+      "expected": "ai-automation",
+      "got": "ai-automation",
+      "pass": true
+    },
+    {
+      "id": "T10",
+      "expected": "it-consulting",
+      "got": "it-consulting",
+      "pass": true
+    },
+    {
+      "id": "T11",
+      "expected": "cybersecurity",
+      "got": "cybersecurity",
+      "pass": true
+    },
+    {
+      "id": "T12",
+      "expected": "other",
+      "got": "other",
+      "pass": true
+    },
+    {
+      "id": "T13",
+      "expected": "care-plan",
+      "got": "care-plan",
+      "pass": true
+    },
+    {
+      "id": "T14",
+      "expected": "local-seo",
+      "got": "local-seo",
+      "pass": true
+    },
+    {
+      "id": "T15",
+      "expected": "qa-automation",
+      "got": "qa-automation",
+      "pass": true
+    },
+    {
+      "id": "T16",
+      "expected": "other",
+      "got": "other",
+      "pass": true
+    },
+    {
+      "id": "T17",
+      "expected": "other",
+      "got": "other",
+      "pass": true
+    }
+  ],
+  "pricing": [
+    {
+      "id": "package-landing",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "package-starter",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "package-professional",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "package-advanced",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "ai-automation",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "it-consulting",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "qa-automation",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "care-plan",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    },
+    {
+      "id": "local-seo",
+      "inPackages": true,
+      "inKb": true,
+      "labelOk": true
+    }
+  ],
+  "services": [
+    {
+      "id": "package-landing",
+      "present": true
+    },
+    {
+      "id": "package-starter",
+      "present": true
+    },
+    {
+      "id": "package-professional",
+      "present": true
+    },
+    {
+      "id": "package-advanced",
+      "present": true
+    },
+    {
+      "id": "custom-software",
+      "present": true
+    },
+    {
+      "id": "ai-automation",
+      "present": true
+    },
+    {
+      "id": "it-consulting",
+      "present": true
+    },
+    {
+      "id": "cybersecurity",
+      "present": true
+    },
+    {
+      "id": "qa-automation",
+      "present": true
+    },
+    {
+      "id": "care-plan",
+      "present": true
+    },
+    {
+      "id": "local-seo",
+      "present": true
+    },
+    {
+      "id": "other",
+      "present": true
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "suite": "m7a-r7-postgres-integration-20261123",
+  "evidenceClass": "real-postgresql",
+  "executed": false,
+  "result": "NOT RUN",
+  "ok": null,
+  "authorization": "SCS_AUTHORIZE_REAL_PG_TESTS is not true. Real PostgreSQL tests are not authorized.",
+  "note": "Historical R4 and R6 NOT RUN preserved. Case 8 is simulated JWT claims only; case 14 hosted Auth/AAL2 remains a separate NOT RUN evidence class. R7 local TLS effective-config tests do NOT constitute real PostgreSQL evidence.",
+  "cases": [
+    {
+      "id": 1,
+      "name": "Runtime identities and effective grants",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 2,
+      "name": "Warm-cache and cold-cache idempotency",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 3,
+      "name": "Concurrent same-key submissions",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 4,
+      "name": "Concurrent conflicting payloads",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 5,
+      "name": "Deleted-key replay with cached receipts",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 6,
+      "name": "Role-bootstrap failure conditions",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 7,
+      "name": "TLS certificate and hostname rejection",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 8,
+      "name": "Simulated JWT claims owner allowlist (set_config) — not hosted Auth",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 9,
+      "name": "Expired and reclaimed worker leases",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 10,
+      "name": "Unauthorized notification invocation",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 11,
+      "name": "Missing hosted IP-hash salt",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 12,
+      "name": "Administrative runtime credential rejection",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 13,
+      "name": "Retention purge and outbox foreign keys",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "real-postgresql"
+    },
+    {
+      "id": 14,
+      "name": "Genuine hosted Supabase Auth + AAL2 verification",
+      "status": "NOT RUN",
+      "pass": null,
+      "evidenceClass": "hosted-auth"
+    }
+  ]
+}

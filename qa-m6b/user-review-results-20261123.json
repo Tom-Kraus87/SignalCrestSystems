@@ -1,0 +1,229 @@
+{
+  "pass": true,
+  "total": 35,
+  "passed": 35,
+  "failedCount": 0,
+  "results": [
+    {
+      "check": "connected-systems-in-hero",
+      "pass": true
+    },
+    {
+      "check": "five-connected-scenarios",
+      "pass": true,
+      "chipCount": 5
+    },
+    {
+      "check": "scenario-quote",
+      "pass": true,
+      "title": "Quote request (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true
+    },
+    {
+      "check": "scenario-invoice",
+      "pass": true,
+      "title": "Invoice email (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true
+    },
+    {
+      "check": "scenario-update",
+      "pass": true,
+      "title": "Customer update (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true
+    },
+    {
+      "check": "scenario-booking",
+      "pass": true,
+      "title": "Appointment booking (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true
+    },
+    {
+      "check": "scenario-reporting",
+      "pass": true,
+      "title": "Business reporting (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true
+    },
+    {
+      "check": "scenario-escape-clears",
+      "pass": true
+    },
+    {
+      "check": "illustrative-section-exists",
+      "pass": true
+    },
+    {
+      "check": "workflows-not-in-hero",
+      "pass": true
+    },
+    {
+      "check": "five-illustrative-tabs",
+      "pass": true,
+      "tabCount": 5
+    },
+    {
+      "check": "illustrative-website",
+      "pass": true
+    },
+    {
+      "check": "illustrative-leads",
+      "pass": true
+    },
+    {
+      "check": "illustrative-software",
+      "pass": true
+    },
+    {
+      "check": "illustrative-care",
+      "pass": true
+    },
+    {
+      "check": "solutions-open-desktop",
+      "pass": true
+    },
+    {
+      "check": "solutions-viewport-contained",
+      "pass": true,
+      "geom": {
+        "left": 240,
+        "right": 1200,
+        "top": 79,
+        "bottom": 561.453125,
+        "width": 960,
+        "height": 482.453125,
+        "vw": 1440,
+        "vh": 900,
+        "overflowX": "hidden",
+        "scrollWidth": 958,
+        "clientWidth": 958
+      }
+    },
+    {
+      "check": "solutions-four-cards",
+      "pass": true,
+      "cats": 4
+    },
+    {
+      "check": "solutions-no-text-overlap",
+      "pass": true,
+      "hits": 0,
+      "sample": [
+        {
+          "t": 257.109375,
+          "b": 311.984375,
+          "l": 272.390625,
+          "r": 463.5,
+          "text": "Website design & development"
+        },
+        {
+          "t": 315.171875,
+          "b": 350.609375,
+          "l": 272.390625,
+          "r": 463.5,
+          "text": "Website packages"
+        },
+        {
+          "t": 353.796875,
+          "b": 389.234375,
+          "l": 272.390625,
+          "r": 463.5,
+          "text": "Modernization case studies"
+        },
+        {
+          "t": 392.421875,
+          "b": 427.859375,
+          "l": 272.390625,
+          "r": 463.5,
+          "text": "Concept demos"
+        }
+      ]
+    },
+    {
+      "check": "solutions-aria-expanded-open",
+      "pass": true
+    },
+    {
+      "check": "solutions-escape-close",
+      "pass": true
+    },
+    {
+      "check": "solutions-aria-expanded-closed",
+      "pass": true
+    },
+    {
+      "check": "solutions-outside-click-close",
+      "pass": true
+    },
+    {
+      "check": "mobile-five-chips",
+      "pass": true
+    },
+    {
+      "check": "mobile-scenario-quote",
+      "pass": true
+    },
+    {
+      "check": "mobile-solutions-contained",
+      "pass": true,
+      "mobileGeom": {
+        "left": 24,
+        "right": 366,
+        "width": 342,
+        "vw": 390,
+        "scrollWidth": 340,
+        "clientWidth": 340
+      }
+    },
+    {
+      "check": "mobile-solutions-close-visible",
+      "pass": true
+    },
+    {
+      "check": "mobile-solutions-closed",
+      "pass": true
+    },
+    {
+      "check": "no-studio-in-dist",
+      "pass": true
+    },
+    {
+      "check": "no-studio-string-in-dist-html",
+      "pass": true
+    },
+    {
+      "check": "workflow-asset-in-dist",
+      "pass": true
+    },
+    {
+      "check": "hero-asset-in-dist",
+      "pass": true
+    },
+    {
+      "check": "source-booking-scenario",
+      "pass": true
+    },
+    {
+      "check": "source-reporting-scenario",
+      "pass": true
+    },
+    {
+      "check": "no-csp-console-errors",
+      "pass": true,
+      "cspErrors": []
+    }
+  ],
+  "failed": [],
+  "screenshots": [
+    "desktop-connected-systems-booking.png",
+    "desktop-connected-systems-reporting.png",
+    "desktop-illustrative-workflows.png",
+    "desktop-solutions-explorer.png",
+    "mobile-connected-systems.png",
+    "mobile-illustrative-workflows.png",
+    "mobile-solutions-explorer.png"
+  ]
+}

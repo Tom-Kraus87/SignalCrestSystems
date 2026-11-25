@@ -1,0 +1,351 @@
+{
+  "generatedAt": "2026-11-23T23:55:08.114Z",
+  "base": "http://127.0.0.1:50986",
+  "pages": [
+    {
+      "page": "index.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "work.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "showroom.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "case-studies.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "packages.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "services.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "about.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "contact.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "project-request.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "privacy.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "advisor.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "ai-automation.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "qa-process.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "resources.html",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "page": "404.html",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "assets": [
+    {
+      "asset": "assets/concept-preview-starter.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/concept-preview-professional.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/concept-preview-advanced.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-1.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-2.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-3.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-4.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-5.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "assets/gallery-6.webp",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "script.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "styles.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "themes.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "packages-pricing.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "showroom.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "showroom.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "showroom/home-services.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "showroom/ecommerce.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "hero-systems.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "hero-systems.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "workflow-demos.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "home.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "asset": "home.js",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "anchors": [
+    {
+      "file": "work.html",
+      "needle": "id=\"concept-demos\"",
+      "ok": true
+    },
+    {
+      "file": "work.html",
+      "needle": "assets/concept-preview-starter.png",
+      "ok": true
+    },
+    {
+      "file": "work.html",
+      "needle": "data-demo=\"starter\"",
+      "ok": true
+    },
+    {
+      "file": "work.html",
+      "needle": "id=\"tpl-starter\"",
+      "ok": true
+    },
+    {
+      "file": "work.html",
+      "needle": "id=\"demoModal\"",
+      "ok": true
+    },
+    {
+      "file": "work.html",
+      "needle": "href=\"showroom.html\"",
+      "ok": true
+    },
+    {
+      "file": "packages.html",
+      "needle": "id=\"websites\"",
+      "ok": true
+    },
+    {
+      "file": "packages.html",
+      "needle": "assets/concept-preview-starter.png",
+      "ok": true
+    },
+    {
+      "file": "packages.html",
+      "needle": "data-demo=\"starter\"",
+      "ok": true
+    },
+    {
+      "file": "packages.html",
+      "needle": "id=\"tpl-starter\"",
+      "ok": true
+    },
+    {
+      "file": "packages.html",
+      "needle": "id=\"demoModal\"",
+      "ok": true
+    },
+    {
+      "file": "case-studies.html",
+      "needle": "href=\"work.html#concept-demos\"",
+      "ok": true
+    },
+    {
+      "file": "case-studies.html",
+      "needle": "case-studies-grid",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "class=\"hs-hero\"",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "id=\"hs-map\"",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "href=\"showroom.html\"",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "id=\"product-lab\"",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "id=\"showroom-preview\"",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "hero-systems.js",
+      "ok": true
+    },
+    {
+      "file": "index.html",
+      "needle": "home.js",
+      "ok": true
+    },
+    {
+      "file": "showroom.html",
+      "needle": "id=\"demo-home-services-root\"",
+      "ok": true
+    },
+    {
+      "file": "showroom.html",
+      "needle": "id=\"demo-ecommerce-root\"",
+      "ok": true
+    },
+    {
+      "file": "showroom.html",
+      "needle": "showroom/home-services.js",
+      "ok": true
+    },
+    {
+      "file": "showroom.html",
+      "needle": "showroom/ecommerce.js",
+      "ok": true
+    },
+    {
+      "file": "showroom.html",
+      "needle": "contact.html?service=custom-software",
+      "ok": true
+    }
+  ],
+  "demoWiring": [
+    {
+      "check": "homepage_has_no_concept_demo_modal",
+      "ok": true
+    },
+    {
+      "check": "work_has_three_demo_buttons",
+      "ok": true
+    },
+    {
+      "check": "packages_has_three_demo_buttons",
+      "ok": true
+    },
+    {
+      "check": "work_templates_present",
+      "ok": true
+    },
+    {
+      "check": "packages_templates_present",
+      "ok": true
+    },
+    {
+      "check": "showroom_has_both_demos",
+      "ok": true
+    },
+    {
+      "check": "allowlist_includes_showroom",
+      "ok": true
+    }
+  ],
+  "failures": []
+}

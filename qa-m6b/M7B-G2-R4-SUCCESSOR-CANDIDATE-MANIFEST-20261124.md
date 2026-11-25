@@ -1,0 +1,124 @@
+# M7B-G2-R4 — Successor Candidate Manifest (Provisional)
+
+**Candidate identifier:** `M7B-G2-R4-SUCCESSOR-20261124`  
+**Freeze timestamp (UTC):** `2026-11-25T00:25:29Z`  
+**Algorithm:** SHA-256 (lowercase hex)  
+**Manifest entry count:** 64  
+**Manifest SHA-256:** `683cc3f5162ed2b86f5eb7cee5822ed2598e76c00dc51c996188f8c22622542d`  
+**Status:** Provisional until Codex/Atlas acceptance  
+**Production:** **HOLD**
+
+## Historical freeze preservation
+
+| Object | Digest / hash | Status |
+|--------|---------------|--------|
+| Original 59-file candidate digest | `3c7cebb3f27ebf55d1d002e2d8c480a451932ff43d1b4f39f579956cb2ad4d0b` | **PRESERVED (not overwritten)** |
+| Historical harness evidence | `826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9` | **PRESERVED** (backup under `qa-m6b/evidence/m7b-g2-r4-historical-harness-826bf5c3-20261124/`) |
+| Historical manifest files | `M7B-AUDIT-SNAPSHOT-MANIFEST-20261124.md`, `_m7b-manifest-*` | **UNCHANGED** |
+
+## Completeness scope
+
+Includes original security-relevant inventory; revised harness; new R4 regression test; TLS/identity helpers (`pg-client.js` unchanged); Functions package metadata + lockfiles; database bootstrap + migrations; applicable staging fixture overlay; build/deployment configuration; security-relevant application source; retained evidence with classifications below.
+
+### Evidence classifications
+
+| Class | Status |
+|-------|--------|
+| Real-PG cases 1–13 | **NOT RUN** |
+| Hosted Auth/AAL2 case 14 | **NOT RUN** |
+| Hosted staging | **NOT RUN** |
+| Mock/static local (R4 + secure leads) | **EXECUTED** (not real-PG evidence) |
+
+### Digest method
+
+Canonical lines `path<TAB>sha256<TAB>bytes` sorted by path, UTF-8, joined by `\n`. Inventory JSON and companion reports are **excluded** from the digest (no recursive self-hash).
+
+## Inventory delta summary
+
+| Status | Count |
+|--------|------:|
+| unchanged | 58 |
+| modified | 1 |
+| added | 5 |
+| removed | 0 |
+
+## Manifest
+
+| Path | SHA-256 | Bytes | Status | Classification |
+|------|---------|------:|--------|----------------|
+| `.env.example` | `05478ce15b7654d3071802ceb6f863101a11188a5107169916e3ef5a9b581435` | 10553 | unchanged | security-relevant-source |
+| `_headers` | `65757f4d79765f23a634ab9682a8f80cd03a5e17fa71bddf204293e8a6ce01a3` | 601 | unchanged | build-deploy-config |
+| `advisor.html` | `f3dddc104a82b84e21268cb1febfb048b415ab049d76e721957e7440a4bbac5b` | 19639 | unchanged | security-relevant-source |
+| `advisor.js` | `ccf4afc58544bf78f61517f3285dd4a808dd782a969298f66dc70d23af78fb28` | 42591 | unchanged | security-relevant-source |
+| `advisor-kb.json` | `1b9581bc50558bf73a5a769b2ce9f818ab29ead144d0d848c0edc874366a74aa` | 10795 | unchanged | security-relevant-source |
+| `contact.html` | `ff3b50b21fca2cf2b72e1104e631facd080327cc74e38e7d8a734861b20c9eef` | 24397 | unchanged | security-relevant-source |
+| `db/bootstrap/001_m7a_r4_role_bootstrap.sql` | `e70d2bd22d147228cdcfece725d9a287cd718fe7ef77221493f94e05f88d5d8f` | 4100 | unchanged | database-sql-or-executor |
+| `db/migrations/001_m7a_leads_foundation.sql` | `7f45ae6de2f666bc1e8ea7c2816e6fd60a515b367a51ac7bd1e706ee028b8dc0` | 5572 | unchanged | database-sql-or-executor |
+| `db/migrations/002_m7a_rls_least_privilege.sql` | `fbbb319e6215665dfdc02ecfd225c079fd1b396828397e647e2b90be84f58850` | 2584 | unchanged | database-sql-or-executor |
+| `db/migrations/003_m7a_retention_procedures.sql` | `509595c5457c989379adb4e51c309e56111104525032a76fec68478b9c0cf472` | 5624 | unchanged | database-sql-or-executor |
+| `db/migrations/004_m7a_counters_idempotency.sql` | `0f0ee07642f22cc727891d471f35c6f04d11ad3c9136a495567452a6e7f62888` | 5229 | unchanged | database-sql-or-executor |
+| `db/migrations/005_m7a_insert_lead_bundle.sql` | `b2ebc8adb202ffa60c8e83d14230449b893bb34572486dbdfdabd53550c30c39` | 8125 | unchanged | database-sql-or-executor |
+| `db/migrations/006_m7a_r2_security_hardening.sql` | `5120160bc97c9bbfa805675d0f28c64dd8b2399416a08feb498e1103de84b63f` | 24640 | unchanged | database-sql-or-executor |
+| `db/migrations/007_m7a_r4_security_corrections.sql` | `dce49eff38a9d1591964bad88be9d00b46969d65050d1b5b96478a997d05d2d8` | 13827 | unchanged | database-sql-or-executor |
+| `db/procedures/m7a_insert_lead_transaction.sql` | `36d8cb27901382f7639cd105d477510d1baeb5c081027322e05a78f992bd41ca` | 1355 | unchanged | database-sql-or-executor |
+| `db/scripts/m7a-migration-executor-static.mjs` | `d63c9e190b2edf14f177e5575c073ca770ea4bfe7193374148eb1b4add429048` | 8044 | unchanged | evidence:mock-static-or-static |
+| `netlify.toml` | `579e1607b9f4f7a87fac7f7fd852017c25fc6ee5f542a110d1474236a7b9d352` | 681 | unchanged | build-deploy-config |
+| `netlify/functions/_lib/deps.js` | `e0c069de8f47eb906b745575f51bc0ca61d9518d632252cffa308b1620105d07` | 7038 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/idempotency.js` | `cbafe0a064eb0d14446df0e691f94a32f9a872463dc35ecf9fc40d35904a0a99` | 2776 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/normalize.js` | `fdc5226d4a71840b4401b9534966f6d9b92c407e89769511c15b635fa9261fd8` | 2224 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/notify.js` | `af89832e68011b9ba28dec609ee9e122b890597a158debf14eceb301d51d6dc9` | 1387 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/notify-worker.js` | `cfe21dbe9868e3d8bc10dbdcb6ad9fa8ac3452a0bf755be10800fb3fbcbcd694` | 4921 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/payload-hash.js` | `58765105f149dd7162559bdd7f29b6e4fe21f4e42ab2435f79cd4c7639051429` | 1086 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/pg-client.js` | `3c512148f7c4a7d85d7e324d696c9114c3f6103b096c9d430a7da9f6ffc004bc` | 23380 | unchanged | tls-identity-helper |
+| `netlify/functions/_lib/postgres-adapters.js` | `0e1cf20acdf438a480480f3d2700c2c70b97c6f07ec5cd0eab22992a00a7c5ac` | 7715 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/privacy.js` | `c82da60e24bdfd9f478854378c03b717a4661d160a0f95e71b68e65cd074f2f4` | 824 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/process-lead.js` | `54b64db0b6dd7d55e5df5d55c245635e0addee8ef829a097f260c7ba9e43b03e` | 13082 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/rate-limit.js` | `6c1d933737cc19663dee99b64c3dc29f6d7aed4098b8d2d1b296632d2469a142` | 2872 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/repository.js` | `59f0606b64881fa7fb5e66d789360be3eae5f6ccec013b406a15fb935a53f15e` | 8965 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/request-meta.js` | `f0550c4651cc3184b5039775905e27dd8cf5abc64261965f0d0344a87d9ac5b7` | 2403 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/safe-log.js` | `0e2dd975a59496ca09a5c6d368fd403145484655e904c70421c9cc61bcc6f55b` | 1309 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/schema.js` | `da7af2cecb9a403439eb020bffa5e1c399d6dae2953f1ada53e184d95122b6cf` | 10281 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/sensitive.js` | `8d3b609ae3fd35267516a74e3f55c7b7a21fd66194df3ad39074565932468018` | 1739 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/spam-protection.js` | `500483efbcf6461d67de88ebc1adabe150a517a64dd51eb94e0db405e493aab1` | 4218 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/transactional-primitives.js` | `bc659859d4c5b788d3698bacfadfc8e316f24eb13648b3e9df0a98074908c0f9` | 6309 | unchanged | security-relevant-source |
+| `netlify/functions/_lib/worker-auth.js` | `49b2cd99f65a17332ff019aeab32de65090c9a27486fcb7a21b2c31b9fc9df27` | 2277 | unchanged | security-relevant-source |
+| `netlify/functions/DEPENDENCY-LOCKING.md` | `a3def69ef01654ac06e180e11ceb3a9d95be45f914f315e735e039369979ccd3` | 2424 | unchanged | security-relevant-source |
+| `netlify/functions/leads.js` | `aefb63db013a2c7eee3a9b1db3c5fb2f97df612afe18a8b5810de1f535ac0b74` | 1255 | unchanged | security-relevant-source |
+| `netlify/functions/notify-worker.js` | `bd2c2efa317d876231f096cb88e8af32726885b8f1a128fb0d50f6015a91e752` | 2677 | unchanged | security-relevant-source |
+| `netlify/functions/package.json` | `332334d070a53ce8f004bb497c20f1fb343368021125b75fd46dc1664917054f` | 654 | unchanged | functions-package-metadata |
+| `netlify/functions/package-lock.json` | `af04592c207523715df668df866bc1fb901b7110d11fb1a90896f7e25e79ad8a` | 5409 | unchanged | functions-package-metadata |
+| `privacy.html` | `a2a9f3fe92855be18798fe778be45c341e5f6b880ce8acb7470fc441511da0c5` | 22486 | unchanged | security-relevant-source |
+| `project-request.html` | `0b62bba9567da13114ce8aafa3c6000f358f34586ec4d8d8a13bfb78e4126a03` | 26224 | unchanged | security-relevant-source |
+| `qa-m6b/_m7a-static-check.mjs` | `08a4b92477c0b70a784c4ea16fff6eaa27c29c82ea5619bbeda671518395a533` | 925 | unchanged | security-relevant-source |
+| `qa-m6b/evidence/m7b-g2-r4-historical-harness-826bf5c3-20261124/ORIGINAL-SHA256.txt` | `af621c6cefdd976c7049bf6293bb823f0fd88bfb5c4dd23c78f1548250e61e61` | 654 | added | evidence:historical-harness-freeze |
+| `qa-m6b/evidence/m7b-g2-r4-historical-harness-826bf5c3-20261124/verify-m7a-r2-postgres-integration-20261123.mjs` | `826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9` | 39395 | added | evidence:historical-harness-freeze |
+| `qa-m6b/M7A-R4-POSTGRES-INTEGRATION-NOT-RUN-20261123.json` | `086ac8dbbcb7af77fb34139b7973045c191786ca28b225f10844d24a8ecb36e4` | 1945 | unchanged | evidence:real-pg-NOT-RUN |
+| `qa-m6b/M7A-R6-POSTGRES-INTEGRATION-NOT-RUN-20261123.json` | `09cfa0f1f9c64e18e5c86df677e356adeed0d9270b2b9718b3b3266db2b26ad2` | 2904 | unchanged | evidence:real-pg-NOT-RUN |
+| `qa-m6b/M7A-R7-MIGRATION-EXECUTOR-STATIC-20261123.json` | `227159cb89cf1c1ddbd28cf16b6b10c50b7f84e6a723acb3a4acae7eece9fff7` | 5107 | unchanged | evidence:mock-static-or-static |
+| `qa-m6b/M7A-R7-POSTGRES-INTEGRATION-NOT-RUN-20261123.json` | `817eb546b0abf1689e5073a6b9bc5189aa4c9b3e3f399d2560000cbc36290b2b` | 2931 | unchanged | evidence:real-pg-NOT-RUN |
+| `qa-m6b/M7A-R7-TLS-EFFECTIVE-CONFIGURATION-EVIDENCE-20261123.json` | `3d6176f9df667b0438fbc6a93cbae9deec0279f0792a7c2a43367dd909dc9974` | 3487 | unchanged | evidence:mock-static-or-static |
+| `qa-m6b/M7B-G2-R3-staging-fixture-rls-policies-20261124.sql` | `1da94d69c7f4a1828c45a9b81abe2607c6fcc277f008871b1c9cbae5836518d6` | 6790 | added | staging-fixture-overlay |
+| `qa-m6b/M7B-G2-R4-LOCAL-REGRESSION-RESULTS-20261124.json` | `d5e7d7e05dc33bb2a42fde63c8dc127544f7bb54b00d60ec607f5f991d10754a` | 3434 | added | evidence:mock-static-or-static |
+| `qa-m6b/M7B-LOCAL-TEST-RESULTS-20261124.json` | `444e4aaf137b103d2a3843dc74da7a83d18455f37d18dc8e8d49bfab433b97c4` | 28833 | unchanged | evidence:mock-static-or-static |
+| `qa-m6b/M7B-MIGRATION-EXECUTOR-STATIC-20261124.json` | `227159cb89cf1c1ddbd28cf16b6b10c50b7f84e6a723acb3a4acae7eece9fff7` | 5107 | unchanged | evidence:mock-static-or-static |
+| `qa-m6b/M7B-NETLIFY-CLI-PIN-PROCEDURE-20261124.md` | `81af722df2f9d3469bbc3543178ecd2751151a143f606667814f23252ebcaeac` | 1886 | unchanged | security-relevant-source |
+| `qa-m6b/M7B-POSTGRES-CLIENT-WINDOWS-20261124.md` | `9746dec187fb4c16ecae6f20ec131dfa6db1eadd0d8b833cf97d5e097f0fe06e` | 3466 | unchanged | security-relevant-source |
+| `qa-m6b/M7B-POSTGRES-INTEGRATION-NOT-RUN-20261124.json` | `35147d23d7f494ff0878d771e579b4fcc632a5b59417a5852aaa150b679aac42` | 2935 | unchanged | evidence:real-pg-NOT-RUN |
+| `qa-m6b/tests/m7b-g2-r4-independent-pool-identity-20261124.mjs` | `ad053dbc78a05e8f1b08fc43111d42593c04948441685bad4658464be374df1b` | 18213 | added | r4-regression-test |
+| `qa-m6b/verify-m7a-r2-postgres-integration-20261123.mjs` | `6f4f95ce3a6e7734a5cc769a9f46c7114f7c64d7d80901e6835150b2c9bcd2a2` | 50679 | modified | revised-harness |
+| `qa-m6b/verify-m7a-secure-leads-20261123.mjs` | `d5dfca9a080185ed874d7296f9ea680964e8972993b44ecde2d6aeae7eb9d209` | 83781 | unchanged | security-relevant-source |
+| `script.js` | `cb927b5f0261fd9a739fb14c4851b24e421e0cbd6cdec5698c051b5c4dc333a9` | 23938 | unchanged | security-relevant-source |
+| `scripts/build-public.mjs` | `b8d08e2f9f17d7f349b779e0846b8fb2793bda096e66dfe67862701e01dabb78` | 27876 | unchanged | build-deploy-config |
+| `tools/netlify-cli-pin/package.json` | `6a03fcb86b00117853d608afa1659baf41900b92d9649074b3208a0297aee6fe` | 606 | unchanged | build-deploy-config |
+
+## Local test summary (this successor)
+
+| Suite | Evidence class | Result |
+|-------|----------------|--------|
+| R4 independent pool identity | mock/static | **21 / 21 PASS** |
+| Secure leads | mock/static | **265 / 265 PASS** |
+| Migration executor static | static | **PASS** (0 SQL) |
+| Real-PG harness | real-postgresql | **NOT RUN** |
+| Hosted Auth case 14 | hosted-auth | **NOT RUN** |
+
+**Production: HOLD. Successor provisional — stop for Codex.**

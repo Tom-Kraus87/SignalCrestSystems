@@ -1,0 +1,233 @@
+{
+  "pass": true,
+  "totalRuns": 32,
+  "passed": 32,
+  "failedCount": 0,
+  "failed": [],
+  "runs": [
+    {
+      "theme": "midnight-tech",
+      "appliedTheme": "midnight-tech",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "obsidian-black",
+      "appliedTheme": "obsidian-black",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "stealth-carbon",
+      "appliedTheme": "stealth-carbon",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "emerald-night",
+      "appliedTheme": "emerald-night",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "royal-indigo",
+      "appliedTheme": "royal-indigo",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "industrial-slate",
+      "appliedTheme": "industrial-slate",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "clean-corporate",
+      "appliedTheme": "clean-corporate",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "blueprint-studio",
+      "appliedTheme": "blueprint-studio",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "vintage-paper",
+      "appliedTheme": "vintage-paper",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "neural-future",
+      "appliedTheme": "neural-future",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "holographic",
+      "appliedTheme": "holographic",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyberpunk-2099",
+      "appliedTheme": "cyberpunk-2099",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyber-terminal",
+      "appliedTheme": "cyber-terminal",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "retro-computing",
+      "appliedTheme": "retro-computing",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "synthwave-sunset",
+      "appliedTheme": "synthwave-sunset",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "arcade-1995",
+      "appliedTheme": "arcade-1995",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "midnight-tech",
+      "appliedTheme": "midnight-tech",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "obsidian-black",
+      "appliedTheme": "obsidian-black",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "stealth-carbon",
+      "appliedTheme": "stealth-carbon",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "emerald-night",
+      "appliedTheme": "emerald-night",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "royal-indigo",
+      "appliedTheme": "royal-indigo",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "industrial-slate",
+      "appliedTheme": "industrial-slate",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "clean-corporate",
+      "appliedTheme": "clean-corporate",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "blueprint-studio",
+      "appliedTheme": "blueprint-studio",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "vintage-paper",
+      "appliedTheme": "vintage-paper",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "neural-future",
+      "appliedTheme": "neural-future",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "holographic",
+      "appliedTheme": "holographic",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyberpunk-2099",
+      "appliedTheme": "cyberpunk-2099",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyber-terminal",
+      "appliedTheme": "cyber-terminal",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "retro-computing",
+      "appliedTheme": "retro-computing",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "synthwave-sunset",
+      "appliedTheme": "synthwave-sunset",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "arcade-1995",
+      "appliedTheme": "arcade-1995",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

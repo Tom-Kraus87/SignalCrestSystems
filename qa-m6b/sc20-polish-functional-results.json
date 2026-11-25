@@ -1,0 +1,83 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "T3-site-header",
+      "ok": true,
+      "detail": "present"
+    },
+    {
+      "id": "T3-no-proto-header",
+      "ok": true,
+      "detail": "absent"
+    },
+    {
+      "id": "CTA-primary",
+      "ok": true,
+      "detail": "project-request.html"
+    },
+    {
+      "id": "CTA-secondary",
+      "ok": true,
+      "detail": "showroom.html"
+    },
+    {
+      "id": "CTA-closing-primary",
+      "ok": true,
+      "detail": "project-request.html"
+    },
+    {
+      "id": "CTA-closing-secondary",
+      "ok": true,
+      "detail": "showroom.html"
+    },
+    {
+      "id": "nav-cta",
+      "ok": true,
+      "detail": "project-request.html"
+    },
+    {
+      "id": "mobile-menu-open",
+      "ok": true,
+      "detail": "aria-expanded=true"
+    },
+    {
+      "id": "mobile-menu-visible",
+      "ok": true,
+      "detail": "is-open links=27"
+    },
+    {
+      "id": "contact-netlify",
+      "ok": true,
+      "detail": "contact"
+    },
+    {
+      "id": "contact-service-preselect",
+      "ok": true,
+      "detail": "ai-automation"
+    },
+    {
+      "id": "showroom-loads",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "id": "csp-console",
+      "ok": true,
+      "detail": "0 CSP/error hits on homepage load path"
+    },
+    {
+      "id": "webkit-hero",
+      "ok": true,
+      "detail": "enhanced + CTA ok"
+    }
+  ],
+  "webkit": {
+    "available": true,
+    "mapEnhanced": true,
+    "primaryCta": "project-request.html",
+    "consoleErrors": [],
+    "note": "Playwright WebKit ≠ real iOS Safari"
+  }
+}

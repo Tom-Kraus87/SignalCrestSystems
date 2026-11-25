@@ -1,0 +1,544 @@
+{
+  "pass": false,
+  "totalRuns": 32,
+  "passed": 23,
+  "failedCount": 9,
+  "failed": [
+    {
+      "theme": "midnight-tech",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 15,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              "#capabilities > .hm-inner > .hm-head > .hm-kicker"
+            ],
+            [
+              "#cap-heading"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "obsidian-black",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 5,
+          "samples": [
+            [
+              ".hm-support"
+            ],
+            [
+              "li:nth-child(1) > p"
+            ],
+            [
+              "li:nth-child(2) > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "clean-corporate",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 8,
+          "samples": [
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#security\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "blueprint-studio",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 3,
+          "samples": [
+            [
+              "#machine > .home-lab-link"
+            ],
+            [
+              "#world > .home-lab-link"
+            ],
+            [
+              "#factory > .home-lab-link"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "neural-future",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 10,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "midnight-tech",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 14,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              "#capabilities > .hm-inner > .hm-head > .hm-kicker"
+            ],
+            [
+              "#cap-heading"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "obsidian-black",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 5,
+          "samples": [
+            [
+              ".hm-support"
+            ],
+            [
+              "li:nth-child(1) > p"
+            ],
+            [
+              "li:nth-child(2) > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "clean-corporate",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 8,
+          "samples": [
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#security\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "neural-future",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 10,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "theme": "midnight-tech",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 15,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              "#capabilities > .hm-inner > .hm-head > .hm-kicker"
+            ],
+            [
+              "#cap-heading"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "obsidian-black",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 5,
+          "samples": [
+            [
+              ".hm-support"
+            ],
+            [
+              "li:nth-child(1) > p"
+            ],
+            [
+              "li:nth-child(2) > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "stealth-carbon",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "emerald-night",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "royal-indigo",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "industrial-slate",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "clean-corporate",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 8,
+          "samples": [
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#security\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "blueprint-studio",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 3,
+          "samples": [
+            [
+              "#machine > .home-lab-link"
+            ],
+            [
+              "#world > .home-lab-link"
+            ],
+            [
+              "#factory > .home-lab-link"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "vintage-paper",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "neural-future",
+      "width": 1440,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 10,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "holographic",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyberpunk-2099",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyber-terminal",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "retro-computing",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "synthwave-sunset",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "arcade-1995",
+      "width": 1440,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "midnight-tech",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 14,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              "#capabilities > .hm-inner > .hm-head > .hm-kicker"
+            ],
+            [
+              "#cap-heading"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "obsidian-black",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 5,
+          "samples": [
+            [
+              ".hm-support"
+            ],
+            [
+              "li:nth-child(1) > p"
+            ],
+            [
+              "li:nth-child(2) > p"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "stealth-carbon",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "emerald-night",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "royal-indigo",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "industrial-slate",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "clean-corporate",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 8,
+          "samples": [
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#security\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "blueprint-studio",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "vintage-paper",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "neural-future",
+      "width": 390,
+      "pass": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": 10,
+          "samples": [
+            [
+              ".hs-copy > .hs-actions > .hs-btn-primary.hs-btn[href$=\"contact.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"services.html\"]"
+            ],
+            [
+              ".hm-support > a[href$=\"packages.html#it\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "holographic",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyberpunk-2099",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "cyber-terminal",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "retro-computing",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "synthwave-sunset",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "theme": "arcade-1995",
+      "width": 390,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

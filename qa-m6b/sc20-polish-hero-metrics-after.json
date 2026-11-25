@@ -1,0 +1,108 @@
+{
+  "phase": "after",
+  "widths": {
+    "320": {
+      "viewportW": 320,
+      "viewportH": 844,
+      "heroHeight": 969,
+      "innerHeight": 969,
+      "copyHeight": 343,
+      "stageHeight": 567,
+      "mapHeight": 240,
+      "panelHeight": 210,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "overflowX": false
+    },
+    "390": {
+      "viewportW": 390,
+      "viewportH": 844,
+      "heroHeight": 845,
+      "innerHeight": 845,
+      "copyHeight": 238,
+      "stageHeight": 549,
+      "mapHeight": 260,
+      "panelHeight": 172,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    "768": {
+      "viewportW": 768,
+      "viewportH": 900,
+      "heroHeight": 903,
+      "innerHeight": 903,
+      "copyHeight": 276,
+      "stageHeight": 544,
+      "mapHeight": 320,
+      "panelHeight": 145,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    "1024": {
+      "viewportW": 1024,
+      "viewportH": 900,
+      "heroHeight": 910,
+      "innerHeight": 910,
+      "copyHeight": 276,
+      "stageHeight": 544,
+      "mapHeight": 320,
+      "panelHeight": 145,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "overflowX": false
+    },
+    "1440": {
+      "viewportW": 1440,
+      "viewportH": 900,
+      "heroHeight": 793,
+      "innerHeight": 793,
+      "copyHeight": 393,
+      "stageHeight": 667,
+      "mapHeight": 396,
+      "panelHeight": 178,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    }
+  },
+  "overflow": {
+    "320": true,
+    "390": true,
+    "768": true,
+    "1024": true,
+    "1440": true
+  },
+  "saved": [
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-1440.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-full-1440.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-1024.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-768.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-390.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-full-390.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-320.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-webkit-1440.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-after-webkit-390.png"
+  ],
+  "webkit": {
+    "available": true,
+    "note": "Playwright WebKit (not real iOS Safari device)",
+    "results": {
+      "390": {
+        "heroHeight": 845,
+        "mapHeight": 260,
+        "overflowX": false,
+        "mapClass": "hs-map is-enhanced is-compact",
+        "mapEnhanced": true
+      },
+      "1440": {
+        "heroHeight": 793,
+        "mapHeight": 396,
+        "overflowX": false,
+        "mapClass": "hs-map is-enhanced",
+        "mapEnhanced": true
+      }
+    }
+  }
+}

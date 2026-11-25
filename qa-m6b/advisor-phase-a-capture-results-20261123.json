@@ -1,0 +1,57 @@
+{
+  "ok": true,
+  "shots": [
+    "advisor-welcome-desktop.png",
+    "advisor-recommend-desktop.png",
+    "advisor-brief-consent-desktop.png",
+    "advisor-tech-step-desktop.png",
+    "advisor-welcome-mobile.png"
+  ],
+  "axe": {
+    "violations": [],
+    "count": 0
+  },
+  "checks": [
+    {
+      "name": "disclosure visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "recommendation shows custom software",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "send disabled before consent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "credit decremented",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "solutions explorer present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor nav links present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "axe critical/serious none",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "studio absent from dist",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

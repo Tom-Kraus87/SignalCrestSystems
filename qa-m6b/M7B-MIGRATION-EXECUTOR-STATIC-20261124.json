@@ -1,0 +1,146 @@
+{
+  "suite": "m7a-r7-migration-executor-static",
+  "evidenceClass": "static-process-definition",
+  "executedSql": false,
+  "soleSupportedExecutor": "project_admin",
+  "result": "PASS",
+  "order": [
+    {
+      "id": "bootstrap-001",
+      "rel": "db/bootstrap/001_m7a_r4_role_bootstrap.sql",
+      "executor": "project_admin",
+      "notes": "CREATE ROLE for scs_* principals. Requires CREATEROLE or SUPERUSER. Fail closed.",
+      "bytes": 4100
+    },
+    {
+      "id": "mig-001",
+      "rel": "db/migrations/001_m7a_leads_foundation.sql",
+      "executor": "project_admin",
+      "notes": "Foundation tables. Object owner = project administrator.",
+      "bytes": 5572
+    },
+    {
+      "id": "mig-002",
+      "rel": "db/migrations/002_m7a_rls_least_privilege.sql",
+      "executor": "project_admin",
+      "notes": "RLS enablement / least privilege.",
+      "bytes": 2584
+    },
+    {
+      "id": "mig-003",
+      "rel": "db/migrations/003_m7a_retention_procedures.sql",
+      "executor": "project_admin",
+      "notes": "Retention procedures (SECURITY DEFINER owner = project admin).",
+      "bytes": 5624
+    },
+    {
+      "id": "mig-004",
+      "rel": "db/migrations/004_m7a_counters_idempotency.sql",
+      "executor": "project_admin",
+      "notes": "Counters + idempotency primitives.",
+      "bytes": 5229
+    },
+    {
+      "id": "mig-005",
+      "rel": "db/migrations/005_m7a_insert_lead_bundle.sql",
+      "executor": "project_admin",
+      "notes": "insert_lead_bundle SECURITY DEFINER.",
+      "bytes": 8125
+    },
+    {
+      "id": "mig-006",
+      "rel": "db/migrations/006_m7a_r2_security_hardening.sql",
+      "executor": "project_admin",
+      "notes": "Historical draft. Role NOTICE path is NOT the provisioning path.",
+      "bytes": 24640
+    },
+    {
+      "id": "mig-007",
+      "rel": "db/migrations/007_m7a_r4_security_corrections.sql",
+      "executor": "project_admin",
+      "notes": "Aborts if bootstrap roles missing. Runtime grants after this file.",
+      "bytes": 13827
+    }
+  ],
+  "missing": [],
+  "roleBoundaries": {
+    "project_admin": {
+      "names": [
+        "postgres",
+        "supabase_admin"
+      ],
+      "purpose": "SOLE supported executor for bootstrap + migrations 001–007; schema ownership; SECURITY DEFINER ownership",
+      "function_runtime": false,
+      "supported_migration_executor": true
+    },
+    "scs_migration": {
+      "names": [
+        "scs_migration"
+      ],
+      "purpose": "Reserved NOLOGIN identity only. NOT a supported migration executor. Must NOT receive LOGIN, SUPERUSER, CREATEROLE, or other unnecessary privileges",
+      "function_runtime": false,
+      "supported_migration_executor": false,
+      "login": false
+    },
+    "scs_intake_runtime": {
+      "names": [
+        "scs_intake_runtime"
+      ],
+      "purpose": "Lead intake RPCs only (runtime)",
+      "function_runtime": true,
+      "supported_migration_executor": false
+    },
+    "scs_notify_worker": {
+      "names": [
+        "scs_notify_worker"
+      ],
+      "purpose": "claim/complete notification outbox only (runtime)",
+      "function_runtime": true,
+      "supported_migration_executor": false
+    },
+    "scs_owner_admin": {
+      "names": [
+        "scs_owner_admin"
+      ],
+      "purpose": "Owner monitoring / retention RPCs; never Function runtime",
+      "function_runtime": false,
+      "supported_migration_executor": false
+    },
+    "scs_test_admin": {
+      "names": [
+        "scs_test_admin"
+      ],
+      "purpose": "Separate test-administration identity for fixture setup only",
+      "function_runtime": false,
+      "supported_migration_executor": false
+    }
+  },
+  "checks": {
+    "allFilesPresent": true,
+    "bootstrapFailClosed": true,
+    "bootstrapPrefersProjectAdmin": true,
+    "bootstrapSoleExecutor": true,
+    "bootstrapScsMigrationReserved": true,
+    "mig7AbortsWithoutRoles": true,
+    "soleExecutorProjectAdmin": true,
+    "noProjectAdminOrScsMigrationAmbiguity": true,
+    "scsMigrationNotSupportedExecutor": true,
+    "noSqlExecuted": true
+  },
+  "process": [
+    "1. Connect as controlled project administrator (DATABASE_PROJECT_ADMIN_URL / postgres).",
+    "2. Apply db/bootstrap/001_m7a_r4_role_bootstrap.sql (fail closed).",
+    "3. Optionally CREATE ROLE scs_test_admin for fixtures (LOGIN NOINHERIT; not Function runtime).",
+    "4. Apply migrations 001→007 in order as the SAME project administrator (SOLE supported executor).",
+    "5. Do NOT use scs_migration as migration executor; keep it reserved without unnecessary privileges.",
+    "6. Confirm tables, schema objects, and SECURITY DEFINER functions are owned by project admin.",
+    "7. Confirm runtime grants match 007 (intake / notify / owner_admin only as granted).",
+    "8. Set passwords out of band; wire Netlify secrets to least-privilege runtime URLs only."
+  ],
+  "ownershipExpectations": {
+    "tables": "project administrator (postgres)",
+    "schemaPublicObjects": "project administrator (postgres)",
+    "securityDefinerFunctions": "project administrator (postgres)",
+    "runtimeGrants": "least-privilege after migration 007"
+  }
+}

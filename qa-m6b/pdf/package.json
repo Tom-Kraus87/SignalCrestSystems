@@ -1,0 +1,10 @@
+{
+  "name": "qa-m6b-atlas-pdf",
+  "private": true,
+  "type": "module",
+  "description": "Local tooling to regenerate Atlas/Owner PDF copies from Markdown sources",
+  "dependencies": {
+    "marked": "^15.0.12",
+    "puppeteer-core": "^24.10.0"
+  }
+}

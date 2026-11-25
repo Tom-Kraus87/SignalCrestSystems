@@ -1,0 +1,88 @@
+{
+  "suite": "m7a-r4-postgres-integration-20261123",
+  "evidenceClass": "real-postgresql",
+  "executed": false,
+  "result": "NOT RUN",
+  "ok": null,
+  "authorization": "SCS_AUTHORIZE_REAL_PG_TESTS is not true. Real PostgreSQL tests are not authorized.",
+  "cases": [
+    {
+      "id": 1,
+      "name": "Runtime identities and effective grants",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 2,
+      "name": "Warm-cache and cold-cache idempotency",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 3,
+      "name": "Concurrent same-key submissions",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 4,
+      "name": "Concurrent conflicting payloads",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 5,
+      "name": "Deleted-key replay with cached receipts",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 6,
+      "name": "Role-bootstrap failure conditions",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 7,
+      "name": "TLS certificate and hostname rejection",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 8,
+      "name": "Owner allowlist and AAL2 positive and negative",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 9,
+      "name": "Expired and reclaimed worker leases",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 10,
+      "name": "Unauthorized notification invocation",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 11,
+      "name": "Missing hosted IP-hash salt",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 12,
+      "name": "Administrative runtime credential rejection",
+      "status": "NOT RUN",
+      "pass": null
+    },
+    {
+      "id": 13,
+      "name": "Retention purge and outbox foreign keys",
+      "status": "NOT RUN",
+      "pass": null
+    }
+  ]
+}

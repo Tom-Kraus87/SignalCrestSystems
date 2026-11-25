@@ -1,0 +1,105 @@
+{
+  "pass": true,
+  "total": 21,
+  "passed": 21,
+  "failedCount": 0,
+  "results": [
+    {
+      "check": "five-workflow-tabs",
+      "pass": true,
+      "tabCount": 5
+    },
+    {
+      "check": "original-systems-default",
+      "pass": true
+    },
+    {
+      "check": "connected-scenario-chips",
+      "pass": true,
+      "chipCount": 5
+    },
+    {
+      "check": "original-quote-scenario",
+      "pass": true
+    },
+    {
+      "check": "switch-website",
+      "pass": true
+    },
+    {
+      "check": "switch-leads",
+      "pass": true
+    },
+    {
+      "check": "switch-software",
+      "pass": true
+    },
+    {
+      "check": "switch-care",
+      "pass": true
+    },
+    {
+      "check": "return-to-original",
+      "pass": true
+    },
+    {
+      "check": "solutions-open-desktop",
+      "pass": true
+    },
+    {
+      "check": "solutions-panel-visible",
+      "pass": true
+    },
+    {
+      "check": "solutions-four-categories",
+      "pass": true
+    },
+    {
+      "check": "solutions-escape-close",
+      "pass": true
+    },
+    {
+      "check": "mobile-nav-open",
+      "pass": true
+    },
+    {
+      "check": "mobile-solutions-open",
+      "pass": true
+    },
+    {
+      "check": "mobile-solutions-close-btn",
+      "pass": true
+    },
+    {
+      "check": "mobile-solutions-closed",
+      "pass": true
+    },
+    {
+      "check": "solutions-links-exist-in-dist",
+      "pass": true,
+      "broken": [],
+      "linkCount": 21
+    },
+    {
+      "check": "no-studio-in-dist",
+      "pass": true
+    },
+    {
+      "check": "workflow-asset-in-dist",
+      "pass": true
+    },
+    {
+      "check": "no-csp-console-errors",
+      "pass": true,
+      "cspErrors": []
+    }
+  ],
+  "failed": [],
+  "screenshots": [
+    "desktop-solutions-explorer.png",
+    "desktop-workflow-systems.png",
+    "desktop-workflow-website.png",
+    "mobile-solutions-explorer.png",
+    "mobile-workflow-leads.png"
+  ]
+}

@@ -1,0 +1,9 @@
+file=qa-m6b/M7B-G2-R2-EXECUTION-PACKET-MANIFEST-20261124.md
+sha256=94028a40e8b0d2e2ac5175286d2b3112596bc65aa0db51257d497b2198a5e765
+bytes=4634
+pdf=qa-m6b/pdf/M7B-G2-R2-EXECUTION-PACKET-MANIFEST-20261124.pdf
+pdf_sha256=7163387ab17d3d2029641d7606ad0c45be24c9c14b0e29daf4b4859c1a13b5fd
+pdf_bytes=161395
+payload_entries=9
+note=Payload entry count excludes this manifest index; does not replace M7B 59-file freeze
+snapshot=2026-11-24

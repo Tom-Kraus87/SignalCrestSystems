@@ -1,0 +1,1337 @@
+{
+  "ok": true,
+  "suite": "m7a-secure-leads-20261123",
+  "checks": [
+    {
+      "name": "project-request has no data-netlify",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact has no data-netlify",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request action=/api/leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact action=/api/leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script posts /api/leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script does not fetch Forms root",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "netlify redirect /api/leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-A netlify build runs npm ci --prefix then build-public",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contact has consent checkbox",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "privacy stamp current on project-request",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "privacy stamp current on contact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor listbox semantics removed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor chip group role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff omits name/email keys",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deterministic disclosure present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "privacy.html no longer claims Forms primary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "privacy.html mentions secure lead endpoint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request hero has no Netlify Forms claim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request mentions secure lead endpoint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 001 exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 002 exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 003 exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 004 counters exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 insert_lead_bundle exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 r2 hardening exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration defines leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration defines consent_records",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration defines submission_requests",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "RLS enabled on leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "retention soft_delete exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unconverted retention pending marker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unconverted purge function draft",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 004 usage_counters",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 004 atomic_counter_incr",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 004 no redis requirement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 insert_lead_bundle fn",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 advisory lock",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 payload_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 notification_outbox",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 revoke anon authenticated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 005 search_path hardened",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 intake runtime role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 notify worker role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 grant to intake runtime",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 deletion markers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 outbox purge before leads",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 claim_notification_outbox",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "migration 006 revoke CREATE on public",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legacy procedure is documentation pointer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pg-client forbids rejectUnauthorized false default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pg-client requires rejectUnauthorized true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script sends Idempotency-Key header",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "script builds idempotencyKey",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example has staging supabase placeholders",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents production separation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example has no live-looking secrets",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example redis left unset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents SCS_DEPENDENCY_MODE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents Turnstile contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents Resend contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents Sentry contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner cost matrix exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner threat model exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cost matrix prefers postgres over redis",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "normal project request 200",
+      "pass": true,
+      "detail": "{\"ok\":true,\"receivedAt\":\"2026-11-25T00:24:10.994Z\",\"receipt\":\"ce42257b\"}"
+    },
+    {
+      "name": "server receivedAt present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persisted lead row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persisted consent row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persisted submission row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mock notifier fired once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifier payload has no email field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "missing consent rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "missing consent no persist",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "invalid consent rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "invalid privacy version rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "credential pattern rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sensitive meta has reasonIds only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "PAN-like rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "oversized body 413",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "malformed JSON 400",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unknown fields rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "idempotent first ok",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "idempotent identical replay same receipt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "idempotent single lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent conflicting payloads deterministic outcomes",
+      "pass": true,
+      "detail": "codes=200,409"
+    },
+    {
+      "name": "concurrent conflicting payloads single lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent identical positive control single receipt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent same-key all 200",
+      "pass": true,
+      "detail": "oks=3"
+    },
+    {
+      "name": "concurrent same-key single receipt",
+      "pass": true,
+      "detail": "receipts=1"
+    },
+    {
+      "name": "concurrent same-key single lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent same-key single consent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent same-key single submission",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent same-key single outbox",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "concurrent submits all accepted under limit",
+      "pass": true,
+      "detail": "oks=6"
+    },
+    {
+      "name": "concurrent persist count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "oversized name rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "oversized name not truncated persist",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "oversized message rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deps factory mock mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deps factory mock repository",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deps factory staging fails closed without DB",
+      "pass": true,
+      "detail": "DATABASE_CONFIG_MISSING"
+    },
+    {
+      "name": "resolveDatabaseConfig production requires postgres",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "resolveDependencyMode production",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persistence failure safe 500",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persistence failure no partial lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "XSS payload accepted as text or filtered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "XSS stored as plain text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "honeypot silent success",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "honeypot no persist",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kill switch disables intake",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rate limit engages (isolated fixture)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rate limit positive control uncontaminated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "urlencoded accepted via same validator",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "direct submission without consent fails",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor handoff no name field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor handoff no email field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor handoff brief kept",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor privacy version current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sessionStorage has no email",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff cleared",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "advisor handoff lead accepted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sensitive detector does not claim completeness",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clean text not sensitive",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "issue credits allow 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "issue credits soft-cap 4th",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "daily key shape",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "monthly key shape",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "spend reserve under ceiling",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "spend reserve blocks overage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "spend release frees capacity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rate window allows 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rate window blocks rest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kill switch env",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "idempotent setNx first",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "idempotent setNx second",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "repository cleanup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "postgres rate limiter allows under cap",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "postgres rate limiter blocks over cap",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "postgres rate limiter positive control uncontaminated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "noop notifier skips send",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A1 sslmode=disable flagged insecure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A1 sslmode=require flagged no-verify",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A1 prod-like rejects SSL disable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A1 verified TLS rejectUnauthorized true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 missing idempotency key rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 original receivedAt present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 cache replay same receivedAt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 replay after cache expiry same receivedAt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 replay after expiry single lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 rate-order first ok",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A5 identical replay bypasses rate limit via cache",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A6 prefers Netlify connection IP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A6 ignores visitor XFF on hosted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A6 prod-like strips client isTest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A6 local allowlist honors isTest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A6 malicious isTest ignored in staging-like",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 seed lead ok",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 deletion marker recorded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 deleted key replay blocked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 no recreated lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 purge removed soft-deleted lead",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A7 purge cleared outbox",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B Turnstile required+placeholder rejects",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B Turnstile network error fails closed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B Turnstile success allows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B notify mode default disabled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B notify mode simulated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B notify worker simulated claims",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B notify worker no PII in claim payload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents DATABASE_INTAKE_URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents sslmode verify-full",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents EMAIL_NOTIFY_MODE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents TURNSTILE_REQUIRED",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents recovery journal gated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 migration 007 exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 lookup_idempotency_response SECURITY DEFINER",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 revoke idempotency_keys from intake",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 adapter uses lookup RPC",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 deleted marker withholds cached receipt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 lookup called with key and fingerprint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 warm-cache seed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-01 warm cache cannot bypass deletion marker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-02 status_counts RPC present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-02 status granted to owner only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-02 worker lib uses aggregate RPC",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-02 status helper returns aggregates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 handler authorizes before DB",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 worker-auth ignores scheduler headers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 spoofed scheduler rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 wrong bearer rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 valid bearer accepted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 missing secret rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-03 live delivery stays disabled before claims",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C handler missing auth rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C handler incorrect auth rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C unauthorized cannot initiate database claims",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C handler correct auth positive control (disabled)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C handler correct auth reaches DB path (503 fail-closed)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-04 complete requires claim_token",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-04 claim assigns claim_token",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-04 unsuccessful acknowledgement counted as failure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-04 missing claim_token cannot complete",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-05 bootstrap procedure exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-05 bootstrap fails closed without CREATEROLE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-05 migration 007 aborts without roles",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-05 006 swallow documented as non-provisioning path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-06 SCS_ALLOW_ADMIN_DB_USER not honored",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-06 assertEffectiveDatabaseIdentity exported",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-06 hosted admin URL rejected despite override flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-06 session_user admin rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-07 no development-salt fallback string",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-07 missing hosted salt yields null",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-07 placeholder salt yields null",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-07 short salt yields null",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-07 valid salt hashes without raw IP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-08 pg pinned to exact 8.13.1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-08 dependency locking doc present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-08 package-lock present with pg@8.13.1 integrity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-08 lockfile registries are registry.npmjs.org only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-08 classifyDatabaseError distinguishes 42501",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents NOTIFY_WORKER_INVOKE_SECRET",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": ".env.example documents DATABASE_OWNER_URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-B .env.example documents scs_test_admin / DATABASE_TEST_ADMIN_URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-B .env.example documents project-admin migration executor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-02 .env.example sole project-admin executor (no scs_migration alternate)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-B scs_test_admin rejected as Function runtime",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-B migration executor static script present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-02 migration executor has no project_admin_or_scs_migration ambiguity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient rejects insecure TLS URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient rejects admin identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient rejects scs_test_admin runtime",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient TLS positive control rejectUnauthorized",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient effective identity session_user check",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C createPgQueryClient effective identity positive control",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-C simulated JWT claims separated from hosted Auth AAL2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 pinned pg@8.13.1 available for effective TLS tests",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 Codex baseline: sslmode=require&uselibpqcompat=true overwrites secure ssl via connectionString",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 factory rejects Codex uselibpqcompat+sslmode=require URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 positive control verify-full effective TLS rejectUnauthorized+hostname",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 positive control sslmode=require normalized to verified TLS without connectionString",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 positive control Supabase pooler host/port with verified TLS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 rejects sslmode=disable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 rejects sslmode=verify-ca",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 rejects sslrootcert injection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 rejects duplicate sslmode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 rejects unsupported param",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-01 parseApprovedConnectionFields returns explicit fields only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-03 _headers security file present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R7-03 root netlify.toml is authoritative build source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B canonicalizeQueryKey maps ssl-mode to sslmode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B mixed-alias sslmode+ssl-mode rejected as duplicate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B positive ssl-mode=verify-full accepted after canonicalize",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness rejects DATABASE_MIGRATION_URL presence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness requires DATABASE_PROJECT_ADMIN_URL exclusively",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness positive exclusive PROJECT_ADMIN + TEST_ADMIN URLs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B fixture identity scs_test_admin with min privileges documented",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B fixture identity rejects non-scs_test_admin URL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness CA/TLS aligned with application (no connectionString)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness rejects sslmode=disable in pool preflight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B harness source has no DATABASE_MIGRATION_URL fallback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B case 14 hosted Auth/AAL2 remains separate NOT RUN evidence class",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B .env.example marks DATABASE_MIGRATION_URL unsupported",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B Windows PostgreSQL client requirements documented",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "M7B Netlify CLI 26.2.0 pin procedure prepared (not installed)",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": [],
+  "scores": {
+    "total": 265,
+    "passed": 265,
+    "failed": 0
+  }
+}

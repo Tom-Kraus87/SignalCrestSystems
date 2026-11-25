@@ -1,0 +1,132 @@
+{
+  "schema": "signal-crest-m7b-g2-a-tls-evidence-v1",
+  "recordType": "network-tls-verification",
+  "milestone": "M7B-G2",
+  "authorization": "A-TLS evidence documentation only",
+  "production": "HOLD",
+  "stagingDatabaseWork": "unauthorized",
+  "aSql": "not-started",
+  "rerunByRecorder": false,
+  "observed": [
+    {
+      "evidenceClass": "observed",
+      "id": "executor",
+      "statement": "Owner-executed credential-free Path A network TLS verification. Results below are the supplied result set, preserved as recorded."
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "supabase-project",
+      "value": "scs-staging"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "project-reference",
+      "value": "kfclinlrzfwodmichmci"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "host",
+      "value": "db.kfclinlrzfwodmichmci.supabase.co"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "port",
+      "value": 5432
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "connection-path",
+      "value": "A, direct IPv6"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "certificate-file-sha256",
+      "value": "700723581420DD1AC98FD7E9AC529F0EF210EADCAF87FC868A3AD7D114C2F3B7"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "network-verification-timestamp",
+      "value": "2026-11-25T05:01:27.350Z"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "positive-tls-verification",
+      "value": "PASS"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "certificate-authorized",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "protocol",
+      "value": "TLSv1.3"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "issuer",
+      "value": "Supabase Intermediate 2021 CA"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "certificate-expiration",
+      "value": "November 23, 2028"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "server-certificate-fingerprint",
+      "value": "11:CB:BA:C0:5D:EB:8A:B3:6F:B1:AC:6D:F5:73:79:86:65:E8:A4:F4:F2:23:F8:0B:7F:CE:2F:6E:BF:08:9D:15"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "negative-hostname-control",
+      "value": "PASS",
+      "correctedControl": "Preserves the correct SNI while checking the deliberately incorrect hostname intentional-mismatch.invalid.",
+      "correctSniPreserved": true,
+      "expectedIncorrectHostname": "intentional-mismatch.invalid",
+      "rejectionCode": "ERR_TLS_CERT_ALTNAME_INVALID"
+    },
+    {
+      "evidenceClass": "observed script configuration supplied by the owner in this assignment",
+      "id": "owner-executed-script-timeout-configuration",
+      "timeoutMs": 15000,
+      "configuredTimeout": true,
+      "measuredElapsedDuration": false,
+      "independentlyTestedTimeoutRejection": false,
+      "scriptFragment": "const timer = setTimeout(() => { finish(new Error('TLS verification timeout')); }, 15000);",
+      "statement": "timeoutMs 15000 is the configured timeout in the owner-executed script. It is not a measured elapsed duration and not an independently tested timeout rejection. TLS tests were not rerun for this correction."
+    }
+  ],
+  "static": [
+    {
+      "evidenceClass": "static",
+      "id": "procedure-script-timeout",
+      "source": "qa-m6b/M7B-G2-DIRECT-TLS-VERIFICATION-PROCEDURE-20261124.md",
+      "statement": "The preparation procedure's sample network probes call socket.setTimeout(10000). The 10000 ms figure is retained only as that historical procedure sample from static analysis. It is not the observed timeout configuration of the owner-executed script, not a measured elapsed duration, and not an independently tested timeout rejection."
+    },
+    {
+      "evidenceClass": "static",
+      "id": "procedure-negative-control-sample",
+      "source": "qa-m6b/M7B-G2-DIRECT-TLS-VERIFICATION-PROCEDURE-20261124.md",
+      "statement": "The preparation procedure sample sets TLS servername to the incorrect hostname. The owner-executed result recorded above is the corrected control: correct SNI preserved, hostname check against intentional-mismatch.invalid, rejection ERR_TLS_CERT_ALTNAME_INVALID."
+    },
+    {
+      "evidenceClass": "static",
+      "id": "certificate-material-not-stored",
+      "statement": "The CA and server certificate were not copied into the repository. This file records the owner-supplied certificate file SHA-256 and server certificate fingerprint only."
+    },
+    {
+      "evidenceClass": "static",
+      "id": "outside-frozen-r4-inventory",
+      "inventory": "qa-m6b/M7B-G2-R4-SUCCESSOR-HASH-INVENTORY-20261124.json",
+      "method": "Canonical lines path<TAB>sha256<TAB>bytes, sorted by path with the freeze tooling (PowerShell Sort-Object Path), UTF-8, joined by newline, SHA-256 lowercase hex. Inventory JSON and companion reports are excluded.",
+      "entryCount": 64,
+      "entryCountMatched": true,
+      "canonicalInventoryDigest": "683cc3f5162ed2b86f5eb7cee5822ed2598e76c00dc51c996188f8c22622542d",
+      "digestMatched": true,
+      "statement": "This evidence file is outside the frozen 64-entry R4 successor candidate inventory. The recomputed count and canonical digest matched. The frozen manifest was not modified."
+    }
+  ],
+  "inferred": []
+}

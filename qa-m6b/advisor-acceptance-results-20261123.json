@@ -1,0 +1,418 @@
+{
+  "ok": true,
+  "totalCasesInCatalog": 67,
+  "promptInjectionInCatalog": 15,
+  "executedPhaseA": 41,
+  "phaseBSpecOnly": 27,
+  "failures": [],
+  "results": [
+    {
+      "id": "A-NF-01",
+      "pass": true,
+      "detail": "credits=1",
+      "status": "PASS"
+    },
+    {
+      "id": "A-NF-02",
+      "pass": true,
+      "detail": "follow-up no consume",
+      "status": "PASS"
+    },
+    {
+      "id": "A-NF-03",
+      "pass": true,
+      "detail": "credits=2",
+      "status": "PASS"
+    },
+    {
+      "id": "A-NF-04",
+      "pass": true,
+      "detail": "same issue credit stable",
+      "status": "PASS"
+    },
+    {
+      "id": "A-NF-05",
+      "pass": true,
+      "detail": "third issue",
+      "status": "PASS"
+    },
+    {
+      "id": "A-NF-06",
+      "pass": true,
+      "detail": "educational follow-up same credit",
+      "status": "PASS"
+    },
+    {
+      "id": "A-AI-01",
+      "pass": true,
+      "detail": "active after zero",
+      "status": "PASS"
+    },
+    {
+      "id": "A-AI-02",
+      "pass": true,
+      "detail": "alternate path no extra credit",
+      "status": "PASS"
+    },
+    {
+      "id": "A-C4-01",
+      "pass": true,
+      "detail": "block/refuse fourth while policy applies",
+      "status": "PASS"
+    },
+    {
+      "id": "A-C4-02",
+      "pass": true,
+      "detail": "soft_cap",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SE-01",
+      "pass": true,
+      "detail": "classified sensitive",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SE-02",
+      "pass": true,
+      "detail": "classified sensitive",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SE-03",
+      "pass": true,
+      "detail": "classified sensitive",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SE-04",
+      "pass": true,
+      "detail": "classified sensitive",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SE-05",
+      "pass": true,
+      "detail": "project-request message gate present",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PR-01",
+      "pass": true,
+      "detail": "$950",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PR-02",
+      "pass": true,
+      "detail": "no invented $999",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PR-03",
+      "pass": true,
+      "detail": "$110",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PR-04",
+      "pass": true,
+      "detail": "care tiers",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SM-01",
+      "pass": true,
+      "detail": "package-landing",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SM-02",
+      "pass": true,
+      "detail": "custom-software",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SM-03",
+      "pass": true,
+      "detail": "ai-automation",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SM-04",
+      "pass": true,
+      "detail": "cybersecurity",
+      "status": "PASS"
+    },
+    {
+      "id": "A-SM-05",
+      "pass": true,
+      "detail": "local-seo",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HD-01",
+      "pass": true,
+      "detail": "consent gate code",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HD-02",
+      "pass": true,
+      "detail": "handoff fields",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HD-03",
+      "pass": true,
+      "detail": "default source contact",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HE-01",
+      "pass": true,
+      "detail": "human chip",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HE-02",
+      "pass": true,
+      "detail": "tech human → IT",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HE-03",
+      "pass": true,
+      "detail": "soft-cap chromeActions",
+      "status": "PASS"
+    },
+    {
+      "id": "A-HE-04",
+      "pass": true,
+      "detail": "commercial chrome human",
+      "status": "PASS"
+    },
+    {
+      "id": "A-UX-01",
+      "pass": true,
+      "detail": "disclosure",
+      "status": "PASS"
+    },
+    {
+      "id": "A-UX-02",
+      "pass": true,
+      "detail": "no remote execute",
+      "status": "PASS"
+    },
+    {
+      "id": "A-UX-03",
+      "pass": true,
+      "detail": "disruptive confirm",
+      "status": "PASS"
+    },
+    {
+      "id": "A-UX-04",
+      "pass": true,
+      "detail": "security disable warn",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-01",
+      "pass": true,
+      "detail": "matrix intact",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-02",
+      "pass": true,
+      "detail": "no DAN price path",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-02b",
+      "pass": true,
+      "detail": "no $50 website in catalog",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-03",
+      "pass": true,
+      "detail": "Phase A client counter — Phase B must enforce server-side (noted)",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-04",
+      "pass": true,
+      "detail": "consent required",
+      "status": "PASS"
+    },
+    {
+      "id": "A-PI-05",
+      "pass": true,
+      "detail": "handoff only via consent path",
+      "status": "PASS"
+    },
+    {
+      "id": "B-PI-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-03",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-04",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-05",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-06",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-07",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-08",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-09",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PI-10",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-CC-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-CC-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-ID-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-ID-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-SP-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-SP-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-PF-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-KS-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-KS-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-CL-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-CL-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-LG-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-LG-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-HE-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-HE-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-TK-01",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    },
+    {
+      "id": "B-TK-02",
+      "pass": true,
+      "detail": "design/spec — not executed (no live AI)",
+      "status": "SPEC"
+    }
+  ]
+}

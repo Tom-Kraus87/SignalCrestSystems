@@ -1,0 +1,25 @@
+{
+  "pass": true,
+  "weight": {
+    "heroJsBytes": 29958,
+    "heroJsGzip": 8804,
+    "homeJsGzip": 1150,
+    "heroCssGzip": 3581,
+    "homeCssGzip": 2763,
+    "heroJsGzipUnder12kb": true
+  },
+  "ambient": {
+    "sampleCount": 45,
+    "avgFrameMs": 16.58,
+    "medianFpsEstimate": 60.3
+  },
+  "offscreenBusy": {
+    "mapStillPresent": true,
+    "scrolledPastHero": true
+  },
+  "thirdPartyScripts": [],
+  "notes": [
+    "FPS estimates from rAF in headless Chromium (software canvas) are pessimistic.",
+    "Prototype claimed ~60 fps median; re-check on real GPU / device before calling perf done."
+  ]
+}

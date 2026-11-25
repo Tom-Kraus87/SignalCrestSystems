@@ -1,0 +1,57 @@
+[
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-IMPLEMENTATION-PREPARATION-REPORT-20261124.md",
+        "Sha256":  "63bf771fea36c6bd299a5ed8b31baa00ca359a2507d6f935ce788782edb5d458",
+        "Bytes":  9211
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-SQL-EXECUTION-PACKET-20261124.md",
+        "Sha256":  "54908d21f07391b7e7174819c640ee52056a776394dd01b67510bd1688d9735f",
+        "Bytes":  54856
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-OWNER-WALKTHROUGH-20261124.md",
+        "Sha256":  "1ff8e0a906fc70fceb6f99cc7aa9518038c22b234c51fd95c450f52b8c86372a",
+        "Bytes":  12637
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-CORRECTION-REPORT-20261124.md",
+        "Sha256":  "17a8bc7c0c05f0a689627e206f52a4e59119aeece96c03de75b9e3eca4da4670",
+        "Bytes":  9716
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-HARNESS-CHANGE-PROPOSAL-PATH-B-20261124.md",
+        "Sha256":  "26040080d4a6220ca4ec83b8cb3ff506787db3d1573ea048d1f1ee710aae6c85",
+        "Bytes":  9054
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R3-staging-fixture-rls-policies-20261124.sql",
+        "Sha256":  "1da94d69c7f4a1828c45a9b81abe2607c6fcc277f008871b1c9cbae5836518d6",
+        "Bytes":  6790
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R3-IMPLEMENTATION-PREPARATION-REPORT-20261124.pdf",
+        "Sha256":  "6e4b89f2d550b802ccd9bf0c4cd8bbc5e4f7b976650f875e492d1506e28bf206",
+        "Bytes":  240818
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R3-SQL-EXECUTION-PACKET-20261124.pdf",
+        "Sha256":  "9ce1f15717457cef57809a27c89fcd2635e39e050455cacdd52b3a43a0f27f2f",
+        "Bytes":  732459
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R3-OWNER-WALKTHROUGH-20261124.pdf",
+        "Sha256":  "0bec67ef949a1c9c45dcee88a58ff14266ed3d25b0a961a7f1d274826284d921",
+        "Bytes":  326661
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R3-CORRECTION-REPORT-20261124.pdf",
+        "Sha256":  "41ff8300c39c8a2321ebf26b3563c3983d47bd44149ef0aa2e9674344ffdd355",
+        "Bytes":  233924
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R3-HARNESS-CHANGE-PROPOSAL-PATH-B-20261124.pdf",
+        "Sha256":  "b6bc42bf2899ad1af90c2e407a20633eb58f74ecf4b06fcb64bc5e69737b7740",
+        "Bytes":  178708
+    }
+]

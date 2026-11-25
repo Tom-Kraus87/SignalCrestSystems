@@ -1,0 +1,91 @@
+{
+  "phase": "before",
+  "widths": {
+    "320": {
+      "viewportW": 320,
+      "viewportH": 844,
+      "heroHeight": 1326,
+      "innerHeight": 1326,
+      "copyHeight": 419,
+      "stageHeight": 788,
+      "mapHeight": 340,
+      "panelHeight": 259,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "overflowX": false
+    },
+    "390": {
+      "viewportW": 390,
+      "viewportH": 844,
+      "heroHeight": 1222,
+      "innerHeight": 1222,
+      "copyHeight": 383,
+      "stageHeight": 720,
+      "mapHeight": 340,
+      "panelHeight": 239,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    "768": {
+      "viewportW": 768,
+      "viewportH": 900,
+      "heroHeight": 1095,
+      "innerHeight": 1095,
+      "copyHeight": 298,
+      "stageHeight": 671,
+      "mapHeight": 400,
+      "panelHeight": 178,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    "1024": {
+      "viewportW": 1024,
+      "viewportH": 900,
+      "heroHeight": 1104,
+      "innerHeight": 1104,
+      "copyHeight": 298,
+      "stageHeight": 671,
+      "mapHeight": 400,
+      "panelHeight": 178,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "overflowX": false
+    },
+    "1440": {
+      "viewportW": 1440,
+      "viewportH": 900,
+      "heroHeight": 793,
+      "innerHeight": 793,
+      "copyHeight": 393,
+      "stageHeight": 667,
+      "mapHeight": 396,
+      "panelHeight": 178,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    }
+  },
+  "overflow": {
+    "320": true,
+    "390": true,
+    "768": true,
+    "1024": true,
+    "1440": true
+  },
+  "saved": [
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-1440.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-full-1440.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-1024.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-768.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-390.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-full-390.png",
+    "C:\\Users\\tkrau\\OneDrive\\Desktop\\Full Stack Engineer\\Solo Designer Projects\\Signal Crest Systems LLC\\qa-m6b\\screenshots\\sc20-polish-before-320.png"
+  ],
+  "webkit": {
+    "available": false,
+    "note": "WebKit browser binary unavailable in this environment",
+    "error": "browserType.launch: Executable doesn't exist at C:\\Users\\tkrau\\AppData\\Local\\ms-playwright\\webkit-2388\\Playwright.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+  }
+}

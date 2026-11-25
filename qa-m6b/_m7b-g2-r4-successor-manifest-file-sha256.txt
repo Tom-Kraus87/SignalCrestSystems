@@ -1,0 +1,7 @@
+﻿683cc3f5162ed2b86f5eb7cee5822ed2598e76c00dc51c996188f8c22622542d
+2026-11-25T00:25:29Z
+entries=64
+canonical=path<TAB>sha256<TAB>bytes sorted by path; inventory JSON and companion reports excluded from digest
+historical_59_digest_preserved=3c7cebb3f27ebf55d1d002e2d8c480a451932ff43d1b4f39f579956cb2ad4d0b
+historical_harness_sha256_preserved=826bf5c3845c8d9068831a07e87aaaecfdb721f3a009115a7bdda41c96c3d0f9
+revised_harness_sha256=6f4f95ce3a6e7734a5cc769a9f46c7114f7c64d7d80901e6835150b2c9bcd2a2

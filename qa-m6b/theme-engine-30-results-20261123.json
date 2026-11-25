@@ -1,0 +1,647 @@
+{
+  "timestamp": "2026-11-24T00:19:26.374Z",
+  "expectedCount": 30,
+  "themeIds": [
+    "midnight-tech",
+    "obsidian-black",
+    "stealth-carbon",
+    "emerald-night",
+    "royal-indigo",
+    "industrial-slate",
+    "clean-corporate",
+    "blueprint-studio",
+    "vintage-paper",
+    "swiss-precision",
+    "nordic-frost",
+    "ivory-atelier",
+    "neural-future",
+    "holographic",
+    "cyberpunk-2099",
+    "cyber-terminal",
+    "liquid-chrome",
+    "aurora-glass",
+    "retro-computing",
+    "synthwave-sunset",
+    "arcade-1995",
+    "y2k-webcore",
+    "terminal-green",
+    "pixel-neon",
+    "solarpunk",
+    "biophilic-studio",
+    "neo-brutalist",
+    "art-deco-luxe",
+    "tokyo-neon",
+    "deep-ocean"
+  ],
+  "checks": {
+    "themeJsCount": 30,
+    "themeJsUnique": 30,
+    "themeJsMissing": [],
+    "themeJsExtra": [],
+    "bootHasAll": true,
+    "picker": {
+      "groupCount": 5,
+      "groups": [
+        {
+          "title": "Professional Dark",
+          "ids": [
+            "midnight-tech",
+            "obsidian-black",
+            "stealth-carbon",
+            "emerald-night",
+            "royal-indigo",
+            "industrial-slate"
+          ],
+          "labels": [
+            "Midnight Tech",
+            "Obsidian Black",
+            "Stealth Carbon",
+            "Emerald Night",
+            "Royal Indigo",
+            "Industrial Slate"
+          ]
+        },
+        {
+          "title": "Professional Light",
+          "ids": [
+            "clean-corporate",
+            "blueprint-studio",
+            "vintage-paper",
+            "swiss-precision",
+            "nordic-frost",
+            "ivory-atelier"
+          ],
+          "labels": [
+            "Clean Corporate",
+            "Blueprint Studio",
+            "Vintage Paper",
+            "Swiss Precision",
+            "Nordic Frost",
+            "Ivory Atelier"
+          ]
+        },
+        {
+          "title": "Futuristic",
+          "ids": [
+            "neural-future",
+            "holographic",
+            "cyberpunk-2099",
+            "cyber-terminal",
+            "liquid-chrome",
+            "aurora-glass"
+          ],
+          "labels": [
+            "Neutral Future",
+            "Holographic",
+            "Cyberpunk 2099",
+            "Cyber Terminal",
+            "Liquid Chrome",
+            "Aurora Glass"
+          ]
+        },
+        {
+          "title": "Retro & Arcade",
+          "ids": [
+            "retro-computing",
+            "synthwave-sunset",
+            "arcade-1995",
+            "y2k-webcore",
+            "terminal-green",
+            "pixel-neon"
+          ],
+          "labels": [
+            "Retro Computing",
+            "Synthwave Sunset",
+            "Arcade 1995",
+            "Y2K Webcore",
+            "Terminal Green",
+            "Pixel Neon"
+          ]
+        },
+        {
+          "title": "Creative & Experimental",
+          "ids": [
+            "solarpunk",
+            "biophilic-studio",
+            "neo-brutalist",
+            "art-deco-luxe",
+            "tokyo-neon",
+            "deep-ocean"
+          ],
+          "labels": [
+            "Solarpunk",
+            "Biophilic Studio",
+            "Neo Brutalist",
+            "Art Deco Luxe",
+            "Tokyo Neon",
+            "Deep Ocean"
+          ]
+        }
+      ],
+      "optionCount": 30,
+      "unique": 30,
+      "ids": [
+        "midnight-tech",
+        "obsidian-black",
+        "stealth-carbon",
+        "emerald-night",
+        "royal-indigo",
+        "industrial-slate",
+        "clean-corporate",
+        "blueprint-studio",
+        "vintage-paper",
+        "swiss-precision",
+        "nordic-frost",
+        "ivory-atelier",
+        "neural-future",
+        "holographic",
+        "cyberpunk-2099",
+        "cyber-terminal",
+        "liquid-chrome",
+        "aurora-glass",
+        "retro-computing",
+        "synthwave-sunset",
+        "arcade-1995",
+        "y2k-webcore",
+        "terminal-green",
+        "pixel-neon",
+        "solarpunk",
+        "biophilic-studio",
+        "neo-brutalist",
+        "art-deco-luxe",
+        "tokyo-neon",
+        "deep-ocean"
+      ],
+      "scsCount": 30,
+      "neuralLabel": "Neutral Future"
+    },
+    "pickerFiveBySix": true,
+    "pickerCount30": true,
+    "scsThemeCount30": true,
+    "neuralFutureLabel": "Neutral Future"
+  },
+  "overflow": [
+    {
+      "viewport": 1440,
+      "theme": "midnight-tech",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "midnight-tech"
+    },
+    {
+      "viewport": 1440,
+      "theme": "obsidian-black",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "obsidian-black"
+    },
+    {
+      "viewport": 1440,
+      "theme": "stealth-carbon",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "stealth-carbon"
+    },
+    {
+      "viewport": 1440,
+      "theme": "emerald-night",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "emerald-night"
+    },
+    {
+      "viewport": 1440,
+      "theme": "royal-indigo",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "royal-indigo"
+    },
+    {
+      "viewport": 1440,
+      "theme": "industrial-slate",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "industrial-slate"
+    },
+    {
+      "viewport": 1440,
+      "theme": "clean-corporate",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "clean-corporate"
+    },
+    {
+      "viewport": 1440,
+      "theme": "blueprint-studio",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "blueprint-studio"
+    },
+    {
+      "viewport": 1440,
+      "theme": "vintage-paper",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "vintage-paper"
+    },
+    {
+      "viewport": 1440,
+      "theme": "swiss-precision",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "swiss-precision"
+    },
+    {
+      "viewport": 1440,
+      "theme": "nordic-frost",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "nordic-frost"
+    },
+    {
+      "viewport": 1440,
+      "theme": "ivory-atelier",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "ivory-atelier"
+    },
+    {
+      "viewport": 1440,
+      "theme": "neural-future",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "neural-future"
+    },
+    {
+      "viewport": 1440,
+      "theme": "holographic",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "holographic"
+    },
+    {
+      "viewport": 1440,
+      "theme": "cyberpunk-2099",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "cyberpunk-2099"
+    },
+    {
+      "viewport": 1440,
+      "theme": "cyber-terminal",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "cyber-terminal"
+    },
+    {
+      "viewport": 1440,
+      "theme": "liquid-chrome",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "liquid-chrome"
+    },
+    {
+      "viewport": 1440,
+      "theme": "aurora-glass",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "aurora-glass"
+    },
+    {
+      "viewport": 1440,
+      "theme": "retro-computing",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "retro-computing"
+    },
+    {
+      "viewport": 1440,
+      "theme": "synthwave-sunset",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "synthwave-sunset"
+    },
+    {
+      "viewport": 1440,
+      "theme": "arcade-1995",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "arcade-1995"
+    },
+    {
+      "viewport": 1440,
+      "theme": "y2k-webcore",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "y2k-webcore"
+    },
+    {
+      "viewport": 1440,
+      "theme": "terminal-green",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "terminal-green"
+    },
+    {
+      "viewport": 1440,
+      "theme": "pixel-neon",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "pixel-neon"
+    },
+    {
+      "viewport": 1440,
+      "theme": "solarpunk",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "solarpunk"
+    },
+    {
+      "viewport": 1440,
+      "theme": "biophilic-studio",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "biophilic-studio"
+    },
+    {
+      "viewport": 1440,
+      "theme": "neo-brutalist",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "neo-brutalist"
+    },
+    {
+      "viewport": 1440,
+      "theme": "art-deco-luxe",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "art-deco-luxe"
+    },
+    {
+      "viewport": 1440,
+      "theme": "tokyo-neon",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "tokyo-neon"
+    },
+    {
+      "viewport": 1440,
+      "theme": "deep-ocean",
+      "overflow": false,
+      "doc": 1440,
+      "win": 1440,
+      "body": 1440,
+      "applied": "deep-ocean"
+    },
+    {
+      "viewport": 390,
+      "theme": "arcade-1995",
+      "overflow": false,
+      "doc": 390,
+      "win": 390,
+      "body": 390,
+      "applied": "arcade-1995"
+    },
+    {
+      "viewport": 390,
+      "theme": "pixel-neon",
+      "overflow": false,
+      "doc": 390,
+      "win": 390,
+      "body": 390,
+      "applied": "pixel-neon"
+    },
+    {
+      "viewport": 390,
+      "theme": "neo-brutalist",
+      "overflow": false,
+      "doc": 390,
+      "win": 390,
+      "body": 390,
+      "applied": "neo-brutalist"
+    },
+    {
+      "viewport": 390,
+      "theme": "y2k-webcore",
+      "overflow": false,
+      "doc": 390,
+      "win": 390,
+      "body": 390,
+      "applied": "y2k-webcore"
+    },
+    {
+      "viewport": 390,
+      "theme": "midnight-tech",
+      "overflow": false,
+      "doc": 390,
+      "win": 390,
+      "body": 390,
+      "applied": "midnight-tech"
+    }
+  ],
+  "arcade": {
+    "applied": "arcade-1995",
+    "h1Font": "\"Press Start 2P\", monospace",
+    "h1Size": "16.8px",
+    "h1Width": 438,
+    "viewport": 1440,
+    "clipped": false,
+    "brandSize": null
+  },
+  "pickerViewport": {
+    "desktop": {
+      "top": 66,
+      "bottom": 706,
+      "left": 928,
+      "right": 1280,
+      "vh": 900,
+      "vw": 1440,
+      "inViewport": true
+    },
+    "mobile": {
+      "top": 80,
+      "bottom": 828,
+      "left": 12,
+      "right": 378,
+      "vh": 844,
+      "vw": 390,
+      "inViewport": true
+    }
+  },
+  "axe": [
+    {
+      "theme": "midnight-tech",
+      "appliedTheme": "midnight-tech",
+      "violations": []
+    },
+    {
+      "theme": "clean-corporate",
+      "appliedTheme": "clean-corporate",
+      "violations": []
+    },
+    {
+      "theme": "arcade-1995",
+      "appliedTheme": "arcade-1995",
+      "violations": []
+    },
+    {
+      "theme": "pixel-neon",
+      "appliedTheme": "pixel-neon",
+      "violations": []
+    },
+    {
+      "theme": "neo-brutalist",
+      "appliedTheme": "neo-brutalist",
+      "violations": []
+    },
+    {
+      "theme": "solarpunk",
+      "appliedTheme": "solarpunk",
+      "violations": []
+    },
+    {
+      "theme": "liquid-chrome",
+      "appliedTheme": "liquid-chrome",
+      "violations": []
+    },
+    {
+      "theme": "tokyo-neon",
+      "appliedTheme": "tokyo-neon",
+      "violations": []
+    },
+    {
+      "theme": "swiss-precision",
+      "appliedTheme": "swiss-precision",
+      "violations": []
+    },
+    {
+      "theme": "nordic-frost",
+      "appliedTheme": "nordic-frost",
+      "violations": []
+    },
+    {
+      "theme": "ivory-atelier",
+      "appliedTheme": "ivory-atelier",
+      "violations": []
+    },
+    {
+      "theme": "aurora-glass",
+      "appliedTheme": "aurora-glass",
+      "violations": []
+    },
+    {
+      "theme": "y2k-webcore",
+      "appliedTheme": "y2k-webcore",
+      "violations": []
+    },
+    {
+      "theme": "terminal-green",
+      "appliedTheme": "terminal-green",
+      "violations": []
+    },
+    {
+      "theme": "biophilic-studio",
+      "appliedTheme": "biophilic-studio",
+      "violations": []
+    },
+    {
+      "theme": "art-deco-luxe",
+      "appliedTheme": "art-deco-luxe",
+      "violations": []
+    },
+    {
+      "theme": "deep-ocean",
+      "appliedTheme": "deep-ocean",
+      "violations": []
+    }
+  ],
+  "screenshots": [
+    "desktop-theme-picker-open.png",
+    "mobile-arcade-1995-hero.png",
+    "mobile-theme-picker-open.png",
+    "desktop-arcade-1995.png",
+    "desktop-swiss-precision.png",
+    "desktop-liquid-chrome.png",
+    "desktop-y2k-webcore.png",
+    "desktop-solarpunk.png",
+    "desktop-neo-brutalist.png",
+    "desktop-tokyo-neon.png",
+    "desktop-neural-future.png"
+  ],
+  "build": {
+    "exitCode": 0,
+    "stdoutTail": "  resources/pdfs/5-things-small-business-site.pdf\n  resources/pdfs/pre-launch-qa-checklist.pdf\n  resources/pdfs/website-leads-checklist.pdf\n  resources/pdfs/website-modernization-roadmap.pdf\n  robots.txt\n  script.js\n  services.html\n  showroom.css\n  showroom.html\n  showroom.js\n  showroom/ecommerce.js\n  showroom/home-services.js\n  styles.css\n  theme-boot.js\n  theme.js\n  themes.css\n  work.html\n  workflow-demos.js\nbuild-public: ok\n",
+    "stderrTail": "",
+    "studioExcluded": true
+  },
+  "conflicts": [],
+  "summary": {
+    "themeCountOk": true,
+    "overflowOk": true,
+    "overflowFailCount": 0,
+    "arcadeNotClipped": true,
+    "pickerInViewport": true,
+    "axeViolationThemes": 0,
+    "axeTotalViolations": 0,
+    "studioExcluded": true,
+    "buildOk": true
+  }
+}

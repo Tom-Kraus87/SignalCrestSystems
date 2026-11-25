@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "suite": "m7a-r2-postgres-integration-20261123",
+  "skipped": true,
+  "skipReason": "No real DATABASE_URL / DATABASE_INTAKE_URL available. Local Postgres not started (Docker/install forbidden without Owner approval). Suite is prepared for hosted staging.",
+  "checks": [],
+  "failures": []
+}

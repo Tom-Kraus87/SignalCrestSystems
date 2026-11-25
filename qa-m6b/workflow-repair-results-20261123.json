@@ -1,0 +1,306 @@
+{
+  "pass": true,
+  "total": 39,
+  "passed": 39,
+  "failedCount": 0,
+  "results": [
+    {
+      "check": "source-has-booking-data",
+      "pass": true
+    },
+    {
+      "check": "source-has-reporting-data",
+      "pass": true
+    },
+    {
+      "check": "source-startScenario-guard",
+      "pass": true
+    },
+    {
+      "check": "html-chips-match-scenarios",
+      "pass": true
+    },
+    {
+      "check": "html-illustrative-section",
+      "pass": true
+    },
+    {
+      "check": "theme-registry-30",
+      "pass": true,
+      "themeIdCount": 30
+    },
+    {
+      "check": "html-theme-options-30",
+      "pass": true
+    },
+    {
+      "check": "arcade-typography-rule",
+      "pass": true
+    },
+    {
+      "check": "coexist-map-in-hero",
+      "pass": true
+    },
+    {
+      "check": "coexist-illustrative-section",
+      "pass": true
+    },
+    {
+      "check": "coexist-wf-not-in-hero",
+      "pass": true
+    },
+    {
+      "check": "coexist-map-is-canvas-not-cards",
+      "pass": true
+    },
+    {
+      "check": "connected-five-chips",
+      "pass": true,
+      "chipCount": 5
+    },
+    {
+      "check": "scenario-quote",
+      "pass": true,
+      "title": "Quote request (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "forms"
+        ],
+        "dimmed": 9,
+        "hitCount": 1
+      }
+    },
+    {
+      "check": "scenario-invoice",
+      "pass": true,
+      "title": "Invoice email (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "email"
+        ],
+        "dimmed": 9,
+        "hitCount": 1
+      }
+    },
+    {
+      "check": "scenario-update",
+      "pass": true,
+      "title": "Customer update (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "crm"
+        ],
+        "dimmed": 9,
+        "hitCount": 1
+      }
+    },
+    {
+      "check": "scenario-booking",
+      "pass": true,
+      "title": "Appointment booking (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "forms",
+          "apis"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "scenario-reporting",
+      "pass": true,
+      "title": "Business reporting (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "email",
+          "crm"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "scenario-booking-repeat",
+      "pass": true,
+      "title": "Appointment booking (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "forms",
+          "apis"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "scenario-cleared",
+      "pass": true
+    },
+    {
+      "check": "scenario-booking-shot",
+      "pass": true,
+      "title": "Appointment booking (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "forms",
+          "apis"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "scenario-reporting-shot",
+      "pass": true,
+      "title": "Business reporting (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "email",
+          "crm"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "theme-arcade-applied",
+      "pass": true
+    },
+    {
+      "check": "scenario-booking-after-arcade",
+      "pass": true,
+      "title": "Appointment booking (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "forms",
+          "apis"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "scenario-reporting-after-corporate",
+      "pass": true,
+      "title": "Business reporting (illustrative example)",
+      "stepCount": 3,
+      "mapFocused": true,
+      "lit": {
+        "linked": [
+          "email",
+          "crm"
+        ],
+        "dimmed": 8,
+        "hitCount": 2
+      }
+    },
+    {
+      "check": "theme-switch-no-pageerror",
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "check": "illustrative-five-tabs",
+      "pass": true
+    },
+    {
+      "check": "illustrative-systems",
+      "pass": true,
+      "before": "Step 1 of 4: Capture inputs",
+      "after": "Step 2 of 4: Process with review",
+      "mapStill": true
+    },
+    {
+      "check": "illustrative-website",
+      "pass": true,
+      "before": "Step 1 of 4: Discover",
+      "after": "Step 2 of 4: Restructure",
+      "mapStill": true
+    },
+    {
+      "check": "illustrative-leads",
+      "pass": true,
+      "before": "Step 1 of 4: Capture",
+      "after": "Step 2 of 4: Enrich",
+      "mapStill": true
+    },
+    {
+      "check": "illustrative-software",
+      "pass": true,
+      "before": "Step 1 of 4: Discover",
+      "after": "Step 2 of 4: Prototype",
+      "mapStill": true
+    },
+    {
+      "check": "illustrative-care",
+      "pass": true,
+      "before": "Step 1 of 4: Monitor",
+      "after": "Step 2 of 4: Maintain",
+      "mapStill": true
+    },
+    {
+      "check": "solutions-open",
+      "pass": true
+    },
+    {
+      "check": "solutions-four-cats",
+      "pass": true
+    },
+    {
+      "check": "reduced-motion-booking",
+      "pass": true
+    },
+    {
+      "check": "mobile-five-chips",
+      "pass": true
+    },
+    {
+      "check": "arcade-1995-mobile-fit",
+      "pass": true,
+      "width": 362,
+      "right": 376,
+      "vw": 390,
+      "fontSize": 13,
+      "overflowX": false
+    },
+    {
+      "check": "no-studio-in-dist",
+      "pass": true
+    },
+    {
+      "check": "workflow-demos-in-dist",
+      "pass": true
+    }
+  ],
+  "failed": [],
+  "screenshots": [
+    "desktop-arcade-1995.png",
+    "desktop-both-experiences.png",
+    "desktop-connected-systems-booking.png",
+    "desktop-connected-systems-reporting.png",
+    "desktop-illustrative-custom-software.png",
+    "desktop-illustrative-workflows.png",
+    "mobile-arcade-1995.png",
+    "mobile-connected-systems-booking.png",
+    "mobile-illustrative-workflows.png"
+  ]
+}

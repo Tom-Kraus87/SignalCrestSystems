@@ -1,0 +1,245 @@
+{
+  "stamp": "2026-11-24T03:09:40Z",
+  "rows": [
+    {
+      "path": "netlify/functions/leads.js",
+      "sha256": "aefb63db013a2c7eee3a9b1db3c5fb2f97df612afe18a8b5810de1f535ac0b74",
+      "bytes": 1255
+    },
+    {
+      "path": "netlify/functions/notify-worker.js",
+      "sha256": "bd2c2efa317d876231f096cb88e8af32726885b8f1a128fb0d50f6015a91e752",
+      "bytes": 2677
+    },
+    {
+      "path": "netlify/functions/package.json",
+      "sha256": "332334d070a53ce8f004bb497c20f1fb343368021125b75fd46dc1664917054f",
+      "bytes": 654
+    },
+    {
+      "path": "netlify/functions/DEPENDENCY-LOCKING.md",
+      "sha256": "04b317cfc29339573cfe83330e2e866d88e53b0d3b85ea986ecd54e8073ebf71",
+      "bytes": 1496
+    },
+    {
+      "path": "netlify/functions/_lib/pg-client.js",
+      "sha256": "32a441c1ecc6ae21408bba9c6684eeb44f600c47af3f9fd19af272cebd81a711",
+      "bytes": 12839
+    },
+    {
+      "path": "netlify/functions/_lib/process-lead.js",
+      "sha256": "54b64db0b6dd7d55e5df5d55c245635e0addee8ef829a097f260c7ba9e43b03e",
+      "bytes": 13082
+    },
+    {
+      "path": "netlify/functions/_lib/deps.js",
+      "sha256": "e0c069de8f47eb906b745575f51bc0ca61d9518d632252cffa308b1620105d07",
+      "bytes": 7038
+    },
+    {
+      "path": "netlify/functions/_lib/repository.js",
+      "sha256": "59f0606b64881fa7fb5e66d789360be3eae5f6ccec013b406a15fb935a53f15e",
+      "bytes": 8965
+    },
+    {
+      "path": "netlify/functions/_lib/postgres-adapters.js",
+      "sha256": "0e1cf20acdf438a480480f3d2700c2c70b97c6f07ec5cd0eab22992a00a7c5ac",
+      "bytes": 7715
+    },
+    {
+      "path": "netlify/functions/_lib/idempotency.js",
+      "sha256": "cbafe0a064eb0d14446df0e691f94a32f9a872463dc35ecf9fc40d35904a0a99",
+      "bytes": 2776
+    },
+    {
+      "path": "netlify/functions/_lib/schema.js",
+      "sha256": "da7af2cecb9a403439eb020bffa5e1c399d6dae2953f1ada53e184d95122b6cf",
+      "bytes": 10281
+    },
+    {
+      "path": "netlify/functions/_lib/spam-protection.js",
+      "sha256": "500483efbcf6461d67de88ebc1adabe150a517a64dd51eb94e0db405e493aab1",
+      "bytes": 4218
+    },
+    {
+      "path": "netlify/functions/_lib/notify.js",
+      "sha256": "af89832e68011b9ba28dec609ee9e122b890597a158debf14eceb301d51d6dc9",
+      "bytes": 1387
+    },
+    {
+      "path": "netlify/functions/_lib/notify-worker.js",
+      "sha256": "cfe21dbe9868e3d8bc10dbdcb6ad9fa8ac3452a0bf755be10800fb3fbcbcd694",
+      "bytes": 4921
+    },
+    {
+      "path": "netlify/functions/_lib/worker-auth.js",
+      "sha256": "49b2cd99f65a17332ff019aeab32de65090c9a27486fcb7a21b2c31b9fc9df27",
+      "bytes": 2277
+    },
+    {
+      "path": "netlify/functions/_lib/request-meta.js",
+      "sha256": "f0550c4651cc3184b5039775905e27dd8cf5abc64261965f0d0344a87d9ac5b7",
+      "bytes": 2403
+    },
+    {
+      "path": "netlify/functions/_lib/payload-hash.js",
+      "sha256": "58765105f149dd7162559bdd7f29b6e4fe21f4e42ab2435f79cd4c7639051429",
+      "bytes": 1086
+    },
+    {
+      "path": "netlify/functions/_lib/rate-limit.js",
+      "sha256": "6c1d933737cc19663dee99b64c3dc29f6d7aed4098b8d2d1b296632d2469a142",
+      "bytes": 2872
+    },
+    {
+      "path": "netlify/functions/_lib/privacy.js",
+      "sha256": "c82da60e24bdfd9f478854378c03b717a4661d160a0f95e71b68e65cd074f2f4",
+      "bytes": 824
+    },
+    {
+      "path": "netlify/functions/_lib/safe-log.js",
+      "sha256": "0e2dd975a59496ca09a5c6d368fd403145484655e904c70421c9cc61bcc6f55b",
+      "bytes": 1309
+    },
+    {
+      "path": "netlify/functions/_lib/normalize.js",
+      "sha256": "fdc5226d4a71840b4401b9534966f6d9b92c407e89769511c15b635fa9261fd8",
+      "bytes": 2224
+    },
+    {
+      "path": "netlify/functions/_lib/sensitive.js",
+      "sha256": "8d3b609ae3fd35267516a74e3f55c7b7a21fd66194df3ad39074565932468018",
+      "bytes": 1739
+    },
+    {
+      "path": "netlify/functions/_lib/transactional-primitives.js",
+      "sha256": "bc659859d4c5b788d3698bacfadfc8e316f24eb13648b3e9df0a98074908c0f9",
+      "bytes": 6309
+    },
+    {
+      "path": "db/bootstrap/001_m7a_r4_role_bootstrap.sql",
+      "sha256": "f35be3c582325560adbfa00c36308b98810cc71a64f9332c1b3917cf57cf1a94",
+      "bytes": 3366
+    },
+    {
+      "path": "db/migrations/001_m7a_leads_foundation.sql",
+      "sha256": "7f45ae6de2f666bc1e8ea7c2816e6fd60a515b367a51ac7bd1e706ee028b8dc0",
+      "bytes": 5572
+    },
+    {
+      "path": "db/migrations/002_m7a_rls_least_privilege.sql",
+      "sha256": "fbbb319e6215665dfdc02ecfd225c079fd1b396828397e647e2b90be84f58850",
+      "bytes": 2584
+    },
+    {
+      "path": "db/migrations/003_m7a_retention_procedures.sql",
+      "sha256": "509595c5457c989379adb4e51c309e56111104525032a76fec68478b9c0cf472",
+      "bytes": 5624
+    },
+    {
+      "path": "db/migrations/004_m7a_counters_idempotency.sql",
+      "sha256": "0f0ee07642f22cc727891d471f35c6f04d11ad3c9136a495567452a6e7f62888",
+      "bytes": 5229
+    },
+    {
+      "path": "db/migrations/005_m7a_insert_lead_bundle.sql",
+      "sha256": "b2ebc8adb202ffa60c8e83d14230449b893bb34572486dbdfdabd53550c30c39",
+      "bytes": 8125
+    },
+    {
+      "path": "db/migrations/006_m7a_r2_security_hardening.sql",
+      "sha256": "8bde257dd0ac192770622bf59cbf0156c26715529a20bdc73b93e7356b863501",
+      "bytes": 24626
+    },
+    {
+      "path": "db/migrations/007_m7a_r4_security_corrections.sql",
+      "sha256": "dce49eff38a9d1591964bad88be9d00b46969d65050d1b5b96478a997d05d2d8",
+      "bytes": 13827
+    },
+    {
+      "path": "db/procedures/m7a_insert_lead_transaction.sql",
+      "sha256": "36d8cb27901382f7639cd105d477510d1baeb5c081027322e05a78f992bd41ca",
+      "bytes": 1355
+    },
+    {
+      "path": ".env.example",
+      "sha256": "cdb5a9a57c1aee698632bcb9c6ff648970739007b1f5d22416558c250b39f61e",
+      "bytes": 8219
+    },
+    {
+      "path": "netlify.toml",
+      "sha256": "47118dfc94d3e08c20bba357286437f6e5e77d790c5ca02ca45417a86377b0b8",
+      "bytes": 482
+    },
+    {
+      "path": "script.js",
+      "sha256": "cb927b5f0261fd9a739fb14c4851b24e421e0cbd6cdec5698c051b5c4dc333a9",
+      "bytes": 23938
+    },
+    {
+      "path": "project-request.html",
+      "sha256": "0b62bba9567da13114ce8aafa3c6000f358f34586ec4d8d8a13bfb78e4126a03",
+      "bytes": 26224
+    },
+    {
+      "path": "contact.html",
+      "sha256": "ff3b50b21fca2cf2b72e1104e631facd080327cc74e38e7d8a734861b20c9eef",
+      "bytes": 24397
+    },
+    {
+      "path": "privacy.html",
+      "sha256": "a2a9f3fe92855be18798fe778be45c341e5f6b880ce8acb7470fc441511da0c5",
+      "bytes": 22486
+    },
+    {
+      "path": "advisor.html",
+      "sha256": "f3dddc104a82b84e21268cb1febfb048b415ab049d76e721957e7440a4bbac5b",
+      "bytes": 19639
+    },
+    {
+      "path": "advisor.js",
+      "sha256": "ccf4afc58544bf78f61517f3285dd4a808dd782a969298f66dc70d23af78fb28",
+      "bytes": 42591
+    },
+    {
+      "path": "advisor-kb.json",
+      "sha256": "1b9581bc50558bf73a5a769b2ce9f818ab29ead144d0d848c0edc874366a74aa",
+      "bytes": 10795
+    },
+    {
+      "path": "scripts/build-public.mjs",
+      "sha256": "b8d08e2f9f17d7f349b779e0846b8fb2793bda096e66dfe67862701e01dabb78",
+      "bytes": 27876
+    },
+    {
+      "path": "qa-m6b/verify-m7a-secure-leads-20261123.mjs",
+      "sha256": "5be5c57e0ccf5039bf2a681c4f903d97edb158205f88f7e8ccbe0876ceaf22cf",
+      "bytes": 49327
+    },
+    {
+      "path": "qa-m6b/verify-m7a-r2-postgres-integration-20261123.mjs",
+      "sha256": "4eb5e3e0b91e2e6b49006a84e1474d48ae1c11d6e6f018bfffc054dd0ed4d0fc",
+      "bytes": 25748
+    },
+    {
+      "path": "qa-m6b/_m7a-static-check.mjs",
+      "sha256": "08a4b92477c0b70a784c4ea16fff6eaa27c29c82ea5619bbeda671518395a533",
+      "bytes": 925
+    },
+    {
+      "path": "qa-m6b/M7A-R4-POSTGRES-INTEGRATION-NOT-RUN-20261123.json",
+      "sha256": "086ac8dbbcb7af77fb34139b7973045c191786ca28b225f10844d24a8ecb36e4",
+      "bytes": 1945
+    },
+    {
+      "path": "qa-m6b/M7A-LOCAL-TEST-RESULTS-20261123.json",
+      "sha256": "0469e28754bd698de59db506788f3295f60ab401f830bf047341d7248ec1364d",
+      "bytes": 22218
+    },
+    {
+      "path": "qa-m6b/M7A-R2-AUDIT-SNAPSHOT-MANIFEST-20261123.md",
+      "sha256": "281e80d3e5e30ab42052b10ddee80ec9bcbbe067d9d46ced35394c6a9456e2de",
+      "bytes": 5254
+    }
+  ]
+}

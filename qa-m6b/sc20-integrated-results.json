@@ -1,0 +1,162 @@
+{
+  "pass": true,
+  "total": 36,
+  "passed": 36,
+  "failedCount": 0,
+  "results": [
+    {
+      "check": "site-header-present",
+      "pass": true
+    },
+    {
+      "check": "nav-toggle-present",
+      "pass": true
+    },
+    {
+      "check": "no-proto-header",
+      "pass": true
+    },
+    {
+      "check": "hs-hero-present",
+      "pass": true
+    },
+    {
+      "check": "hs-map-present",
+      "pass": true
+    },
+    {
+      "check": "hs-map-enhanced",
+      "pass": true
+    },
+    {
+      "check": "product-lab-present",
+      "pass": true
+    },
+    {
+      "check": "showroom-preview-present",
+      "pass": true
+    },
+    {
+      "check": "primary-cta-project-request",
+      "pass": true,
+      "primaryHref": "project-request.html"
+    },
+    {
+      "check": "secondary-cta-showroom",
+      "pass": true,
+      "secondaryHref": "showroom.html"
+    },
+    {
+      "check": "honest-claims-copy",
+      "pass": true
+    },
+    {
+      "check": "theme-render-midnight-tech",
+      "pass": true
+    },
+    {
+      "check": "theme-render-obsidian-black",
+      "pass": true
+    },
+    {
+      "check": "theme-render-stealth-carbon",
+      "pass": true
+    },
+    {
+      "check": "theme-render-emerald-night",
+      "pass": true
+    },
+    {
+      "check": "theme-render-royal-indigo",
+      "pass": true
+    },
+    {
+      "check": "theme-render-industrial-slate",
+      "pass": true
+    },
+    {
+      "check": "theme-render-clean-corporate",
+      "pass": true
+    },
+    {
+      "check": "theme-render-blueprint-studio",
+      "pass": true
+    },
+    {
+      "check": "theme-render-vintage-paper",
+      "pass": true
+    },
+    {
+      "check": "theme-render-neural-future",
+      "pass": true
+    },
+    {
+      "check": "theme-render-holographic",
+      "pass": true
+    },
+    {
+      "check": "theme-render-cyberpunk-2099",
+      "pass": true
+    },
+    {
+      "check": "theme-render-cyber-terminal",
+      "pass": true
+    },
+    {
+      "check": "theme-render-retro-computing",
+      "pass": true
+    },
+    {
+      "check": "theme-render-synthwave-sunset",
+      "pass": true
+    },
+    {
+      "check": "theme-render-arcade-1995",
+      "pass": true
+    },
+    {
+      "check": "no-h-overflow-1440",
+      "pass": true,
+      "overflow": false
+    },
+    {
+      "check": "no-h-overflow-1024",
+      "pass": true,
+      "overflow": false
+    },
+    {
+      "check": "no-h-overflow-768",
+      "pass": true,
+      "overflow": false
+    },
+    {
+      "check": "no-h-overflow-390",
+      "pass": true,
+      "overflow": false
+    },
+    {
+      "check": "no-h-overflow-320",
+      "pass": true,
+      "overflow": false
+    },
+    {
+      "check": "netlify-form-attrs",
+      "pass": true
+    },
+    {
+      "check": "contact-service-preselect",
+      "pass": true,
+      "preselect": "ai-automation"
+    },
+    {
+      "check": "showroom-loads",
+      "pass": true
+    },
+    {
+      "check": "no-csp-console-errors",
+      "pass": true,
+      "cspErrors": []
+    }
+  ],
+  "failed": []
+}

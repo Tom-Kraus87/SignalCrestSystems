@@ -1,0 +1,8 @@
+predecessorCommit: 2c0e808b45a757ab205e79dd945925abd3f09dfd
+files: 18
+excludes: SHA256-INVENTORY.json
+recomputedFrom: preserved inventory paths hashed from on-disk bytes before any Option C R1 edit
+digest: 850dac2809058fada1478c8846867631ad026ebe3b53dc8b1f725e644ce30c4e
+claimedDigestMatchesRecompute: true
+inventoryBytes: 3533
+inventorySha256: be98f4eadbf21b66e56ed967bb96761a6263590a2e2d208e69fdc3407afefe82

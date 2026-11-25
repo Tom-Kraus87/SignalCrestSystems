@@ -1,0 +1,47 @@
+[
+    {
+        "Path":  "qa-m6b/M7B-G2-R2-IMPLEMENTATION-PREPARATION-REPORT-20261124.md",
+        "Sha256":  "08f9cfc9440d6f47f2d9c5f82a2ae1b5c81b3a864d305630dea8880d868d9226",
+        "Bytes":  9429
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R2-SQL-EXECUTION-PACKET-20261124.md",
+        "Sha256":  "f2a4b61b64d61deed63cd153ed543806e1e8af030f82e15c4aa160ea2a4abc3b",
+        "Bytes":  44644
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R2-OWNER-WALKTHROUGH-20261124.md",
+        "Sha256":  "aa2759b2dcb66bbb536450c1d5d5abe0fb22d832f47de28a2bdeb5ba8149a0ea",
+        "Bytes":  10435
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R2-CORRECTION-REPORT-20261124.md",
+        "Sha256":  "5fa49e7c9fc3eede002dd6efe460714b0458e69a41b4e452572487d63335b4d9",
+        "Bytes":  6979
+    },
+    {
+        "Path":  "qa-m6b/M7B-G2-R2-staging-fixture-rls-policies-20261124.sql",
+        "Sha256":  "5764eb9d439b7091bbdf7204e730093fa406fa7212a5847e34238d1dedb5dd28",
+        "Bytes":  6466
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R2-IMPLEMENTATION-PREPARATION-REPORT-20261124.pdf",
+        "Sha256":  "6c3d6b4b5286f8cb66d50e039cab6a829d714c8ca4ca130738e663e684e5996c",
+        "Bytes":  260891
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R2-SQL-EXECUTION-PACKET-20261124.pdf",
+        "Sha256":  "40b08a9017165ff99fbc03decf20ccd55fcaa33e2f440b071fae40a5a35b6649",
+        "Bytes":  592952
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R2-OWNER-WALKTHROUGH-20261124.pdf",
+        "Sha256":  "295c4c6d4e2055ce57d0b78a3a53c01515af5de9fef6e0878310f6e706ad0fdd",
+        "Bytes":  292874
+    },
+    {
+        "Path":  "qa-m6b/pdf/M7B-G2-R2-CORRECTION-REPORT-20261124.pdf",
+        "Sha256":  "f1a3bbedc5b7693cb42343d956aa6887099184b403f236b0e5bbf3703c81bf27",
+        "Bytes":  185921
+    }
+]

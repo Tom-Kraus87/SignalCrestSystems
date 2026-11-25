@@ -1,0 +1,392 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "file:advisor.html",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "file:advisor.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "file:advisor.css",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "file:advisor-kb.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb.usesLanguageModel=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb.freeIssueLimit=3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "kb.hasTopics",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "honest disclosure in HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no third-party script hosts in advisor.html",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Solutions Explorer preserved on advisor page",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request source default contact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request privacy-version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project-request advisor-brief",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "allowlist advisor.html",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "allowlist advisor.js",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "allowlist advisor-kb.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "studio still excluded comment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json extension allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index nav Guided Advisor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "index Solutions Explorer intact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "matrix 1 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 2 => package-landing",
+      "pass": true,
+      "detail": "got package-landing"
+    },
+    {
+      "name": "matrix 3 => package-starter",
+      "pass": true,
+      "detail": "got package-starter"
+    },
+    {
+      "name": "matrix 4 => package-professional",
+      "pass": true,
+      "detail": "got package-professional"
+    },
+    {
+      "name": "matrix 5 => package-advanced",
+      "pass": true,
+      "detail": "got package-advanced"
+    },
+    {
+      "name": "matrix 6 => care-plan",
+      "pass": true,
+      "detail": "got care-plan"
+    },
+    {
+      "name": "matrix 7 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 8 => custom-software",
+      "pass": true,
+      "detail": "got custom-software"
+    },
+    {
+      "name": "matrix 9 => ai-automation",
+      "pass": true,
+      "detail": "got ai-automation"
+    },
+    {
+      "name": "matrix 10 => it-consulting",
+      "pass": true,
+      "detail": "got it-consulting"
+    },
+    {
+      "name": "matrix 11 => cybersecurity",
+      "pass": true,
+      "detail": "got cybersecurity"
+    },
+    {
+      "name": "matrix 12 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 13 => care-plan",
+      "pass": true,
+      "detail": "got care-plan"
+    },
+    {
+      "name": "matrix 14 => local-seo",
+      "pass": true,
+      "detail": "got local-seo"
+    },
+    {
+      "name": "matrix 15 => qa-automation",
+      "pass": true,
+      "detail": "got qa-automation"
+    },
+    {
+      "name": "matrix 16 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "matrix 17 => other",
+      "pass": true,
+      "detail": "got other"
+    },
+    {
+      "name": "start issue consumes credit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "follow-up path no extra credit on complete",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "third issue ok",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fourth issue soft-capped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret classifier password",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "secret classifier clean",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": [],
+  "matrix": [
+    {
+      "id": "T01",
+      "expected": "other",
+      "got": "other",
+      "pass": true,
+      "answers": {
+        "project_type": "not_sure"
+      }
+    },
+    {
+      "id": "T02",
+      "expected": "package-landing",
+      "got": "package-landing",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "landing",
+        "primary_need": "local_seo"
+      }
+    },
+    {
+      "id": "T03",
+      "expected": "package-starter",
+      "got": "package-starter",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "starter"
+      }
+    },
+    {
+      "id": "T04",
+      "expected": "package-professional",
+      "got": "package-professional",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "professional"
+      }
+    },
+    {
+      "id": "T05",
+      "expected": "package-advanced",
+      "got": "package-advanced",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "advanced"
+      }
+    },
+    {
+      "id": "T06",
+      "expected": "care-plan",
+      "got": "care-plan",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "care"
+      }
+    },
+    {
+      "id": "T07",
+      "expected": "other",
+      "got": "other",
+      "pass": true,
+      "answers": {
+        "project_type": "website",
+        "detail": "not_sure"
+      }
+    },
+    {
+      "id": "T08",
+      "expected": "custom-software",
+      "got": "custom-software",
+      "pass": true,
+      "answers": {
+        "project_type": "custom_software",
+        "primary_need": "testing"
+      }
+    },
+    {
+      "id": "T09",
+      "expected": "ai-automation",
+      "got": "ai-automation",
+      "pass": true,
+      "answers": {
+        "project_type": "ai_automation",
+        "primary_need": "local_seo"
+      }
+    },
+    {
+      "id": "T10",
+      "expected": "it-consulting",
+      "got": "it-consulting",
+      "pass": true,
+      "answers": {
+        "project_type": "it_cyber",
+        "detail": "it"
+      }
+    },
+    {
+      "id": "T11",
+      "expected": "cybersecurity",
+      "got": "cybersecurity",
+      "pass": true,
+      "answers": {
+        "project_type": "it_cyber",
+        "detail": "cyber"
+      }
+    },
+    {
+      "id": "T12",
+      "expected": "other",
+      "got": "other",
+      "pass": true,
+      "answers": {
+        "project_type": "it_cyber",
+        "detail": "not_sure"
+      }
+    },
+    {
+      "id": "T13",
+      "expected": "care-plan",
+      "got": "care-plan",
+      "pass": true,
+      "answers": {
+        "project_type": "qa_seo_care",
+        "detail": "care"
+      }
+    },
+    {
+      "id": "T14",
+      "expected": "local-seo",
+      "got": "local-seo",
+      "pass": true,
+      "answers": {
+        "project_type": "qa_seo_care",
+        "detail": "seo"
+      }
+    },
+    {
+      "id": "T15",
+      "expected": "qa-automation",
+      "got": "qa-automation",
+      "pass": true,
+      "answers": {
+        "project_type": "qa_seo_care",
+        "detail": "qa"
+      }
+    },
+    {
+      "id": "T16",
+      "expected": "other",
+      "got": "other",
+      "pass": true,
+      "answers": {
+        "project_type": "qa_seo_care",
+        "detail": "not_sure"
+      }
+    },
+    {
+      "id": "T17",
+      "expected": "other",
+      "got": "other",
+      "pass": true,
+      "answers": {
+        "human_exit": true
+      }
+    }
+  ]
+}

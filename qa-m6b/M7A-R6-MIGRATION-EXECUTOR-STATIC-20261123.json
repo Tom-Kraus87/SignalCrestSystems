@@ -1,0 +1,126 @@
+{
+  "suite": "m7a-r6-migration-executor-static",
+  "evidenceClass": "static-process-definition",
+  "executedSql": false,
+  "result": "PASS",
+  "order": [
+    {
+      "id": "bootstrap-001",
+      "rel": "db/bootstrap/001_m7a_r4_role_bootstrap.sql",
+      "executor": "project_admin",
+      "notes": "CREATE ROLE for scs_* principals. Requires CREATEROLE or SUPERUSER. Fail closed.",
+      "bytes": 3825
+    },
+    {
+      "id": "mig-001",
+      "rel": "db/migrations/001_m7a_leads_foundation.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "Foundation tables. Prefer project admin as object owner.",
+      "bytes": 5572
+    },
+    {
+      "id": "mig-002",
+      "rel": "db/migrations/002_m7a_rls_least_privilege.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "RLS enablement / least privilege.",
+      "bytes": 2584
+    },
+    {
+      "id": "mig-003",
+      "rel": "db/migrations/003_m7a_retention_procedures.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "Retention procedures (SECURITY DEFINER owner = project admin).",
+      "bytes": 5624
+    },
+    {
+      "id": "mig-004",
+      "rel": "db/migrations/004_m7a_counters_idempotency.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "Counters + idempotency primitives.",
+      "bytes": 5229
+    },
+    {
+      "id": "mig-005",
+      "rel": "db/migrations/005_m7a_insert_lead_bundle.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "insert_lead_bundle SECURITY DEFINER.",
+      "bytes": 8125
+    },
+    {
+      "id": "mig-006",
+      "rel": "db/migrations/006_m7a_r2_security_hardening.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "Historical draft. Role NOTICE path is NOT the provisioning path.",
+      "bytes": 24626
+    },
+    {
+      "id": "mig-007",
+      "rel": "db/migrations/007_m7a_r4_security_corrections.sql",
+      "executor": "project_admin_or_scs_migration",
+      "notes": "Aborts if bootstrap roles missing. Runtime grants after this file.",
+      "bytes": 13827
+    }
+  ],
+  "missing": [],
+  "roleBoundaries": {
+    "project_admin": {
+      "names": [
+        "postgres",
+        "supabase_admin"
+      ],
+      "purpose": "Privileged provisioning, schema ownership, SECURITY DEFINER ownership",
+      "function_runtime": false
+    },
+    "scs_migration": {
+      "names": [
+        "scs_migration"
+      ],
+      "purpose": "Optional ordered DDL apply after roles exist; NOT SUPERUSER/CREATEROLE by default",
+      "function_runtime": false
+    },
+    "scs_intake_runtime": {
+      "names": [
+        "scs_intake_runtime"
+      ],
+      "purpose": "Lead intake RPCs only",
+      "function_runtime": true
+    },
+    "scs_notify_worker": {
+      "names": [
+        "scs_notify_worker"
+      ],
+      "purpose": "claim/complete notification outbox only",
+      "function_runtime": true
+    },
+    "scs_owner_admin": {
+      "names": [
+        "scs_owner_admin"
+      ],
+      "purpose": "Owner monitoring / retention RPCs; never Function runtime",
+      "function_runtime": false
+    },
+    "scs_test_admin": {
+      "names": [
+        "scs_test_admin"
+      ],
+      "purpose": "Separate test-administration identity for fixture setup only",
+      "function_runtime": false
+    }
+  },
+  "checks": {
+    "allFilesPresent": true,
+    "bootstrapFailClosed": true,
+    "bootstrapPrefersProjectAdmin": true,
+    "mig7AbortsWithoutRoles": true,
+    "noSqlExecuted": true
+  },
+  "process": [
+    "1. Connect as controlled project administrator (DATABASE_PROJECT_ADMIN_URL / postgres).",
+    "2. Apply db/bootstrap/001_m7a_r4_role_bootstrap.sql (fail closed).",
+    "3. Optionally CREATE ROLE scs_test_admin for fixtures (LOGIN NOINHERIT; not Function runtime).",
+    "4. Apply migrations 001→007 in order as project admin (preferred) or scs_migration without elevating it.",
+    "5. Confirm SECURITY DEFINER functions and schema objects are owned by project admin.",
+    "6. Confirm runtime grants match 007 (intake / notify / owner_admin only as granted).",
+    "7. Set passwords out of band; wire Netlify secrets to least-privilege URLs only."
+  ]
+}

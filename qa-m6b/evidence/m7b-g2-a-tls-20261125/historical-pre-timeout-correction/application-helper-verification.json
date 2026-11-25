@@ -1,0 +1,136 @@
+{
+  "schema": "signal-crest-m7b-g2-a-tls-evidence-v1",
+  "recordType": "application-helper-verification",
+  "milestone": "M7B-G2",
+  "authorization": "A-TLS evidence documentation only",
+  "production": "HOLD",
+  "stagingDatabaseWork": "unauthorized",
+  "aSql": "not-started",
+  "rerunByRecorder": false,
+  "observed": [
+    {
+      "evidenceClass": "observed",
+      "id": "executor",
+      "statement": "Owner-executed local application TLS helper verification. Results below are the supplied result set, preserved as recorded."
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "application-helper-verification-timestamp",
+      "value": "2026-11-25T05:06:08.107Z"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "postgresql-driver",
+      "value": "pg@8.13.1"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "production-like",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "dependency-mode",
+      "value": "postgres_required"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "normalized-ssl-mode",
+      "value": "verify-full"
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "reject-unauthorized",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "native-hostname-verification",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "ca-loaded",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "ca-matches-local-file",
+      "value": true
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "connection-string-forwarded",
+      "value": false
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "negative-controls",
+      "allSevenPassed": true,
+      "controls": [
+        {
+          "n": 1,
+          "name": "Environment TLS disable",
+          "result": "PASS"
+        },
+        {
+          "n": 2,
+          "name": "Environment certificate verification disable",
+          "result": "PASS"
+        },
+        {
+          "n": 3,
+          "name": "URL TLS downgrade",
+          "result": "PASS"
+        },
+        {
+          "n": 4,
+          "name": "URL hostname verification downgrade",
+          "result": "PASS"
+        },
+        {
+          "n": 5,
+          "name": "Duplicate TLS parameter",
+          "result": "PASS"
+        },
+        {
+          "n": 6,
+          "name": "libpq compatibility override",
+          "result": "PASS"
+        },
+        {
+          "n": 7,
+          "name": "Driver connection string override",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "evidenceClass": "observed",
+      "id": "helper-boundary",
+      "noRealCredentialsTransmitted": true,
+      "noDatabaseAuthentication": true,
+      "noSqlExecuted": true,
+      "noNetworkConnectionAttemptedByLocalHelperTest": true
+    }
+  ],
+  "static": [
+    {
+      "evidenceClass": "static",
+      "id": "ca-not-copied",
+      "statement": "The CA file was not copied into the repository. This record stores the owner-supplied helper results only."
+    },
+    {
+      "evidenceClass": "static",
+      "id": "outside-frozen-r4-inventory",
+      "inventory": "qa-m6b/M7B-G2-R4-SUCCESSOR-HASH-INVENTORY-20261124.json",
+      "method": "Canonical lines path<TAB>sha256<TAB>bytes, sorted by path with the freeze tooling (PowerShell Sort-Object Path), UTF-8, joined by newline, SHA-256 lowercase hex. Inventory JSON and companion reports are excluded.",
+      "entryCount": 64,
+      "entryCountMatched": true,
+      "canonicalInventoryDigest": "683cc3f5162ed2b86f5eb7cee5822ed2598e76c00dc51c996188f8c22622542d",
+      "digestMatched": true,
+      "statement": "This evidence file is outside the frozen 64-entry R4 successor candidate inventory. The recomputed count and canonical digest matched. The frozen manifest was not modified."
+    }
+  ],
+  "inferred": []
+}
