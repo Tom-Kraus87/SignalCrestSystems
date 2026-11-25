@@ -2,23 +2,32 @@
  * Offline-tested provisioning plan.
  * Database access is whatever object the caller injects. This module does not
  * open a socket. Live use must pass the owner authorization flag and is not
- * authorized by this assignment.
+ * authorized by this assignment. The flag is an operational guard, not an
+ * authentication boundary.
  *
- * Order for every credential statement, including the mandatory canary:
- *   BEGIN, SET LOCAL, read back every required setting, then the statement.
- * Authority and exact membership edges are checked inside the role transaction
- * after the logging readback and before ALTER ROLE.
+ * Canary order:
+ *   probe for an existing role and abort if one is present,
+ *   BEGIN, SET LOCAL, read back every required setting,
+ *   CREATE the disposable NOLOGIN role,
+ *   read back attributes, the creator ADMIN edge, and direct privileges,
+ *   only then assign the published RFC 7677 verifier,
+ *   COMMIT once,
+ *   require an explicit owner log acknowledgment,
+ *   DROP the canary and confirm it is gone,
+ *   only then alter a target role.
+ * Ambiguous commits are not retried. A cleanup failure is never a success.
  */
 
-import { ALLOWED_ROLES, CANARY_ROLE, assertAllowedRole } from "./allowlist.mjs";
+import { ALLOWED_ROLES, CANARY_ROLE } from "./allowlist.mjs";
 import {
   assertAdminAttributes,
+  assertCanaryInspection,
   assertSessionIdentity,
   assertTargetAuthority,
   assertVerifierShape,
 } from "./authority.mjs";
-import { assertLiveAuthorized } from "./authorization.mjs";
-import { CODES, coded } from "./errors.mjs";
+import { assertLiveAuthorized, assertResumeRejected } from "./authorization.mjs";
+import { CODES, RESULTS, coded, isFixedCode } from "./errors.mjs";
 import { createLogger } from "./logger.mjs";
 import { assertLogSettings, pgauditIsPresent } from "./logging-guard.mjs";
 import { assertUniqueRolePasswords, zeroBuffers } from "./password-policy.mjs";
@@ -30,6 +39,9 @@ import {
   SQL_BEGIN,
   SQL_CANARY_CREATE,
   SQL_CANARY_DROP,
+  SQL_CANARY_EXISTS,
+  SQL_CANARY_INSPECT,
+  SQL_CANARY_PRIVILEGES,
   SQL_COMMIT,
   SQL_IDENTITY,
   SQL_LOG_READBACK,
@@ -52,9 +64,14 @@ async function rowsOf(db, text) {
 async function rollback(db) {
   try {
     await db.query(SQL_ROLLBACK);
+    return null;
   } catch {
-    /* Keep the original fixed code. */
+    return CODES.TX_CLEANUP;
   }
+}
+
+function attachSecondary(err, code) {
+  if (code && isFixedCode(code) && err && !err.secondaryCode) err.secondaryCode = code;
 }
 
 async function withSuppressedTransaction(db, work) {
@@ -77,14 +94,21 @@ async function withSuppressedTransaction(db, work) {
     stage = "commit";
     await db.query(SQL_COMMIT);
   } catch (err) {
-    await rollback(db);
-    if (err && err.publicCode) throw err;
+    const rollbackCode = await rollback(db);
+    if (err && err.publicCode) {
+      attachSecondary(err, rollbackCode);
+      throw err;
+    }
     if (stage === "commit") {
-      const ambiguous = coded(CODES.PARTIAL);
+      const ambiguous = coded(CODES.COMMIT_UNKNOWN);
       ambiguous.ambiguous = true;
+      ambiguous.result = RESULTS.COMMIT_OUTCOME_UNKNOWN;
+      attachSecondary(ambiguous, rollbackCode);
       throw ambiguous;
     }
-    throw coded(stage === "log" ? CODES.LOG_SETTING : CODES.INTERNAL);
+    const wrapped = coded(stage === "log" ? CODES.LOG_SETTING : CODES.INTERNAL);
+    attachSecondary(wrapped, rollbackCode);
+    throw wrapped;
   }
 }
 
@@ -110,20 +134,74 @@ async function preflight(db) {
   return iterations;
 }
 
-function partialError(completed, skipped, role, cause) {
-  const err = coded(CODES.PARTIAL);
+function partialError(completed, role, cause) {
+  const ambiguous = Boolean(cause && cause.ambiguous);
+  const err = coded(ambiguous ? CODES.COMMIT_UNKNOWN : CODES.PARTIAL);
+  err.result = ambiguous ? RESULTS.COMMIT_OUTCOME_UNKNOWN : RESULTS.PARTIAL_PROVISIONING;
   err.completedRoles = completed.slice();
-  err.skippedRoles = skipped.slice();
+  err.skippedRoles = [];
   err.failedRole = role;
   err.causeCode = cause && cause.publicCode ? cause.publicCode : CODES.INTERNAL;
-  err.ambiguous = Boolean(cause && cause.ambiguous);
+  err.ambiguous = ambiguous;
   err.independentLogin = "NOT-RUN";
+  if (cause && isFixedCode(cause.secondaryCode)) err.secondaryCode = cause.secondaryCode;
   return err;
+}
+
+/**
+ * Missing, rejected, and inconclusive acknowledgments are the same terminal
+ * failure. The value must be the boolean true from an injected flag or from
+ * an injected callback. This function does not prompt.
+ */
+async function acknowledgeCanary(source) {
+  if (typeof source.confirmCanary === "function") {
+    let value;
+    try {
+      value = await source.confirmCanary();
+    } catch {
+      throw coded(CODES.CANARY_ATTESTATION);
+    }
+    if (value !== true) throw coded(CODES.CANARY_ATTESTATION);
+    return;
+  }
+  if (source.canaryLogsClear !== true && source.ownerLogAcknowledgment !== true) {
+    throw coded(CODES.CANARY_ATTESTATION);
+  }
+}
+
+async function ensureCanaryGone(db, drop) {
+  let dropFailed = false;
+  if (drop) {
+    try {
+      await db.query(SQL_CANARY_DROP);
+    } catch {
+      dropFailed = true;
+    }
+  }
+  let left = null;
+  let absenceFailed = false;
+  try {
+    left = await rowsOf(db, SQL_CANARY_EXISTS);
+  } catch {
+    absenceFailed = true;
+  }
+  if (dropFailed) {
+    const err = coded(CODES.CANARY_CLEANUP);
+    if (absenceFailed || !left || left.length !== 0) err.secondaryCode = CODES.CANARY_ABSENT;
+    throw err;
+  }
+  if (absenceFailed || !left || left.length !== 0) throw coded(CODES.CANARY_ABSENT);
+}
+
+function needsCleanup(state) {
+  return state === "rolled-back" || state === "committed" || state === "commit-unknown" || state === "in-transaction";
 }
 
 export async function executePlan(db, options) {
   const source = options || {};
   assertLiveAuthorized(source.env, source.argv);
+  assertResumeRejected(source.argv);
+  if (source.resumeAfter != null) throw coded(CODES.RESUME_REJECTED);
   if (!db || typeof db.query !== "function") throw coded(CODES.INTERNAL);
   if (source.transport !== "mock" && source.transport !== "injected-client") {
     throw coded(CODES.LIVE_UNAUTHORIZED);
@@ -132,75 +210,141 @@ export async function executePlan(db, options) {
   assertUniqueRolePasswords(source.passwords);
   if (typeof source.saltFor !== "function") throw coded(CODES.SCRAM_FORMAT);
   const log = source.log || createLogger(() => {});
-  let skipped = [];
-  if (source.resumeAfter != null) {
-    assertAllowedRole(source.resumeAfter);
-    const index = ALLOWED_ROLES.indexOf(source.resumeAfter);
-    skipped = ALLOWED_ROLES.slice(0, index + 1);
-  }
-  const pending = ALLOWED_ROLES.slice(skipped.length);
   const buffers = ALLOWED_ROLES.map((role) => source.passwords[role]);
-  let canaryStarted = false;
-  const completed = [];
+  let primary = null;
+  let result = null;
+  let canaryState = "absent";
+  let cleanupAttempted = false;
+
+  async function settleCanary() {
+    if (cleanupAttempted) return;
+    if (!needsCleanup(canaryState)) return;
+    cleanupAttempted = true;
+    const drop = canaryState === "committed" || canaryState === "commit-unknown";
+    try {
+      await ensureCanaryGone(db, drop);
+      canaryState = "removed";
+    } catch (err) {
+      log.event({
+        phase: "canary-cleanup",
+        role: CANARY_ROLE,
+        result: RESULTS.FAILED,
+        code: err && err.publicCode ? err.publicCode : CODES.CANARY_CLEANUP,
+      });
+      throw err;
+    }
+  }
+
   try {
     const iterations = await preflight(db);
-    canaryStarted = true;
-    await withSuppressedTransaction(db, async () => {
-      await db.query(SQL_CANARY_CREATE);
-      await db.query(canaryAlterStatement(RFC7677.verifier));
-    });
-    log.event({ phase: "canary", role: CANARY_ROLE, result: "PASS", code: CODES.ROLE_PASS });
-    let logsClear = source.canaryLogsClear === true;
-    if (typeof source.confirmCanary === "function") {
-      logsClear = (await source.confirmCanary()) === true;
+    const existing = await rowsOf(db, SQL_CANARY_EXISTS);
+    if (existing.length > 0) {
+      canaryState = "blocked-existing";
+      const exists = coded(CODES.CANARY_EXISTS);
+      exists.result = RESULTS.FAILED;
+      throw exists;
     }
-    if (logsClear !== true) throw coded(CODES.CANARY_ATTESTATION);
+    try {
+      canaryState = "in-transaction";
+      await withSuppressedTransaction(db, async () => {
+        await db.query(SQL_CANARY_CREATE);
+        const inspected = await rowsOf(db, SQL_CANARY_INSPECT);
+        const privileges = await rowsOf(db, SQL_CANARY_PRIVILEGES);
+        assertCanaryInspection(inspected, privileges);
+        await db.query(canaryAlterStatement(RFC7677.verifier));
+      });
+      canaryState = "committed";
+    } catch (err) {
+      canaryState = err && err.ambiguous ? "commit-unknown" : "rolled-back";
+      if (err && err.publicCode) {
+        if (err.ambiguous) {
+          err.result = RESULTS.COMMIT_OUTCOME_UNKNOWN;
+          err.failedRole = CANARY_ROLE;
+        } else if (!err.result) {
+          err.result = RESULTS.FAILED;
+        }
+        throw err;
+      }
+      const wrapped = coded(CODES.INTERNAL);
+      wrapped.result = RESULTS.FAILED;
+      throw wrapped;
+    }
+    await acknowledgeCanary(source);
+    await settleCanary();
+    log.event({
+      phase: "canary",
+      role: CANARY_ROLE,
+      result: RESULTS.CANARY_VERIFIED,
+      code: CODES.ROLE_PASS,
+    });
 
-    for (const role of pending) {
+    const completed = [];
+    const roleOutcomes = [];
+    for (const role of ALLOWED_ROLES) {
       const salt = source.saltFor(role);
       try {
         if (!Buffer.isBuffer(salt)) throw coded(CODES.SCRAM_FORMAT);
         const verifier = buildVerifier(source.passwords[role], { salt, iterations });
-        try {
-          await withSuppressedTransaction(db, async () => {
-            const membership = await rowsOf(db, membershipSql(role));
-            assertTargetAuthority(role, membership);
-            await db.query(alterRolePasswordStatement(role, verifier));
-            const shape = await rowsOf(db, verifierShapeSql(role));
-            assertVerifierShape(shape[0]);
-          });
-        } finally {
-          /* The statement string cannot be wiped. It is not logged. */
-        }
+        await withSuppressedTransaction(db, async () => {
+          const membership = await rowsOf(db, membershipSql(role));
+          assertTargetAuthority(role, membership);
+          await db.query(alterRolePasswordStatement(role, verifier));
+          const shape = await rowsOf(db, verifierShapeSql(role));
+          assertVerifierShape(shape[0]);
+        });
         completed.push(role);
-        log.event({ phase: "role", role, result: "PASS", code: CODES.ROLE_PASS });
+        roleOutcomes.push({
+          role,
+          result: RESULTS.PROVISIONED_UNVERIFIED,
+          code: CODES.ROLE_PASS,
+        });
+        log.event({
+          phase: "role",
+          role,
+          result: RESULTS.PROVISIONED_UNVERIFIED,
+          code: CODES.ROLE_PASS,
+        });
       } catch (err) {
         log.event({
           phase: "role",
           role,
-          result: "FAIL",
+          result: err && err.ambiguous ? RESULTS.COMMIT_OUTCOME_UNKNOWN : RESULTS.FAILED,
           code: err && err.publicCode ? err.publicCode : CODES.PARTIAL,
         });
-        throw partialError(completed, skipped, role, err);
+        throw partialError(completed, role, err);
       } finally {
         if (Buffer.isBuffer(salt)) salt.fill(0);
       }
     }
-    return {
-      result: "PASS",
+    result = {
+      result: RESULTS.PROVISIONED_UNVERIFIED,
+      canary: RESULTS.CANARY_VERIFIED,
       completedRoles: completed,
-      skippedRoles: skipped,
+      skippedRoles: [],
       independentLogin: "NOT-RUN",
       iterations,
+      roleOutcomes,
     };
-  } finally {
-    if (canaryStarted) {
-      try {
-        await db.query(SQL_CANARY_DROP);
-      } catch {
-        log.event({ phase: "canary-cleanup", role: CANARY_ROLE, result: "FAIL", code: CODES.INTERNAL });
+  } catch (err) {
+    primary = err && err.publicCode ? err : coded(CODES.INTERNAL);
+    if (!primary.result) primary.result = RESULTS.FAILED;
+  }
+
+  if (needsCleanup(canaryState) && !cleanupAttempted) {
+    try {
+      await settleCanary();
+    } catch (cleanupErr) {
+      const code = cleanupErr && cleanupErr.publicCode ? cleanupErr.publicCode : CODES.CANARY_CLEANUP;
+      if (primary) {
+        if (!primary.secondaryCode) primary.secondaryCode = code;
+      } else {
+        primary = cleanupErr && cleanupErr.publicCode ? cleanupErr : coded(CODES.CANARY_CLEANUP);
+        if (!primary.result) primary.result = RESULTS.FAILED;
       }
     }
-    zeroBuffers(buffers);
   }
+
+  zeroBuffers(buffers);
+  if (primary) throw primary;
+  return result;
 }

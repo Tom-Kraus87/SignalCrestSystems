@@ -14,10 +14,10 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { ALLOWED_ROLES, REFUSED_ROLES } from "../lib/allowlist.mjs";
+import { ALLOWED_ROLES, CANARY_ROLE, REFUSED_ROLES } from "../lib/allowlist.mjs";
 import { EXPECTED_EDGES, interpretLoginProbe } from "../lib/authority.mjs";
 import { LIVE_AUTHORIZATION_ENV, LIVE_AUTHORIZATION_PHRASE } from "../lib/authorization.mjs";
-import { CODES } from "../lib/errors.mjs";
+import { CODES, coded } from "../lib/errors.mjs";
 import { createLogger } from "../lib/logger.mjs";
 import { executePlan } from "../lib/orchestrator.mjs";
 import { assertPasswordBuffer, assertUniqueRolePasswords } from "../lib/password-policy.mjs";
@@ -33,6 +33,11 @@ import { runSelfTest } from "../lib/self-test.mjs";
 import {
   SET_LOCAL_PGAUDIT,
   SQL_ADMIN_ATTRS,
+  SQL_CANARY_CREATE,
+  SQL_CANARY_DROP,
+  SQL_CANARY_EXISTS,
+  SQL_CANARY_INSPECT,
+  SQL_CANARY_PRIVILEGES,
   SQL_COMMIT,
   SQL_IDENTITY,
   SQL_LOG_READBACK,
@@ -41,7 +46,15 @@ import {
   alterRolePasswordStatement,
 } from "../lib/statements.mjs";
 import { bindInterrupts, createTerminalController, readConfirmedPassword } from "../lib/terminal.mjs";
-import { PATH_A_HOST, assessAdminTls, openAdminClient } from "../lib/tls-gate.mjs";
+import {
+  ADMIN_URL_PASSWORD_PLACEHOLDER,
+  PATH_A_HOST,
+  adminHelperUrl,
+  assessAdminTls,
+  loadFrozenTlsHelper,
+  openAdminClient,
+  withAdminClient,
+} from "../lib/tls-gate.mjs";
 import { main } from "../bin/option-c-admin.mjs";
 
 const root = path.resolve(fileURLToPath(new URL("../../..", import.meta.url)));
@@ -108,9 +121,30 @@ const DEFAULT_SETTINGS = [
   { name: "server_version_num", setting: "170012" },
 ];
 
+function canaryInspectRow(overrides = {}) {
+  return {
+    canary_name: CANARY_ROLE,
+    rolcanlogin: false,
+    rolinherit: false,
+    rolsuper: false,
+    rolcreaterole: false,
+    rolcreatedb: false,
+    rolreplication: false,
+    rolbypassrls: false,
+    rolconnlimit: 0,
+    member_name: "postgres",
+    grantor_name: "postgres",
+    admin_option: true,
+    inherit_option: false,
+    set_option: false,
+    ...overrides,
+  };
+}
+
 function createMock(behavior = {}) {
   const calls = [];
   let pgauditSet = false;
+  let existsChecks = 0;
   const logRow = behavior.logRow || {
     log_statement: "none",
     log_min_error_statement: "panic",
@@ -141,6 +175,15 @@ function createMock(behavior = {}) {
         return { rows: [] };
       }
       if (text === SQL_LOG_READBACK) return { rows: [{ ...logRow }] };
+      if (text === SQL_CANARY_EXISTS) {
+        existsChecks += 1;
+        if (existsChecks === 1) return { rows: behavior.canaryExisting || [] };
+        if (typeof behavior.canaryAfterCleanup === "function") return { rows: behavior.canaryAfterCleanup() };
+        return { rows: behavior.canaryStillPresent ? [{ rolname: CANARY_ROLE, rolcanlogin: false }] : [] };
+      }
+      if (text === SQL_CANARY_INSPECT) return { rows: behavior.canaryInspect || [canaryInspectRow()] };
+      if (text === SQL_CANARY_PRIVILEGES) return { rows: behavior.canaryPrivileges || [] };
+      if (text === SQL_CANARY_CREATE || text === SQL_CANARY_DROP) return { rows: [] };
       if (text.startsWith("SELECT r.rolname")) {
         const role = ALLOWED_ROLES.find((name) => text.includes(`'${name}'`));
         if (behavior.membershipFor) return { rows: behavior.membershipFor(role) };
@@ -359,11 +402,14 @@ test("canary is mandatory and logging readback happens before every credential s
   }));
   assert.equal(duringConfirm, true);
   assertSuppressedBefore(db.calls, 'ALTER ROLE "scs_option_c_log_canary"');
+  const dropAt = db.calls.indexOf(SQL_CANARY_DROP);
+  const absenceAt = db.calls.lastIndexOf(SQL_CANARY_EXISTS);
+  const targetAt = db.calls.findIndex((sql) => sql.startsWith('ALTER ROLE "scs_intake_runtime"'));
+  assert.equal(dropAt > 0 && absenceAt > dropAt && targetAt > absenceAt, true);
   for (const role of ALLOWED_ROLES) {
     assertSuppressedBefore(db.calls, `ALTER ROLE "${role}"`);
     assert.equal(countPrefix(db.calls, `ALTER ROLE "${role}"`), 1);
   }
-  assert.equal(db.calls.at(-1), 'DROP ROLE IF EXISTS "scs_option_c_log_canary"');
   assert.equal(countPrefix(db.calls, SET_LOCAL_PGAUDIT), 0);
   const rendered = lines.join("");
   for (const password of Object.values(rolePasswords())) {
@@ -392,8 +438,9 @@ test("a logging readback mismatch blocks the credential statement", async () => 
       pg_stat_statements_track: "none",
     },
   });
-  await assert.rejects(() => executePlan(db, planOptions()), (err) => err.code === CODES.LOG_SETTING);
+  await assert.rejects(() => executePlan(db, planOptions()), (err) => err.code === CODES.LOG_SETTING && err.result === "FAILED");
   assert.equal(countPrefix(db.calls, "ALTER ROLE"), 0);
+  assert.equal(db.calls.includes(SQL_CANARY_CREATE), false);
   assert.equal(db.calls.includes("ROLLBACK"), true);
 });
 
@@ -411,10 +458,12 @@ test("exact membership edges are required before each role alteration", async ()
   });
   await assert.rejects(() => executePlan(db, planOptions()), (err) => {
     assert.equal(err.code, CODES.PARTIAL);
+    assert.equal(err.result, "PARTIAL_PROVISIONING");
     assert.equal(err.causeCode, CODES.MEMBERSHIP);
     assert.deepEqual(err.completedRoles, ["scs_intake_runtime", "scs_notify_worker"]);
     assert.equal(err.failedRole, "scs_owner_admin");
     assert.equal(err.independentLogin, "NOT-RUN");
+    assert.equal(err.result === "PASS" || err.result === "VERIFIED", false);
     return true;
   });
   assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_owner_admin"'), 0);
@@ -444,7 +493,9 @@ test("canary attestation failure drops the canary and alters no target role", as
   );
   assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 1);
   assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
-  assert.equal(db.calls.at(-1), 'DROP ROLE IF EXISTS "scs_option_c_log_canary"');
+  const dropAt = db.calls.indexOf(SQL_CANARY_DROP);
+  const absenceAt = db.calls.lastIndexOf(SQL_CANARY_EXISTS);
+  assert.equal(dropAt > 0 && absenceAt > dropAt, true);
 });
 
 test("skipping the canary is refused before any query", async () => {
@@ -453,18 +504,43 @@ test("skipping the canary is refused before any query", async () => {
   assert.equal(db.calls.length, 0);
 });
 
-test("resume continues after a confirmed role and still repeats the canary", async () => {
+test("resume flag is rejected before any database call", async () => {
   const db = createMock();
-  const result = await executePlan(db, planOptions({ resumeAfter: "scs_notify_worker" }));
-  assert.deepEqual(result.skippedRoles, ["scs_intake_runtime", "scs_notify_worker"]);
-  assert.deepEqual(result.completedRoles, ["scs_owner_admin", "scs_test_admin"]);
-  assert.equal(result.independentLogin, "NOT-RUN");
-  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
-  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_notify_worker"'), 0);
-  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 1);
+  await assert.rejects(
+    () => executePlan(db, planOptions({ resumeAfter: "scs_notify_worker" })),
+    (err) => err.code === CODES.RESUME_REJECTED && err.message === CODES.RESUME_REJECTED
+  );
+  assert.equal(db.calls.length, 0);
+  const flagged = createMock();
+  await assert.rejects(
+    () => executePlan(flagged, planOptions({ argv: ["--live", "--resume-after", "scs_intake_runtime"] })),
+    (err) => err.code === CODES.RESUME_REJECTED
+  );
+  assert.equal(flagged.calls.length, 0);
+  let constructed = 0;
+  const stdout = { chunks: [], write(line) { this.chunks.push(line); } };
+  const status = await main(
+    ["--resume-after", "scs_owner_admin", "--live"],
+    authEnv(),
+    {
+      stdout,
+      Client: class {
+        constructor() {
+          constructed += 1;
+        }
+      },
+    }
+  );
+  assert.equal(status, 1);
+  assert.equal(constructed, 0);
+  const rendered = stdout.chunks.join("");
+  assert.equal(rendered.includes(CODES.RESUME_REJECTED), true);
+  assert.equal(rendered.includes("scs_owner_admin"), false);
+  assert.equal(rendered.includes("\"result\":\"PASS\""), false);
+  assert.equal(rendered.includes("\"result\":\"VERIFIED\""), false);
 });
 
-test("ambiguous commit is a partial result and does not continue", async () => {
+test("ambiguous target commit is unknown and does not continue", async () => {
   let commits = 0;
   const db = createMock({
     before(text) {
@@ -476,13 +552,16 @@ test("ambiguous commit is a partial result and does not continue", async () => {
     },
   });
   await assert.rejects(() => executePlan(db, planOptions()), (err) => {
-    assert.equal(err.code, CODES.PARTIAL);
+    assert.equal(err.code, CODES.COMMIT_UNKNOWN);
+    assert.equal(err.result, "COMMIT_OUTCOME_UNKNOWN");
     assert.equal(err.ambiguous, true);
     assert.equal(err.failedRole, "scs_intake_runtime");
     assert.deepEqual(err.completedRoles, []);
+    assert.equal(err.independentLogin, "NOT-RUN");
     return true;
   });
   assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_notify_worker"'), 0);
+  assert.equal(db.calls.filter((sql) => sql === SQL_COMMIT).length, 2);
 });
 
 test("preflight stops on encryption, iterations, and createrole_self_grant", async () => {
@@ -690,6 +769,9 @@ test("CLI self-test passes and live mode stays unauthorized", async () => {
   assert.equal(rendered.includes("SCRAM-SHA-256$"), false);
   assert.equal(rendered.includes("pencil"), false);
   assert.equal(rendered.includes(CODES.SELF_TEST), true);
+  assert.equal(rendered.includes("\"result\":\"OFFLINE_SELF_TEST_PASS\""), true);
+  assert.equal(rendered.includes("\"result\":\"PASS\""), false);
+  assert.equal(rendered.includes("\"result\":\"VERIFIED\""), false);
 
   const missing = await main([], childEnv(), { stdout: { write() {} } });
   assert.equal(missing, 2);
@@ -723,23 +805,32 @@ test("frozen R4 inventory is unchanged", () => {
     assert.equal(hash, entry.Sha256);
     assert.equal(body.length, entry.Bytes);
   }
-  const ps1 = path.join(os.tmpdir(), "scs-option-c-frozen-digest.ps1");
-  fs.writeFileSync(
-    ps1,
-    [
-      "$j = Get-Content -Raw -Path $args[0] | ConvertFrom-Json",
-      "$lines = foreach ($e in ($j | Sort-Object Path)) { \"{0}`t{1}`t{2}\" -f $e.Path, $e.Sha256, $e.Bytes }",
-      "$body = $lines -join \"`n\"",
-      "$sha = [System.Security.Cryptography.SHA256]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($body))",
-      "($sha | ForEach-Object { $_.ToString('x2') }) -join ''",
-    ].join("\n"),
-    "utf8"
-  );
-  const digest = spawnSync(
-    "powershell.exe",
-    ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ps1, inventoryPath],
-    { encoding: "utf8" }
-  );
+  const fixed = path.join(os.tmpdir(), "scs-option-c-frozen-digest.ps1");
+  fs.rmSync(fixed, { force: true });
+  const ps1 = path.join(os.tmpdir(), `scs-option-c-frozen-digest-${crypto.randomBytes(16).toString("hex")}.ps1`);
+  assert.equal(path.basename(ps1) === "scs-option-c-frozen-digest.ps1", false);
+  const script = [
+    "$j = Get-Content -Raw -Path $args[0] | ConvertFrom-Json",
+    "$lines = foreach ($e in ($j | Sort-Object Path)) { \"{0}`t{1}`t{2}\" -f $e.Path, $e.Sha256, $e.Bytes }",
+    "$body = $lines -join \"`n\"",
+    "$sha = [System.Security.Cryptography.SHA256]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($body))",
+    "($sha | ForEach-Object { $_.ToString('x2') }) -join ''",
+  ].join("\n");
+  let digest;
+  try {
+    fs.writeFileSync(ps1, script, "utf8");
+    assert.equal(script.includes("SCRAM-SHA-256$"), false);
+    assert.equal(script.includes(ADMIN_PASSWORD), false);
+    digest = spawnSync(
+      "powershell.exe",
+      ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ps1, inventoryPath],
+      { encoding: "utf8" }
+    );
+  } finally {
+    fs.rmSync(ps1, { force: true });
+  }
+  assert.equal(fs.existsSync(ps1), false);
+  assert.equal(fs.existsSync(fixed), false);
   assert.equal(digest.status, 0);
   assert.equal(String(digest.stdout).trim(), "683cc3f5162ed2b86f5eb7cee5822ed2598e76c00dc51c996188f8c22622542d");
 });
@@ -750,4 +841,455 @@ test("self-test writer stays free of verifier text", () => {
   assert.equal(status, 0);
   assert.equal(lines.join("").includes(RFC7677.verifier), false);
   assert.equal(lines.join("").includes("pencil"), false);
+  assert.equal(lines.join("").includes("OFFLINE_SELF_TEST_PASS"), true);
+});
+
+function adminTarget(passwordBuffer) {
+  return {
+    host: PATH_A_HOST,
+    port: 5432,
+    user: "postgres",
+    database: "postgres",
+    passwordBuffer,
+    sslmode: "verify-full",
+  };
+}
+
+test("pre-existing LOGIN canary aborts without reuse or removal", async () => {
+  const db = createMock({ canaryExisting: [{ rolname: CANARY_ROLE, rolcanlogin: true }] });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.code === CODES.CANARY_EXISTS && err.result === "FAILED" && err.message === CODES.CANARY_EXISTS
+  );
+  assert.equal(db.calls.includes(SQL_CANARY_CREATE), false);
+  assert.equal(db.calls.includes(SQL_CANARY_DROP), false);
+  assert.equal(countPrefix(db.calls, "ALTER ROLE"), 0);
+});
+
+test("pre-existing NOLOGIN canary aborts without reuse or removal", async () => {
+  const db = createMock({ canaryExisting: [{ rolname: CANARY_ROLE, rolcanlogin: false }] });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.code === CODES.CANARY_EXISTS && err.result === "FAILED"
+  );
+  assert.equal(db.calls.includes(SQL_CANARY_CREATE), false);
+  assert.equal(db.calls.includes(SQL_CANARY_DROP), false);
+  assert.equal(countPrefix(db.calls, "ALTER ROLE"), 0);
+});
+
+test("unexpected canary memberships and privileges block the verifier", async () => {
+  const member = createMock({
+    canaryInspect: [
+      canaryInspectRow(),
+      canaryInspectRow({ member_name: "scs_intake_runtime", grantor_name: "postgres", admin_option: false, set_option: true }),
+    ],
+  });
+  await assert.rejects(
+    () => executePlan(member, planOptions()),
+    (err) => err.code === CODES.CANARY_MEMBERSHIP && err.result === "FAILED"
+  );
+  assert.equal(countPrefix(member.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 0);
+  assert.equal(countPrefix(member.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+  assert.equal(member.calls.includes(SQL_CANARY_DROP), false);
+
+  const privileged = createMock({
+    canaryPrivileges: [{ privilege_kind: "table", object_name: "leads" }],
+  });
+  await assert.rejects(
+    () => executePlan(privileged, planOptions()),
+    (err) => err.code === CODES.CANARY_PRIVILEGE && err.result === "FAILED"
+  );
+  assert.equal(countPrefix(privileged.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 0);
+  assert.equal(countPrefix(privileged.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+});
+
+test("canary attribute mismatch is terminal before the verifier", async () => {
+  const db = createMock({ canaryInspect: [canaryInspectRow({ rolcanlogin: true })] });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.code === CODES.CANARY_ATTR && err.result === "FAILED"
+  );
+  assert.equal(db.calls.includes(SQL_CANARY_CREATE), true);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 0);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+  assert.equal(db.calls.includes(SQL_CANARY_DROP), false);
+  assert.equal(db.calls.includes("ROLLBACK"), true);
+});
+
+test("canary logging control failure blocks the canary credential statement", async () => {
+  const db = createMock({
+    logRow: {
+      log_statement: "all",
+      log_min_error_statement: "panic",
+      log_min_messages: "fatal",
+      pg_stat_statements_track: "none",
+    },
+  });
+  await assert.rejects(() => executePlan(db, planOptions()), (err) => err.code === CODES.LOG_SETTING && err.result === "FAILED");
+  assert.equal(db.calls.includes(SQL_CANARY_CREATE), false);
+  assert.equal(countPrefix(db.calls, "ALTER ROLE"), 0);
+  assert.equal(db.calls.includes(SQL_CANARY_DROP), false);
+});
+
+test("rejected or inconclusive owner acknowledgment is terminal", async () => {
+  const rejected = createMock();
+  await assert.rejects(
+    () => executePlan(rejected, planOptions({ confirmCanary: async () => false })),
+    (err) => err.code === CODES.CANARY_ATTESTATION && err.result === "FAILED"
+  );
+  assert.equal(countPrefix(rejected.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+  assert.equal(rejected.calls.includes(SQL_CANARY_DROP), true);
+
+  const inconclusive = createMock();
+  await assert.rejects(
+    () => executePlan(inconclusive, planOptions({
+      confirmCanary: async () => {
+        throw new Error("provider log API inconclusive");
+      },
+    })),
+    (err) => err.code === CODES.CANARY_ATTESTATION && err.message === CODES.CANARY_ATTESTATION && !String(err.message).includes("provider")
+  );
+  assert.equal(countPrefix(inconclusive.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+
+  const missing = createMock();
+  await assert.rejects(
+    () => executePlan(missing, planOptions({ canaryLogsClear: false, ownerLogAcknowledgment: false })),
+    (err) => err.code === CODES.CANARY_ATTESTATION
+  );
+  assert.equal(countPrefix(missing.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+});
+
+test("canary DROP failure never provisions a target role", async () => {
+  const db = createMock({
+    before(text) {
+      if (text === SQL_CANARY_DROP) return new Error("drop failed");
+      return null;
+    },
+  });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.code === CODES.CANARY_CLEANUP && err.result === "FAILED" && err.message === CODES.CANARY_CLEANUP
+  );
+  assert.equal(db.calls.filter((sql) => sql === SQL_CANARY_DROP).length, 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+});
+
+test("canary absence verification failure never provisions a target role", async () => {
+  const db = createMock({ canaryStillPresent: true });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.code === CODES.CANARY_ABSENT && err.result === "FAILED"
+  );
+  assert.equal(db.calls.filter((sql) => sql === SQL_CANARY_DROP).length, 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+});
+
+test("ambiguous canary commit is not retried and does not provision", async () => {
+  let commits = 0;
+  const db = createMock({
+    before(text) {
+      if (text === SQL_COMMIT) {
+        commits += 1;
+        if (commits === 1) return new Error("canary commit outcome unknown");
+      }
+      return null;
+    },
+  });
+  await assert.rejects(() => executePlan(db, planOptions()), (err) => {
+    assert.equal(err.code, CODES.COMMIT_UNKNOWN);
+    assert.equal(err.result, "COMMIT_OUTCOME_UNKNOWN");
+    assert.equal(err.ambiguous, true);
+    assert.equal(err.message.includes("canary commit"), false);
+    return true;
+  });
+  assert.equal(db.calls.filter((sql) => sql === SQL_CANARY_CREATE).length, 1);
+  assert.equal(db.calls.filter((sql) => sql === "BEGIN").length, 1);
+  assert.equal(db.calls.filter((sql) => sql === SQL_COMMIT).length, 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_option_c_log_canary"'), 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+});
+
+test("no target ALTER ROLE occurs before verified canary cleanup", async () => {
+  const db = createMock();
+  const result = await executePlan(db, planOptions());
+  assert.equal(result.result, "PROVISIONED_UNVERIFIED");
+  assert.equal(result.canary, "CANARY_VERIFIED");
+  const inspectAt = db.calls.indexOf(SQL_CANARY_INSPECT);
+  const privilegeAt = db.calls.indexOf(SQL_CANARY_PRIVILEGES);
+  const canaryAlter = db.calls.findIndex((sql) => sql.startsWith('ALTER ROLE "scs_option_c_log_canary"'));
+  assert.equal(inspectAt > 0 && privilegeAt > inspectAt && privilegeAt < canaryAlter, true);
+  const dropAt = db.calls.indexOf(SQL_CANARY_DROP);
+  const absenceAt = db.calls.lastIndexOf(SQL_CANARY_EXISTS);
+  for (const role of ALLOWED_ROLES) {
+    const alterAt = db.calls.findIndex((sql) => sql.startsWith(`ALTER ROLE "${role}"`));
+    assert.equal(dropAt > 0 && absenceAt > dropAt && alterAt > absenceAt, true);
+  }
+});
+
+test("database clients close on connection, canary, transaction, ambiguous, cancel, and cleanup failures", async () => {
+  const passwordBuffer = Buffer.from(ADMIN_PASSWORD);
+  const spec = {
+    env: { ...authEnv(), DATABASE_SSL_CA: SYNTHETIC_CA },
+    argv: ["--live"],
+    target: adminTarget(passwordBuffer),
+  };
+  const endings = [];
+
+  function clientClass(name, hooks = {}) {
+    return class FakeClient {
+      constructor(config) {
+        this.options = config;
+        endings.push(`${name}:construct`);
+      }
+      async connect() {
+        endings.push(`${name}:connect`);
+        if (hooks.connectError) throw hooks.connectError;
+      }
+      async end() {
+        endings.push(`${name}:end`);
+        if (hooks.endError) throw hooks.endError;
+      }
+    };
+  }
+
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("connect", { connectError: new Error(`${ADMIN_PASSWORD} refused`) }) }, async () => {
+      throw new Error("work should not run");
+    }),
+    (err) => err.code === CODES.INTERNAL && err.message === CODES.INTERNAL && !err.message.includes(ADMIN_PASSWORD)
+  );
+
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("canary") }, async () => {
+      throw coded(CODES.CANARY_EXISTS);
+    }),
+    (err) => err.code === CODES.CANARY_EXISTS
+  );
+
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("transaction") }, async () => {
+      throw coded(CODES.PARTIAL);
+    }),
+    (err) => err.code === CODES.PARTIAL
+  );
+
+  const ambiguous = coded(CODES.COMMIT_UNKNOWN);
+  ambiguous.ambiguous = true;
+  ambiguous.result = "COMMIT_OUTCOME_UNKNOWN";
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("ambiguous") }, async () => {
+      throw ambiguous;
+    }),
+    (err) => err.code === CODES.COMMIT_UNKNOWN && err.result === "COMMIT_OUTCOME_UNKNOWN"
+  );
+
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("cancel") }, async () => {
+      throw coded(CODES.TERMINAL);
+    }),
+    (err) => err.code === CODES.TERMINAL
+  );
+
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: clientClass("cleanup", { endError: new Error(`${ADMIN_PASSWORD} end failed`) }) }, async () => ({
+      result: "PROVISIONED_UNVERIFIED",
+    })),
+    (err) => err.code === CODES.CLIENT_CLEANUP && err.message === CODES.CLIENT_CLEANUP && !String(err.message).includes(ADMIN_PASSWORD)
+  );
+
+  for (const name of ["connect", "canary", "transaction", "ambiguous", "cancel", "cleanup"]) {
+    assert.equal(endings.includes(`${name}:end`), true, name);
+  }
+  passwordBuffer.fill(0);
+});
+
+test("primary error is preserved when client cleanup also fails", async () => {
+  const passwordBuffer = Buffer.from(ADMIN_PASSWORD);
+  const spec = {
+    env: { ...authEnv(), DATABASE_SSL_CA: SYNTHETIC_CA },
+    argv: ["--live"],
+    target: adminTarget(passwordBuffer),
+  };
+  let ended = 0;
+  class FakeClient {
+    constructor(config) {
+      this.options = config;
+    }
+    async connect() {}
+    async end() {
+      ended += 1;
+      throw new Error(`${ADMIN_PASSWORD} close failed`);
+    }
+  }
+  await assert.rejects(
+    () => withAdminClient(spec, { Client: FakeClient }, async () => {
+      throw coded(CODES.CANARY_CLEANUP);
+    }),
+    (err) => err.code === CODES.CANARY_CLEANUP && err.secondaryCode === CODES.CLIENT_CLEANUP && err.message === CODES.CANARY_CLEANUP
+  );
+  assert.equal(ended, 1);
+
+  const db = createMock({
+    before(text) {
+      if (text === SQL_CANARY_DROP) return new Error("drop failed");
+      return null;
+    },
+  });
+  await assert.rejects(
+    () => executePlan(db, planOptions({ canaryLogsClear: false })),
+    (err) => err.code === CODES.CANARY_ATTESTATION && err.secondaryCode === CODES.CANARY_CLEANUP && err.result === "FAILED"
+  );
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_intake_runtime"'), 0);
+  assert.equal(db.calls.filter((sql) => sql === SQL_CANARY_DROP).length, 1);
+  passwordBuffer.fill(0);
+});
+
+test("real administrator password is absent from frozen helper strings", () => {
+  const real = loadFrozenTlsHelper();
+  const seen = [];
+  const helper = {
+    parseApprovedConnectionFields(url) {
+      seen.push(url);
+      return real.parseApprovedConnectionFields(url);
+    },
+    buildSslOptions(env, cfg) {
+      seen.push(cfg && cfg.databaseUrl);
+      return real.buildSslOptions(env, cfg);
+    },
+    inspectEffectivePgSsl(config) {
+      if (typeof config.password === "string") seen.push(config.password);
+      for (const value of Object.values(config)) {
+        if (typeof value === "string") seen.push(value);
+      }
+      assert.equal(Buffer.isBuffer(config.password), true);
+      return real.inspectEffectivePgSsl(config);
+    },
+  };
+  const passwordBuffer = Buffer.from(ADMIN_PASSWORD);
+  const accepted = assessAdminTls(adminTarget(passwordBuffer), { DATABASE_SSL_CA: SYNTHETIC_CA }, { helper });
+  assert.equal(accepted.connectionStringForwarded, false);
+  assert.equal(seen.includes(adminHelperUrl()), true);
+  for (const item of seen) {
+    if (typeof item === "string") assert.equal(item.includes(ADMIN_PASSWORD), false);
+  }
+  assert.equal(adminHelperUrl().includes(ADMIN_URL_PASSWORD_PLACEHOLDER), true);
+  assert.equal(adminHelperUrl().includes(ADMIN_PASSWORD), false);
+  passwordBuffer.fill(0);
+  assert.throws(
+    () => assessAdminTls(adminTarget(Buffer.from(ADMIN_URL_PASSWORD_PLACEHOLDER)), { DATABASE_SSL_CA: SYNTHETIC_CA }),
+    (err) => err.code === CODES.SECRET_IN_URL && err.message === CODES.SECRET_IN_URL
+  );
+});
+
+test("partial target-role provisioning stops without a retry", async () => {
+  const db = createMock({
+    membershipFor(role) {
+      if (role === "scs_notify_worker") return edgesFor(role, [EXPECTED_EDGES.scs_notify_worker[1]]);
+      return edgesFor(role);
+    },
+  });
+  await assert.rejects(() => executePlan(db, planOptions()), (err) => {
+    assert.equal(err.result, "PARTIAL_PROVISIONING");
+    assert.equal(err.code, CODES.PARTIAL);
+    assert.equal(err.failedRole, "scs_notify_worker");
+    assert.deepEqual(err.completedRoles, ["scs_intake_runtime"]);
+    assert.equal(err.independentLogin, "NOT-RUN");
+    return true;
+  });
+  const membershipCalls = db.calls.filter((sql) => sql.startsWith("SELECT r.rolname") && sql.includes("scs_notify_worker"));
+  assert.equal(membershipCalls.length, 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_notify_worker"'), 0);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_owner_admin"'), 0);
+});
+
+test("failed statements are not retried automatically", async () => {
+  let alters = 0;
+  const db = createMock({
+    before(text) {
+      if (text.startsWith('ALTER ROLE "scs_intake_runtime"')) {
+        alters += 1;
+        return new Error("target alter failed");
+      }
+      return null;
+    },
+  });
+  await assert.rejects(
+    () => executePlan(db, planOptions()),
+    (err) => err.result === "PARTIAL_PROVISIONING" && err.code === CODES.PARTIAL && err.ambiguous !== true
+  );
+  assert.equal(alters, 1);
+  assert.equal(countPrefix(db.calls, 'ALTER ROLE "scs_notify_worker"'), 0);
+});
+
+test("provisioning does not report PASS or VERIFIED without independent login evidence", async () => {
+  const lines = [];
+  const db = createMock();
+  const log = createLogger((line) => lines.push(line));
+  const result = await executePlan(db, planOptions({ log }));
+  assert.equal(result.result, "PROVISIONED_UNVERIFIED");
+  assert.equal(result.canary, "CANARY_VERIFIED");
+  assert.equal(result.independentLogin, "NOT-RUN");
+  assert.equal(result.result === "PASS" || result.result === "VERIFIED", false);
+  const rendered = `${JSON.stringify(result)}\n${lines.join("")}`;
+  assert.equal(rendered.includes("\"result\":\"PASS\""), false);
+  assert.equal(rendered.includes("\"result\":\"VERIFIED\""), false);
+  assert.equal(rendered.includes("SCRAM-SHA-256$"), false);
+  for (const role of ALLOWED_ROLES) {
+    assert.equal(result.roleOutcomes.some((item) => item.role === role && item.result === "PROVISIONED_UNVERIFIED"), true);
+  }
+});
+
+test("temporary files use a unique name and are removed", () => {
+  const fixed = path.join(os.tmpdir(), "scs-option-c-frozen-digest.ps1");
+  const unique = path.join(os.tmpdir(), `scs-option-c-r1-${crypto.randomBytes(16).toString("hex")}.ps1`);
+  assert.equal(path.basename(unique) === path.basename(fixed), false);
+  try {
+    fs.writeFileSync(unique, "synthetic-not-a-secret\n", "utf8");
+    assert.equal(fs.existsSync(unique), true);
+    assert.equal(fs.readFileSync(unique, "utf8").includes(ADMIN_PASSWORD), false);
+  } finally {
+    fs.rmSync(unique, { force: true });
+  }
+  assert.equal(fs.existsSync(unique), false);
+});
+
+test("stdout, stderr, exceptions, and temp evidence do not leak secrets", async () => {
+  const lines = [];
+  const db = createMock();
+  const log = createLogger((line) => lines.push(line));
+  const result = await executePlan(db, planOptions({ log }));
+  const successBlob = `${JSON.stringify(result)}\n${lines.join("")}`;
+  assert.equal(successBlob.includes(RFC7677.verifier), false);
+  assert.equal(successBlob.includes("CANARY-PASSWORD-NOT-SECRET"), false);
+  assert.equal(successBlob.includes(ADMIN_PASSWORD), false);
+  assert.equal(successBlob.includes("postgresql://"), false);
+
+  const failing = createMock({ canaryExisting: [{ rolname: CANARY_ROLE, rolcanlogin: true }] });
+  await assert.rejects(() => executePlan(failing, planOptions()), (err) => {
+    const blob = `${err.message}\n${err.code}\n${err.result}\n${JSON.stringify(err.completedRoles || [])}`;
+    assert.equal(blob.includes(RFC7677.verifier), false);
+    assert.equal(blob.includes("CANARY-PASSWORD-NOT-SECRET"), false);
+    assert.equal(blob.includes("postgresql://"), false);
+    assert.equal(err.message, CODES.CANARY_EXISTS);
+    return true;
+  });
+
+  const stdout = [];
+  const stderr = [];
+  const status = await main(["--self-test"], childEnv(), {
+    stdout: { write: (line) => stdout.push(line) },
+  });
+  assert.equal(status, 0);
+  const child = spawnSync(process.execPath, [cli, "--resume-after", "scs_intake_runtime"], {
+    encoding: "utf8",
+    env: childEnv(),
+  });
+  assert.equal(child.status, 1);
+  const combined = `${stdout.join("")}\n${stderr.join("")}\n${child.stdout}\n${child.stderr}`;
+  assert.equal(combined.includes(RFC7677.verifier), false);
+  assert.equal(combined.includes("pencil"), false);
+  assert.equal(combined.includes("CANARY-PASSWORD-NOT-SECRET"), false);
+  assert.equal(combined.includes(ADMIN_PASSWORD), false);
+  assert.equal(String(child.stdout).includes(CODES.RESUME_REJECTED), true);
+  assert.equal(networkAttempts.length, 0);
 });

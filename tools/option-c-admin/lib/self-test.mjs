@@ -4,7 +4,7 @@
  */
 
 import { assertAllowedRole } from "./allowlist.mjs";
-import { CODES } from "./errors.mjs";
+import { CODES, RESULTS } from "./errors.mjs";
 import { rfc7677VectorMatches, syntheticSerializationMatches } from "./scram.mjs";
 
 export function runSelfTest(write) {
@@ -31,6 +31,6 @@ export function runSelfTest(write) {
     ok = false;
     code = CODES.ALLOWLIST_DENIED;
   }
-  sink(`${JSON.stringify({ result: ok ? "PASS" : "FAIL", code })}\n`);
+  sink(`${JSON.stringify({ result: ok ? RESULTS.OFFLINE_SELF_TEST_PASS : RESULTS.FAILED, code })}\n`);
   return ok ? 0 : 1;
 }

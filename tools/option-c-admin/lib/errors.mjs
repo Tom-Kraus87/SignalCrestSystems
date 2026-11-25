@@ -21,6 +21,17 @@ export const CODES = Object.freeze({
   LOG_SETTING: "OC-LOG-SETTING",
   CANARY_REQUIRED: "OC-CANARY-REQUIRED",
   CANARY_ATTESTATION: "OC-CANARY-ATTESTATION",
+  CANARY_EXISTS: "OC-CANARY-EXISTS",
+  CANARY_ATTR: "OC-CANARY-ATTR",
+  CANARY_MEMBERSHIP: "OC-CANARY-MEMBERSHIP",
+  CANARY_PRIVILEGE: "OC-CANARY-PRIVILEGE",
+  CANARY_CLEANUP: "OC-CANARY-CLEANUP",
+  CANARY_ABSENT: "OC-CANARY-ABSENT",
+  COMMIT_UNKNOWN: "OC-COMMIT-UNKNOWN",
+  RESUME_REJECTED: "OC-RESUME-REJECTED",
+  CLIENT_CLEANUP: "OC-CLIENT-CLEANUP",
+  SECRET_IN_URL: "OC-SECRET-IN-URL",
+  TX_CLEANUP: "OC-TX-CLEANUP",
   AUTHORITY: "OC-AUTHORITY",
   MEMBERSHIP: "OC-MEMBERSHIP",
   IDENTITY: "OC-IDENTITY",
@@ -37,10 +48,28 @@ export const CODES = Object.freeze({
   INTERNAL: "OC-INTERNAL",
 });
 
+/**
+ * Provisioning never uses PASS or VERIFIED. VERIFIED is reserved for a later
+ * consolidated acceptance that has independent authentication evidence.
+ */
+export const RESULTS = Object.freeze({
+  OFFLINE_SELF_TEST_PASS: "OFFLINE_SELF_TEST_PASS",
+  CANARY_VERIFIED: "CANARY_VERIFIED",
+  PROVISIONED_UNVERIFIED: "PROVISIONED_UNVERIFIED",
+  PARTIAL_PROVISIONING: "PARTIAL_PROVISIONING",
+  COMMIT_OUTCOME_UNKNOWN: "COMMIT_OUTCOME_UNKNOWN",
+  FAILED: "FAILED",
+});
+
 const CODE_SET = new Set(Object.values(CODES));
+const RESULT_SET = new Set(Object.values(RESULTS));
 
 export function isFixedCode(value) {
   return typeof value === "string" && CODE_SET.has(value);
+}
+
+export function isResult(value) {
+  return typeof value === "string" && RESULT_SET.has(value);
 }
 
 export function coded(code) {

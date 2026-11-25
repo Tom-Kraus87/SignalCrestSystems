@@ -14,7 +14,7 @@
  */
 
 import { CODES, coded } from "./errors.mjs";
-import { assertAllowedRole } from "./allowlist.mjs";
+import { CANARY_ROLE, assertAllowedRole } from "./allowlist.mjs";
 
 const AUTOMATIC_ADMIN = Object.freeze({
   member: "postgres",
@@ -37,6 +37,29 @@ export const EXPECTED_EDGES = Object.freeze({
   scs_notify_worker: Object.freeze([AUTOMATIC_ADMIN, SET_EDGE]),
   scs_owner_admin: Object.freeze([AUTOMATIC_ADMIN]),
   scs_test_admin: Object.freeze([AUTOMATIC_ADMIN]),
+});
+
+/**
+ * Disposable canary created by non-superuser postgres with an empty
+ * createrole_self_grant. The creator receives one ADMIN edge and nothing else.
+ * INHERIT and SET stay false because the self-grant setting is empty.
+ */
+export const CANARY_EDGE = Object.freeze({
+  member: "postgres",
+  grantor: "postgres",
+  admin: true,
+  inherit: false,
+  set: false,
+});
+
+const CANARY_ATTRS = Object.freeze({
+  rolcanlogin: false,
+  rolinherit: false,
+  rolsuper: false,
+  rolcreaterole: false,
+  rolcreatedb: false,
+  rolreplication: false,
+  rolbypassrls: false,
 });
 
 const ROLE_ATTRS = Object.freeze({
@@ -75,6 +98,40 @@ export function assertSessionIdentity(row) {
 export function assertAdminAttributes(row) {
   if (!row || asBool(row.rolsuper) !== false || asBool(row.rolcreaterole) !== true || asBool(row.rolcanlogin) !== true) {
     throw coded(CODES.AUTHORITY);
+  }
+}
+
+/**
+ * Exact canary attributes, the one creator ADMIN edge, and no direct
+ * application privileges. Any mismatch, extra membership, or privilege row
+ * is terminal. This runs before the synthetic verifier is assigned.
+ */
+export function assertCanaryInspection(rows, privilegeRows) {
+  if (!Array.isArray(rows) || rows.length === 0) throw coded(CODES.CANARY_ATTR);
+  if (!Array.isArray(privilegeRows) || privilegeRows.length !== 0) throw coded(CODES.CANARY_PRIVILEGE);
+  const first = rows[0];
+  if (first.canary_name !== CANARY_ROLE) throw coded(CODES.CANARY_ATTR);
+  for (const [key, expected] of Object.entries(CANARY_ATTRS)) {
+    if (asBool(first[key]) !== expected) throw coded(CODES.CANARY_ATTR);
+  }
+  if (Number(first.rolconnlimit) !== 0) throw coded(CODES.CANARY_ATTR);
+  const actual = [];
+  for (const row of rows) {
+    if (row.canary_name !== CANARY_ROLE) throw coded(CODES.CANARY_ATTR);
+    if (row.member_name == null && row.grantor_name == null) throw coded(CODES.CANARY_MEMBERSHIP);
+    actual.push({
+      member: row.member_name,
+      grantor: row.grantor_name,
+      admin: asBool(row.admin_option),
+      inherit: asBool(row.inherit_option),
+      set: asBool(row.set_option),
+    });
+  }
+  const expectedKeys = [edgeKey(CANARY_EDGE)];
+  const actualKeys = actual.map(edgeKey).sort();
+  if (expectedKeys.length !== actualKeys.length) throw coded(CODES.CANARY_MEMBERSHIP);
+  for (let i = 0; i < expectedKeys.length; i += 1) {
+    if (expectedKeys[i] !== actualKeys[i]) throw coded(CODES.CANARY_MEMBERSHIP);
   }
 }
 
