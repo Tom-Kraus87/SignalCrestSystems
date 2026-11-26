@@ -1,0 +1,18 @@
+---
+description: Atlas/Owner-facing Markdown must also emit presentable PDFs for immediate Atlas upload
+globs: qa-m6b/**/*.md
+alwaysApply: false
+---
+
+# Atlas / Owner Markdown → PDF handoff
+
+When creating or revising **Atlas-facing or Owner-facing** documentation under `qa-m6b/` (decision matrices, release readiness, cost estimates, provisioning instructions, authorization/readiness addenda, verified-account notes, and similar handoff artifacts):
+
+1. Keep the `.md` file as the **source of truth**.
+2. **Also emit a matching presentable PDF** into `qa-m6b/pdf/` with the same base name (e.g. `M7A-FOO-20261123.md` → `qa-m6b/pdf/M7A-FOO-20261123.pdf`).
+3. Use the local converter: `qa-m6b/pdf/convert-md-to-pdf.mjs` (Chrome/Edge headless via `puppeteer-core` + `marked`).
+4. PDFs must be downloadable from the workspace immediately for Atlas upload — Atlas must not work blind against Markdown-only artifacts.
+5. Skip huge raw test dumps / noisy internal scratch; do convert clear Owner/Atlas decision and readiness handoffs.
+6. Do **not** treat PDF generation as a reason to change implementation code (`netlify/functions`, `db`, site code) or to commit/push unless the Owner explicitly asks.
+
+See `qa-m6b/pdf/README.md`.
